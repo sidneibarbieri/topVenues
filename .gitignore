@@ -24,6 +24,9 @@ data/
 # ── Logs and caches ──────────────────────────────────────────
 *.log
 .cache/
+.ruff_cache/
+.pytest_cache/
+.mypy_cache/
 pytest-cache-files-*/
 
 # ── Secrets and local config ─────────────────────────────────
@@ -38,6 +41,7 @@ azure_config*.toml
 .DS_Store
 Thumbs.db
 
-# ── Memory / admin files ─────────────────────────────────────
+# ── Editor / agent admin files ───────────────────────────────
+.claude/
 memory/
 MEMORY.md

@@ -45,6 +45,18 @@ class AbstractStatus(str, Enum):
     PENDING = "pending"
 
 
+class PaperClass(str, Enum):
+    """High-level bibliographic classification, derived from title and type."""
+
+    SOK = "SoK"
+    SURVEY = "Survey"
+    POSTER = "Poster"
+    WORKSHOP = "Workshop"
+    SHORT = "Short"
+    JOURNAL = "Journal"
+    ARTICLE = "Article"
+
+
 class Paper(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
@@ -69,6 +81,45 @@ class Paper(BaseModel):
         if not 1900 <= v <= 2100:
             raise ValueError(f"Year {v} is out of reasonable range")
         return v
+
+    @property
+    def doi(self) -> str | None:
+        """Bare DOI extracted from the ``ee`` URL, when present."""
+        if not self.ee:
+            return None
+        if "doi.org/" in self.ee:
+            return self.ee.split("doi.org/", 1)[1]
+        if self.ee.startswith("10."):
+            return self.ee
+        return None
+
+    @property
+    def first_author(self) -> str | None:
+        if not self.authors:
+            return None
+        return self.authors.split(",", 1)[0].strip() or None
+
+    @property
+    def abstract_words(self) -> int:
+        return len(self.abstract.split()) if self.abstract else 0
+
+    @property
+    def paper_class(self) -> PaperClass:
+        title_lower = (self.title or "").lower()
+        if "sok:" in title_lower or "systematization of knowledge" in title_lower:
+            return PaperClass.SOK
+        if any(kw in title_lower for kw in ("survey", "systematic review", "literature review")):
+            return PaperClass.SURVEY
+        if "poster:" in title_lower or title_lower.startswith("poster "):
+            return PaperClass.POSTER
+        if "workshop" in title_lower:
+            return PaperClass.WORKSHOP
+        if "short paper" in title_lower:
+            return PaperClass.SHORT
+        if (self.event or "").lower().startswith(("acm computing", "ieee communications",
+                                                   "foundations and trends")):
+            return PaperClass.JOURNAL
+        return PaperClass.ARTICLE
 
 
 class DownloadLogEntry(BaseModel):

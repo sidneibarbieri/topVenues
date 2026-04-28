@@ -105,7 +105,7 @@ class AbstractFetcher:
         if cached:
             return cached
 
-        url = f"https://api.crossref.org/works/{doi}?mailto=topvenues@example.com"
+        url = f"https://api.crossref.org/works/{doi}"
         try:
             response = await self.client.get(
                 url, headers={"User-Agent": self.collector.get_random_user_agent()}

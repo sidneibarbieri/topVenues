@@ -1,104 +1,167 @@
-# Top Security Venues — Paper Collector
+# topVenues
 
-A research productivity tool that builds a curated, searchable dataset of papers from top-tier security conferences and journals. Downloads metadata from DBLP, enriches it with abstracts scraped from publisher websites and open APIs, and exposes a full-text search interface.
+**A bibliographic explorer for the top-tier security research venues.**
 
-**Supported venues:** ACM CCS · IEEE S&P · USENIX Security · NDSS · ACM ASIA CCS · IEEE EURO S&P · HotNets · ACM SACMAT · ACM Computing Surveys · IEEE Communications Surveys & Tutorials · Foundations and Trends in Privacy and Security
+`topVenues` builds a curated, searchable SQLite dataset of papers published in
+the leading computer-security conferences and survey journals. It downloads
+metadata from DBLP, enriches every paper with abstracts pulled from open APIs
+and publisher websites, and exposes a fast full-text search interface for
+researchers, students and reviewers preparing literature reviews.
+
+The dataset shipped with the project covers **9 900+ papers** across **11
+venues** with **99.9 % abstract coverage**.
+
+---
+
+## Indexed venues
+
+| Venue                                                | Type       |
+| ---------------------------------------------------- | ---------- |
+| ACM CCS — Conference on Computer & Comm. Security    | Conference |
+| IEEE S&P — Symposium on Security and Privacy         | Conference |
+| USENIX Security                                      | Conference |
+| NDSS — Network and Distributed System Security       | Conference |
+| ACM ASIA CCS                                         | Conference |
+| IEEE EURO S&P                                        | Conference |
+| ACM SACMAT                                           | Conference |
+| HotNets                                              | Workshop   |
+| ACM Computing Surveys                                | Journal    |
+| IEEE Communications Surveys & Tutorials              | Journal    |
+| Foundations and Trends in Privacy and Security       | Journal    |
+
+The set is configurable in `config.yaml`. Adding a new venue requires only a
+URL strategy and an event-name normaliser — see *Extending* below.
 
 ---
 
 ## Quick start
 
 ```bash
-git clone https://github.com/your-user/topVenues.git
+git clone https://github.com/sidneibarbieri/topVenues.git
 cd topVenues
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### One-command full run
-
-```bash
-python -m src.cli run-all          # download → consolidate → extract
-```
-
-### Step by step
-
-```bash
-python -m src.cli download         # fetch DBLP JSON for all venues and years
-python -m src.cli consolidate      # merge into SQLite (idempotent; abstracts preserved)
-python -m src.cli extract          # fetch abstracts (rate-limited)
-```
-
-### Web interface
+### Web interface (recommended)
 
 ```bash
 streamlit run web/app.py
 ```
 
-Open <http://localhost:8501>.  
-Filters: title, abstract, authors, topic, venue, year, SoK, survey, poster, has-abstract.
+Open <http://localhost:8501>. Three pages:
 
-### Search from the CLI
+- **🔍 Search** — full-text filters on title, abstract, authors, topic; venue,
+  year, paper class (SoK / Survey / Poster / Workshop / Short / Journal /
+  Article) and abstract-length filters; sortable, paginated table that
+  includes an abstract preview; CSV / JSON export.
+- **📊 Insights** — distributions by venue, year, class, and abstract
+  coverage.
+- **⚙ Pipeline** — run download / consolidate / extract directly from the UI.
+
+### Command line
 
 ```bash
-python -m src.cli search --title "SOC" --author "Sekar" --abstract "autonomous"
-python -m src.cli search --tech "LLM" --event "ACM CCS" --year 2023
+python -m src.cli download         # fetch DBLP JSON for all venues and years
+python -m src.cli consolidate      # merge into SQLite (idempotent)
+python -m src.cli extract          # fetch missing abstracts (rate-limited)
+python -m src.cli run-all          # download + consolidate + extract
+
+python -m src.cli search --title "SOC" --author "Sekar" --abstract "LLM"
+python -m src.cli search --tech "blockchain" --year 2024
 python -m src.cli stats
 ```
 
+### Incremental updates
+
+The pipeline is fully incremental. Re-running `download → consolidate` next
+year (or after a venue posts new proceedings) only fetches what is missing and
+preserves every existing abstract via SQL `COALESCE`. To pick up a new year,
+just bump `year_start` in `config.yaml` or leave it on the default — it
+auto-extends to the current calendar year.
+
 ---
 
-## Project layout
+## Architecture
 
 ```
 src/
-  models.py            Pydantic DTOs
-  config.py            Configuration loader
+  models.py            Pydantic DTOs (Paper, Configuration, SearchFilters,
+                       AbstractImportResult, PaperClass)
+  config.py            YAML configuration loader
   collector.py         Orchestrator (download → consolidate → extract)
   downloader.py        Async DBLP JSON downloader with circuit breaker
   consolidator.py      Merges JSON files into deduplicated Paper objects
   database.py          SQLite layer — single source of truth
-  abstract_fetcher.py  Parallel fallback APIs (Semantic Scholar, OpenAlex, CrossRef)
+  abstract_fetcher.py  Parallel fallback: Semantic Scholar / OpenAlex / CrossRef
   event_normalizer.py  Venue string → canonical name (Strategy pattern)
-  venue_config.py      DBLP URL generation per venue (Strategy/Registry pattern)
-  circuit_breaker.py   Circuit breaker for unstable external services
-  extractors/          Per-publisher HTML scrapers (ACM, IEEE, USENIX, NDSS)
-  cache.py             Local abstract cache
-  checkpoint.py        Checkpoint/resume for long extraction runs
+  venue_config.py      DBLP URL strategy registry
+  circuit_breaker.py   Circuit breaker for unstable upstreams
+  extractors/          Per-publisher HTML extractors (xidel-based)
+  cache.py             Local abstract cache (SQLite)
+  checkpoint.py        Long-run resumability
   cli.py               Click CLI
 
-web/
-  app.py               Streamlit interface
-
-tests/                 pytest unit tests (110 tests)
-legacy/                Original R script preserved for reference
+web/app.py             Streamlit interface
+tests/                 pytest suite (126 tests)
+scripts/
+  api_blitz.py         Concurrent API back-fill for missing abstracts
+  verify_extractors.py Live integration check for publisher extractors
 ```
+
+### Design highlights
+
+- **SQLite is the single source of truth.** CSV and Pickle outputs are
+  derived exports; the database survives every step of the pipeline.
+- **Idempotent upsert.** Re-running `consolidate` 100× converges to the same
+  state as running it once: existing abstracts are never overwritten.
+- **Two-track abstract fetching.** Open APIs (Semantic Scholar, OpenAlex,
+  CrossRef) are fired *in parallel* with `asyncio.as_completed` — first
+  successful response wins. Publisher sites (ACM, IEEE, USENIX, NDSS) run
+  *sequentially* with throttling because they sit behind Cloudflare.
+- **Strategy / Registry patterns** for both venue URL generation and event
+  name normalisation. Adding a new venue is purely additive.
+- **Circuit breaker** wraps the DBLP downloader so a transient upstream
+  outage stops cascading failures.
+- **NDSS author-leak cleaner.** A comma-aware iterative matcher strips the
+  `Name (Affiliation), Name (Affiliation), …` block that NDSS pages render
+  before the abstract body — without ever truncating legitimate
+  parentheticals like `Industrial Control Systems (ICS), …`.
 
 ---
 
 ## Configuration
 
-Copy and edit `config.yaml` (or use the defaults):
+`config.yaml` (defaults are sensible — edit only as needed):
 
 ```yaml
-year_start: 2019        # fetch papers from this year onwards
-events:                 # subset of supported venue keys
-  - ccs
-  - uss
-  - sp
-  - ndss
+year_start: 2019                       # auto-extends to current year
+events: [ccs, asiaccs, uss, ndss, sp,
+         eurosp, hotnets, sacmat,
+         acm_csur, ieee_comst, fnt_privsec]
 batch_size: 10
+acm_wait_min: 60.0                     # throttle window for publisher scrapers
+acm_wait_max: 300.0
 cache_enabled: true
+cache_ttl_hours: 168
 ```
 
 ---
 
-## Data notes
+## Extending
 
-- The SQLite database (`data/dataset/papers.db`) is the single source of truth.  
-  Running `consolidate` repeatedly is safe — existing abstracts are never overwritten (`COALESCE` on upsert).
-- `data/dataset/master_dataset.csv` is a derived export regenerated on each consolidate run.
-- All `data/` content is excluded from version control (see `.gitignore`).
+To add a new venue:
+
+1. Add the short identifier to `Configuration.events` and `EventType` in
+   `src/models.py`.
+2. Register a `VenueURLStrategy` in `src/venue_config.py` (point it at the
+   DBLP page for that venue).
+3. Add a normalisation rule in `src/event_normalizer.py` mapping DBLP's venue
+   string to the canonical display name.
+4. (Optional) add a publisher-specific extractor under `src/extractors/` if
+   the open APIs don't cover that venue's papers reliably.
+
+No code outside those four touch-points needs to change.
 
 ---
 
@@ -106,19 +169,48 @@ cache_enabled: true
 
 ```bash
 pip install -e ".[dev]"
-pytest                  # 110 tests
+pytest                         # 126 tests
+ruff check src/ web/ tests/
 ```
+
+---
+
+## Data sources
+
+- [DBLP](https://dblp.org) — paper metadata
+- [Semantic Scholar](https://www.semanticscholar.org/product/api) — abstracts
+- [OpenAlex](https://openalex.org) — abstracts (inverted index)
+- [CrossRef](https://www.crossref.org) — abstracts (JATS XML)
+- Publisher sites (ACM Digital Library, IEEE Xplore, USENIX, NDSS) — abstracts
+
+All retrieval is read-only and respects published API rate limits.
 
 ---
 
 ## Citation
 
+If `topVenues` helps your research, please cite it:
+
 ```bibtex
-@software{topvenues,
-  title  = {Top Security Venues — Paper Collector},
+@software{barbieri_topvenues,
+  author = {Barbieri, Sidnei},
+  title  = {topVenues: a bibliographic explorer for top-tier security venues},
   year   = {2025},
-  url    = {https://github.com/your-user/topVenues}
+  url    = {https://github.com/sidneibarbieri/topVenues}
 }
 ```
 
-MIT License.
+---
+
+## Author
+
+**Sidnei Barbieri** — [@sidneibarbieri](https://github.com/sidneibarbieri)
+
+Built to support systematic literature reviews and threat-landscape mapping
+across the top-tier security research venues.
+
+---
+
+## License
+
+MIT — see [LICENSE](LICENSE).

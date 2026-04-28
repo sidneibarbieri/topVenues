@@ -105,7 +105,6 @@ def search(
     """Search papers with filters."""
     base_dir = ctx.obj["base_dir"]
 
-    # Build filters
     filters = SearchFilters()
     if title:
         filters.title_contains = title
@@ -125,7 +124,6 @@ def search(
     with console.status("[bold green]Searching..."):
         results = collector.search(filters, limit=limit)
 
-    # Display results
     table = Table(title=f"Search Results ({len(results)} papers)")
     table.add_column("Title", style="cyan", no_wrap=False)
     table.add_column("Authors", style="green")

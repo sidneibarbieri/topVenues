@@ -1,8 +1,0 @@
-model = "chat"
-model_provider = "azure"
-
-[model_providers.azure]
-name = "Azure OpenAI"
-base_url = "https://cog-open-ai-lab.openai.azure.com/openai/v1"
-env_key = "AZURE_OPENAI_API_KEY"
-wire_api = "responses"
