@@ -1,0 +1,52 @@
+events:
+- ccs
+- asiaccs
+- uss
+- ndss
+- sp
+- eurosp
+- hotnets
+- sacmat
+- acm_csur
+- ieee_comst
+- fnt_privsec
+year_start: 2019
+# years is computed automatically from year_start to the current calendar year.
+# Override here only if you need a custom range, e.g.: years: [2023, 2024]
+request_timeout: 180
+default_interval:
+- 5.0
+- 15.0
+acm_wait_min: 60.0
+acm_wait_max: 300.0
+batch_size: 10
+acm_failure_threshold: 3
+acm_backoff_initial: 60.0
+acm_backoff_max: 600.0
+max_retries: 10
+retry_backoff_factor: 2.0
+cache_enabled: true
+cache_ttl_hours: 168
+checkpoint_enabled: true
+checkpoint_interval: 5
+base_dir: .
+data_dir: data/dataset
+log_dir: data/log
+json_dir: data/json
+cache_dir: data/cache
+checkpoint_dir: data/checkpoints
+user_agents:
+- Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko)
+  Chrome/129.0.0.0 Safari/537.36
+- Mozilla/5.0 (Macintosh; Intel Mac OS X 14_6_1) AppleWebKit/537.36 (KHTML, like Gecko)
+  Chrome/129.0.0.0 Safari/537.36
+- Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:131.0) Gecko/20100101 Firefox/131.0
+- Mozilla/5.0 (Macintosh; Intel Mac OS X 14.6) AppleWebKit/605.1.15 (KHTML, like Gecko)
+  Version/18.0 Safari/605.1.15
+- Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko)
+  Edge/129.0.2792.79 Safari/537.36
+headers:
+  Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+  Accept-Language: en-US,en;q=0.5
+  Connection: keep-alive
+  Cache-Control: no-cache

@@ -1,0 +1,43 @@
+# ── Python ──────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+*.egg
+dist/
+build/
+.eggs/
+
+# ── Virtual environments ─────────────────────────────────────
+.venv/
+venv/
+env/
+
+# ── Data (generated; not part of source) ────────────────────
+data/
+*.db
+*.pkl
+*.csv
+*.bak.*
+
+# ── Logs and caches ──────────────────────────────────────────
+*.log
+.cache/
+pytest-cache-files-*/
+
+# ── Secrets and local config ─────────────────────────────────
+.env
+.env.*
+*.toml.local
+azure_config*.toml
+
+# ── IDE / OS ─────────────────────────────────────────────────
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# ── Memory / admin files ─────────────────────────────────────
+memory/
+MEMORY.md
