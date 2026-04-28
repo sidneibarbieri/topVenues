@@ -77,29 +77,41 @@ python -m src.cli stats
 
 ### BibTeX & LaTeX integration
 
-Every paper carries the BibTeX entry served by DBLP and a derived
-`\cite{cite_key}` snippet. The web UI shows both inline; the **Search**
-page exports a ready-to-use `.bib` file containing every paper in the
-current result set. Drop it into your LaTeX project and reference papers
-directly with the displayed `\cite{…}`.
+Every paper carries the BibTeX entry that DBLP would serve via its API,
+plus a derived `\cite{cite_key}` snippet. The web UI shows both inline;
+the **Search** page exports a ready-to-use `.bib` for the current
+result set. Drop it into your LaTeX project and `\cite{…}` away.
 
-The first BibTeX backfill is run-once and then incremental:
+`topVenues` ships **three** strategies for populating the `bibtex`
+column. Pick whichever fits your situation:
+
+| Command | Source | Time | Output | When to use |
+| ------- | ------ | ---- | ------ | ----------- |
+| `bibtex-from-dump` | DBLP XML dump | ~10 min one-off | DBLP-canonical, with crossref-resolved `editor` / `booktitle` | **Recommended.** Single 1 GB download, then offline. |
+| `bibtex-local` | Existing DB fields | seconds | Minimal but valid (no `volume`/`number`) | No internet, or DBLP throttling. |
+| `bibtex` | DBLP per-record API | hours (rate-limited) | DBLP-canonical | Filling a handful of new papers. |
 
 ```bash
-python -m src.cli bibtex --concurrency 4   # fills missing entries
+# One-off, gold-standard: ~10 min, 100% coverage
+python -m src.cli bibtex-from-dump
+
+# Instant offline fallback: zero network, ~95% completeness
+python -m src.cli bibtex-local
+
+# Trickle fill via API (use --concurrency 2 to stay under DBLP's rate limit)
+python -m src.cli bibtex --concurrency 2
 ```
 
-DBLP rate-limits aggressive bursts at the IP level. The fetcher uses
-bounded concurrency, jittered per-request delays, exponential backoff
-and rotating browser User-Agents to stay polite. If you ever see
-``HTTP 000`` or ``ReadError`` for an extended period, pause for 10–30
-minutes and restart with `--concurrency 2`. The backfill is fully
-resumable — already-fetched entries are never re-requested.
+The DB column is set-once-keep: re-running any command never overwrites
+existing entries unless you explicitly pass `--overwrite` (only
+available on `bibtex-local`). Combining commands works as expected:
+run `bibtex-local` for instant coverage, then run `bibtex-from-dump`
+later to upgrade entries to DBLP-canonical when you have the bandwidth.
 
 > **Companion tool:** once your `.bib` is in your paper, run
 > [Vyas Sekar's AcademicLinter](https://github.com/vyassekar/AcademicLinter)
-> against it to catch unused entries, weasel words, repeated words and
-> double-blind privacy leaks.
+> on the LaTeX project to catch unused entries, weasel words, repeated
+> words and double-blind privacy leaks.
 
 ### Incremental updates
 

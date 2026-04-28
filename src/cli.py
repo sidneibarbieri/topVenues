@@ -74,16 +74,89 @@ def extract(ctx: click.Context) -> None:
 
 
 @cli.command()
-@click.option("--concurrency", default=8, show_default=True,
+@click.option("--concurrency", default=4, show_default=True,
               help="Concurrent DBLP requests.")
 @click.pass_context
 def bibtex(ctx: click.Context, concurrency: int) -> None:
-    """Fetch missing BibTeX entries from DBLP."""
+    """Fetch missing BibTeX entries via the DBLP per-record API."""
     base_dir = ctx.obj["base_dir"]
     collector = Collector(base_dir=base_dir)
     with console.status("[bold green]Fetching BibTeX…"):
         asyncio.run(collector.run_bibtex(concurrency=concurrency))
     console.print("[bold green]✓[/bold green] BibTeX backfill complete!")
+
+
+@cli.command("bibtex-from-dump")
+@click.option("--dump-dir", type=click.Path(path_type=Path), default=None,
+              help="Where to store dblp.xml.gz and dblp.dtd "
+                   "(default: <base>/data/dblp).")
+@click.option("--force-download", is_flag=True,
+              help="Re-download even if the dump is already on disk.")
+@click.pass_context
+def bibtex_from_dump(ctx: click.Context, dump_dir: Path | None,
+                     force_download: bool) -> None:
+    """Fill BibTeX entries from a single download of the DBLP XML dump."""
+    import sqlite3
+
+    from .bibtex_dump import download_dump, parse_dump_for_keys
+
+    base_dir = ctx.obj["base_dir"]
+    collector = Collector(base_dir=base_dir)
+    dump_dir = dump_dir or (base_dir / "data" / "dblp")
+
+    rows = collector.db.get_papers_without_bibtex()
+    target_keys = {row["key"] for row in rows if row.get("key")}
+    if not target_keys:
+        console.print("[bold green]Nothing to do — every paper already has BibTeX.[/bold green]")
+        return
+
+    console.print(f"[bold]Targets:[/bold] {len(target_keys):,} papers without BibTeX.")
+
+    with console.status("[bold green]Downloading DBLP dump (~600 MB)…"):
+        xml_path, _ = download_dump(dump_dir, force=force_download)
+
+    with console.status("[bold green]Parsing dump and matching keys…"):
+        bibtex_by_key = parse_dump_for_keys(xml_path, target_keys)
+
+    console.print(f"  Matched {len(bibtex_by_key):,}/{len(target_keys):,} keys in dump.")
+
+    with sqlite3.connect(collector.db.db_path) as conn:
+        conn.executemany(
+            "UPDATE papers SET bibtex=?, updated_at=CURRENT_TIMESTAMP WHERE key=?",
+            [(bib, key) for key, bib in bibtex_by_key.items()],
+        )
+    console.print(f"[bold green]✓[/bold green] Populated {len(bibtex_by_key):,} BibTeX entries.")
+
+
+@cli.command("bibtex-local")
+@click.option("--overwrite", is_flag=True,
+              help="Overwrite existing BibTeX entries instead of only filling blanks.")
+@click.pass_context
+def bibtex_local(ctx: click.Context, overwrite: bool) -> None:
+    """Generate BibTeX offline from fields already in the database."""
+    import sqlite3
+
+    from .bibtex_local import paper_to_bibtex
+    from .models import Paper
+
+    base_dir = ctx.obj["base_dir"]
+    collector = Collector(base_dir=base_dir)
+
+    rows = (collector.db.get_all_papers() if overwrite
+            else collector.db.get_papers_without_bibtex())
+    populated = 0
+    with sqlite3.connect(collector.db.db_path) as conn:
+        for row in rows:
+            paper = Paper(**row)
+            entry = paper_to_bibtex(paper)
+            if not entry:
+                continue
+            conn.execute(
+                "UPDATE papers SET bibtex=?, updated_at=CURRENT_TIMESTAMP WHERE paper_id=?",
+                (entry, paper.paper_id),
+            )
+            populated += 1
+    console.print(f"[bold green]✓[/bold green] Generated {populated:,} BibTeX entries locally.")
 
 
 @cli.command()
