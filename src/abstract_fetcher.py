@@ -1,6 +1,7 @@
 """Fallback abstract APIs."""
 
 import asyncio
+import html
 import logging
 import re
 from typing import TYPE_CHECKING
@@ -12,6 +13,11 @@ if TYPE_CHECKING:
     from .collector import Collector
 
 logger = logging.getLogger(__name__)
+
+
+def _normalize(text: str) -> str:
+    """Decode HTML entities and collapse whitespace; idempotent."""
+    return re.sub(r"\s+", " ", html.unescape(text)).strip()
 
 
 class AbstractFetcher:
@@ -49,8 +55,9 @@ class AbstractFetcher:
         if not abstract or len(abstract) < 100:
             return None
 
+        abstract = _normalize(abstract)
         self.collector.cache_manager.set(cache_key, abstract)
-        return abstract.strip()
+        return abstract
 
     async def fetch_openalex(self, doi: str) -> str | None:
         if not doi or not doi.startswith("10."):
@@ -93,8 +100,9 @@ class AbstractFetcher:
         if len(abstract) < 100:
             return None
 
+        abstract = _normalize(abstract)
         self.collector.cache_manager.set(cache_key, abstract)
-        return abstract.strip()
+        return abstract
 
     async def fetch_crossref(self, doi: str) -> str | None:
         if not doi or not doi.startswith("10."):

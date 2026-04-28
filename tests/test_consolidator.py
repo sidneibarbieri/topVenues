@@ -134,3 +134,20 @@ class TestProcessJsonFile:
         bad.write_text("not json", encoding="utf-8")
         with pytest.raises(json.JSONDecodeError):
             consolidator._process_json_file(bad)
+
+    def test_decodes_html_entities(self, tmp_path, consolidator):
+        hit = {
+            "@id": "1",
+            "info": {
+                "title": "&quot;X of Information&quot; Continuum: A Survey",
+                "year": "2024",
+                "venue": "IEEE Commun. Surv. &amp; Tutorials",
+                "type": "article",
+                "authors": {"author": [{"text": "O&apos;Connor, Sean"}]},
+            },
+        }
+        path = self._make_json(tmp_path, [hit])
+        papers = consolidator._process_json_file(path)
+        assert papers[0].title == '"X of Information" Continuum: A Survey'
+        assert papers[0].venue == "IEEE Commun. Surv. & Tutorials"
+        assert papers[0].authors == "O'Connor, Sean"

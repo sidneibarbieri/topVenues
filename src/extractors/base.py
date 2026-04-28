@@ -1,6 +1,7 @@
 """Base extractor with xidel runner and text cleaning."""
 
 import asyncio
+import html
 import random
 import re
 import subprocess
@@ -38,6 +39,7 @@ class AbstractExtractor(ABC):
     def _clean_abstract(self, text: str | None) -> str | None:
         if not text:
             return None
+        text = html.unescape(text)
         text = self._strip_leading_author_blocks(text)
         text = re.sub(r"USENIX is committed to Open Access.*", "", text, flags=re.IGNORECASE)
         text = re.sub(r"^Abstract\s*[:\?\-]?\s*", "", text, flags=re.IGNORECASE)

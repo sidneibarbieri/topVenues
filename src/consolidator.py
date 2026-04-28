@@ -1,5 +1,6 @@
 """Merges DBLP JSON files into master dataset."""
 
+import html
 import json
 import logging
 from collections.abc import Callable
@@ -9,6 +10,14 @@ import pandas as pd
 
 from .event_normalizer import EventNormalizer
 from .models import Paper
+
+
+def _decode_entities(value: str | None) -> str | None:
+    """Decode HTML entities (``&quot;``, ``&amp;``, ``&apos;``, …) once.
+
+    ``html.unescape`` is idempotent on already-decoded strings.
+    """
+    return html.unescape(value) if isinstance(value, str) else value
 
 logger = logging.getLogger(__name__)
 
@@ -80,12 +89,13 @@ class DataConsolidator:
             raw_type = str(info.get("type", "article")).lower()
             paper_type = self._PAPER_TYPE_MAP.get(raw_type, "unknown")
 
+            venue = info.get("venue", "")
             paper = Paper(
                 score=hit.get("@score"),
                 paper_id=paper_id,
-                authors=self._extract_authors(info.get("authors", {})),
-                title=title,
-                venue=info.get("venue"),
+                authors=_decode_entities(self._extract_authors(info.get("authors", {}))),
+                title=_decode_entities(title),
+                venue=_decode_entities(venue) or None,
                 pages=info.get("pages"),
                 year=year,
                 paper_type=paper_type,
@@ -93,7 +103,7 @@ class DataConsolidator:
                 key=info.get("key"),
                 ee=info.get("ee"),
                 url=info.get("url"),
-                event=self.normalizer.normalize(info.get("venue", "")),
+                event=self.normalizer.normalize(venue),
                 abstract=None,
             )
             papers.append(paper)
