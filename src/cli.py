@@ -74,9 +74,22 @@ def extract(ctx: click.Context) -> None:
 
 
 @cli.command()
+@click.option("--concurrency", default=8, show_default=True,
+              help="Concurrent DBLP requests.")
+@click.pass_context
+def bibtex(ctx: click.Context, concurrency: int) -> None:
+    """Fetch missing BibTeX entries from DBLP."""
+    base_dir = ctx.obj["base_dir"]
+    collector = Collector(base_dir=base_dir)
+    with console.status("[bold green]Fetching BibTeX…"):
+        asyncio.run(collector.run_bibtex(concurrency=concurrency))
+    console.print("[bold green]✓[/bold green] BibTeX backfill complete!")
+
+
+@cli.command()
 @click.pass_context
 def run_all(ctx: click.Context) -> None:
-    """Run complete workflow (download + consolidate + extract)."""
+    """Run complete workflow (download + consolidate + extract + bibtex)."""
     base_dir = ctx.obj["base_dir"]
 
     collector = Collector(base_dir=base_dir)
@@ -156,11 +169,15 @@ def stats(ctx: click.Context) -> None:
         return
 
     with_abstracts = data["with_abstracts"]
+    with_bibtex = data.get("with_bibtex", 0)
     console.print(f"\n[bold]Total Papers:[/bold] {total}")
     console.print(
         f"[bold]With Abstracts:[/bold] {with_abstracts} ({with_abstracts / total * 100:.1f}%)"
     )
     console.print(f"[bold]Without Abstracts:[/bold] {data['without_abstracts']}")
+    console.print(
+        f"[bold]With BibTeX:[/bold]    {with_bibtex} ({with_bibtex / total * 100:.1f}%)"
+    )
 
     console.print("\n[bold]By Conference:[/bold]")
     for event, count in sorted(data["by_event"].items(), key=lambda x: x[1], reverse=True):

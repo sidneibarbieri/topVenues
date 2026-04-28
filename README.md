@@ -53,11 +53,13 @@ Open <http://localhost:8501>. Three pages:
 
 - **🔍 Search** — full-text filters on title, abstract, authors, topic; venue,
   year, paper class (SoK / Survey / Poster / Workshop / Short / Journal /
-  Article) and abstract-length filters; sortable, paginated table that
-  includes an abstract preview; CSV / JSON export.
-- **📊 Insights** — distributions by venue, year, class, and abstract
-  coverage.
-- **⚙ Pipeline** — run download / consolidate / extract directly from the UI.
+  Article), abstract-length and BibTeX filters; sortable, paginated table
+  that shows an abstract preview and the `\cite{…}` command for each row.
+  CSV / JSON / `.bib` export.
+- **📊 Insights** — distributions by venue, year, class; abstract and
+  BibTeX coverage.
+- **⚙ Pipeline** — run download / consolidate / extract / bibtex directly
+  from the UI.
 
 ### Command line
 
@@ -65,12 +67,26 @@ Open <http://localhost:8501>. Three pages:
 python -m src.cli download         # fetch DBLP JSON for all venues and years
 python -m src.cli consolidate      # merge into SQLite (idempotent)
 python -m src.cli extract          # fetch missing abstracts (rate-limited)
-python -m src.cli run-all          # download + consolidate + extract
+python -m src.cli bibtex           # fetch BibTeX entries from DBLP
+python -m src.cli run-all          # download + consolidate + extract + bibtex
 
 python -m src.cli search --title "SOC" --author "Sekar" --abstract "LLM"
 python -m src.cli search --tech "blockchain" --year 2024
 python -m src.cli stats
 ```
+
+### BibTeX & LaTeX integration
+
+Every paper carries the BibTeX entry served by DBLP and a derived
+`\cite{cite_key}` snippet. The web UI shows both inline; the **Search**
+page exports a ready-to-use `.bib` file containing every paper in the
+current result set. Drop it into your LaTeX project and reference papers
+directly with the displayed `\cite{…}`.
+
+> **Companion tool:** once your `.bib` is in your paper, run
+> [Vyas Sekar's AcademicLinter](https://github.com/vyassekar/AcademicLinter)
+> against it to catch unused entries, weasel words, repeated words and
+> double-blind privacy leaks.
 
 ### Incremental updates
 
@@ -94,6 +110,7 @@ src/
   consolidator.py      Merges JSON files into deduplicated Paper objects
   database.py          SQLite layer — single source of truth
   abstract_fetcher.py  Parallel fallback: Semantic Scholar / OpenAlex / CrossRef
+  bibtex_fetcher.py    Concurrent DBLP .bib fetcher with retry / backoff
   event_normalizer.py  Venue string → canonical name (Strategy pattern)
   venue_config.py      DBLP URL strategy registry
   circuit_breaker.py   Circuit breaker for unstable upstreams
@@ -106,6 +123,7 @@ web/app.py             Streamlit interface
 tests/                 pytest suite (126 tests)
 scripts/
   api_blitz.py         Concurrent API back-fill for missing abstracts
+  bibtex_blitz.py      Concurrent BibTeX back-fill from DBLP
   verify_extractors.py Live integration check for publisher extractors
 ```
 

@@ -36,12 +36,21 @@ class DatabaseManager:
                     url TEXT,
                     event TEXT,
                     abstract TEXT,
+                    bibtex TEXT,
                     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
                 )
             """)
+            self._ensure_column(conn, "bibtex", "TEXT")
             for col in ("event", "year", "title", "abstract", "authors"):
                 conn.execute(f"CREATE INDEX IF NOT EXISTS idx_{col} ON papers({col})")
+
+    @staticmethod
+    def _ensure_column(conn: sqlite3.Connection, column: str, sql_type: str) -> None:
+        """Add a column if missing — SQLite has no ``ALTER TABLE ADD COLUMN IF NOT EXISTS``."""
+        existing = {row[1] for row in conn.execute("PRAGMA table_info(papers)").fetchall()}
+        if column not in existing:
+            conn.execute(f"ALTER TABLE papers ADD COLUMN {column} {sql_type}")
 
     _UPSERT_SQL = """
         INSERT INTO papers (
@@ -192,6 +201,9 @@ class DatabaseManager:
             with_abstracts = conn.execute(
                 "SELECT COUNT(*) FROM papers WHERE abstract IS NOT NULL AND abstract != ''"
             ).fetchone()[0]
+            with_bibtex = conn.execute(
+                "SELECT COUNT(*) FROM papers WHERE bibtex IS NOT NULL AND bibtex != ''"
+            ).fetchone()[0]
             event_stats = conn.execute(
                 "SELECT event, COUNT(*) FROM papers GROUP BY event ORDER BY COUNT(*) DESC"
             ).fetchall()
@@ -203,6 +215,7 @@ class DatabaseManager:
             "total_papers": total,
             "with_abstracts": with_abstracts,
             "without_abstracts": total - with_abstracts,
+            "with_bibtex": with_bibtex,
             "by_event": dict(event_stats),
             "by_year": dict(year_stats),
         }
@@ -228,6 +241,27 @@ class DatabaseManager:
                 (abstract, paper_id),
             )
         return cursor.rowcount > 0
+
+    def update_bibtex(self, paper_id: str, bibtex: str) -> bool:
+        with sqlite3.connect(self.db_path) as conn:
+            cursor = conn.execute(
+                "UPDATE papers SET bibtex = ?, updated_at = CURRENT_TIMESTAMP WHERE paper_id = ?",
+                (bibtex, paper_id),
+            )
+        return cursor.rowcount > 0
+
+    def get_papers_without_bibtex(self, limit: int | None = None) -> list[dict]:
+        query = ("SELECT * FROM papers WHERE (bibtex IS NULL OR bibtex = '') "
+                 "AND key IS NOT NULL AND key != '' "
+                 "ORDER BY year DESC, event, title")
+        if limit:
+            query += " LIMIT ?"
+            params: tuple = (limit,)
+        else:
+            params = ()
+        with sqlite3.connect(self.db_path) as conn:
+            conn.row_factory = sqlite3.Row
+            return [dict(row) for row in conn.execute(query, params).fetchall()]
 
     def import_abstracts_from_csv(self, csv_path: Path) -> AbstractImportResult:
         """Fill empty abstracts in the DB from a CSV. Existing abstracts are preserved.

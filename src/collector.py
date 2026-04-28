@@ -6,6 +6,7 @@ from datetime import datetime, timedelta
 from pathlib import Path
 
 from .abstract_fetcher import AbstractFetcher
+from .bibtex_fetcher import BibTeXFetcher
 from .cache import CacheManager
 from .checkpoint import CheckpointManager
 from .config import load_configuration
@@ -136,14 +137,38 @@ class Collector:
         await fetcher.close()
         print(f"Extracted abstracts for {processed} papers")
 
+    async def run_bibtex(self, concurrency: int = 8) -> int:
+        """Backfill BibTeX entries from DBLP for every paper missing one."""
+        targets = self.db.get_papers_without_bibtex()
+        if not targets:
+            print("All papers already have BibTeX.")
+            return 0
+
+        print(f"Fetching BibTeX for {len(targets):,} papers (concurrency={concurrency})…")
+        recovered = 0
+
+        def _persist(paper: Paper, bibtex: str | None) -> None:
+            nonlocal recovered
+            if bibtex:
+                self.db.update_bibtex(paper.paper_id, bibtex)
+                recovered += 1
+
+        papers = [Paper(**row) for row in targets]
+        async with BibTeXFetcher(concurrency=concurrency) as fetcher:
+            await fetcher.fetch_many(papers, on_result=_persist)
+        print(f"Recovered BibTeX for {recovered:,}/{len(papers):,} papers.")
+        return recovered
+
     async def run_full(self) -> None:
-        print("Starting Top Venues Collector...")
-        print("\n[1/3] Downloading JSON files...")
+        print("Starting Top Venues Collector…")
+        print("\n[1/4] Downloading JSON files…")
         await self.run_download()
-        print("\n[2/3] Consolidating data...")
+        print("\n[2/4] Consolidating data…")
         await self.run_consolidate()
-        print("\n[3/3] Extracting abstracts...")
+        print("\n[3/4] Extracting abstracts…")
         await self.run_extract()
+        print("\n[4/4] Fetching BibTeX entries…")
+        await self.run_bibtex()
         print("\nCollection complete!")
 
     def search(self, filters: SearchFilters, limit: int | None = None) -> list[Paper]:

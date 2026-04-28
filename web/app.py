@@ -164,6 +164,10 @@ def _abstract_length_predicate(papers, choice: str):
     return papers
 
 
+def _bibtex_predicate(papers, only_with_bibtex: bool):
+    return [p for p in papers if p.bibtex] if only_with_bibtex else papers
+
+
 def _truncate(text: str | None, max_chars: int = ABSTRACT_PREVIEW_CHARS) -> str:
     if not text:
         return "—"
@@ -187,7 +191,9 @@ def _render_header(title: str, subtitle: str) -> None:
 def _render_metrics(stats: dict, filtered_count: int | None = None) -> None:
     total = stats["total_papers"]
     with_abs = stats["with_abstracts"]
-    pct = (with_abs / total * 100) if total else 0
+    with_bib = stats.get("with_bibtex", 0)
+    abs_pct = (with_abs / total * 100) if total else 0
+    bib_pct = (with_bib / total * 100) if total else 0
     venues = len(stats["by_event"])
     extra = (
         f'<div class="metric green"><div class="lbl">Currently shown</div>'
@@ -207,12 +213,12 @@ def _render_metrics(stats: dict, filtered_count: int | None = None) -> None:
           <div class="metric amber">
             <div class="lbl">With abstract</div>
             <div class="val">{with_abs:,}</div>
-            <div class="sub">{pct:.1f}% coverage</div>
+            <div class="sub">{abs_pct:.1f}% coverage</div>
           </div>
           <div class="metric rose">
-            <div class="lbl">Year coverage</div>
-            <div class="val">{len(years)}</div>
-            <div class="sub">{year_range}</div>
+            <div class="lbl">With BibTeX</div>
+            <div class="val">{with_bib:,}</div>
+            <div class="sub">{bib_pct:.1f}% coverage</div>
           </div>
           {extra}
         </div>
@@ -249,11 +255,14 @@ def page_search() -> None:
                 help="Filter by SoK, Survey, Poster, Workshop, Short, Journal or Article.",
             )
 
-        with st.expander("Abstract", expanded=False):
+        with st.expander("Abstract & citation", expanded=False):
             abstract_length = st.selectbox(
-                "Length",
+                "Abstract length",
                 ["Any", "Has abstract", "Short (≤ 150 words)",
                  "Medium (151–300 words)", "Long (> 300 words)"],
+            )
+            only_with_bibtex = st.checkbox(
+                "Has BibTeX", help="Only include papers whose BibTeX entry has been fetched."
             )
 
         st.markdown("## Display")
@@ -277,6 +286,7 @@ def page_search() -> None:
         wanted = {PaperClass(value) for value in class_choices}
         results = [p for p in results if p.paper_class in wanted]
     results = _abstract_length_predicate(results, abstract_length)
+    results = _bibtex_predicate(results, only_with_bibtex)
 
     if sort_choice == "Year (newest first)":
         results.sort(key=lambda p: (-(p.year or 0), p.title or ""))
@@ -323,6 +333,7 @@ def page_search() -> None:
             "Class": paper.paper_class.value,
             "Words": paper.abstract_words,
             "Abstract": _truncate(paper.abstract),
+            "Cite": paper.cite_command or "—",
             "Link": paper.ee or paper.url or "",
         }
         for paper in page_slice
@@ -342,6 +353,7 @@ def page_search() -> None:
             "Class":    st.column_config.TextColumn("Class", width="small"),
             "Words":    st.column_config.NumberColumn("Words", format="%d", width="small"),
             "Abstract": st.column_config.TextColumn("Abstract preview", width="large"),
+            "Cite":     st.column_config.TextColumn("\\cite{…}", width="small"),
             "Link":     st.column_config.LinkColumn("DOI / URL", width="small", display_text="open"),
         },
     )
@@ -359,11 +371,14 @@ def page_search() -> None:
             "ee": paper.ee,
             "url": paper.url,
             "abstract": paper.abstract,
+            "cite_key": paper.cite_key,
+            "bibtex": paper.bibtex,
         }
         for paper in results
     ]
     full_df = pd.DataFrame(full_rows)
-    col_csv, col_json, _ = st.columns([1, 1, 4])
+    bib_text = "\n\n".join(p.bibtex for p in results if p.bibtex)
+    col_csv, col_json, col_bib, _ = st.columns([1, 1, 1, 3])
     with col_csv:
         st.download_button(
             "⬇ Export CSV",
@@ -379,6 +394,17 @@ def page_search() -> None:
             "topvenues_results.json",
             "application/json",
             use_container_width=True,
+        )
+    with col_bib:
+        st.download_button(
+            "⬇ Export .bib",
+            bib_text or "% no BibTeX entries available",
+            "topvenues_results.bib",
+            "application/x-bibtex",
+            use_container_width=True,
+            disabled=not bib_text,
+            help="LaTeX bibliography file with one BibTeX entry per result."
+                 if bib_text else "BibTeX not yet fetched for any paper in this result set.",
         )
 
     st.divider()
@@ -415,6 +441,15 @@ def page_search() -> None:
             """,
             unsafe_allow_html=True,
         )
+
+        if paper.bibtex:
+            st.markdown("**BibTeX**")
+            st.code(paper.bibtex, language="bibtex")
+            col_cite, _ = st.columns([1, 3])
+            with col_cite:
+                st.code(paper.cite_command or "", language="latex")
+        else:
+            st.caption("BibTeX not yet fetched. Run `python -m src.cli bibtex` to populate.")
 
 
 def page_insights() -> None:

@@ -89,6 +89,17 @@ class TestPaperComputedProperties:
         p = Paper(paper_id="1", title="Provably Secure Encryption", year=2023, event="ACM CCS")
         assert p.paper_class == PaperClass.ARTICLE
 
+    def test_cite_key_from_bibtex(self):
+        bib = "@article{DBLP:journals/sp/Smith24,\n  title = {Foo},\n  year = {2024}\n}"
+        p = Paper(paper_id="1", title="Foo", year=2024, bibtex=bib)
+        assert p.cite_key == "DBLP:journals/sp/Smith24"
+        assert p.cite_command == "\\cite{DBLP:journals/sp/Smith24}"
+
+    def test_cite_key_none_without_bibtex(self):
+        p = Paper(paper_id="1", title="Foo", year=2024)
+        assert p.cite_key is None
+        assert p.cite_command is None
+
 
 class TestConfiguration:
     def test_default_interval_is_list(self):

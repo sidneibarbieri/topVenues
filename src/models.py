@@ -1,5 +1,6 @@
 """Pydantic DTOs."""
 
+import re
 from datetime import datetime
 from enum import Enum
 from typing import Any
@@ -74,6 +75,7 @@ class Paper(BaseModel):
     url: str | None = None
     event: str | None = None
     abstract: str | None = None
+    bibtex: str | None = None
 
     @field_validator("year")
     @classmethod
@@ -102,6 +104,19 @@ class Paper(BaseModel):
     @property
     def abstract_words(self) -> int:
         return len(self.abstract.split()) if self.abstract else 0
+
+    @property
+    def cite_key(self) -> str | None:
+        """The BibTeX entry key (e.g. ``DBLP:conf/sp/Smith23``), if BibTeX is present."""
+        if not self.bibtex:
+            return None
+        match = re.search(r"@\w+\{([^,\s]+)\s*,", self.bibtex)
+        return match.group(1) if match else None
+
+    @property
+    def cite_command(self) -> str | None:
+        """LaTeX ``\\cite{key}`` command for direct copy-paste."""
+        return f"\\cite{{{self.cite_key}}}" if self.cite_key else None
 
     @property
     def paper_class(self) -> PaperClass:
