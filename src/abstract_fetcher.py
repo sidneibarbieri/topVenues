@@ -77,12 +77,18 @@ class AbstractFetcher:
         if not inverted_index:
             return None
 
-        max_pos = max(max(positions) for positions in inverted_index.values())
+        all_positions = [pos for positions in inverted_index.values() for pos in positions]
+        # Reject reconstructions that omit the leading words — the abstract
+        # would start mid-sentence and be visibly truncated.
+        if not all_positions or min(all_positions) > 0:
+            return None
+
+        max_pos = max(all_positions)
         words = [""] * (max_pos + 1)
         for word, positions in inverted_index.items():
             for pos in positions:
                 words[pos] = word
-        abstract = " ".join(words)
+        abstract = " ".join(w for w in words if w)
 
         if len(abstract) < 100:
             return None

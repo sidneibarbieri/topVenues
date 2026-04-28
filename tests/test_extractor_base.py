@@ -36,10 +36,31 @@ class TestCleanAbstract:
         result = extractor._clean_abstract("too   many    spaces")
         assert result == "too many spaces"
 
-    def test_strips_author_line(self, extractor):
+    def test_strips_ndss_style_author_block(self, extractor):
+        text = (
+            "Florian Lackner (Graz University of Technology), "
+            "Daniel Gruss (Graz University of Technology) "
+            "Today, more and more web browsers and extensions provide anonymity "
+            "features to hide user details. Primarily this should reduce fingerprinting risks."
+        )
+        result = extractor._clean_abstract(text)
+        assert result.startswith("Today")
+        assert "Florian Lackner" not in result
+        assert "Graz University" not in result
+
+    def test_does_not_strip_legitimate_parenthetical(self, extractor):
+        text = (
+            "Word2Vec (W2V) is a popular embedding scheme used widely in modern "
+            "natural language processing systems for many practical tasks "
+            "including classification, retrieval, and recommendation."
+        )
+        result = extractor._clean_abstract(text)
+        assert result.startswith("Word2Vec")
+
+    def test_does_not_truncate_when_remainder_too_short(self, extractor):
         text = "Alice Bob (MIT): This paper presents..."
         result = extractor._clean_abstract(text)
-        assert "Alice Bob" not in result
+        assert "Alice Bob" in result
 
 
 class TestIsValidAbstract:
