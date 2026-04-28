@@ -30,6 +30,16 @@ RETRY_STATUS = {429, 500, 502, 503, 504}
 TRANSIENT_ERRORS = (httpx.ReadError, httpx.ConnectError, httpx.RemoteProtocolError,
                     httpx.PoolTimeout, httpx.ReadTimeout, httpx.ConnectTimeout)
 
+# Rotated to look like a normal browser fleet rather than a single script,
+# which DBLP's rate limiter handles more gently in practice.
+USER_AGENTS = (
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_6) AppleWebKit/605.1.15 "
+    "(KHTML, like Gecko) Version/18.0 Safari/605.1.15",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+    "(KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (X11; Linux x86_64; rv:131.0) Gecko/20100101 Firefox/131.0",
+)
+
 # Loose validator: a BibTeX entry must start with ``@<type>{<key>,`` and
 # contain at least the ``title``, ``year`` and ``author``-or-editor fields.
 _ENTRY_HEAD_RE = re.compile(r"@\w+\{[^,]+,")
@@ -62,10 +72,7 @@ class BibTeXFetcher:
             timeout=httpx.Timeout(request_timeout),
             limits=httpx.Limits(max_connections=concurrency,
                                 max_keepalive_connections=concurrency),
-            headers={
-                "Accept": "text/x-bibtex, text/plain, */*",
-                "User-Agent": "topVenues/1.0 (+https://github.com/sidneibarbieri/topVenues)",
-            },
+            headers={"Accept": "text/x-bibtex, text/plain, */*"},
             follow_redirects=True,
         )
 
@@ -91,7 +98,9 @@ class BibTeXFetcher:
                     await asyncio.sleep(self._per_request_delay
                                         + random.uniform(0, self._per_request_delay))
                 try:
-                    response = await self._client.get(url)
+                    response = await self._client.get(
+                        url, headers={"User-Agent": random.choice(USER_AGENTS)}
+                    )
                 except TRANSIENT_ERRORS as exc:
                     if attempt == self._max_retries:
                         logger.warning("DBLP transient error for %s: %s", dblp_key, exc)

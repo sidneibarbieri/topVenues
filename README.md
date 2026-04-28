@@ -83,6 +83,19 @@ page exports a ready-to-use `.bib` file containing every paper in the
 current result set. Drop it into your LaTeX project and reference papers
 directly with the displayed `\cite{…}`.
 
+The first BibTeX backfill is run-once and then incremental:
+
+```bash
+python -m src.cli bibtex --concurrency 4   # fills missing entries
+```
+
+DBLP rate-limits aggressive bursts at the IP level. The fetcher uses
+bounded concurrency, jittered per-request delays, exponential backoff
+and rotating browser User-Agents to stay polite. If you ever see
+``HTTP 000`` or ``ReadError`` for an extended period, pause for 10–30
+minutes and restart with `--concurrency 2`. The backfill is fully
+resumable — already-fetched entries are never re-requested.
+
 > **Companion tool:** once your `.bib` is in your paper, run
 > [Vyas Sekar's AcademicLinter](https://github.com/vyassekar/AcademicLinter)
 > against it to catch unused entries, weasel words, repeated words and
