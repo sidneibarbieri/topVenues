@@ -19,8 +19,9 @@ def bootstrap_from_gzipped_snapshot(db_path: Path) -> None:
     """Materialise ``papers.db`` from a tracked ``papers.db.gz`` snapshot.
 
     Called on every :class:`DatabaseManager` startup. The behaviour when both
-    files exist is delegated to :func:`should_refresh_from_snapshot` so that
-    one policy decision lives in a single place.
+    files exist is delegated to :func:`should_refresh_from_snapshot`, which
+    implements lineage-tracked auto-refresh: pure readers always get the
+    newest upstream data; users with local modifications keep their work.
     """
     gz_path = db_path.with_suffix(db_path.suffix + ".gz")
     if not gz_path.exists():
@@ -28,28 +29,51 @@ def bootstrap_from_gzipped_snapshot(db_path: Path) -> None:
 
     if not db_path.exists():
         _decompress(gz_path, db_path)
+        _write_sync_marker(db_path, gz_path)
         logger.info("Bootstrapped %s from %s", db_path.name, gz_path.name)
         return
 
     if should_refresh_from_snapshot(db_path, gz_path):
         _decompress(gz_path, db_path)
-        logger.info("Refreshed %s from updated %s", db_path.name, gz_path.name)
+        _write_sync_marker(db_path, gz_path)
+        logger.info("Auto-refreshed %s from updated %s", db_path.name, gz_path.name)
 
 
 def should_refresh_from_snapshot(db_path: Path, gz_path: Path) -> bool:
     """Decide whether to overwrite an existing ``papers.db`` from a snapshot.
 
-    .. note::
-       TODO (Sidnei): pick the refresh policy that fits collaborator workflow.
-       See ``docs/EXECUTION_GUIDE.md`` for the three options. Default below is
-       option C (Hybrid): never auto-overwrite — warn instead, let the user
-       opt in via ``python -m src.cli refresh-db``.
+    Lineage-tracked policy: a small sidecar file records the fingerprints
+    of the ``.gz`` and ``.db`` at the moment they were last synchronised.
+
+    * No sidecar yet — first launch after this code lands; silently adopt
+      the current state as the baseline.
+    * Sidecar matches current ``.gz`` — already in sync, no action.
+    * Sidecar mismatches ``.gz`` but matches ``.db`` — upstream snapshot was
+      updated and the user did not modify the DB. Auto-refresh.
+    * Both fingerprints have drifted — user has local modifications;
+      warn and let them resolve via ``refresh-db`` or ``write-snapshot``.
     """
-    if gz_path.stat().st_mtime > db_path.stat().st_mtime:
-        logger.warning(
-            "%s is newer than %s. Run `python -m src.cli refresh-db` to apply.",
-            gz_path.name, db_path.name,
-        )
+    saved = _read_sync_marker(db_path)
+    current_gz_fp = _file_fingerprint(gz_path)
+    current_db_fp = _file_fingerprint(db_path)
+
+    if saved is None:
+        _write_sync_marker(db_path, gz_path)
+        return False
+
+    saved_gz_fp, saved_db_fp = saved
+    if current_gz_fp == saved_gz_fp:
+        return False
+
+    if current_db_fp == saved_db_fp:
+        return True
+
+    logger.warning(
+        "%s and %s have both changed since the last sync. Your local DB has "
+        "unpublished modifications. Run `python -m src.cli refresh-db` to "
+        "discard them, or `python -m src.cli write-snapshot` to publish.",
+        gz_path.name, db_path.name,
+    )
     return False
 
 
@@ -63,7 +87,41 @@ def write_gzipped_snapshot(db_path: Path) -> Path:
     gz_path = db_path.with_suffix(db_path.suffix + ".gz")
     with db_path.open("rb") as src, gzip.open(gz_path, "wb", compresslevel=9) as dst:
         shutil.copyfileobj(src, dst, length=1 << 20)
+    _write_sync_marker(db_path, gz_path)
     return gz_path
+
+
+# ── Lineage marker ─────────────────────────────────────────────────────────
+
+_MARKER_SUFFIX = ".sync-id"
+
+
+def _marker_path(db_path: Path) -> Path:
+    return db_path.with_name(db_path.name + _MARKER_SUFFIX)
+
+
+def _file_fingerprint(path: Path) -> str:
+    """Cheap identity fingerprint: file size + modification time (ns)."""
+    st = path.stat()
+    return f"{st.st_size}-{st.st_mtime_ns}"
+
+
+def _read_sync_marker(db_path: Path) -> tuple[str, str] | None:
+    marker = _marker_path(db_path)
+    if not marker.exists():
+        return None
+    try:
+        gz_fp, db_fp = marker.read_text(encoding="utf-8").strip().split("\t", 1)
+        return gz_fp, db_fp
+    except (OSError, ValueError):
+        return None
+
+
+def _write_sync_marker(db_path: Path, gz_path: Path) -> None:
+    _marker_path(db_path).write_text(
+        f"{_file_fingerprint(gz_path)}\t{_file_fingerprint(db_path)}",
+        encoding="utf-8",
+    )
 
 
 class DatabaseManager:

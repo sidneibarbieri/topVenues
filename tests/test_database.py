@@ -117,44 +117,89 @@ class TestImportAbstractsFromCsv:
 
 
 class TestBootstrapFromGzippedSnapshot:
-    """The DB should materialise itself transparently from a .gz snapshot."""
+    """The DB materialises itself transparently from a .gz snapshot."""
 
-    def _seeded_db_bytes(self, tmp_path) -> bytes:
-        source = tmp_path / "_seed.db"
+    def _seeded_db_bytes(self, tmp_path, paper_id: str = "42") -> bytes:
+        source = tmp_path / f"_seed_{paper_id}.db"
         source_db = DatabaseManager(source)
-        source_db.upsert_paper(_paper("42", title="Seeded"))
+        source_db.upsert_paper(_paper(paper_id, title=f"Seeded {paper_id}"))
         data = source.read_bytes()
         source.unlink()
+        # Clean up the sidecar that DatabaseManager.__init__ may have written
+        (source.parent / f"{source.name}.sync-id").unlink(missing_ok=True)
         return data
 
     def test_decompresses_when_db_missing(self, tmp_path):
         db_path = tmp_path / "papers.db"
-        (db_path.parent / "papers.db.gz").write_bytes(
-            gzip.compress(self._seeded_db_bytes(tmp_path))
-        )
-        assert not db_path.exists()
+        gz_path = tmp_path / "papers.db.gz"
+        gz_path.write_bytes(gzip.compress(self._seeded_db_bytes(tmp_path)))
         bootstrap_from_gzipped_snapshot(db_path)
         assert db_path.exists()
+        # A sync-id marker is now present so the next launch knows we're synced
+        assert (tmp_path / "papers.db.sync-id").exists()
         rows = DatabaseManager(db_path).get_all_papers()
         assert any(r["paper_id"] == "42" for r in rows)
 
     def test_noop_when_no_snapshot(self, tmp_path):
-        db_path = tmp_path / "papers.db"
-        bootstrap_from_gzipped_snapshot(db_path)  # must not raise
-        assert not db_path.exists()
+        bootstrap_from_gzipped_snapshot(tmp_path / "papers.db")  # must not raise
+        assert not (tmp_path / "papers.db").exists()
 
-    def test_does_not_overwrite_existing_db_by_default(self, tmp_path):
+    def test_adopts_baseline_on_first_run_without_marker(self, tmp_path):
+        """Existing setups with no marker get a quiet baseline write."""
         db_path = tmp_path / "papers.db"
-        DatabaseManager(db_path)  # creates empty DB
+        DatabaseManager(db_path)  # creates an empty DB locally
         gz_path = tmp_path / "papers.db.gz"
-        gz_path.write_bytes(gzip.compress(self._seeded_db_bytes(tmp_path)))
+        gz_path.write_bytes(gzip.compress(self._seeded_db_bytes(tmp_path, "99")))
+        bootstrap_from_gzipped_snapshot(db_path)
+        # Marker now exists; local DB was NOT clobbered.
+        assert (tmp_path / "papers.db.sync-id").exists()
+        rows = DatabaseManager(db_path).get_all_papers()
+        assert not any(r["paper_id"] == "99" for r in rows)
 
-        # Make snapshot strictly newer so the warning code path fires
+    def test_auto_refresh_when_upstream_changes_and_db_untouched(self, tmp_path):
+        """Pure reader scenario — snapshot bumped, local DB pristine."""
+        db_path = tmp_path / "papers.db"
+        gz_path = tmp_path / "papers.db.gz"
+
+        # Initial bootstrap: marker pins gz=A, db=A
+        gz_path.write_bytes(gzip.compress(self._seeded_db_bytes(tmp_path, "old")))
+        bootstrap_from_gzipped_snapshot(db_path)
+
+        # Upstream publishes a new snapshot with a different paper
         import os, time
+        new_bytes = gzip.compress(self._seeded_db_bytes(tmp_path, "new"))
+        gz_path.write_bytes(new_bytes)
         future = time.time() + 60
         os.utime(gz_path, (future, future))
 
         bootstrap_from_gzipped_snapshot(db_path)
-        # Existing (empty) DB preserved — no seeded "42" paper materialised
+
         rows = DatabaseManager(db_path).get_all_papers()
-        assert not any(r["paper_id"] == "42" for r in rows)
+        assert any(r["paper_id"] == "new" for r in rows), "Auto-refresh should adopt upstream"
+
+    def test_protects_local_modifications_when_both_changed(self, tmp_path, caplog):
+        """Maintainer scenario — both gz and db drifted; never auto-clobber."""
+        import logging, os, time
+        db_path = tmp_path / "papers.db"
+        gz_path = tmp_path / "papers.db.gz"
+
+        gz_path.write_bytes(gzip.compress(self._seeded_db_bytes(tmp_path, "base")))
+        bootstrap_from_gzipped_snapshot(db_path)
+
+        # User modifies their local DB (adds a paper, touches mtime)
+        DatabaseManager(db_path).upsert_paper(_paper("locallymade", title="Local work"))
+
+        # And upstream also publishes a new snapshot
+        gz_path.write_bytes(gzip.compress(self._seeded_db_bytes(tmp_path, "upstream")))
+        future = time.time() + 60
+        os.utime(gz_path, (future, future))
+
+        with caplog.at_level(logging.WARNING):
+            bootstrap_from_gzipped_snapshot(db_path)
+
+        # Local modification preserved
+        rows = DatabaseManager(db_path).get_all_papers()
+        assert any(r["paper_id"] == "locallymade" for r in rows)
+        assert not any(r["paper_id"] == "upstream" for r in rows)
+        # User was warned
+        assert any("modifications" in r.message for r in caplog.records)

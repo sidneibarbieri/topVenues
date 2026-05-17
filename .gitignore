@@ -27,6 +27,7 @@ data/log/
 # data/dataset/master_dataset.csv is tracked (human-readable dataset for collaborators).
 # The DB is materialised automatically from data/dataset/papers.db.gz on first run.
 !data/dataset/papers.db.gz
+data/dataset/*.sync-id
 data/legacy/
 
 # ── Logs and caches ──────────────────────────────────────────
