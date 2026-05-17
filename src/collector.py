@@ -64,6 +64,7 @@ class Collector:
             enabled=self.config.checkpoint_enabled,
         )
         self.db = DatabaseManager(self.data_dir / "papers.db")
+        self._bootstrap_db_from_csv()
 
         self.acm_blocked_until: datetime | None = None
         self.acm_failure_counts: dict[str, int] = {}
@@ -71,6 +72,18 @@ class Collector:
         self.last_was_acm = False
 
         self.papers: list[Paper] = []
+
+    def _bootstrap_db_from_csv(self) -> None:
+        """Populate DB from the tracked CSV on a fresh clone, if DB is still empty."""
+        stats = self.db.get_statistics()
+        if stats["total_papers"] > 0:
+            return
+        csv_path = self.data_dir / "master_dataset.csv"
+        if not csv_path.exists():
+            return
+        count = self.db.migrate_from_csv(csv_path)
+        if count:
+            print(f"[init] DB was empty — loaded {count} papers from master_dataset.csv")
 
     def is_acm_blocked(self) -> bool:
         return self.acm_blocked_until is not None and datetime.now() < self.acm_blocked_until
@@ -160,15 +173,18 @@ class Collector:
         return recovered
 
     async def run_full(self) -> None:
+        from .database import write_gzipped_snapshot
         print("Starting Top Venues Collector…")
-        print("\n[1/4] Downloading JSON files…")
+        print("\n[1/5] Downloading JSON files…")
         await self.run_download()
-        print("\n[2/4] Consolidating data…")
+        print("\n[2/5] Consolidating data…")
         await self.run_consolidate()
-        print("\n[3/4] Extracting abstracts…")
+        print("\n[3/5] Extracting abstracts…")
         await self.run_extract()
-        print("\n[4/4] Fetching BibTeX entries…")
+        print("\n[4/5] Fetching BibTeX entries…")
         await self.run_bibtex()
+        print("\n[5/5] Writing distribution snapshot (papers.db.gz)…")
+        write_gzipped_snapshot(self.db.db_path)
         print("\nCollection complete!")
 
     def search(self, filters: SearchFilters, limit: int | None = None) -> list[Paper]:

@@ -1,11 +1,16 @@
 """Tests for DatabaseManager."""
 
+import gzip
 import sqlite3
 
 import pandas as pd
 import pytest
 
-from src.database import DatabaseManager
+from src.database import (
+    DatabaseManager,
+    bootstrap_from_gzipped_snapshot,
+    should_refresh_from_snapshot,
+)
 from src.models import Paper
 
 
@@ -109,3 +114,47 @@ class TestImportAbstractsFromCsv:
     def test_missing_file_raises(self, db, tmp_path):
         with pytest.raises(FileNotFoundError):
             db.import_abstracts_from_csv(tmp_path / "does_not_exist.csv")
+
+
+class TestBootstrapFromGzippedSnapshot:
+    """The DB should materialise itself transparently from a .gz snapshot."""
+
+    def _seeded_db_bytes(self, tmp_path) -> bytes:
+        source = tmp_path / "_seed.db"
+        source_db = DatabaseManager(source)
+        source_db.upsert_paper(_paper("42", title="Seeded"))
+        data = source.read_bytes()
+        source.unlink()
+        return data
+
+    def test_decompresses_when_db_missing(self, tmp_path):
+        db_path = tmp_path / "papers.db"
+        (db_path.parent / "papers.db.gz").write_bytes(
+            gzip.compress(self._seeded_db_bytes(tmp_path))
+        )
+        assert not db_path.exists()
+        bootstrap_from_gzipped_snapshot(db_path)
+        assert db_path.exists()
+        rows = DatabaseManager(db_path).get_all_papers()
+        assert any(r["paper_id"] == "42" for r in rows)
+
+    def test_noop_when_no_snapshot(self, tmp_path):
+        db_path = tmp_path / "papers.db"
+        bootstrap_from_gzipped_snapshot(db_path)  # must not raise
+        assert not db_path.exists()
+
+    def test_does_not_overwrite_existing_db_by_default(self, tmp_path):
+        db_path = tmp_path / "papers.db"
+        DatabaseManager(db_path)  # creates empty DB
+        gz_path = tmp_path / "papers.db.gz"
+        gz_path.write_bytes(gzip.compress(self._seeded_db_bytes(tmp_path)))
+
+        # Make snapshot strictly newer so the warning code path fires
+        import os, time
+        future = time.time() + 60
+        os.utime(gz_path, (future, future))
+
+        bootstrap_from_gzipped_snapshot(db_path)
+        # Existing (empty) DB preserved — no seeded "42" paper materialised
+        rows = DatabaseManager(db_path).get_all_papers()
+        assert not any(r["paper_id"] == "42" for r in rows)

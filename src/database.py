@@ -1,5 +1,8 @@
 """SQLite database layer for complex paper queries."""
 
+import gzip
+import logging
+import shutil
 import sqlite3
 from pathlib import Path
 
@@ -9,6 +12,59 @@ from .models import AbstractImportResult, Paper
 
 MIN_ABSTRACT_LENGTH = 50
 
+logger = logging.getLogger(__name__)
+
+
+def bootstrap_from_gzipped_snapshot(db_path: Path) -> None:
+    """Materialise ``papers.db`` from a tracked ``papers.db.gz`` snapshot.
+
+    Called on every :class:`DatabaseManager` startup. The behaviour when both
+    files exist is delegated to :func:`should_refresh_from_snapshot` so that
+    one policy decision lives in a single place.
+    """
+    gz_path = db_path.with_suffix(db_path.suffix + ".gz")
+    if not gz_path.exists():
+        return
+
+    if not db_path.exists():
+        _decompress(gz_path, db_path)
+        logger.info("Bootstrapped %s from %s", db_path.name, gz_path.name)
+        return
+
+    if should_refresh_from_snapshot(db_path, gz_path):
+        _decompress(gz_path, db_path)
+        logger.info("Refreshed %s from updated %s", db_path.name, gz_path.name)
+
+
+def should_refresh_from_snapshot(db_path: Path, gz_path: Path) -> bool:
+    """Decide whether to overwrite an existing ``papers.db`` from a snapshot.
+
+    .. note::
+       TODO (Sidnei): pick the refresh policy that fits collaborator workflow.
+       See ``docs/EXECUTION_GUIDE.md`` for the three options. Default below is
+       option C (Hybrid): never auto-overwrite — warn instead, let the user
+       opt in via ``python -m src.cli refresh-db``.
+    """
+    if gz_path.stat().st_mtime > db_path.stat().st_mtime:
+        logger.warning(
+            "%s is newer than %s. Run `python -m src.cli refresh-db` to apply.",
+            gz_path.name, db_path.name,
+        )
+    return False
+
+
+def _decompress(gz_path: Path, db_path: Path) -> None:
+    with gzip.open(gz_path, "rb") as src, db_path.open("wb") as dst:
+        shutil.copyfileobj(src, dst, length=1 << 20)
+
+
+def write_gzipped_snapshot(db_path: Path) -> Path:
+    """Rewrite ``papers.db.gz`` next to ``papers.db`` (call after large updates)."""
+    gz_path = db_path.with_suffix(db_path.suffix + ".gz")
+    with db_path.open("rb") as src, gzip.open(gz_path, "wb", compresslevel=9) as dst:
+        shutil.copyfileobj(src, dst, length=1 << 20)
+    return gz_path
+
 
 class DatabaseManager:
     """Manages an SQLite database of papers, supporting full-text search and export."""
@@ -16,6 +72,7 @@ class DatabaseManager:
     def __init__(self, db_path: Path):
         self.db_path = Path(db_path)
         self.db_path.parent.mkdir(parents=True, exist_ok=True)
+        bootstrap_from_gzipped_snapshot(self.db_path)
         self._init_schema()
 
     def _init_schema(self) -> None:

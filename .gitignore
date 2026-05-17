@@ -15,11 +15,19 @@ venv/
 env/
 
 # ── Data (generated; not part of source) ────────────────────
-data/
+# Raw downloads, caches, and binaries — large, regeneratable, not tracked.
+data/json/
+data/cache/
+data/checkpoints/
+data/log/
 *.db
 *.pkl
-*.csv
 *.bak.*
+# CSV files are NOT globally ignored.
+# data/dataset/master_dataset.csv is tracked (human-readable dataset for collaborators).
+# The DB is materialised automatically from data/dataset/papers.db.gz on first run.
+!data/dataset/papers.db.gz
+data/legacy/
 
 # ── Logs and caches ──────────────────────────────────────────
 *.log
@@ -28,6 +36,15 @@ data/
 .pytest_cache/
 .mypy_cache/
 pytest-cache-files-*/
+
+# ── LaTeX generated files ────────────────────────────────────
+*.aux
+*.bbl
+*.blg
+*.out
+*.fls
+*.fdb_latexmk
+*.synctex.gz
 
 # ── Secrets and local config ─────────────────────────────────
 .env
@@ -45,3 +62,14 @@ Thumbs.db
 .claude/
 memory/
 MEMORY.md
+
+# ── Private / internal-only directories ─────────────────────
+# These contain unpublished manuscripts, private benchmark notes,
+# and LLM prompts — not appropriate for public double-blind submission.
+llmdir/
+project-framework/private-benchmark-notes/
+project-framework/source-packages/
+
+# ── Compiled paper PDFs (tracked explicitly when ready) ──────
+papers/sbseg2026-main/main.pdf
+papers/sbseg2026-tools/main.pdf

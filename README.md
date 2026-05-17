@@ -8,8 +8,8 @@ metadata from DBLP, enriches every paper with abstracts pulled from open APIs
 and publisher websites, and exposes a fast full-text search interface for
 researchers, students and reviewers preparing literature reviews.
 
-The dataset shipped with the project covers **9 900+ papers** across **11
-venues** with **99.9 % abstract coverage**.
+The current local dataset snapshot covers **9,925 papers** across **11 venues**,
+with **9,911 abstracts** and **9,924 BibTeX records**.
 
 ---
 
@@ -43,6 +43,19 @@ python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
+That's it — the repository ships with the full SQLite database as a
+compressed snapshot (`data/dataset/papers.db.gz`, ~15 MB). On first launch
+the application transparently materialises `data/dataset/papers.db` (~74 MB)
+from that snapshot, so there is **no manual import step**: 9,925 papers,
+9,911 abstracts and 9,924 BibTeX entries are available immediately.
+
+When a newer snapshot lands upstream and you want to refresh your local
+copy explicitly:
+
+```bash
+python -m src.cli refresh-db
+```
+
 ### Web interface (recommended)
 
 ```bash
@@ -51,14 +64,14 @@ streamlit run web/app.py
 
 Open <http://localhost:8501>. Three pages:
 
-- **🔍 Search** — full-text filters on title, abstract, authors, topic; venue,
+- **Search** — full-text filters on title, abstract, authors, topic; venue,
   year, paper class (SoK / Survey / Poster / Workshop / Short / Journal /
   Article), abstract-length and BibTeX filters; sortable, paginated table
-  that shows an abstract preview and the `\cite{…}` command for each row.
+  that shows an abstract preview and the `\cite{...}` command for each row.
   CSV / JSON / `.bib` export.
-- **📊 Insights** — distributions by venue, year, class; abstract and
+- **Insights** — distributions by venue, year, class; abstract and
   BibTeX coverage.
-- **⚙ Pipeline** — run download / consolidate / extract / bibtex directly
+- **Pipeline** — run download / consolidate / extract / bibtex directly
   from the UI.
 
 ### Command line
@@ -72,6 +85,7 @@ python -m src.cli run-all          # download + consolidate + extract + bibtex
 
 python -m src.cli search --title "SOC" --author "Sekar" --abstract "LLM"
 python -m src.cli search --tech "blockchain" --year 2024
+python -m src.cli export --format bibtex --tech "intrusion detection" -o intrusion.bib
 python -m src.cli stats
 ```
 
@@ -145,7 +159,7 @@ src/
   cli.py               Click CLI
 
 web/app.py             Streamlit interface
-tests/                 pytest suite (126 tests)
+tests/                 pytest suite (161 tests)
 scripts/
   api_blitz.py         Concurrent API back-fill for missing abstracts
   bibtex_blitz.py      Concurrent BibTeX back-fill from DBLP
@@ -212,9 +226,22 @@ No code outside those four touch-points needs to change.
 
 ```bash
 pip install -e ".[dev]"
-pytest                         # 126 tests
+pytest                         # 161 tests
 ruff check src/ web/ tests/
 ```
+
+---
+
+## Paper and artifact preparation
+
+Active SBSeg 2026 writing lives under `papers/`:
+
+- `papers/sbseg2026-tools/`: Salão de Ferramentas candidate.
+- `papers/sbseg2026-main/`: Trilha Principal candidate.
+
+Reviewer-facing artifact notes are in `ARTIFACT_README.md`,
+`REVIEWER_GUIDE.md`, and `PROJECT_STRUCTURE.md`. Literature-review support and
+reference material live under `literature/`.
 
 ---
 

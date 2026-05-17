@@ -1,7 +1,10 @@
 """Command-line interface for Top Venues Collector."""
 
 import asyncio
+import csv
+import json
 import sys
+from io import StringIO
 from pathlib import Path
 
 import click
@@ -13,6 +16,31 @@ from .collector import Collector
 from .models import SearchFilters
 
 console = Console()
+
+
+def _build_filters(
+    title: str | None,
+    abstract: str | None,
+    author: str | None,
+    event: str | None,
+    year: int | None,
+    tech: str | None,
+) -> SearchFilters:
+    """Build a SearchFilters object from CLI options."""
+    filters = SearchFilters()
+    if title:
+        filters.title_contains = title
+    if abstract:
+        filters.abstract_contains = abstract
+    if author:
+        filters.author_contains = author
+    if event:
+        filters.event = event
+    if year:
+        filters.year = year
+    if tech:
+        filters.technology = tech
+    return filters
 
 
 @click.group()
@@ -71,6 +99,38 @@ def extract(ctx: click.Context) -> None:
         progress.update(task, completed=True)
 
     console.print("[bold green]✓[/bold green] Extraction complete!")
+
+
+@cli.command("refresh-db")
+@click.pass_context
+def refresh_db(ctx: click.Context) -> None:
+    """Force-refresh papers.db from the tracked papers.db.gz snapshot."""
+    from .database import bootstrap_from_gzipped_snapshot
+    base_dir = ctx.obj["base_dir"]
+    collector = Collector(base_dir=base_dir)
+    gz = collector.db.db_path.with_suffix(collector.db.db_path.suffix + ".gz")
+    if not gz.exists():
+        console.print(f"[bold red]No snapshot found at {gz}.[/bold red]")
+        return
+    if collector.db.db_path.exists():
+        collector.db.db_path.unlink()
+    bootstrap_from_gzipped_snapshot(collector.db.db_path)
+    console.print(f"[bold green]✓[/bold green] Refreshed from {gz.name}")
+
+
+@cli.command("write-snapshot")
+@click.pass_context
+def write_snapshot(ctx: click.Context) -> None:
+    """Compress papers.db → papers.db.gz for distribution."""
+    from .database import write_gzipped_snapshot
+    base_dir = ctx.obj["base_dir"]
+    collector = Collector(base_dir=base_dir)
+    if not collector.db.db_path.exists():
+        console.print(f"[bold red]No DB found at {collector.db.db_path}.[/bold red]")
+        return
+    gz = write_gzipped_snapshot(collector.db.db_path)
+    mb = gz.stat().st_size / 1024 / 1024
+    console.print(f"[bold green]✓[/bold green] Wrote {gz.name} ({mb:.1f} MB)")
 
 
 @cli.command()
@@ -191,19 +251,7 @@ def search(
     """Search papers with filters."""
     base_dir = ctx.obj["base_dir"]
 
-    filters = SearchFilters()
-    if title:
-        filters.title_contains = title
-    if abstract:
-        filters.abstract_contains = abstract
-    if author:
-        filters.author_contains = author
-    if event:
-        filters.event = event
-    if year:
-        filters.year = year
-    if tech:
-        filters.technology = tech
+    filters = _build_filters(title, abstract, author, event, year, tech)
 
     collector = Collector(base_dir=base_dir)
 
@@ -225,6 +273,60 @@ def search(
         )
 
     console.print(table)
+
+
+@cli.command("export")
+@click.option("--format", "fmt", type=click.Choice(["bibtex", "csv", "json"]), required=True)
+@click.option("--output", "-o", type=click.Path(path_type=Path), default=None)
+@click.option("--title", "-t", help="Search in title")
+@click.option("--abstract", "-a", help="Search in abstract")
+@click.option("--author", "-A", help="Search in author names")
+@click.option("--event", "-e", help="Filter by conference (e.g., 'ACM CCS')")
+@click.option("--year", "-y", type=int, help="Filter by year")
+@click.option("--tech", "-T", help="Search technology/topic")
+@click.option("--limit", "-l", type=int, default=None, help="Limit exported rows")
+@click.pass_context
+def export_results(
+    ctx: click.Context,
+    fmt: str,
+    output: Path | None,
+    title: str | None,
+    abstract: str | None,
+    author: str | None,
+    event: str | None,
+    year: int | None,
+    tech: str | None,
+    limit: int | None,
+) -> None:
+    """Export filtered results as BibTeX, CSV, or JSON."""
+    base_dir = ctx.obj["base_dir"]
+    filters = _build_filters(title, abstract, author, event, year, tech)
+    collector = Collector(base_dir=base_dir)
+    rows = collector.search(filters, limit=limit)
+
+    if fmt == "bibtex":
+        payload = "\n\n".join(paper.bibtex for paper in rows if paper.bibtex)
+    elif fmt == "json":
+        payload = json.dumps(
+            [paper.model_dump(mode="json") for paper in rows],
+            ensure_ascii=False,
+            indent=2,
+        )
+    else:
+        buffer = StringIO()
+        fieldnames = list(rows[0].model_dump(mode="json").keys()) if rows else []
+        writer = csv.DictWriter(buffer, fieldnames=fieldnames)
+        if fieldnames:
+            writer.writeheader()
+            writer.writerows(paper.model_dump(mode="json") for paper in rows)
+        payload = buffer.getvalue()
+
+    if output:
+        output.parent.mkdir(parents=True, exist_ok=True)
+        output.write_text(payload, encoding="utf-8")
+        console.print(f"[bold green]✓[/bold green] Exported {len(rows):,} papers to {output}")
+    else:
+        click.echo(payload)
 
 
 @cli.command()
