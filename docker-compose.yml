@@ -1,0 +1,19 @@
+# One-command launch for reviewers.
+#
+#   docker compose up           # web UI on http://localhost:8501
+#   docker compose run --rm app python -m src.cli stats
+#   docker compose run --rm app python -m pytest -q
+
+services:
+  app:
+    build: .
+    image: topvenues:latest
+    ports:
+      - "8501:8501"
+    # Persist the materialised papers.db across runs so the snapshot is only
+    # decompressed once per host (the .gz is read-only inside the container).
+    volumes:
+      - topvenues_data:/app/data/dataset
+
+volumes:
+  topvenues_data:

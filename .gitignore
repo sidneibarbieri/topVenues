@@ -71,6 +71,8 @@ llmdir/
 project-framework/private-benchmark-notes/
 project-framework/source-packages/
 
-# ── Compiled paper PDFs (tracked explicitly when ready) ──────
-papers/sbseg2026-main/main.pdf
-papers/sbseg2026-tools/main.pdf
+# ── Paper workspaces (kept local during double-blind review) ─
+# The .tex sources, .bib, and compiled PDFs stay out of the public
+# artifact to prevent accidental leaks via git history, comments, or
+# build by-products. Release these only after notification.
+papers/
