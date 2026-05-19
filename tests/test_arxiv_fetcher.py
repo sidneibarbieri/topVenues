@@ -16,7 +16,7 @@ from pathlib import Path
 
 import pytest
 
-from src.arxiv_fetcher import Preprint, load_jsonl, save_jsonl
+from src.arxiv_fetcher import Preprint, load_jsonl, save_jsonl, year_windows
 
 
 # ── Helpers ────────────────────────────────────────────────────────────
@@ -74,6 +74,32 @@ class TestPreprint:
         p_without = make_preprint(doi=None, journal_ref=None)
         assert p_without.doi is None
         assert p_without.journal_ref is None
+
+
+# ── Date-range windowing ───────────────────────────────────────────────
+
+
+class TestYearWindows:
+    def test_one_window_per_year_inclusive(self) -> None:
+        windows = list(year_windows(2022, 2024))
+        assert windows == [
+            ("202201010000", "202212312359"),
+            ("202301010000", "202312312359"),
+            ("202401010000", "202412312359"),
+        ]
+
+    def test_single_year(self) -> None:
+        assert list(year_windows(2024, 2024)) == [("202401010000", "202412312359")]
+
+    def test_windows_are_disjoint(self) -> None:
+        # Each window's end precedes the next window's start, so no preprint
+        # (which has exactly one submission date) lands in two windows.
+        windows = list(year_windows(2020, 2026))
+        for (_, end), (next_start, _) in zip(windows, windows[1:]):
+            assert end < next_start
+
+    def test_reversed_range_is_empty(self) -> None:
+        assert list(year_windows(2025, 2024)) == []
 
 
 # ── save_jsonl / load_jsonl round-trip ────────────────────────────────

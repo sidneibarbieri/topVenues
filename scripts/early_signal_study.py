@@ -30,7 +30,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from src.arxiv_fetcher import harvest, load_jsonl, save_jsonl
+from src.arxiv_fetcher import ARXIV_ACKNOWLEDGMENT, harvest, load_jsonl, save_jsonl
 from src.author_matcher import (
     DEFAULT_TITLE_THRESHOLD,
     Match,
@@ -125,6 +125,9 @@ def report(matches: list[Match], total_papers: int, matched_paper_ids: set[str])
         print(f"    [{m.title_similarity:.2f}] {m.paper_venue} {m.paper_year}")
         print(f"           paper : {m.paper_title[:80]}")
         print(f"           arXiv : {m.arxiv_title[:80]} (lag {m.lag_days}d)")
+
+    print()
+    print(f"  {ARXIV_ACKNOWLEDGMENT}")
 
 
 def _venue_totals() -> dict[str, int]:
