@@ -76,3 +76,6 @@ project-framework/source-packages/
 # artifact to prevent accidental leaks via git history, comments, or
 # build by-products. Release these only after notification.
 papers/
+
+# ── Third-party reviewer tooling (cloned, not vendored) ──────
+.tools/
