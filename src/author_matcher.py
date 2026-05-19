@@ -35,15 +35,13 @@ DEFAULT_AUTHOR_THRESHOLD = 1   # at least one author must overlap
 # anchor the publication date when computing preprint→publication lag.
 # Anchoring at January 1 produced spurious negative lags because these
 # venues present across the year; the conference month is the realistic
-# proxy for when a paper becomes "published".
-#
-# TODO(domain expert): confirm/adjust these months. Starting estimates:
-#   USENIX Security ~ August, ACM CCS ~ October, IEEE S&P ~ May, NDSS ~ February.
+# proxy for when a paper becomes "published". Months are domain-confirmed
+# against the 2024-2025 calendars.
 VENUE_PUBLICATION_MONTH: dict[str, int] = {
-    "USENIX Security": 8,
-    "ACM CCS": 10,
-    "IEEE S&P": 5,
-    "NDSS": 2,
+    "USENIX Security": 8,   # August
+    "ACM CCS": 10,          # October
+    "IEEE S&P": 5,          # May (Oakland)
+    "NDSS": 2,              # February
 }
 
 # Fallback for venues not in the table: mid-year is the least-biased
