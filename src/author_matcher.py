@@ -31,6 +31,25 @@ _STOPWORDS = frozenset({
 DEFAULT_TITLE_THRESHOLD = 0.55
 DEFAULT_AUTHOR_THRESHOLD = 1   # at least one author must overlap
 
+# Month (1-12) in which each top-4 venue holds its conference, used to
+# anchor the publication date when computing preprint→publication lag.
+# Anchoring at January 1 produced spurious negative lags because these
+# venues present across the year; the conference month is the realistic
+# proxy for when a paper becomes "published".
+#
+# TODO(domain expert): confirm/adjust these months. Starting estimates:
+#   USENIX Security ~ August, ACM CCS ~ October, IEEE S&P ~ May, NDSS ~ February.
+VENUE_PUBLICATION_MONTH: dict[str, int] = {
+    "USENIX Security": 8,
+    "ACM CCS": 10,
+    "IEEE S&P": 5,
+    "NDSS": 2,
+}
+
+# Fallback for venues not in the table: mid-year is the least-biased
+# single anchor when the conference month is unknown.
+DEFAULT_PUBLICATION_MONTH = 7
+
 
 @dataclass(frozen=True)
 class Match:
@@ -135,7 +154,7 @@ def find_matches(
         if len(shared) < DEFAULT_AUTHOR_THRESHOLD:
             continue
 
-        lag_days = _lag_days(paper_year, preprint.submitted_at)
+        lag_days = _lag_days(paper_year, paper_venue, preprint.submitted_at)
         matches.append(Match(
             paper_id=paper_id,
             arxiv_id=preprint.arxiv_id,
@@ -153,14 +172,16 @@ def find_matches(
     return matches
 
 
-def _lag_days(paper_year: int, arxiv_submitted_at: str) -> int:
-    """Days from the v1 arXiv submission to January 1 of the publication year.
+def _lag_days(paper_year: int, paper_venue: str, arxiv_submitted_at: str) -> int:
+    """Days from the v1 arXiv submission to the venue's conference date.
 
-    Using January 1 as a proxy for the publication date is conservative
-    because top-4 venues publish across the year; we under-count actual
-    lag rather than over-count.
+    The publication date is anchored at the first day of the venue's
+    conference month (see :data:`VENUE_PUBLICATION_MONTH`), which is a
+    realistic proxy for when a top-4 paper becomes public. A positive lag
+    means the preprint preceded publication.
     """
     from datetime import datetime, timezone
+    month = VENUE_PUBLICATION_MONTH.get(paper_venue, DEFAULT_PUBLICATION_MONTH)
     arxiv_date = datetime.fromisoformat(arxiv_submitted_at)
-    paper_date = datetime(paper_year, 1, 1, tzinfo=timezone.utc)
+    paper_date = datetime(paper_year, month, 1, tzinfo=timezone.utc)
     return (paper_date - arxiv_date).days

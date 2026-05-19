@@ -181,14 +181,14 @@ class TestFindMatches:
 
     def _match(self, paper_title: str, paper_authors: list[str],
                preprints: list[Preprint], threshold: float = DEFAULT_TITLE_THRESHOLD,
-               paper_year: int = 2024) -> list[Match]:
+               paper_year: int = 2024, paper_venue: str = "USENIX Security") -> list[Match]:
         index = build_author_index(preprints)
         return find_matches(
             paper_id="paper-001",
             paper_title=paper_title,
             paper_authors=paper_authors,
             paper_year=paper_year,
-            paper_venue="USENIX Security",
+            paper_venue=paper_venue,
             author_index=index,
             title_threshold=threshold,
         )
@@ -221,19 +221,42 @@ class TestFindMatches:
         assert "smith a" in m.shared_authors or "jones b" in m.shared_authors
 
     def test_lag_positive_when_preprint_before_publication(self) -> None:
+        # USENIX Security anchors at Aug 1; a mid-2023 preprint precedes it.
         p = self._preprint("2401.00001", "Cache Side-Channel Attacks", ("Alice Smith",),
                            submitted_at="2023-06-01T00:00:00+00:00")
         matches = self._match("Cache Side-Channel Attacks", ["Alice Smith"], [p],
                               paper_year=2024)
-        assert matches[0].lag_days > 0  # preprint before Jan 1 2024
+        assert matches[0].lag_days > 0
 
-    def test_lag_negative_when_preprint_after_publication_year(self) -> None:
-        # Posted AFTER the nominal publication year
+    def test_lag_negative_when_preprint_after_conference(self) -> None:
+        # Posted well after the venue's 2024 conference month.
         p = self._preprint("2401.00001", "Cache Side-Channel Attacks", ("Alice Smith",),
                            submitted_at="2025-06-01T00:00:00+00:00")
         matches = self._match("Cache Side-Channel Attacks", ["Alice Smith"], [p],
                               paper_year=2024)
         assert matches[0].lag_days < 0
+
+    def test_lag_anchored_at_venue_conference_month(self) -> None:
+        # A preprint posted Mar 2024 for a CCS 2024 paper (Oct anchor) has a
+        # POSITIVE lag — the old Jan-1 anchor would have called it negative.
+        p = self._preprint("2403.00001", "Cache Side-Channel Attacks", ("Alice Smith",),
+                           submitted_at="2024-03-01T00:00:00+00:00")
+        ccs = self._match("Cache Side-Channel Attacks", ["Alice Smith"], [p],
+                          paper_year=2024, paper_venue="ACM CCS")
+        assert ccs[0].lag_days > 0           # Oct 1 2024 − Mar 1 2024 ≈ +214d
+        # Same preprint against an early-year venue (NDSS, Feb) is negative.
+        ndss = self._match("Cache Side-Channel Attacks", ["Alice Smith"], [p],
+                           paper_year=2024, paper_venue="NDSS")
+        assert ndss[0].lag_days < 0          # Feb 1 2024 − Mar 1 2024 ≈ -29d
+
+    def test_unknown_venue_uses_midyear_fallback(self) -> None:
+        # July 1 anchor for an unlisted venue.
+        p = self._preprint("2401.00001", "Cache Side-Channel Attacks", ("Alice Smith",),
+                           submitted_at="2024-01-01T00:00:00+00:00")
+        matches = self._match("Cache Side-Channel Attacks", ["Alice Smith"], [p],
+                              paper_year=2024, paper_venue="Some Workshop")
+        # Jul 1 2024 − Jan 1 2024 ≈ 182 days
+        assert 180 <= matches[0].lag_days <= 183
 
     # -- negative cases --
 
