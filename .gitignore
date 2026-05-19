@@ -79,3 +79,6 @@ papers/
 
 # ── Third-party reviewer tooling (cloned, not vendored) ──────
 .tools/
+
+# ── Manual paper-acquisition queue (private writing workflow) ─
+orders/
