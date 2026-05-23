@@ -10,12 +10,12 @@ class NormalizationRule(ABC):
     @abstractmethod
     def matches(self, venue: str) -> bool:
         """Check if this rule applies to the venue."""
-        pass
+        raise NotImplementedError
 
     @abstractmethod
     def normalize(self, venue: str) -> str:
         """Return the normalized event name."""
-        pass
+        raise NotImplementedError
 
 
 class ExactMatchRule(NormalizationRule):

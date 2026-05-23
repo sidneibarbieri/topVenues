@@ -1,129 +1,155 @@
-# topVenues — Artifact README
+# TopVenues — Artifact
 
-This file is the reviewer-oriented entry point for the topVenues artifact.
+TopVenues is an open-source tool that builds a declared, reproducible corpus of
+top cybersecurity publications and turns it into a measurement substrate for
+literature reviews. It accompanies the paper *"TopVenues: A Reproducible Corpus
+and Tooling Substrate for Cybersecurity Literature Reviews."*
 
-## Artifact Summary
+The paper frames corpus construction as a reproducibility problem and solves it
+with a DBLP-backed, monotonically enriched, checksum-verified SQLite snapshot.
+Using that snapshot as a fixed denominator, it measures that 29.2% of recent
+top-tier security papers appear as arXiv preprints a median of about five months
+before publication, and that a tunable author-track-record filter triages those
+preprints at up to a 16.5x precision lift (90% recall). This artifact reproduces
+those claims offline from committed snapshots.
 
-topVenues helps researchers construct and reproduce venue-bounded
-cybersecurity literature reviews. It bundles a curated corpus, a
-collection pipeline, a SQLite database layer with monotonic upserts, a
-command-line interface, a Streamlit web interface, BibTeX generation,
-and 166 automated tests.
+## Readme Structure
 
-## Repository Layout
+This document follows the artifact-evaluation template: project summary,
+structure, considered badges, basic information, dependencies, security
+concerns, installation, a minimal test, experiments (one subsection per paper
+claim), and the license. The repository is organized as follows.
 
 | Path | Purpose |
 |------|---------|
 | `src/` | pipeline, database, models, extractors, CLI |
-| `web/` | Streamlit interface |
-| `tests/` | pytest suite (166 tests) |
-| `data/dataset/papers.db.gz` | compressed SQLite snapshot, 15 MB |
-| `scripts/` | reproducibility and verification scripts |
-| `reproduce.sh` | one-command verification of all headline claims |
+| `web/` | Streamlit exploration interface |
+| `tests/` | pytest suite (250 tests) |
+| `scripts/` | measurement scripts (`early_signal_study.py`, `readiness_study.py`, `readiness_baselines.py`) |
+| `data/dataset/papers.db.gz` | committed compressed SQLite corpus snapshot |
+| `data/dataset/arxiv_cs_cr_2022_2026.jsonl.gz` | committed compressed arXiv snapshot for the measurement claims |
+| `config.yaml` | declared corpus scope and study windows |
+| `reproduce.sh` | one-command verification of every claim |
 | `Dockerfile`, `docker-compose.yml` | self-contained execution environment |
 
-## Badges Targeted
+## Considered Badges
 
-For SBSeg artifact evaluation:
+The badges considered for evaluation are **Available**, **Functional**,
+**Sustainable**, and **Reproducible**.
 
-- **Available** — public source, snapshot, documentation, MIT licence.
-- **Functional** — CLI, web UI and tests execute locally.
-- **Reproducible** — `reproduce.sh` validates every headline claim from
-  a fresh clone in under a minute.
-- **Sustainable** — modular Python package, 166 tests, declared schema
-  migrations, and incremental snapshot updates.
+- **Available** — public repository with source, committed snapshots, this
+  README, and an MIT license.
+- **Functional** — the CLI, the web interface, and the test suite execute
+  locally and expose the artifact's features.
+- **Sustainable** — a modular, typed Python package with a 250-test suite and
+  in-code documentation; each paper claim maps to a named script.
+- **Reproducible** — `reproduce.sh` re-derives every headline claim from a
+  fresh clone, offline, using only the committed snapshots.
 
-## Requirements
+## Basic Information
 
-- Python 3.11 or 3.12 (or Docker).
-- macOS or Linux recommended.
-- Internet access is **not** required for inspection — the committed
-  `papers.db.gz` snapshot makes the corpus available offline.
+- Operating system: Linux or macOS (Windows via WSL2 or Docker).
+- Interpreter: Python 3.11 or 3.12.
+- Hardware: about 2 GB RAM and 1 GB of free disk; no GPU.
+- All claim verification runs offline from the committed snapshots and contacts
+  no external service. Network access is needed only to install dependencies on
+  first run (or use the provided Docker image) and for the optional pipeline
+  refresh.
 
-## Reviewer Quickstart (3 paths)
+## Dependencies
 
-### Path A — one-command reproduction (recommended)
+- Runtime and test dependencies are declared in `requirements.txt`: `arxiv`,
+  `beautifulsoup4`, `click`, `httpx`, `pandas`, `pydantic`, `pyyaml`, `rich`,
+  plus `pytest` and `pytest-asyncio`.
+- Optional web-interface dependencies are declared in `requirements-web.txt`:
+  `streamlit` and `watchdog`.
+- Python 3.11 or newer. Optional: Docker with the Compose plugin.
+- No third-party benchmarks are required. The corpus and arXiv snapshots ship
+  in `data/dataset/` as gzip files and are read directly.
 
-```bash
-git clone https://github.com/sidneibarbieri/topVenues.git
-cd topVenues
-./reproduce.sh
-```
+## Security Concerns
 
-`reproduce.sh` installs dependencies in `.venv/`, bootstraps the SQLite
-database from `papers.db.gz`, runs the 166-test suite, measures query
-latency on five representative cybersecurity topics, and exports a
-sample BibTeX file. It prints `✓ All headline claims reproduced` on
-success and the first failure otherwise.
+The artifact poses no risk to evaluators. It runs locally, reads committed
+read-only snapshots, performs no network access during claim verification,
+executes no untrusted input, and requires no elevated privileges. The optional
+pipeline-refresh commands contact public scholarly services (DBLP, OpenAlex,
+CrossRef, Semantic Scholar) and arXiv over HTTPS only.
 
-### Path B — Docker
-
-```bash
-docker compose up
-# open http://localhost:8501
-```
-
-Or any CLI command:
-
-```bash
-docker compose run --rm app python -m src.cli stats
-docker compose run --rm app python -m pytest -q
-```
-
-### Path C — manual
+## Installation
 
 ```bash
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-python -m pytest -q
-python -m src.cli stats
-streamlit run web/app.py
+git clone <repository-url> TopVenues
+cd TopVenues
+bash reproduce.sh
 ```
 
-## Headline Claims
-
-The artifact ships with a populated SQLite snapshot. After bootstrap:
-
-| Claim | Verification command |
-|-------|----------------------|
-| 9,925 papers | `python -m src.cli stats` |
-| 9,911 abstracts (99.86 %) | `python -m src.cli stats` |
-| 9,924 BibTeX entries (99.99 %) | `python -m src.cli stats` |
-| 11 venues, 2017–2026 | `python -m src.cli stats` |
-| 166 tests pass | `python -m pytest -q` |
-| Search latency below 31 ms | `./reproduce.sh` |
-
-## Reproducing the Full Collection Pipeline
-
-The committed snapshot is the recommended reproduction path because it
-is offline and deterministic. To rebuild the corpus from scratch
-(requires network access and several minutes):
+`reproduce.sh` creates `.venv/`, installs the declared verification dependencies, materializes
+`papers.db` from the committed `papers.db.gz`, and then verifies every claim. A
+Docker alternative needs no local Python:
 
 ```bash
-python -m src.cli download
-python -m src.cli consolidate
-python -m src.cli extract
-python -m src.cli bibtex-from-dump
-python -m src.cli write-snapshot   # rewrites papers.db.gz
+docker compose run --rm app bash reproduce.sh
 ```
 
-Each stage is idempotent: re-running preserves existing enriched
-records (the database upsert uses `COALESCE(papers.abstract,
-excluded.abstract)`, guaranteeing monotonic enrichment).
+If your shell is already inside the `TopVenues` directory, skip the `cd` step.
 
-## Network Footprint
+## Minimal Test
 
-| Operation | Network required? |
-|-----------|-------------------|
-| Bootstrap from `papers.db.gz` | No |
-| Stats, search, export | No |
-| Test suite | No |
-| Web interface | No |
-| `download` / `extract` / `bibtex*` | Yes (DBLP and open scholarly APIs) |
+```bash
+.venv/bin/python -m src.cli stats     # corpus statistics
+.venv/bin/python -m pytest -q         # test suite
+```
 
-Reviewers can complete every claim verification without network access.
+Expected: `stats` prints 9,925 papers across 11 venues with 9,911 abstracts and
+9,924 BibTeX entries; the suite reports `250 passed` in about one second. This
+confirms the snapshot bootstrapped and the package is functional.
 
-## Licence
+## Experiments
 
-MIT — see `LICENSE`.
+`bash reproduce.sh` runs every claim below in one or two minutes (after dependency
+installation), offline, from the committed snapshots, and prints the snapshot
+SHA-256 for byte-stability. Each claim can also be reproduced on its own.
+
+### Claim 1 — Corpus coverage
+
+- Command: `.venv/bin/python -m src.cli stats`
+- Expected: 9,925 papers; 9,911 abstracts (99.86%); 9,924 BibTeX (99.99%); 11
+  venues across 2017--2026.
+- Time and resources: under 5 seconds, under 1 GB RAM and disk.
+
+### Claim 2 — Reproducible snapshot and integrity tests
+
+- Command: `.venv/bin/python -m pytest -q` (also run inside `reproduce.sh`)
+- Expected: 250 tests pass, including the monotonic-enrichment (COALESCE)
+  invariant; `reproduce.sh` also prints the snapshot SHA-256.
+- Time and resources: under 30 seconds, under 1 GB RAM and disk.
+
+### Claim 3 — Query and export performance
+
+- Command: `bash reproduce.sh` (latency and export stages)
+- Expected: keyword search under 31 ms on the full corpus; a topic-filtered
+  BibTeX export completes in under one second.
+- Time and resources: under 10 seconds, under 1 GB RAM and disk.
+
+### Claim 4 — Early-signal measurement
+
+- Command: `.venv/bin/python scripts/early_signal_study.py`
+- Expected: 29.2% of 2024--2025 core-venue papers have a matching arXiv
+  preprint, with a median lead time near 154 days.
+- Time and resources: under 30 seconds offline from the committed arXiv
+  snapshot; under 2 GB RAM. Re-harvesting from arXiv is optional and needs
+  network access.
+
+### Claim 5 — Scientific-readiness filter and baselines
+
+- Commands: `.venv/bin/python scripts/readiness_study.py` and
+  `.venv/bin/python scripts/readiness_baselines.py`
+- Expected: prior top-tier authorship yields a 16.5x precision lift at 90%
+  recall (Jaccard 0.6); the baselines show this exceeds prolific-author and
+  random-author controls, and the first/senior-author variants trade precision
+  for recall.
+- Time and resources: under 10 seconds, under 2 GB RAM.
+
+## License
+
+MIT. See `LICENSE`.

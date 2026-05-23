@@ -183,6 +183,34 @@ class CheckpointData(BaseModel):
     custom_data: dict[str, Any] = Field(default_factory=dict)
 
 
+class StudyScope(BaseModel):
+    """Configuration for reproducible measurement studies."""
+
+    core_events: list[str] = Field(
+        default_factory=lambda: ["USENIX Security", "ACM CCS", "IEEE S&P", "NDSS"]
+    )
+    study_years: list[int] = Field(default_factory=lambda: [2024, 2025])
+    prior_windows: dict[int, list[int]] = Field(
+        default_factory=lambda: {2023: [2019, 2022], 2022: [2019, 2021]}
+    )
+    outcome_windows: dict[int, list[int]] = Field(
+        default_factory=lambda: {2023: [2023, 2026], 2022: [2022, 2026]}
+    )
+    title_thresholds: list[float] = Field(default_factory=lambda: [0.5, 0.6, 0.7])
+    preprint_snapshot: str = "data/dataset/arxiv_cs_cr_2022_2026.jsonl.gz"
+    preprint_categories: list[str] = Field(default_factory=lambda: ["cs.CR"])
+    preprint_since_year: int = 2022
+    preprint_until_year: int = 2026
+    publication_months: dict[str, int] = Field(
+        default_factory=lambda: {
+            "USENIX Security": 8,
+            "ACM CCS": 10,
+            "IEEE S&P": 5,
+            "NDSS": 2,
+        }
+    )
+
+
 class Configuration(BaseModel):
     events: list[str] = Field(
         default_factory=lambda: [
@@ -201,6 +229,7 @@ class Configuration(BaseModel):
     )
     year_start: int = 2019
     years: list[int] = Field(default_factory=list)
+    study_scope: StudyScope = Field(default_factory=StudyScope)
 
     def effective_years(self) -> list[int]:
         """Return years to process."""

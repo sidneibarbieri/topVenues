@@ -1,14 +1,15 @@
-"""Match arXiv preprints to top-4 published papers.
+"""Match arXiv preprints to papers in a configured publication scope.
 
 Two signals are combined to decide whether an arXiv preprint corresponds
-to a published top-4 paper:
+to a published paper:
 
-  * **author overlap** — at least one normalised author name is shared,
-  * **title similarity** — Jaccard similarity over normalised tokens.
+  * **author overlap** — at least one normalized author name is shared,
+  * **title similarity** — Jaccard similarity over normalized tokens.
 
 A match is accepted when both pass their respective thresholds. Both
-thresholds were chosen to favour false negatives over false positives so
-the reported match rate is a conservative lower bound.
+thresholds were chosen to favor false negatives over false positives so
+the reported match rate is a conservative lower bound for the configured
+scope.
 """
 
 from __future__ import annotations
@@ -16,8 +17,9 @@ from __future__ import annotations
 import re
 import unicodedata
 from collections import defaultdict
+from collections.abc import Iterable, Mapping
 from dataclasses import dataclass
-from typing import Iterable
+from datetime import UTC
 
 from .arxiv_fetcher import Preprint
 
@@ -31,21 +33,7 @@ _STOPWORDS = frozenset({
 DEFAULT_TITLE_THRESHOLD = 0.55
 DEFAULT_AUTHOR_THRESHOLD = 1   # at least one author must overlap
 
-# Month (1-12) in which each top-4 venue holds its conference, used to
-# anchor the publication date when computing preprint→publication lag.
-# Anchoring at January 1 produced spurious negative lags because these
-# venues present across the year; the conference month is the realistic
-# proxy for when a paper becomes "published". Months are domain-confirmed
-# against the 2024-2025 calendars.
-VENUE_PUBLICATION_MONTH: dict[str, int] = {
-    "USENIX Security": 8,   # August
-    "ACM CCS": 10,          # October
-    "IEEE S&P": 5,          # May (Oakland)
-    "NDSS": 2,              # February
-}
-
-# Fallback for venues not in the table: mid-year is the least-biased
-# single anchor when the conference month is unknown.
+# Fallback for event scopes without a configured presentation month.
 DEFAULT_PUBLICATION_MONTH = 7
 
 
@@ -66,7 +54,7 @@ class Match:
 # ── Author normalisation ───────────────────────────────────────────────
 
 
-def normalise_author(name: str) -> str:
+def normalize_author(name: str) -> str:
     """Lowercase, strip accents and DBLP numeric suffixes, collapse whitespace."""
     text = unicodedata.normalize("NFKD", name)
     text = "".join(ch for ch in text if not unicodedata.combining(ch))
@@ -79,10 +67,10 @@ def normalise_author(name: str) -> str:
 
 def author_key(name: str) -> str:
     """Compact key for index lookups: last name + first initial."""
-    normalised = normalise_author(name)
-    if not normalised:
+    normalized = normalize_author(name)
+    if not normalized:
         return ""
-    parts = normalised.split()
+    parts = normalized.split()
     if len(parts) == 1:
         return parts[0]
     return f"{parts[-1]} {parts[0][0]}"   # "rana m" for "Md. Shohel Rana"
@@ -91,7 +79,7 @@ def author_key(name: str) -> str:
 # ── Title similarity ───────────────────────────────────────────────────
 
 
-def tokenise_title(title: str) -> set[str]:
+def tokenize_title(title: str) -> set[str]:
     text = title.lower()
     text = unicodedata.normalize("NFKD", text)
     text = "".join(ch for ch in text if not unicodedata.combining(ch))
@@ -128,9 +116,10 @@ def find_matches(
     paper_venue: str,
     author_index: dict[str, list[Preprint]],
     title_threshold: float = DEFAULT_TITLE_THRESHOLD,
+    publication_months: Mapping[str, int] | None = None,
 ) -> list[Match]:
     """Return all arXiv preprints that match the given paper above thresholds."""
-    paper_tokens = tokenise_title(paper_title)
+    paper_tokens = tokenize_title(paper_title)
     paper_author_keys = {author_key(a) for a in paper_authors if author_key(a)}
     if not paper_tokens or not paper_author_keys:
         return []
@@ -143,7 +132,7 @@ def find_matches(
 
     matches: list[Match] = []
     for preprint in candidates.values():
-        similarity = jaccard(paper_tokens, tokenise_title(preprint.title))
+        similarity = jaccard(paper_tokens, tokenize_title(preprint.title))
         if similarity < title_threshold:
             continue
 
@@ -152,7 +141,7 @@ def find_matches(
         if len(shared) < DEFAULT_AUTHOR_THRESHOLD:
             continue
 
-        lag_days = _lag_days(paper_year, paper_venue, preprint.submitted_at)
+        lag_days = _lag_days(paper_year, paper_venue, preprint.submitted_at, publication_months)
         matches.append(Match(
             paper_id=paper_id,
             arxiv_id=preprint.arxiv_id,
@@ -170,16 +159,20 @@ def find_matches(
     return matches
 
 
-def _lag_days(paper_year: int, paper_venue: str, arxiv_submitted_at: str) -> int:
-    """Days from the v1 arXiv submission to the venue's conference date.
+def _lag_days(
+    paper_year: int,
+    paper_venue: str,
+    arxiv_submitted_at: str,
+    publication_months: Mapping[str, int] | None = None,
+) -> int:
+    """Days from the v1 arXiv submission to the configured presentation date.
 
-    The publication date is anchored at the first day of the venue's
-    conference month (see :data:`VENUE_PUBLICATION_MONTH`), which is a
-    realistic proxy for when a top-4 paper becomes public. A positive lag
-    means the preprint preceded publication.
+    The publication date is anchored at the first day of the configured
+    presentation month. A positive lag means the preprint preceded publication.
     """
-    from datetime import datetime, timezone
-    month = VENUE_PUBLICATION_MONTH.get(paper_venue, DEFAULT_PUBLICATION_MONTH)
+    from datetime import datetime
+    months = publication_months or {}
+    month = months.get(paper_venue, DEFAULT_PUBLICATION_MONTH)
     arxiv_date = datetime.fromisoformat(arxiv_submitted_at)
-    paper_date = datetime(paper_year, month, 1, tzinfo=timezone.utc)
+    paper_date = datetime(paper_year, month, 1, tzinfo=UTC)
     return (paper_date - arxiv_date).days

@@ -4,8 +4,6 @@ import gzip
 import io
 import xml.etree.ElementTree as ET
 
-import pytest
-
 from src.bibtex_dump import (
     _EntitySubstitutingStream,
     _extract_fields,

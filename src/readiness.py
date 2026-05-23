@@ -1,51 +1,50 @@
-"""Scientific-readiness analysis: does author track record predict which
-arXiv preprints become top-tier publications?
+"""Scientific-readiness analysis for a configured publication scope.
 
 This module quantifies a *triage filter* for early-signal scientific
 monitoring. Given the flood of arXiv ``cs.CR`` preprints (~7,000/year),
 which are worth watching? We test whether authorship by a researcher with
-a *prior* top-tier publication predicts that a preprint will itself become
-a top-tier paper.
+a prior in-scope publication predicts that a preprint will itself enter
+the same publication scope.
 
 The design avoids the two confounds that would make such a result
 meaningless:
 
-  * **Temporal split.** "Prior top-4 author" is determined strictly from
+  * **Temporal split.** Prior-scope authorship is determined strictly from
     publications *before* the preprint year, so the predictor cannot peek
     at the outcome.
-  * **Author-independent outcome.** Whether a preprint "became" a top-4
-    paper is decided purely by title similarity against the published
+  * **Author-independent outcome.** Whether a preprint entered the configured
+    scope is decided purely by title similarity against the published
     corpus, with *no* author overlap required. The predictor (authorship)
     and the outcome (title match) are therefore measured independently --
     removing the circularity of an author-anchored matcher.
 
 A full-name author key (not last-name-plus-initial) is used because this
 is a population-level statistic where common-name collisions would
-otherwise inflate the "prior-top-4" group.
+otherwise inflate the prior-author group.
 """
 
 from __future__ import annotations
 
 from collections import defaultdict
+from collections.abc import Iterable
 from dataclasses import dataclass
-from typing import Iterable
 
-from .author_matcher import jaccard, normalise_author, tokenise_title
+from .author_matcher import jaccard, normalize_author, tokenize_title
 
 DEFAULT_OUTCOME_THRESHOLD = 0.6
 
 
 def strict_author_key(name: str) -> str:
-    """Full normalised name, or ``""`` when too short to be discriminative.
+    """Full normalized name, or ``""`` when too short to be discriminative.
 
     Unlike :func:`author_matcher.author_key` (last name + first initial),
     this keeps the whole given name so that population-level counts are not
     dominated by common-surname collisions ("Wang Y", "Li J").
     """
-    normalised = normalise_author(name)
-    parts = normalised.split()
+    normalized = normalize_author(name)
+    parts = normalized.split()
     if len(parts) >= 2 and len(parts[0]) > 1:
-        return normalised
+        return normalized
     return ""
 
 
@@ -71,7 +70,7 @@ class OutcomeIndex:
         self._paper_tokens: list[frozenset[str]] = []
         self._inverted: dict[str, list[int]] = defaultdict(list)
         for title in published_titles:
-            tokens = frozenset(tokenise_title(title))
+            tokens = frozenset(tokenize_title(title))
             if not tokens:
                 continue
             index = len(self._paper_tokens)
@@ -80,7 +79,7 @@ class OutcomeIndex:
                 self._inverted[token].append(index)
 
     def is_published(self, title: str, threshold: float = DEFAULT_OUTCOME_THRESHOLD) -> bool:
-        tokens = tokenise_title(title)
+        tokens = tokenize_title(title)
         if not tokens:
             return False
         candidates: set[int] = set()
@@ -97,17 +96,17 @@ class ReadinessResult:
     threshold: float
     n_with_track_record: int
     n_without_track_record: int
-    converted_with: int       # preprints by prior-top-4 authors that became top-4
+    converted_with: int
     converted_without: int
 
     @property
     def precision(self) -> float:
-        """P(becomes top-4 | preprint by a prior-top-4 author)."""
+        """P(enters scope | preprint by a prior-scope author)."""
         return self.converted_with / self.n_with_track_record if self.n_with_track_record else 0.0
 
     @property
     def base_rate(self) -> float:
-        """P(becomes top-4 | preprint without a prior-top-4 author)."""
+        """P(enters scope | preprint without a prior-scope author)."""
         return self.converted_without / self.n_without_track_record if self.n_without_track_record else 0.0
 
     @property
@@ -118,7 +117,7 @@ class ReadinessResult:
 
     @property
     def recall(self) -> float:
-        """Fraction of all future-top-4 preprints captured by the filter."""
+        """Fraction of all future in-scope preprints captured by the filter."""
         total_converted = self.converted_with + self.converted_without
         return self.converted_with / total_converted if total_converted else 0.0
 
@@ -135,12 +134,12 @@ def analyze(
     outcome_index: OutcomeIndex,
     threshold: float = DEFAULT_OUTCOME_THRESHOLD,
 ) -> ReadinessResult:
-    """Partition ``preprints`` by track record and measure conversion to top-4.
+    """Partition ``preprints`` by track record and measure conversion.
 
     ``preprints`` yields ``(title, authors)`` pairs for a single submission
-    year. ``prior_authors`` is the strict-key set of researchers with a
-    top-4 paper *before* that year. ``outcome_index`` is built from the
-    published top-4 papers that define "became top-4".
+    year. ``prior_authors`` is the strict-key set of researchers with an
+    in-scope paper *before* that year. ``outcome_index`` is built from the
+    published papers that define conversion into the scope.
     """
     n_with = n_without = conv_with = conv_without = 0
     for title, authors in preprints:

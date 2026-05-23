@@ -47,7 +47,7 @@ def _build_filters(
 @click.option("--base-dir", type=click.Path(), help="Base directory for data")
 @click.pass_context
 def cli(ctx: click.Context, base_dir: str | None) -> None:
-    """Top Venues Paper Collector CLI."""
+    """Bibliographic corpus command-line interface."""
     ctx.ensure_object(dict)
     ctx.obj["base_dir"] = Path(base_dir) if base_dir else Path.cwd()
 
@@ -84,7 +84,7 @@ def extract(ctx: click.Context) -> None:
     """Extract abstracts from papers."""
     base_dir = ctx.obj["base_dir"]
 
-    console.print("[bold yellow]⚠ This may take a while due to rate limiting...[/bold yellow]")
+    console.print("[bold yellow]This may take a while due to rate limiting.[/bold yellow]")
 
     with Progress(
         SpinnerColumn(),
@@ -233,7 +233,7 @@ def run_all(ctx: click.Context) -> None:
 @click.option("--title", "-t", help="Search in title")
 @click.option("--abstract", "-a", help="Search in abstract")
 @click.option("--author", "-A", help="Search in author names")
-@click.option("--event", "-e", help="Filter by conference (e.g., 'ACM CCS')")
+@click.option("--event", "-e", help="Filter by configured event name")
 @click.option("--year", "-y", type=int, help="Filter by year")
 @click.option("--tech", "-T", help="Search technology/topic")
 @click.option("--limit", "-l", type=int, default=50, help="Limit results")
@@ -281,7 +281,7 @@ def search(
 @click.option("--title", "-t", help="Search in title")
 @click.option("--abstract", "-a", help="Search in abstract")
 @click.option("--author", "-A", help="Search in author names")
-@click.option("--event", "-e", help="Filter by conference (e.g., 'ACM CCS')")
+@click.option("--event", "-e", help="Filter by configured event name")
 @click.option("--year", "-y", type=int, help="Filter by year")
 @click.option("--tech", "-T", help="Search technology/topic")
 @click.option("--limit", "-l", type=int, default=None, help="Limit exported rows")
@@ -347,11 +347,11 @@ def stats(ctx: click.Context) -> None:
     with_bibtex = data.get("with_bibtex", 0)
     console.print(f"\n[bold]Total Papers:[/bold] {total}")
     console.print(
-        f"[bold]With Abstracts:[/bold] {with_abstracts} ({with_abstracts / total * 100:.1f}%)"
+        f"[bold]With Abstracts:[/bold] {with_abstracts} ({with_abstracts / total * 100:.2f}%)"
     )
     console.print(f"[bold]Without Abstracts:[/bold] {data['without_abstracts']}")
     console.print(
-        f"[bold]With BibTeX:[/bold]    {with_bibtex} ({with_bibtex / total * 100:.1f}%)"
+        f"[bold]With BibTeX:[/bold]    {with_bibtex} ({with_bibtex / total * 100:.2f}%)"
     )
 
     console.print("\n[bold]By Conference:[/bold]")

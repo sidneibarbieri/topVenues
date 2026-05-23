@@ -18,7 +18,7 @@ logger = logging.getLogger(__name__)
 def bootstrap_from_gzipped_snapshot(db_path: Path) -> None:
     """Materialise ``papers.db`` from a tracked ``papers.db.gz`` snapshot.
 
-    Called on every :class:`DatabaseManager` startup. The behaviour when both
+    Called on every :class:`DatabaseManager` startup. The behavior when both
     files exist is delegated to :func:`should_refresh_from_snapshot`, which
     implements lineage-tracked auto-refresh: pure readers always get the
     newest upstream data; users with local modifications keep their work.

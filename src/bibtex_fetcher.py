@@ -134,11 +134,7 @@ class BibTeXFetcher:
         targets = [paper for paper in papers if paper.key]
 
         async def _resolve(paper: Paper) -> tuple[Paper, str | None]:
-            try:
-                bibtex = await self.fetch_one(paper.key or "")
-            except Exception as exc:
-                logger.warning("Unexpected error for %s: %s", paper.paper_id, exc)
-                bibtex = None
+            bibtex = await self.fetch_one(paper.key or "")
             if on_result:
                 on_result(paper, bibtex)
             return paper, bibtex

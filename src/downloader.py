@@ -194,7 +194,7 @@ class JSONDownloader:
                     message="Circuit breaker OPEN - DBLP unstable",
                     timestamp=timestamp,
                 )
-            except (httpx.HTTPError, OSError) as error:
+            except (httpx.HTTPError, OSError):
                 if attempt == self.config.max_retries:
                     raise
                 await asyncio.sleep(2**attempt)

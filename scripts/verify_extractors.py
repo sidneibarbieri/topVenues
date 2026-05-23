@@ -80,7 +80,7 @@ def _fetch_semanticscholar(doi: str) -> str | None:
         if r.status_code == 200:
             return r.json().get("abstract")
     except httpx.HTTPError:
-        pass
+        return None
     return None
 
 

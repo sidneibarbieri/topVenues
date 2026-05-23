@@ -9,7 +9,11 @@ description = "Bibliographic explorer for top-tier security venues — DBLP → 
 readme = "README.md"
 requires-python = ">=3.11"
 license = {text = "MIT"}
-authors = [{name = "Sidnei Barbieri"}]
+authors = [
+    {name = "Sidnei Barbieri"},
+    {name = "Agney Lopes Roth Ferraz"},
+    {name = "Lourenco Alves Pereira Junior"},
+]
 keywords = ["security", "bibliography", "research", "dblp", "abstracts"]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
@@ -26,11 +30,13 @@ Homepage = "https://github.com/sidneibarbieri/topVenues"
 Repository = "https://github.com/sidneibarbieri/topVenues"
 Issues = "https://github.com/sidneibarbieri/topVenues/issues"
 dependencies = [
+    "arxiv>=2.1.0",
     "pydantic>=2.0.0",
     "pyyaml>=6.0",
     "httpx>=0.24.0",
     "beautifulsoup4>=4.12.0",
     "streamlit>=1.28.0",
+    "watchdog>=4.0.0",
     "pandas>=2.0.0",
     "rich>=13.0.0",
     "click>=8.1.0",

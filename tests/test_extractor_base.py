@@ -32,7 +32,7 @@ class TestCleanAbstract:
         result = extractor._clean_abstract("Abstract: We propose a novel method.")
         assert result == "We propose a novel method."
 
-    def test_normalises_whitespace(self, extractor):
+    def test_normalizes_whitespace(self, extractor):
         result = extractor._clean_abstract("too   many    spaces")
         assert result == "too many spaces"
 

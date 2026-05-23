@@ -18,11 +18,12 @@ Operational notes drawn from the arXiv API User's Manual:
 
 from __future__ import annotations
 
+import gzip
 import json
 import logging
 from collections.abc import Iterable, Iterator
 from dataclasses import asdict, dataclass
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 import arxiv
@@ -131,8 +132,8 @@ def _from_arxiv_result(result: arxiv.Result) -> Preprint:
         arxiv_id=result.entry_id.rsplit("/", 1)[-1],
         title=result.title.strip(),
         authors=tuple(a.name for a in result.authors),
-        submitted_at=result.published.astimezone(timezone.utc).isoformat(),
-        updated_at=result.updated.astimezone(timezone.utc).isoformat(),
+        submitted_at=result.published.astimezone(UTC).isoformat(),
+        updated_at=result.updated.astimezone(UTC).isoformat(),
         primary_category=result.primary_category,
         categories=tuple(result.categories),
         doi=result.doi,
@@ -145,7 +146,8 @@ def save_jsonl(preprints: Iterable[Preprint], target: Path) -> int:
     """Write preprints as JSON Lines so each line can be appended atomically."""
     target.parent.mkdir(parents=True, exist_ok=True)
     written = 0
-    with target.open("w", encoding="utf-8") as fh:
+    opener = gzip.open if target.suffix == ".gz" else Path.open
+    with opener(target, "wt", encoding="utf-8") as fh:
         for preprint in preprints:
             fh.write(json.dumps(asdict(preprint), ensure_ascii=False) + "\n")
             written += 1
@@ -157,7 +159,8 @@ def save_jsonl(preprints: Iterable[Preprint], target: Path) -> int:
 def load_jsonl(source: Path) -> list[Preprint]:
     """Read a saved snapshot of preprints back into memory."""
     out: list[Preprint] = []
-    with source.open(encoding="utf-8") as fh:
+    opener = gzip.open if source.suffix == ".gz" else Path.open
+    with opener(source, "rt", encoding="utf-8") as fh:
         for line in fh:
             payload = json.loads(line)
             payload["authors"] = tuple(payload["authors"])

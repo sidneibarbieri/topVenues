@@ -11,30 +11,28 @@ and the _from_arxiv_result adapter (via a lightweight stub).
 from __future__ import annotations
 
 import json
-import textwrap
 from pathlib import Path
 
 import pytest
 
 from src.arxiv_fetcher import Preprint, load_jsonl, save_jsonl, year_windows
 
-
 # ── Helpers ────────────────────────────────────────────────────────────
 
 
 def make_preprint(**overrides) -> Preprint:
-    defaults = dict(
-        arxiv_id="2401.12345v1",
-        title="Side-Channel Attacks on Embedded Systems",
-        authors=("Alice Smith", "Bob Jones"),
-        submitted_at="2024-01-15T00:00:00+00:00",
-        updated_at="2024-02-01T00:00:00+00:00",
-        primary_category="cs.CR",
-        categories=("cs.CR", "cs.SE"),
-        doi=None,
-        journal_ref=None,
-        summary="We study side-channel attacks.",
-    )
+    defaults = {
+        "arxiv_id": "2401.12345v1",
+        "title": "Side-Channel Attacks on Embedded Systems",
+        "authors": ("Alice Smith", "Bob Jones"),
+        "submitted_at": "2024-01-15T00:00:00+00:00",
+        "updated_at": "2024-02-01T00:00:00+00:00",
+        "primary_category": "cs.CR",
+        "categories": ("cs.CR", "cs.SE"),
+        "doi": None,
+        "journal_ref": None,
+        "summary": "We study side-channel attacks.",
+    }
     defaults.update(overrides)
     return Preprint(**defaults)
 
@@ -95,7 +93,7 @@ class TestYearWindows:
         # Each window's end precedes the next window's start, so no preprint
         # (which has exactly one submission date) lands in two windows.
         windows = list(year_windows(2020, 2026))
-        for (_, end), (next_start, _) in zip(windows, windows[1:]):
+        for (_, end), (next_start, _) in zip(windows, windows[1:], strict=False):
             assert end < next_start
 
     def test_reversed_range_is_empty(self) -> None:
@@ -122,7 +120,7 @@ class TestJsonlRoundTrip:
         assert written == 10
         loaded = load_jsonl(target)
         assert len(loaded) == 10
-        for orig, back in zip(preprints, loaded):
+        for orig, back in zip(preprints, loaded, strict=True):
             assert orig == back
 
     def test_authors_restored_as_tuple(self, tmp_path: Path) -> None:
@@ -138,6 +136,14 @@ class TestJsonlRoundTrip:
         save_jsonl([p], target)
         loaded = load_jsonl(target)
         assert isinstance(loaded[0].categories, tuple)
+
+    def test_gzipped_snapshot_roundtrip(self, tmp_path: Path) -> None:
+        p = make_preprint(arxiv_id="2401.54321v1", categories=("cs.CR", "cs.LG", "cs.SE"))
+        target = tmp_path / "preprints.jsonl.gz"
+        written = save_jsonl([p], target)
+        assert written == 1
+        loaded = load_jsonl(target)
+        assert loaded == [p]
         assert loaded[0].categories == ("cs.CR", "cs.LG", "cs.SE")
 
     def test_unicode_roundtrip(self, tmp_path: Path) -> None:

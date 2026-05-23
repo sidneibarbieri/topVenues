@@ -13,7 +13,7 @@ class VenueURLStrategy(ABC):
     @abstractmethod
     def get_urls(self, event: str, year: int, config: "Configuration") -> list[str]:
         """Generate URLs for a given event and year."""
-        pass
+        raise NotImplementedError
 
 
 class ConferenceURLStrategy(VenueURLStrategy):

@@ -1,6 +1,5 @@
 """Tests for the offline BibTeX generator."""
 
-import pytest
 
 from src.bibtex_local import paper_to_bibtex
 from src.models import Paper

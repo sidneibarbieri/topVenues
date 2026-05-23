@@ -20,7 +20,6 @@ from src.readiness import (
     strict_author_key,
 )
 
-
 # ── strict_author_key ───────────────────────────────────────────────────
 
 
@@ -89,7 +88,7 @@ class TestOutcomeIndex:
         assert not idx.is_published("Anything At All", threshold=0.1)
 
     def test_ignores_stopword_only_published_titles(self) -> None:
-        # A title that tokenises to nothing must not crash index construction.
+        # A title that tokenizes to nothing must not crash index construction.
         idx = OutcomeIndex(["the of and", "Concrete Attack Title"])
         assert idx.is_published("Concrete Attack Title", threshold=0.6)
 
@@ -143,8 +142,8 @@ class TestAnalyze:
     def test_partitions_and_counts(self) -> None:
         prior = build_prior_author_set([["Alice Smith"]])  # only Alice has track record
         outcome = OutcomeIndex([
-            "Cache Side-Channel Attacks",       # Alice's preprint becomes top-4
-            "Fuzzing the Linux Kernel",         # newcomer's preprint becomes top-4
+            "Cache Side-Channel Attacks",       # Alice's preprint reaches the outcome set
+            "Fuzzing the Linux Kernel",         # newcomer's preprint reaches the outcome set
         ])
         preprints = [
             ("Cache Side-Channel Attacks", ["Alice Smith"]),         # track record + converts

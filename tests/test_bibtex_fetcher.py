@@ -1,6 +1,5 @@
 """Unit tests for the BibTeX fetcher and parsing helpers."""
 
-import pytest
 
 from src.bibtex_fetcher import cite_key, is_valid_bibtex
 

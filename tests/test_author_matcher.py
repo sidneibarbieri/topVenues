@@ -17,9 +17,15 @@ from src.author_matcher import (
     build_author_index,
     find_matches,
     jaccard,
-    normalise_author,
-    tokenise_title,
+    normalize_author,
+    tokenize_title,
 )
+
+PUBLICATION_MONTHS = {
+    "USENIX Security": 8,
+    "ACM CCS": 10,
+    "NDSS": 2,
+}
 
 
 # ── Helpers ────────────────────────────────────────────────────────────
@@ -50,25 +56,25 @@ def make_preprint(
 
 class TestNormaliseAuthor:
     def test_lowercase(self) -> None:
-        assert normalise_author("Alice Smith") == "alice smith"
+        assert normalize_author("Alice Smith") == "alice smith"
 
     def test_strips_accents(self) -> None:
-        result = normalise_author("Álvaro García")
+        result = normalize_author("Álvaro García")
         assert result == "alvaro garcia"
 
     def test_drops_dblp_numeric_suffix(self) -> None:
         # DBLP adds " 0001" to disambiguate same-name authors
-        assert normalise_author("Wei Wang 0001") == "wei wang"
-        assert normalise_author("John Doe 2022") == "john doe"
+        assert normalize_author("Wei Wang 0001") == "wei wang"
+        assert normalize_author("John Doe 2022") == "john doe"
 
     def test_collapses_whitespace(self) -> None:
-        assert normalise_author("  Bob   Lee  ") == "bob lee"
+        assert normalize_author("  Bob   Lee  ") == "bob lee"
 
     def test_empty_string(self) -> None:
-        assert normalise_author("") == ""
+        assert normalize_author("") == ""
 
     def test_preserves_hyphen(self) -> None:
-        result = normalise_author("Jean-Claude Van Damme")
+        result = normalize_author("Jean-Claude Van Damme")
         assert "-" in result or "jean" in result  # hyphens kept or letter-only fallback
 
 
@@ -96,29 +102,29 @@ class TestAuthorKey:
 
 class TestTokeniseTitle:
     def test_basic_tokens(self) -> None:
-        tokens = tokenise_title("Fuzzing the Kernel")
+        tokens = tokenize_title("Fuzzing the Kernel")
         # "the" is a stopword; "fuzzing" and "kernel" survive
         assert "fuzzing" in tokens
         assert "kernel" in tokens
         assert "the" not in tokens
 
     def test_filters_stopwords(self) -> None:
-        tokens = tokenise_title("a an the of for on in and or but is to")
+        tokens = tokenize_title("a an the of for on in and or but is to")
         assert not tokens  # all stopwords
 
     def test_filters_single_chars(self) -> None:
-        tokens = tokenise_title("a b c xyz")
+        tokens = tokenize_title("a b c xyz")
         # single chars removed; "xyz" survives
         assert "xyz" in tokens
         assert "a" not in tokens
         assert "b" not in tokens
 
     def test_lowercase_and_accent_strip(self) -> None:
-        tokens = tokenise_title("Détection d'Intrusion")
+        tokens = tokenize_title("Détection d'Intrusion")
         assert "detection" in tokens or "intrusion" in tokens  # accent stripped
 
     def test_numbers_preserved(self) -> None:
-        tokens = tokenise_title("SHA256 hash collision")
+        tokens = tokenize_title("SHA256 hash collision")
         assert "sha256" in tokens
 
 
@@ -191,6 +197,7 @@ class TestFindMatches:
             paper_venue=paper_venue,
             author_index=index,
             title_threshold=threshold,
+            publication_months=PUBLICATION_MONTHS,
         )
 
     # -- positive cases --

@@ -24,14 +24,14 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 WORKDIR /app
 
 # Install dependencies first so changes to source do not invalidate the layer.
-COPY requirements.txt ./
-RUN pip install -r requirements.txt
+COPY requirements.txt requirements-web.txt ./
+RUN pip install -r requirements.txt -r requirements-web.txt
 
 # Copy only what the artifact needs at runtime.
 COPY src/ ./src/
 COPY web/ ./web/
 COPY tests/ ./tests/
-COPY config.yaml pyproject.toml README.md LICENSE ./
+COPY config.yaml README.md LICENSE ./
 COPY data/dataset/papers.db.gz ./data/dataset/
 COPY reproduce.sh ./
 

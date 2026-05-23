@@ -1,9 +1,9 @@
-# topVenues
+# TopVenues
 
-**A bibliographic explorer for the top-tier security research venues.**
+**A reproducible bibliographic explorer for configured security research sources.**
 
-`topVenues` builds a curated, searchable SQLite dataset of papers published in
-the leading computer-security conferences and survey journals. It downloads
+`TopVenues` builds a curated, searchable SQLite dataset for a declared
+computer-security literature scope. It downloads
 metadata from DBLP, enriches every paper with abstracts pulled from open APIs
 and publisher websites, and exposes a fast full-text search interface for
 researchers, students and reviewers preparing literature reviews.
@@ -30,7 +30,7 @@ with **9,911 abstracts** and **9,924 BibTeX records**.
 | Foundations and Trends in Privacy and Security       | Journal    |
 
 The set is configurable in `config.yaml`. Adding a new venue requires only a
-URL strategy and an event-name normaliser — see *Extending* below.
+URL strategy and an event-name normalizer — see *Extending* below.
 
 ---
 
@@ -58,12 +58,23 @@ python -m src.cli refresh-db
 
 ### Web interface (recommended)
 
+If your shell prompt already ends in `topVenues`, do not run `cd topVenues`
+again; start from the commands below.
+
 ```bash
 streamlit run web/app.py
 ```
 
-Open <http://localhost:8501>. Three pages:
+If the optional web dependencies are not installed yet, run:
 
+```bash
+pip install -r requirements-web.txt
+```
+
+Open <http://localhost:8501>. Main pages:
+
+- **Overview** — headline claims, reproduction command, evidence
+  table and scientific findings.
 - **Search** — full-text filters on title, abstract, authors, topic; venue,
   year, paper class (SoK / Survey / Poster / Workshop / Short / Journal /
   Article), abstract-length and BibTeX filters; sortable, paginated table
@@ -125,7 +136,7 @@ later to upgrade entries to DBLP-canonical when you have the bandwidth.
 > **Companion tool:** once your `.bib` is in your paper, run
 > [Vyas Sekar's AcademicLinter](https://github.com/vyassekar/AcademicLinter)
 > on the LaTeX project to catch unused entries, weasel words, repeated
-> words and double-blind privacy leaks.
+> words, and author-name leaks in comments.
 
 ### Incremental updates
 
@@ -159,7 +170,7 @@ src/
   cli.py               Click CLI
 
 web/app.py             Streamlit interface
-tests/                 pytest suite (161 tests)
+tests/                 pytest suite (250 tests)
 scripts/
   api_blitz.py         Concurrent API back-fill for missing abstracts
   bibtex_blitz.py      Concurrent BibTeX back-fill from DBLP
@@ -226,7 +237,7 @@ No code outside those four touch-points needs to change.
 
 ```bash
 pip install -e ".[dev]"
-pytest                         # 161 tests
+pytest                         # 250 tests
 ruff check src/ web/ tests/
 ```
 
@@ -234,14 +245,11 @@ ruff check src/ web/ tests/
 
 ## Paper and artifact preparation
 
-Active SBSeg 2026 writing lives under `papers/`:
-
-- `papers/sbseg2026-tools/`: Salão de Ferramentas candidate.
-- `papers/sbseg2026-main/`: Trilha Principal candidate.
-
-Reviewer-facing artifact notes are in `ARTIFACT_README.md`,
-`REVIEWER_GUIDE.md`, and `PROJECT_STRUCTURE.md`. Literature-review support and
-reference material live under `literature/`.
+Paper drafts are kept out of the public artifact under `papers/` (a local,
+untracked directory) so that the released code and corpus stay independent of
+any specific manuscript or venue. Artifact-evaluation notes are in
+`ARTIFACT_README.md`, `REVIEWER_GUIDE.md`, and `PROJECT_STRUCTURE.md`.
+Literature-review support and reference material live under `literature/`.
 
 ---
 
@@ -259,22 +267,23 @@ All retrieval is read-only and respects published API rate limits.
 
 ## Citation
 
-If `topVenues` helps your research, please cite it:
+If `TopVenues` helps your research, please cite it:
 
 ```bibtex
 @software{barbieri_topvenues,
-  author = {Barbieri, Sidnei},
-  title  = {topVenues: a bibliographic explorer for top-tier security venues},
-  year   = {2025},
+  author = {Barbieri, Sidnei and Ferraz, Agney Lopes Roth and Pereira Junior, Lourenco Alves},
+  title  = {TopVenues: a bibliographic explorer for top-tier security venues},
+  year   = {2026},
   url    = {https://github.com/sidneibarbieri/topVenues}
 }
 ```
 
 ---
 
-## Author
+## Authors
 
-**Sidnei Barbieri** — [@sidneibarbieri](https://github.com/sidneibarbieri)
+**Sidnei Barbieri**, **Agney Lopes Roth Ferraz**, and
+**Lourenco Alves Pereira Junior**.
 
 Built to support systematic literature reviews and threat-landscape mapping
 across the top-tier security research venues.

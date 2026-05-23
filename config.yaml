@@ -11,6 +11,43 @@ events:
 - ieee_comst
 - fnt_privsec
 year_start: 2019
+study_scope:
+  core_events:
+  - USENIX Security
+  - ACM CCS
+  - IEEE S&P
+  - NDSS
+  study_years:
+  - 2024
+  - 2025
+  prior_windows:
+    2023:
+    - 2019
+    - 2022
+    2022:
+    - 2019
+    - 2021
+  outcome_windows:
+    2023:
+    - 2023
+    - 2026
+    2022:
+    - 2022
+    - 2026
+  title_thresholds:
+  - 0.5
+  - 0.6
+  - 0.7
+  preprint_snapshot: data/dataset/arxiv_cs_cr_2022_2026.jsonl.gz
+  preprint_categories:
+  - cs.CR
+  preprint_since_year: 2022
+  preprint_until_year: 2026
+  publication_months:
+    USENIX Security: 8
+    ACM CCS: 10
+    IEEE S&P: 5
+    NDSS: 2
 # years is computed automatically from year_start to the current calendar year.
 # Override here only if you need a custom range, e.g.: years: [2023, 2024]
 request_timeout: 180

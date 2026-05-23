@@ -4,9 +4,12 @@
 # What this script verifies:
 #   1. Installation succeeds with declared dependencies.
 #   2. Database snapshot bootstraps to the expected counts.
-#   3. Test suite passes (166/166).
+#   3. Test suite passes (250/250).
 #   4. A representative keyword search returns within the latency budget.
 #   5. A BibTeX export produces a non-empty .bib file.
+#   6. The early-signal study reproduces the headline preprint rate.
+#   7. The scientific-readiness study and baselines reproduce the headline
+#      lift/recall and control comparisons.
 #
 # Exit code 0 → all claims hold; non-zero → first failure is reported.
 
@@ -17,7 +20,7 @@ cd "$(dirname "$0")"
 EXPECTED_PAPERS=9925
 EXPECTED_ABSTRACTS=9911
 EXPECTED_BIBTEX=9924
-EXPECTED_TESTS=166
+EXPECTED_TESTS=250
 
 step() { printf "\n\033[1;34m▶ %s\033[0m\n" "$*"; }
 ok()   { printf "  \033[32m✓\033[0m %s\n" "$*"; }
@@ -25,19 +28,46 @@ fail() { printf "  \033[31m✗\033[0m %s\n" "$*"; exit 1; }
 
 # ── 1. Python and dependencies ────────────────────────────────────────────
 step "Checking Python and dependencies"
-python_bin="${PYTHON:-python3}"
-if ! command -v "$python_bin" >/dev/null 2>&1; then
-  fail "python3 is required (set PYTHON=… to override)"
+if [[ -n "${PYTHON:-}" ]]; then
+  python_bin="$PYTHON"
+else
+  python_bin=""
+  for candidate in python3.12 python3.11 python3; do
+    if command -v "$candidate" >/dev/null 2>&1; then
+      python_bin="$candidate"
+      break
+    fi
+  done
 fi
-ok "$($python_bin --version)"
+if [[ -z "$python_bin" ]] || ! command -v "$python_bin" >/dev/null 2>&1; then
+  fail "Python 3.11+ is required (set PYTHON=… to override)"
+fi
+ok "bootstrap interpreter: $($python_bin --version)"
+"$python_bin" - <<'PY' || fail "Python 3.11 or newer is required"
+import sys
+raise SystemExit(0 if sys.version_info >= (3, 11) else 1)
+PY
 
 if [[ ! -d .venv ]]; then
   step "Creating .venv"
-  "$python_bin" -m venv .venv
+  if command -v uv >/dev/null 2>&1; then
+    uv venv --quiet --seed --python "$python_bin" .venv
+  else
+    "$python_bin" -m venv .venv
+  fi
 fi
 # shellcheck disable=SC1091
 source .venv/bin/activate
-pip install --quiet -r requirements.txt
+python - <<'PY' || fail "active virtual environment must use Python 3.11 or newer"
+import sys
+raise SystemExit(0 if sys.version_info >= (3, 11) else 1)
+PY
+ok "active environment: $(python --version)"
+if command -v uv >/dev/null 2>&1; then
+  uv pip install --quiet -r requirements.txt
+else
+  PIP_DISABLE_PIP_VERSION_CHECK=1 PIP_NO_CACHE_DIR=1 pip install --quiet --prefer-binary --timeout 60 -r requirements.txt
+fi
 ok "dependencies installed"
 
 # ── 2. Bootstrap from the gzipped snapshot ────────────────────────────────
@@ -54,6 +84,10 @@ bibtex=$(echo "$stats"     | awk '/With BibTeX:/ {print $3}')
 [[ "$abstracts" == "$EXPECTED_ABSTRACTS" ]] || fail "expected $EXPECTED_ABSTRACTS abstracts, got $abstracts"
 [[ "$bibtex"    == "$EXPECTED_BIBTEX"    ]] || fail "expected $EXPECTED_BIBTEX BibTeX entries, got $bibtex"
 ok "database state matches headline claims"
+
+# Snapshot identity: reviewers can confirm they hold the same release.
+snapshot_sha=$(shasum -a 256 data/dataset/papers.db.gz | awk '{print $1}')
+ok "snapshot papers.db.gz SHA-256: $snapshot_sha"
 
 # ── 3. Test suite ─────────────────────────────────────────────────────────
 step "Running test suite"
@@ -88,5 +122,32 @@ size=$(wc -c < "$out" | tr -d ' ')
 [[ "$size" -gt 1000 ]] || fail "BibTeX export was empty"
 ok "BibTeX export produced $(wc -l < "$out" | tr -d ' ') lines ($size bytes)"
 rm -f "$out"
+
+# ── 6. Scientific-readiness result ────────────────────────────────────────
+# ── 6. Early-signal measurement ───────────────────────────────────────────
+step "Reproducing the early-signal measurement"
+early_output=$(python scripts/early_signal_study.py 2>&1)
+echo "$early_output" | awk '/Papers with arXiv preprint/ {print "  " $0}'
+echo "$early_output" | awk '/p25/ || /^[[:space:]]+[0-9]/ {print "  " $0}' | head -2
+echo "$early_output" | grep -q "Papers with arXiv preprint:   742  (29.2%)" || fail "expected 742 early-signal matches and 29.2% rate"
+echo "$early_output" | grep -q "154.0" || fail "expected median preprint lead near 154 days"
+ok "early-signal study reproduces 29.2% preprint rate and median 154-day lead"
+
+# ── 7. Scientific-readiness result ────────────────────────────────────────
+step "Reproducing the scientific-readiness filter"
+readiness_output=$(python scripts/readiness_study.py 2>&1)
+echo "$readiness_output" | awk '/2023  thr=0.6/ {print "  " $0}'
+echo "$readiness_output" | grep -q "2023  thr=0.6" || fail "missing 2023 threshold-0.6 readiness result"
+echo "$readiness_output" | grep -q "lift  16.5x" || fail "expected 16.5x readiness lift"
+echo "$readiness_output" | grep -q "recall  90%" || fail "expected 90% readiness recall"
+ok "readiness filter reproduces 16.5x lift at 90% recall"
+
+step "Reproducing readiness baselines"
+baseline_output=$(python scripts/readiness_baselines.py 2>&1)
+echo "$baseline_output" | awk '/prior top-4|prolific|random security authors|first author|senior/ {print "  " $0}'
+echo "$baseline_output" | grep -q "prior top-4 (any author)     15.9%      90%  16.5x" || fail "expected prior-top-4 baseline row"
+echo "$baseline_output" | grep -q "prolific (>= 3 papers)" || fail "expected prolific-author control"
+echo "$baseline_output" | grep -q "random security authors" || fail "expected random-author control"
+ok "readiness controls reproduce the reported baseline comparisons"
 
 step "All headline claims reproduced"

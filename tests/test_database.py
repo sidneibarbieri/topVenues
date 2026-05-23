@@ -9,7 +9,6 @@ import pytest
 from src.database import (
     DatabaseManager,
     bootstrap_from_gzipped_snapshot,
-    should_refresh_from_snapshot,
 )
 from src.models import Paper
 
@@ -166,7 +165,8 @@ class TestBootstrapFromGzippedSnapshot:
         bootstrap_from_gzipped_snapshot(db_path)
 
         # Upstream publishes a new snapshot with a different paper
-        import os, time
+        import os
+        import time
         new_bytes = gzip.compress(self._seeded_db_bytes(tmp_path, "new"))
         gz_path.write_bytes(new_bytes)
         future = time.time() + 60
@@ -179,7 +179,9 @@ class TestBootstrapFromGzippedSnapshot:
 
     def test_protects_local_modifications_when_both_changed(self, tmp_path, caplog):
         """Maintainer scenario — both gz and db drifted; never auto-clobber."""
-        import logging, os, time
+        import logging
+        import os
+        import time
         db_path = tmp_path / "papers.db"
         gz_path = tmp_path / "papers.db.gz"
 

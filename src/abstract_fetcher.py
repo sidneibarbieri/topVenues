@@ -154,8 +154,6 @@ class AbstractFetcher:
                     for task in tasks:
                         task.cancel()
                     return result
-        except Exception as exc:
-            logger.warning("fetch_all error for %s: %s", doi, exc)
         finally:
             for task in tasks:
                 task.cancel()

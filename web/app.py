@@ -1,6 +1,8 @@
-"""Streamlit web interface — bibliographic explorer for top-tier security papers."""
+"""Streamlit web interface for the bibliographic corpus explorer."""
 
 import asyncio
+import html
+import sqlite3
 import sys
 from pathlib import Path
 
@@ -15,10 +17,15 @@ from src.models import PaperClass, SearchFilters
 
 PAGE_SIZE_OPTIONS = (25, 50, 100, 200)
 ABSTRACT_PREVIEW_CHARS = 280
+ARTIFACT_CLAIMS = (
+    ("Corpus", "9,925", "papers across 11 configured sources"),
+    ("Abstracts", "99.86%", "9,911 records with searchable abstracts"),
+    ("BibTeX", "99.99%", "9,924 records ready for citation export"),
+    ("Triage filter", "16.5x", "precision lift at 90% recall"),
+)
 
 st.set_page_config(
-    page_title="topVenues — Security Paper Explorer",
-    page_icon="🔐",
+    page_title="TopVenues - Security Paper Explorer",
     layout="wide",
     initial_sidebar_state="expanded",
 )
@@ -28,50 +35,68 @@ st.set_page_config(
 
 st.markdown(
     """
-<style>
-    :root {
-        --navy:   #0d1b2a;
-        --slate:  #2d3f50;
-        --teal:   #00b4d8;
-        --amber:  #f4a261;
-        --green:  #2ec4b6;
-        --rose:   #e63946;
-        --muted:  #8ecae6;
-        --border: #dde3ea;
-        --bg:     #f7f9fc;
-        --card:   #ffffff;
-    }
+    <style>
+        :root {
+            --ink:    #18212f;
+            --navy:   #243247;
+            --slate:  #3d4b5f;
+            --teal:   #2f6f73;
+            --amber:  #b36b2c;
+            --green:  #4f7d4a;
+            --rose:   #a84646;
+            --muted:  #d8e2e3;
+            --border: #d8dde3;
+            --bg:     #f8f8f5;
+            --card:   #ffffff;
+        }
 
-    .app-header {
-        background: linear-gradient(135deg, var(--navy) 0%, var(--slate) 100%);
-        border-radius: 14px;
-        padding: 1.5rem 2rem;
-        margin-bottom: 1.4rem;
-        box-shadow: 0 4px 14px rgba(13, 27, 42, .08);
-    }
-    .app-header h1 {
-        color: #ffffff; font-size: 1.85rem; font-weight: 700;
-        margin: 0 0 .35rem; letter-spacing: -.4px;
-    }
-    .app-header p { color: var(--muted); font-size: .95rem; margin: 0; }
+        .stApp, [data-testid="stAppViewContainer"] {
+            background: var(--bg);
+            color: var(--ink);
+        }
+        [data-testid="stHeader"] { background: rgba(248, 248, 245, .86); }
+        [data-testid="stMainBlockContainer"] { padding-top: 2.2rem; }
+        [data-testid="stDeployButton"],
+        [data-testid="stToolbar"],
+        #MainMenu,
+        footer {
+            visibility: hidden;
+            height: 0;
+        }
 
-    .metric-row { display: flex; gap: .9rem; margin-bottom: 1.2rem; flex-wrap: wrap; }
-    .metric {
-        flex: 1; min-width: 160px;
-        background: var(--card); border: 1px solid var(--border);
-        border-left: 4px solid var(--teal);
-        border-radius: 10px; padding: 1rem 1.2rem;
-    }
+        .app-header {
+            background: #eef4f5;
+            border-left: 5px solid var(--teal);
+            border-radius: 6px;
+            padding: 1.35rem 1.6rem;
+            margin-bottom: 1.4rem;
+            border-top: 1px solid var(--border);
+            border-right: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+        .app-header h1 {
+            color: var(--ink); font-size: 1.75rem; font-weight: 700;
+            margin: 0 0 .35rem; letter-spacing: 0;
+        }
+        .app-header p { color: #4d5f71; font-size: .96rem; margin: 0; }
+
+        .metric-row { display: flex; gap: .9rem; margin-bottom: 1.2rem; flex-wrap: wrap; }
+        .metric {
+            flex: 1; min-width: 160px;
+            background: var(--card); border: 1px solid var(--border);
+            border-left: 4px solid var(--teal);
+            border-radius: 6px; padding: .95rem 1.1rem;
+        }
     .metric.amber { border-left-color: var(--amber); }
     .metric.green { border-left-color: var(--green); }
     .metric.rose  { border-left-color: var(--rose); }
     .metric .lbl { color: #6b7c8d; font-size: .72rem; text-transform: uppercase;
                    letter-spacing: .8px; margin-bottom: .35rem; }
-    .metric .val { color: var(--navy); font-size: 1.7rem; font-weight: 700; line-height: 1; }
+        .metric .val { color: var(--ink); font-size: 1.7rem; font-weight: 700; line-height: 1; }
     .metric .sub { color: #8b97a3; font-size: .72rem; margin-top: .25rem; }
 
     .tag {
-        display: inline-block; border-radius: 4px;
+            display: inline-block; border-radius: 3px;
         padding: 2px 9px; font-size: .72rem; font-weight: 700;
         margin-right: 4px; letter-spacing: .3px;
     }
@@ -83,28 +108,35 @@ st.markdown(
     .tag-journal  { background: #d4edda; color: #155724; }
     .tag-article  { background: #f0f4f8; color: #0d1b2a; }
 
-    section[data-testid="stSidebar"] { background: var(--navy); }
-    section[data-testid="stSidebar"] * { color: #cdd9e5 !important; }
+    section[data-testid="stSidebar"] {
+        background: #f1f4f3;
+        border-right: 1px solid var(--border);
+    }
+    section[data-testid="stSidebar"] * { color: var(--ink) !important; }
     section[data-testid="stSidebar"] h2 {
-        color: #ffffff !important; font-size: .95rem;
+        color: var(--ink) !important; font-size: .95rem;
         letter-spacing: .4px; text-transform: uppercase;
-        border-bottom: 1px solid var(--slate);
+        border-bottom: 1px solid var(--border);
         padding-bottom: .5rem; margin: .4rem 0 .8rem;
     }
-
-    .results-bar {
-        display: flex; align-items: center; justify-content: space-between;
-        background: var(--bg); border: 1px solid var(--border); border-radius: 10px;
-        padding: .7rem 1rem; margin-bottom: 1rem;
+    section[data-testid="stSidebar"] label,
+    section[data-testid="stSidebar"] p {
+        color: #334155 !important;
     }
-    .results-bar .count { color: var(--navy); font-size: 1rem; font-weight: 700; }
+
+        .results-bar {
+            display: flex; align-items: center; justify-content: space-between;
+            background: var(--bg); border: 1px solid var(--border); border-radius: 6px;
+            padding: .7rem 1rem; margin-bottom: 1rem;
+        }
+        .results-bar .count { color: var(--ink); font-size: 1rem; font-weight: 700; }
     .results-bar .sub   { color: #6b7c8d; font-size: .85rem; }
 
-    .paper-card {
-        background: var(--card); border: 1px solid var(--border);
-        border-radius: 10px; padding: 1.4rem 1.6rem; margin-top: 1rem;
-    }
-    .paper-card h3 { color: var(--navy); margin: 0 0 .6rem; }
+        .paper-card {
+            background: var(--card); border: 1px solid var(--border);
+            border-radius: 6px; padding: 1.35rem 1.55rem; margin-top: 1rem;
+        }
+        .paper-card h3 { color: var(--ink); margin: 0 0 .6rem; }
     .paper-meta {
         display: flex; gap: 1.5rem; color: #6b7c8d; font-size: .85rem;
         margin-bottom: .8rem; flex-wrap: wrap;
@@ -114,8 +146,19 @@ st.markdown(
         color: #2c3e50; font-size: .95rem;
     }
 
-    .stDataFrame { border-radius: 8px; overflow: hidden; }
-    div[data-testid="stExpander"] { border-radius: 8px; }
+        .claim-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+            gap: .8rem; margin: .9rem 0 1.2rem;
+        }
+        .claim {
+            border: 1px solid var(--border); border-radius: 6px; background: var(--card);
+            padding: .95rem 1rem;
+        }
+        .claim .name { color: #607084; text-transform: uppercase; font-size: .72rem; font-weight: 700; }
+        .claim .value { color: var(--ink); font-size: 1.6rem; font-weight: 700; line-height: 1.2; }
+        .claim .note { color: #637184; font-size: .84rem; }
+        .stDataFrame { border-radius: 6px; overflow: hidden; }
+        div[data-testid="stExpander"] { border-radius: 6px; }
     .footer {
         color: #94a3b8; font-size: .78rem; text-align: center;
         margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--border);
@@ -145,8 +188,14 @@ def _load_collector() -> Collector:
     return collector
 
 
+def _safe_html(value: object) -> str:
+    if value is None:
+        return "—"
+    return html.escape(str(value), quote=True)
+
+
 def _venue_options(collector: Collector) -> list[str]:
-    venues = sorted({p.event for p in collector.papers if p.event})
+    venues = sorted({paper.event for paper in collector.papers if paper.event})
     return ["All venues", *venues]
 
 
@@ -154,18 +203,18 @@ def _abstract_length_predicate(papers, choice: str):
     if choice == "Any":
         return papers
     if choice == "Has abstract":
-        return [p for p in papers if p.abstract]
+        return [paper for paper in papers if paper.abstract]
     if choice == "Short (≤ 150 words)":
-        return [p for p in papers if 0 < p.abstract_words <= 150]
+        return [paper for paper in papers if 0 < paper.abstract_words <= 150]
     if choice == "Medium (151–300 words)":
-        return [p for p in papers if 151 <= p.abstract_words <= 300]
+        return [paper for paper in papers if 151 <= paper.abstract_words <= 300]
     if choice == "Long (> 300 words)":
-        return [p for p in papers if p.abstract_words > 300]
+        return [paper for paper in papers if paper.abstract_words > 300]
     return papers
 
 
 def _bibtex_predicate(papers, only_with_bibtex: bool):
-    return [p for p in papers if p.bibtex] if only_with_bibtex else papers
+    return [paper for paper in papers if paper.bibtex] if only_with_bibtex else papers
 
 
 def _truncate(text: str | None, max_chars: int = ABSTRACT_PREVIEW_CHARS) -> str:
@@ -188,6 +237,20 @@ def _render_header(title: str, subtitle: str) -> None:
     )
 
 
+def _render_claims() -> None:
+    # The HTML must stay flat: Streamlit runs markdown before inserting raw
+    # HTML, so any line indented four or more spaces becomes a code block.
+    cards = "".join(
+        '<div class="claim">'
+        f'<div class="name">{_safe_html(name)}</div>'
+        f'<div class="value">{_safe_html(value)}</div>'
+        f'<div class="note">{_safe_html(note)}</div>'
+        "</div>"
+        for name, value, note in ARTIFACT_CLAIMS
+    )
+    st.markdown(f'<div class="claim-grid">{cards}</div>', unsafe_allow_html=True)
+
+
 def _render_metrics(stats: dict, filtered_count: int | None = None) -> None:
     total = stats["total_papers"]
     with_abs = stats["with_abstracts"]
@@ -200,34 +263,84 @@ def _render_metrics(stats: dict, filtered_count: int | None = None) -> None:
         f'<div class="val">{filtered_count:,}</div></div>'
         if filtered_count is not None else ""
     )
-    years = stats["by_year"]
-    year_range = f'{min(years)}–{max(years)}' if years else '—'
     st.markdown(
-        f"""
-        <div class="metric-row">
-          <div class="metric">
-            <div class="lbl">Papers indexed</div>
-            <div class="val">{total:,}</div>
-            <div class="sub">across {venues} venues</div>
-          </div>
-          <div class="metric amber">
-            <div class="lbl">With abstract</div>
-            <div class="val">{with_abs:,}</div>
-            <div class="sub">{abs_pct:.1f}% coverage</div>
-          </div>
-          <div class="metric rose">
-            <div class="lbl">With BibTeX</div>
-            <div class="val">{with_bib:,}</div>
-            <div class="sub">{bib_pct:.1f}% coverage</div>
-          </div>
-          {extra}
-        </div>
-        """,
+        '<div class="metric-row">'
+        f'<div class="metric"><div class="lbl">Papers indexed</div>'
+        f'<div class="val">{total:,}</div>'
+        f'<div class="sub">across {venues} venues</div></div>'
+        f'<div class="metric amber"><div class="lbl">With abstract</div>'
+        f'<div class="val">{with_abs:,}</div>'
+        f'<div class="sub">{abs_pct:.2f}% coverage</div></div>'
+        f'<div class="metric rose"><div class="lbl">With BibTeX</div>'
+        f'<div class="val">{with_bib:,}</div>'
+        f'<div class="sub">{bib_pct:.2f}% coverage</div></div>'
+        f'{extra}'
+        '</div>',
         unsafe_allow_html=True,
     )
 
 
 # ── Pages ──────────────────────────────────────────────────────────────────
+
+
+def page_artifact() -> None:
+    _render_header(
+        "Reproducible corpus overview",
+        "Reproduce the corpus, inspect coverage, and export ready-to-cite references from a local snapshot.",
+    )
+    _render_claims()
+
+    st.subheader("Verification path")
+    st.markdown(
+        """
+        1. Run the reproduction script to validate the headline claims.
+        2. Use Search to inspect the corpus and export CSV, JSON or BibTeX.
+        3. Use Insights to verify scope, coverage and temporal distribution.
+        4. Use Pipeline only when refreshing the corpus from live sources.
+        """
+    )
+
+    st.code("bash reproduce.sh", language="bash")
+
+    st.subheader("Reproducibility evidence")
+    evidence = pd.DataFrame(
+        [
+            {
+                "Criterion": "Availability",
+                "Evidence": "Source code, compressed SQLite snapshot, arXiv snapshot and documentation.",
+            },
+            {
+                "Criterion": "Functionality",
+                "Evidence": "CLI, Streamlit interface, search, statistics and CSV/JSON/BibTeX export.",
+            },
+            {
+                "Criterion": "Reproducibility",
+                "Evidence": "Single-command script validates counts, tests, latency, export and triage results.",
+            },
+            {
+                "Criterion": "Sustainability",
+                "Evidence": "Small Python/SQLite stack, typed models and configuration-driven corpus scope.",
+            },
+        ]
+    )
+    st.dataframe(evidence, width="stretch", hide_index=True)
+
+    st.subheader("Scientific findings")
+    findings = pd.DataFrame(
+        [
+            {
+                "Finding": "Early signal",
+                "Result": "29.2% of 2024-2025 core security papers have a matching arXiv preprint.",
+                "Reproduce": ".venv/bin/python scripts/early_signal_study.py",
+            },
+            {
+                "Finding": "Triage filter",
+                "Result": "Prior-scope authorship gives 16.5x precision lift at 90% recall and 64% volume cut.",
+                "Reproduce": ".venv/bin/python scripts/readiness_study.py",
+            },
+        ]
+    )
+    st.dataframe(findings, width="stretch", hide_index=True)
 
 
 def page_search() -> None:
@@ -274,12 +387,18 @@ def page_search() -> None:
         )
 
     filters = SearchFilters()
-    if title_query:    filters.title_contains    = title_query
-    if abstract_query: filters.abstract_contains = abstract_query
-    if author_query:   filters.author_contains   = author_query
-    if tech_query:     filters.technology        = tech_query
-    if venue_choice != "All venues": filters.event = venue_choice
-    if year_choice != "All years":   filters.year  = int(year_choice)
+    if title_query:
+        filters.title_contains = title_query
+    if abstract_query:
+        filters.abstract_contains = abstract_query
+    if author_query:
+        filters.author_contains = author_query
+    if tech_query:
+        filters.technology = tech_query
+    if venue_choice != "All venues":
+        filters.event = venue_choice
+    if year_choice != "All years":
+        filters.year = int(year_choice)
 
     results = collector.search(filters, limit=None)
     if class_choices:
@@ -298,30 +417,65 @@ def page_search() -> None:
         results.sort(key=lambda p: (p.event or "", -(p.year or 0)))
 
     _render_header(
-        "🔐 Security Paper Explorer",
-        "Search a curated dataset of papers from the leading security research venues.",
+        "Security Paper Explorer",
+        "Search a curated dataset from the configured security literature scope.",
     )
     _render_metrics(stats, filtered_count=len(results))
 
     if not results:
-        st.info("🔍 No papers match the current filters. Try widening the search.")
+        st.info("No papers match the current filters. Try widening the search.")
         return
 
     total_pages = max(1, (len(results) + page_size - 1) // page_size)
+    search_signature = (
+        title_query,
+        abstract_query,
+        author_query,
+        tech_query,
+        venue_choice,
+        year_choice,
+        tuple(class_choices),
+        abstract_length,
+        only_with_bibtex,
+        page_size,
+        sort_choice,
+    )
+    if st.session_state.get("search_signature") != search_signature:
+        st.session_state["page_no"] = 1
+        st.session_state["search_signature"] = search_signature
+    st.session_state["page_no"] = min(
+        max(1, int(st.session_state.get("page_no", 1))),
+        total_pages,
+    )
+
     col_count, col_page = st.columns([3, 1])
+    with col_page:
+        if total_pages > 1:
+            nav_prev, nav_next = st.columns(2)
+            with nav_prev:
+                if st.button("‹", disabled=st.session_state["page_no"] <= 1, width="stretch"):
+                    st.session_state["page_no"] -= 1
+                    st.rerun()
+            with nav_next:
+                if st.button("›", disabled=st.session_state["page_no"] >= total_pages, width="stretch"):
+                    st.session_state["page_no"] += 1
+                    st.rerun()
+            page = int(st.number_input("Page", 1, total_pages, key="page_no"))
+        else:
+            page = 1
+
+    start = (page - 1) * page_size
+    end = min(len(results), start + page_size)
+    page_slice = results[start : start + page_size]
     with col_count:
         st.markdown(
             f'<div class="results-bar">'
             f'<span class="count">{len(results):,} papers found</span>'
-            f'<span class="sub">{total_pages} page(s) · {page_size} per page</span>'
+            f'<span class="sub">showing {start + 1:,}–{end:,} · '
+            f'page {page} of {total_pages} · {page_size} per page</span>'
             f'</div>',
             unsafe_allow_html=True,
         )
-    with col_page:
-        page = st.number_input("Page", 1, total_pages, 1, key="page_no") if total_pages > 1 else 1
-
-    start = (page - 1) * page_size
-    page_slice = results[start : start + page_size]
 
     table_rows = [
         {
@@ -342,7 +496,7 @@ def page_search() -> None:
 
     st.dataframe(
         df,
-        use_container_width=True,
+        width="stretch",
         hide_index=True,
         height=min(700, 70 + len(df) * 56),
         column_config={
@@ -377,39 +531,39 @@ def page_search() -> None:
         for paper in results
     ]
     full_df = pd.DataFrame(full_rows)
-    bib_text = "\n\n".join(p.bibtex for p in results if p.bibtex)
+    bib_text = "\n\n".join(paper.bibtex for paper in results if paper.bibtex)
     col_csv, col_json, col_bib, _ = st.columns([1, 1, 1, 3])
     with col_csv:
         st.download_button(
-            "⬇ Export CSV",
+            "Export CSV",
             full_df.to_csv(index=False).encode("utf-8"),
             "topvenues_results.csv",
             "text/csv",
-            use_container_width=True,
+            width="stretch",
         )
     with col_json:
         st.download_button(
-            "⬇ Export JSON",
+            "Export JSON",
             full_df.to_json(orient="records", indent=2),
             "topvenues_results.json",
             "application/json",
-            use_container_width=True,
+            width="stretch",
         )
     with col_bib:
         st.download_button(
-            "⬇ Export .bib",
+            "Export BibTeX",
             bib_text or "% no BibTeX entries available",
             "topvenues_results.bib",
             "application/x-bibtex",
-            use_container_width=True,
+            width="stretch",
             disabled=not bib_text,
             help="LaTeX bibliography file with one BibTeX entry per result."
                  if bib_text else "BibTeX not yet fetched for any paper in this result set.",
         )
 
     st.divider()
-    st.subheader("📄 Paper details")
-    title_options = [f"[{p.year}] {p.title}" for p in page_slice]
+    st.subheader("Paper details")
+    title_options = [f"[{paper.year}] {paper.title}" for paper in page_slice]
     selected_label = st.selectbox(
         "Select a paper from this page", title_options, label_visibility="collapsed"
     )
@@ -417,28 +571,33 @@ def page_search() -> None:
         idx = title_options.index(selected_label)
         paper = page_slice[idx]
         link = paper.ee or paper.url
-        link_html = f'<a href="{link}" target="_blank">{link}</a>' if link else "—"
+        link_html = (
+            f'<a href="{_safe_html(link)}" target="_blank">{_safe_html(link)}</a>'
+            if link else "—"
+        )
         doi_html = (
-            f'<a href="https://doi.org/{paper.doi}" target="_blank">{paper.doi}</a>'
+            f'<a href="https://doi.org/{_safe_html(paper.doi)}" target="_blank">{_safe_html(paper.doi)}</a>'
             if paper.doi else "—"
         )
+        abstract_html = (
+            _safe_html(paper.abstract) if paper.abstract
+            else "<i>No abstract available.</i>"
+        )
         st.markdown(
-            f"""
-            <div class="paper-card">
-              <h3>{paper.title}</h3>
-              <div class="paper-meta">
-                <span><b>Authors:</b> {paper.authors or "—"}</span>
-                <span><b>Venue:</b> {paper.event or "—"}</span>
-                <span><b>Year:</b> {paper.year}</span>
-                <span><b>Words:</b> {paper.abstract_words:,}</span>
-                <span><b>DOI:</b> {doi_html}</span>
-                <span><b>Link:</b> {link_html}</span>
-              </div>
-              <div>{_class_badge(paper.paper_class)}</div>
-              <hr style="border:none; border-top:1px solid var(--border); margin:1rem 0">
-              <div class="paper-abstract">{paper.abstract or "<i>No abstract available.</i>"}</div>
-            </div>
-            """,
+            '<div class="paper-card">'
+            f'<h3>{_safe_html(paper.title)}</h3>'
+            '<div class="paper-meta">'
+            f'<span><b>Authors:</b> {_safe_html(paper.authors)}</span>'
+            f'<span><b>Venue:</b> {_safe_html(paper.event)}</span>'
+            f'<span><b>Year:</b> {_safe_html(paper.year)}</span>'
+            f'<span><b>Words:</b> {paper.abstract_words:,}</span>'
+            f'<span><b>DOI:</b> {doi_html}</span>'
+            f'<span><b>Link:</b> {link_html}</span>'
+            '</div>'
+            f'<div>{_class_badge(paper.paper_class)}</div>'
+            '<hr style="border:none; border-top:1px solid var(--border); margin:1rem 0">'
+            f'<div class="paper-abstract">{abstract_html}</div>'
+            '</div>',
             unsafe_allow_html=True,
         )
 
@@ -456,7 +615,7 @@ def page_insights() -> None:
     collector = _load_collector()
     stats = collector.db.get_statistics()
     _render_header(
-        "📊 Dataset insights",
+        "Dataset insights",
         "Distribution of papers across venues, years, paper classes and abstract coverage.",
     )
     _render_metrics(stats)
@@ -490,7 +649,6 @@ def page_insights() -> None:
 
     st.divider()
     st.subheader("Abstract coverage by venue")
-    import sqlite3
     rows = []
     with sqlite3.connect(collector.db.db_path) as conn:
         for venue, total in stats["by_event"].items():
@@ -505,21 +663,21 @@ def page_insights() -> None:
                 "With abstract": with_abs,
                 "Coverage": f"{with_abs / total * 100:.1f}%" if total else "—",
             })
-    st.dataframe(pd.DataFrame(rows), use_container_width=True, hide_index=True)
+    st.dataframe(pd.DataFrame(rows), width="stretch", hide_index=True)
 
 
 def page_pipeline() -> None:
     _render_header(
-        "⚙ Pipeline",
+        "Pipeline",
         "Run the data collection pipeline. Each step is incremental and safe to repeat.",
     )
 
-    tab_dl, tab_cons, tab_extr = st.tabs(["📥 Download", "🔗 Consolidate", "📝 Extract abstracts"])
+    tab_dl, tab_cons, tab_extr = st.tabs(["Download", "Consolidate", "Extract abstracts"])
 
     with tab_dl:
         st.write("Fetches DBLP JSON files for every configured venue and year. "
                  "Skips files that already exist and validate cleanly.")
-        if st.button("Run download", type="primary", use_container_width=True, key="dl_btn"):
+        if st.button("Run download", type="primary", width="stretch", key="dl_btn"):
             with st.spinner("Downloading…"):
                 _run_async(Collector().run_download())
                 st.success("Download complete.")
@@ -528,7 +686,7 @@ def page_pipeline() -> None:
     with tab_cons:
         st.write("Merges downloaded JSON into the SQLite database. Existing abstracts "
                  "are preserved (idempotent upsert with `COALESCE`).")
-        if st.button("Run consolidate", type="primary", use_container_width=True, key="cons_btn"):
+        if st.button("Run consolidate", type="primary", width="stretch", key="cons_btn"):
             with st.spinner("Consolidating…"):
                 _run_async(Collector().run_consolidate())
                 st.success("Consolidation complete.")
@@ -536,7 +694,7 @@ def page_pipeline() -> None:
 
     with tab_extr:
         st.warning(
-            "⚠ Rate-limited. Open APIs (Semantic Scholar / OpenAlex / CrossRef) run in "
+            "Rate-limited. Open APIs (Semantic Scholar / OpenAlex / CrossRef) run in "
             "parallel; publisher scrapers run sequentially with throttling."
         )
         col_a, col_b = st.columns(2)
@@ -545,7 +703,7 @@ def page_pipeline() -> None:
         with col_b:
             max_papers = st.number_input("Max papers (0 = all)", 0, 10000, 0)
 
-        if st.button("Run extraction", type="primary", use_container_width=True, key="ext_btn"):
+        if st.button("Run extraction", type="primary", width="stretch", key="ext_btn"):
             collector = Collector()
             collector.config.batch_size = batch_size
             collector.papers = collector._load_papers_from_disk()
@@ -582,16 +740,17 @@ def page_pipeline() -> None:
 
 def main() -> None:
     pages = {
-        "🔍 Search": page_search,
-        "📊 Insights": page_insights,
-        "⚙ Pipeline": page_pipeline,
+        "Overview": page_artifact,
+        "Search": page_search,
+        "Insights": page_insights,
+        "Pipeline": page_pipeline,
     }
     with st.sidebar:
         st.markdown(
             '<h2 style="color:#fff !important; border:none !important;'
             'font-size:1.15rem !important; text-transform:none !important;'
             'letter-spacing:0 !important; margin-bottom:1rem !important">'
-            '🔐 topVenues</h2>',
+            'TopVenues</h2>',
             unsafe_allow_html=True,
         )
         page = st.radio("Navigate", list(pages.keys()), label_visibility="collapsed")
@@ -600,7 +759,7 @@ def main() -> None:
     pages[page]()
 
     st.markdown(
-        '<div class="footer">topVenues — bibliographic explorer · '
+        '<div class="footer">TopVenues — bibliographic explorer · '
         'data sourced from DBLP, Semantic Scholar, OpenAlex, CrossRef</div>',
         unsafe_allow_html=True,
     )
