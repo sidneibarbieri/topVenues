@@ -80,6 +80,8 @@ pip install -r requirements-web.txt
 
 Open <http://localhost:8501>. Main pages:
 
+![TopVenues overview page](docs/assets/topvenues-overview.png)
+
 - **Overview** — headline claims, reproduction command, evidence
   table and scientific findings.
 - **Search** — full-text filters on title, abstract, authors, topic; venue,
