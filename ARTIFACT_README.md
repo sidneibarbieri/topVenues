@@ -27,6 +27,7 @@ claim), and the license. The repository is organized as follows.
 | `tests/` | pytest suite (250 tests) |
 | `scripts/` | measurement scripts (`early_signal_study.py`, `readiness_study.py`, `readiness_baselines.py`) |
 | `data/dataset/papers.db.gz` | committed compressed SQLite corpus snapshot |
+| `data/dataset/master_dataset.csv` | derived CSV export of the same frozen SQLite snapshot |
 | `data/dataset/arxiv_cs_cr_2022_2026.jsonl.gz` | committed compressed arXiv snapshot for the measurement claims |
 | `config.yaml` | declared corpus scope and study windows |
 | `reproduce.sh` | one-command verification of every claim |
@@ -55,6 +56,10 @@ The badges considered for evaluation are **Available**, **Functional**,
   no external service. Network access is needed only to install dependencies on
   first run (or use the provided Docker image) and for the optional pipeline
   refresh.
+- The scientific denominator for the paper is the committed SQLite snapshot.
+  `master_dataset.csv` is a human-readable export of that denominator, not a
+  separate source of claim values. Publishing a refreshed corpus requires a new
+  snapshot checksum and updated reported counts.
 
 ## Dependencies
 

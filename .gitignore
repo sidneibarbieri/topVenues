@@ -29,7 +29,8 @@ data/arxiv/
 *.pkl
 *.bak.*
 # CSV files are NOT globally ignored.
-# data/dataset/master_dataset.csv is tracked (human-readable dataset for collaborators).
+# data/dataset/master_dataset.csv is tracked as a derived human-readable export.
+# Keep it aligned with data/dataset/papers.db.gz before publishing a release.
 # The DB is materialised automatically from data/dataset/papers.db.gz on first run.
 !data/dataset/papers.db.gz
 data/dataset/*.sync-id

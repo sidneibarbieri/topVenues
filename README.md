@@ -49,6 +49,13 @@ the application transparently materialises `data/dataset/papers.db` (~74 MB)
 from that snapshot, so there is **no manual import step**: 9,925 papers,
 9,911 abstracts and 9,924 BibTeX entries are available immediately.
 
+The released corpus is pinned by the compressed SQLite snapshot. The
+human-readable `data/dataset/master_dataset.csv` file is a derived export of the
+same frozen database, while `reproduce.sh` and the paper claims read the SQLite
+snapshot. A refreshed corpus should be published as a new snapshot with a new
+checksum and updated reported counts, rather than silently changing the
+submission denominator.
+
 When a newer snapshot lands upstream and you want to refresh your local
 copy explicitly:
 

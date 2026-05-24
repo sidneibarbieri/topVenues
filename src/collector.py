@@ -116,10 +116,16 @@ class Collector:
         consolidator = DataConsolidator(self.json_dir, self.data_dir)
         # Consolidate emits JSON-normalized metadata; upsert COALESCE preserves abstracts.
         self.db.upsert_papers(consolidator.consolidate())
-        self.db.export_to_csv(self.data_dir / "master_dataset.csv")
+        self.export_dataset_csv()
         # Reload from DB so self.papers reflects abstracts for the subsequent extract phase.
         self.papers = [Paper(**p) for p in self.db.get_all_papers()]
         print(f"Consolidated {len(self.papers)} papers")
+
+    def export_dataset_csv(self) -> Path:
+        """Write the human-readable CSV from the SQLite source of truth."""
+        csv_path = self.data_dir / "master_dataset.csv"
+        self.db.export_to_csv(csv_path)
+        return csv_path
 
     async def run_extract(self) -> None:
         if not self.papers:
@@ -184,6 +190,7 @@ class Collector:
         print("\n[4/5] Fetching BibTeX entries…")
         await self.run_bibtex()
         print("\n[5/5] Writing distribution snapshot (papers.db.gz)…")
+        self.export_dataset_csv()
         write_gzipped_snapshot(self.db.db_path)
         print("\nCollection complete!")
 

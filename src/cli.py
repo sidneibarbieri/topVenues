@@ -128,9 +128,11 @@ def write_snapshot(ctx: click.Context) -> None:
     if not collector.db.db_path.exists():
         console.print(f"[bold red]No DB found at {collector.db.db_path}.[/bold red]")
         return
+    csv_path = collector.export_dataset_csv()
     gz = write_gzipped_snapshot(collector.db.db_path)
     mb = gz.stat().st_size / 1024 / 1024
     console.print(f"[bold green]✓[/bold green] Wrote {gz.name} ({mb:.1f} MB)")
+    console.print(f"[bold green]✓[/bold green] Exported {csv_path.name} from the same DB")
 
 
 @cli.command()

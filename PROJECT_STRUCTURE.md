@@ -11,6 +11,7 @@ the curated research artifact, and active paper workspaces.
 | `web/` | Streamlit interface |
 | `tests/` | pytest coverage for core behavior (250 tests) |
 | `data/dataset/papers.db.gz` | committed compressed SQLite snapshot |
+| `data/dataset/master_dataset.csv` | derived CSV export of the frozen snapshot |
 | `config.yaml` | venue and pipeline configuration |
 | `scripts/` | reproducibility, claim verification, ad-hoc maintenance |
 | `Dockerfile`, `docker-compose.yml` | reproducible execution environment |
