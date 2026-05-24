@@ -140,11 +140,6 @@ available on `bibtex-local`). Combining commands works as expected:
 run `bibtex-local` for instant coverage, then run `bibtex-from-dump`
 later to upgrade entries to DBLP-canonical when you have the bandwidth.
 
-> **Companion tool:** once your `.bib` is in your paper, run
-> [Vyas Sekar's AcademicLinter](https://github.com/vyassekar/AcademicLinter)
-> on the LaTeX project to catch unused entries, weasel words, repeated
-> words, and author-name leaks in comments.
-
 ### Incremental updates
 
 The pipeline is fully incremental. Re-running `download → consolidate` next
