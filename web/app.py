@@ -57,11 +57,18 @@ st.markdown(
         [data-testid="stHeader"] { background: rgba(248, 248, 245, .86); }
         [data-testid="stMainBlockContainer"] { padding-top: 2.2rem; }
         [data-testid="stDeployButton"],
-        [data-testid="stToolbar"],
+        [data-testid="stAppDeployButton"],
+        [data-testid="stToolbarActions"],
+        [data-testid="stMainMenu"],
         #MainMenu,
         footer {
             visibility: hidden;
             height: 0;
+        }
+        [data-testid="stExpandSidebarButton"],
+        [data-testid="stSidebarCollapseButton"],
+        [data-testid="stSidebarCollapseButton"] * {
+            visibility: visible !important;
         }
 
         .app-header {
