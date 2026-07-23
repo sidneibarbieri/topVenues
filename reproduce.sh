@@ -10,6 +10,8 @@
 #   6. The early-signal study reproduces the headline preprint rate.
 #   7. The scientific-readiness study and baselines reproduce the headline
 #      lift/recall and control comparisons.
+#   8. The source-evidence audit and cross-source baseline reproduce the
+#      reported provenance and abstract-agreement counts.
 #
 # Exit code 0 → all claims hold; non-zero → first failure is reported.
 
@@ -149,5 +151,60 @@ echo "$baseline_output" | grep -q "prior top-4 (any author)     15.9%      90%  
 echo "$baseline_output" | grep -q "prolific (>= 3 papers)" || fail "expected prolific-author control"
 echo "$baseline_output" | grep -q "random security authors" || fail "expected random-author control"
 ok "readiness controls reproduce the reported baseline comparisons"
+
+# ── 8. Source-evidence audit and cross-source baseline ────────────────────
+step "Verifying the source-evidence audit and cross-source baseline"
+python - <<'PYTHON'
+import csv
+import collections
+import json
+import sys
+
+EXPECTED_EVIDENCE = {
+    "exact_archive_log_evidence": 5794,
+    "exact_api_cache_evidence": 2726,
+    "exact_archive_log_and_api_cache_evidence": 5,
+    "unresolved_no_retained_source_evidence": 1386,
+    "missing_abstract": 14,
+}
+EXPECTED_SUPPORTED = 8525
+EXPECTED_BASELINE = {
+    "semantic_scholar.abstract_n": 163,
+    "semantic_scholar.abstract_jaccard_ge_0_95_n": 145,
+    "openalex.abstract_n": 161,
+    "openalex.abstract_jaccard_ge_0_95_n": 120,
+    "topvenues.abstract_n": 200,
+}
+
+
+def fail(message):
+    print(f"  \033[31m✗\033[0m {message}")
+    sys.exit(1)
+
+
+with open("evaluation/output/abstract_provenance_evidence.csv", encoding="utf-8") as handle:
+    statuses = collections.Counter(row["evidence_status"] for row in csv.DictReader(handle))
+
+for status, expected in EXPECTED_EVIDENCE.items():
+    if statuses[status] != expected:
+        fail(f"evidence status {status}: expected {expected}, found {statuses[status]}")
+
+supported = sum(count for status, count in statuses.items() if status.startswith("exact_"))
+if supported != EXPECTED_SUPPORTED:
+    fail(f"abstracts with retained source evidence: expected {EXPECTED_SUPPORTED}, found {supported}")
+print(f"  {supported} of 9,911 abstracts carry retained source evidence; 1,386 unresolved, 14 absent")
+
+with open("evaluation/baseline_validation/pilot_summary.json", encoding="utf-8") as handle:
+    pilot = json.load(handle)
+
+for dotted_path, expected in EXPECTED_BASELINE.items():
+    value = pilot
+    for part in dotted_path.split("."):
+        value = value[part]
+    if value != expected:
+        fail(f"baseline {dotted_path}: expected {expected}, found {value}")
+print("  cross-source agreement: 145/163 Semantic Scholar, 120/161 OpenAlex at Jaccard >= 0.95")
+PYTHON
+ok "source-evidence audit and cross-source baseline reproduce"
 
 step "All headline claims reproduced"

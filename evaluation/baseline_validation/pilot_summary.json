@@ -1,0 +1,115 @@
+{
+  "status": "live comparison pilot; not manual validation",
+  "live_window": {
+    "local_date": "2026-07-21",
+    "timezone": "America/Sao_Paulo",
+    "completed_at_utc": "2026-07-22T00:46:57Z"
+  },
+  "snapshot": {
+    "sha256": "0f4dbaa97d0cf39abd2340adb3280643df090b5de9cd1a29bff39a0b53ef64cd",
+    "papers": 9925,
+    "nonempty_abstracts": 9911,
+    "bibtex": 9924,
+    "venues": 11
+  },
+  "sample": {
+    "n": 200,
+    "seed": 20260721,
+    "population": "9,911 submitted-snapshot records with non-empty abstracts",
+    "design": "proportional venue strata with minimum one record per venue",
+    "doi_n": 143
+  },
+  "operation": "known-record alignment and abstract-field availability; conditional on TopVenues inclusion",
+  "logical_http_request_definition": "One protocol operation; retries would be separate network attempts, but the initial pilot did not retain attempt counts.",
+  "raw_observation_schema_note": "pilot_observations.csv preserves legacy *_cost_usd columns. DBLP/Semantic Scholar values were hard-coded zeros; OpenAlex values are server-reported API-budget metering. They are not comparable monetary-cost measurements.",
+  "topvenues": {
+    "record_match_n": 200,
+    "abstract_n": 200,
+    "logical_http_requests": 0,
+    "network_attempts_including_retries": 0,
+    "lookup_trials_per_record": 11,
+    "local_sql_lookup_trials": 2200,
+    "latency_median_ms": 0.00425,
+    "latency_p95_ms": 0.006542,
+    "latency_scope": "Warm local SQLite read path; excludes snapshot construction and host-resource cost."
+  },
+  "dblp": {
+    "record_match_n": 200,
+    "record_match_basis": "The frozen denominator was constructed from these DBLP keys; no independent live-recall claim.",
+    "abstract_n": 0,
+    "abstract_basis": "DBLP record metadata/dump exposes no abstract field.",
+    "latency_median_ms": null,
+    "latency_p95_ms": null,
+    "latency_status": "n/a: responsible 1.05-second pacing run was stopped after repeated 20-second zero-byte timeouts; one earlier availability probe completed in 744.621 ms, which is not a sample.",
+    "logical_http_requests": null,
+    "request_count_status": "not retained: the live run was incomplete; reported match and abstract counts come from frozen DBLP keys and the DBLP schema, not 200 live requests"
+  },
+  "semantic_scholar": {
+    "record_match_n": 199,
+    "abstract_n": 163,
+    "abstract_jaccard_ge_0_95_n": 145,
+    "logical_http_requests": 58,
+    "network_attempts_including_retries": null,
+    "doi_batch": {
+      "sample_n": 143,
+      "logical_http_requests": 1,
+      "http_status": 200,
+      "record_match_n": 143,
+      "abstract_n": 142,
+      "batch_wall_latency_ms": 1236.924125
+    },
+    "title_match": {
+      "sample_n": 57,
+      "logical_http_requests": 57,
+      "http_200_n": 57,
+      "record_match_n": 56,
+      "abstract_n": 21,
+      "request_latency_median_ms": 1082.9665,
+      "request_latency_p95_ms": 2833.583625
+    },
+    "retry_count": "not recorded in this pilot; transient 429 was observed during setup"
+  },
+  "openalex": {
+    "record_match_n": 171,
+    "abstract_n": 161,
+    "abstract_jaccard_ge_0_95_n": 120,
+    "logical_http_requests": 200,
+    "network_attempts_including_retries": null,
+    "authentication_mode": "not retained in the initial pilot",
+    "server_reported_api_budget_metering_usd": 0.057,
+    "metered_logical_requests": 200,
+    "metering_completeness": "final-response values retained for 200 logical requests; earlier retry attempts were not retained",
+    "metering_interpretation": "Sum of retained final-response per-request API-budget values; not an invoice or out-of-pocket charge. Account/free-allowance state and earlier retry attempts were not retained.",
+    "doi_singleton": {
+      "sample_n": 143,
+      "logical_http_requests": 143,
+      "http_200_n": 143,
+      "record_match_n": 143,
+      "abstract_n": 139,
+      "request_latency_median_ms": 361.6295,
+      "request_latency_p95_ms": 381.478625,
+      "server_reported_api_budget_metering_usd": 0.0
+    },
+    "title_search": {
+      "sample_n": 57,
+      "logical_http_requests": 57,
+      "http_200_n": 54,
+      "http_400_n": 3,
+      "record_match_n": 28,
+      "abstract_n": 22,
+      "request_latency_median_ms": 511.751625,
+      "request_latency_p95_ms": 895.042792,
+      "server_reported_api_budget_metering_usd": 0.057,
+      "metering_note": "Includes all 57 title searches, including the three HTTP 400 responses."
+    }
+  },
+  "limitations": [
+    "No human labels were produced.",
+    "The sample is conditioned on TopVenues having a non-empty abstract and cannot estimate missing-paper recall.",
+    "Live scholarly services drift; the date, fixed sample, protocol, and per-record observations are part of the result.",
+    "Cross-source text agreement is not correctness and neither Semantic Scholar nor OpenAlex is a gold standard.",
+    "DBLP live latency is intentionally left n/a after a responsible run encountered repeated timeouts.",
+    "The initial pilot did not retain retry counts or end-to-end wall time; retained request latency excludes pacing, backoff, and earlier failed attempts.",
+    "The OpenAlex $0.057 value is server-reported API-budget metering, not an invoice or out-of-pocket cost; DBLP and Semantic Scholar expose no comparable meter in this pilot."
+  ]
+}

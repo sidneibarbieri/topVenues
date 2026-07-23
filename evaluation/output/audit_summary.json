@@ -1,0 +1,120 @@
+{
+  "api_cache_evidence": {
+    "exact_doi_and_content_files": 2736,
+    "exact_doi_and_content_records": 2731,
+    "exact_record_counts_by_source": {
+      "crossref": 1124,
+      "openalex": 770,
+      "semanticscholar": 842
+    },
+    "json_files": 3270,
+    "nonempty_values": 2921,
+    "parse_error_files": 0,
+    "parse_errors": [],
+    "source_file_counts": {
+      "crossref": 1165,
+      "openalex": 852,
+      "semanticscholar": 904
+    },
+    "unsupported_source_files": 349
+  },
+  "archive_log_evidence": {
+    "exact_content_and_paper_id_records": 5799,
+    "exact_content_and_paper_id_rows": 5821,
+    "exact_record_counts_by_source": {
+      "ACMExtractor": 2627,
+      "IEEEExtractor": 1220,
+      "NDSSExtractor": 63,
+      "USENIXExtractor": 1889
+    },
+    "malformed_csv_rows": 540,
+    "member": "data/log/abstract_log.csv",
+    "member_sha256": "fed4ef90decde44339ee34739282ac04c704b0d123dd5d822cb055068e35371c",
+    "status_counts": {
+      "fail": 5669,
+      "ok": 7336
+    },
+    "timestamp_timezone_recorded": false,
+    "total_csv_rows": 13005,
+    "valid_timestamp_max_naive": "2026-04-27 11:28:01",
+    "valid_timestamp_min_naive": "2025-08-04 17:17:34"
+  },
+  "decision_boundary": "report exact retained evidence and duplicate candidates; mutate nothing",
+  "deduplication": {
+    "dblp_key_distinct": 9925,
+    "dblp_key_nonempty": 9925,
+    "duplicate_dblp_key_groups": 0,
+    "duplicate_doi_groups": 0,
+    "exact_bibliographic_duplicate_candidate_clusters": 5,
+    "exact_bibliographic_duplicate_candidate_records": 10,
+    "excess_rows_if_exact_candidates_were_collapsed": 5,
+    "fuzzy_or_semantic_version_matching_performed": false,
+    "identity_unit_in_snapshot": "DBLP bibliographic record",
+    "journal_extension_policy": "retain distinct DBLP publications; represent version relations explicitly",
+    "mutation_performed": false,
+    "normalized_title_author_groups": 5,
+    "paper_id_distinct": 9925,
+    "possible_version_relation_clusters": 0,
+    "possible_version_relation_records": 0
+  },
+  "excluded_alternatives": [
+    "No unresolved abstract was assigned a source.",
+    "No PDF origin count was inferred from absent provenance.",
+    "No fuzzy title matching was used for duplicate or version detection.",
+    "No journal extension was collapsed into a conference record.",
+    "No row in the frozen snapshot was edited or deleted."
+  ],
+  "inputs": {
+    "archive_zip_sha256": "a9ccfd2c6a6755d32238a511d3b6d19678feb4b77a84005bb93c1d015a93ec4e",
+    "cache_json_files": 3270,
+    "cache_manifest_payload_sha256": "b72612f5d67c1c340a186f8b3039cdab3cedf6d1f3deb60a5bb12b8f6523ab0e",
+    "frozen_snapshot_sha256": "0f4dbaa97d0cf39abd2340adb3280643df090b5de9cd1a29bff39a0b53ef64cd",
+    "manifest_payload_sha256": "1506c6623900fb0504e3266f00f4d002babc316dc280cf341d95a3560129a912",
+    "manifest_rows": 3273
+  },
+  "outputs": {
+    "abstract_provenance_evidence.csv": "15af0563050fee74b01238b07321f89d9599c66db32a7f035f7a24f36939a833",
+    "dedup_candidates.csv": "1d65bf2a0ace4aeffee463c19f7625311143c214fa01c16f4767528b19211b6f",
+    "input_manifest.csv": "95b244e5aab17e9ffe81a99cc74dd72de8ab396ac5fba2d598686dd1392137c2"
+  },
+  "parameters": {
+    "abstract_matching": "same paper_id or DOI plus exact text after whitespace normalization",
+    "dedup_candidate_matching": "normalized exact title and authors; no fuzzy matching",
+    "strict_submitted_snapshot": true
+  },
+  "policy_version": "topvenues-frozen-audit/1.0.0",
+  "provenance": {
+    "actual_insertion_source_is_persisted_in_snapshot": false,
+    "actual_pdf_derived_abstract_count": null,
+    "interpretation": "Exact matches are retained evidence, not proof of the writer source. Unresolved records and PDF origin remain unknown.",
+    "records_missing_abstract": 14,
+    "records_with_both_evidence_types": 5,
+    "records_with_exact_api_cache_evidence": 2731,
+    "records_with_exact_archive_log_evidence": 5799,
+    "records_with_exact_pdf_labeled_source_evidence": 0,
+    "records_with_exact_retained_source_evidence": 8525,
+    "records_with_nonempty_abstract": 9911,
+    "status_counts": {
+      "exact_api_cache_evidence": 2726,
+      "exact_archive_log_and_api_cache_evidence": 5,
+      "exact_archive_log_evidence": 5794,
+      "missing_abstract": 14,
+      "unresolved_no_retained_source_evidence": 1386
+    },
+    "unresolved_nonempty_records": 1386
+  },
+  "provider_mode": "offline",
+  "schema_version": "1.0.0",
+  "snapshot": {
+    "empty_abstracts": 14,
+    "nonempty_abstracts": 9911,
+    "records": 9925,
+    "timestamps": {
+      "created_at_max_naive": "2026-04-28 03:41:22",
+      "created_at_min_naive": "2026-04-27 16:30:28",
+      "timezone_recorded": false,
+      "updated_at_max_naive": "2026-04-28 23:01:03",
+      "updated_at_min_naive": "2026-04-28 03:55:31"
+    }
+  }
+}

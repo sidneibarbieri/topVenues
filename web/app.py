@@ -9,10 +9,12 @@ from pathlib import Path
 import pandas as pd
 import streamlit as st
 
-sys.path.insert(0, str(Path(__file__).parent.parent))
+ARTIFACT_ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ARTIFACT_ROOT))
 
 from src.abstract_fetcher import AbstractFetcher
 from src.collector import Collector
+from src.database import require_corpus
 from src.models import PaperClass, SearchFilters
 
 PAGE_SIZE_OPTIONS = (25, 50, 100, 200)
@@ -190,7 +192,11 @@ def _run_async(coro):
 
 @st.cache_resource(show_spinner="Loading dataset…")
 def _load_collector() -> Collector:
-    collector = Collector()
+    """Open the corpus anchored at the artifact root, independent of the shell's
+    working directory, and report a missing corpus instead of showing an empty one.
+    """
+    collector = Collector(base_dir=ARTIFACT_ROOT)
+    require_corpus(collector.db.db_path, collector.db.snapshot_path)
     collector.papers = collector._load_papers_from_disk()
     return collector
 
