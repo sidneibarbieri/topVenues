@@ -13,6 +13,8 @@ refreshing, querying, and exporting venue-bounded paper collections.
 
 1. `ARTIFACT_README.md` — artifact overview and badge mapping.
 2. `reproduce.sh` — single-shot verification of every headline claim.
+3. `scripts/verify_paper_claims.py` — checks each number the paper reports
+   against the snapshot.
 3. `data/dataset/papers.db.gz` — committed corpus snapshot.
 4. `data/dataset/arxiv_cs_cr_2022_2026.jsonl.gz` — committed preprint snapshot for the measurement studies.
 5. `src/` and `web/` — implementation.
@@ -35,9 +37,23 @@ The script verifies:
   queries;
 - BibTeX export produces a non-empty `.bib` file ready for LaTeX use;
 - the scientific-readiness study reproduces the reported 16.5x relative risk at
-  90% recall.
+  90% recall;
+- the source-evidence audit and cross-source baseline reproduce;
+- every quantitative claim in the paper matches the snapshot.
 
 Total runtime is well under a minute on a 2020-or-later laptop.
+
+### Auditing the paper's numbers on their own
+
+The last stage can also run by itself. It executes each figure the paper
+reports, from per-venue coverage to case-study counts and the evaluation
+bundle, and prints any value where the paper and the snapshot disagree:
+
+```bash
+python scripts/verify_paper_claims.py
+```
+
+Expected output: `All 53 paper claims reproduce from the released snapshot`.
 
 ## Web Review Path
 

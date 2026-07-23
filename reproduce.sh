@@ -12,6 +12,7 @@
 #      lift/recall and control comparisons.
 #   8. The source-evidence audit and cross-source baseline reproduce the
 #      reported provenance and abstract-agreement counts.
+#   9. Every quantitative claim in the paper matches the released snapshot.
 #
 # Exit code 0 → all claims hold; non-zero → first failure is reported.
 
@@ -205,5 +206,11 @@ for dotted_path, expected in EXPECTED_BASELINE.items():
 print("  cross-source agreement: 145/163 Semantic Scholar, 120/161 OpenAlex at Jaccard >= 0.95")
 PYTHON
 ok "source-evidence audit and cross-source baseline reproduce"
+
+# ── 9. Every paper claim, executed against the snapshot ───────────────────
+step "Verifying every quantitative claim in the paper"
+claims_output=$(python scripts/verify_paper_claims.py) || { echo "$claims_output" | sed 's/^/  /'; fail "paper claims disagree with the artifact"; }
+echo "$claims_output" | sed 's/^/  /'
+ok "paper and artifact agree on every checked claim"
 
 step "All headline claims reproduced"
