@@ -34,7 +34,7 @@ The script verifies:
 - keyword search returns results in under 31 ms on representative
   queries;
 - BibTeX export produces a non-empty `.bib` file ready for LaTeX use;
-- the scientific-readiness study reproduces the reported 16.5x lift at
+- the scientific-readiness study reproduces the reported 16.5x relative risk at
   90% recall.
 
 Total runtime is well under a minute on a 2020-or-later laptop.

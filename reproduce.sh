@@ -125,7 +125,6 @@ size=$(wc -c < "$out" | tr -d ' ')
 ok "BibTeX export produced $(wc -l < "$out" | tr -d ' ') lines ($size bytes)"
 rm -f "$out"
 
-# ── 6. Scientific-readiness result ────────────────────────────────────────
 # ── 6. Early-signal measurement ───────────────────────────────────────────
 step "Reproducing the early-signal measurement"
 early_output=$(python scripts/early_signal_study.py 2>&1)
@@ -142,7 +141,7 @@ echo "$readiness_output" | awk '/2023  thr=0.6/ {print "  " $0}'
 echo "$readiness_output" | grep -q "2023  thr=0.6" || fail "missing 2023 threshold-0.6 readiness result"
 echo "$readiness_output" | grep -q "lift  16.5x" || fail "expected 16.5x readiness lift"
 echo "$readiness_output" | grep -q "recall  90%" || fail "expected 90% readiness recall"
-ok "readiness filter reproduces 16.5x lift at 90% recall"
+ok "readiness filter reproduces 16.5x relative risk (2.5x lift) at 90% recall"
 
 step "Reproducing readiness baselines"
 baseline_output=$(python scripts/readiness_baselines.py 2>&1)

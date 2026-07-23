@@ -10,7 +10,7 @@ with a DBLP-backed, monotonically enriched, checksum-verified SQLite snapshot.
 Using that snapshot as a fixed denominator, it measures that 29.2% of recent
 top-tier security papers appear as arXiv preprints a median of about five months
 before publication, and that a tunable author-track-record filter triages those
-preprints at up to a 16.5x precision lift (90% recall). This artifact reproduces
+preprints at up to a 16.5x relative risk, or 2.5x conventional lift (90% recall). This artifact reproduces
 those claims offline from committed snapshots.
 
 ## Readme Structure

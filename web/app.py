@@ -23,7 +23,7 @@ ARTIFACT_CLAIMS = (
     ("Corpus", "9,925", "papers across 11 configured sources"),
     ("Abstracts", "99.86%", "9,911 records with searchable abstracts"),
     ("BibTeX", "99.99%", "9,924 records ready for citation export"),
-    ("Triage filter", "16.5x", "precision lift at 90% recall"),
+    ("Triage filter", "16.5x", "relative risk at 90% recall"),
 )
 
 st.set_page_config(
@@ -348,7 +348,7 @@ def page_artifact() -> None:
             },
             {
                 "Finding": "Triage filter",
-                "Result": "Prior-scope authorship gives 16.5x precision lift at 90% recall and 64% volume cut.",
+                "Result": "Prior-scope authorship gives 16.5x relative risk (2.5x conventional lift) at 90% recall and 64% volume cut.",
                 "Reproduce": ".venv/bin/python scripts/readiness_study.py",
             },
         ]
