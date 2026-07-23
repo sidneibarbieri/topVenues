@@ -332,3 +332,25 @@ class TestACMExtractor:
             )
         assert result is None
         collector.increment_acm_failure_count.assert_called_once()
+
+class TestUSENIXParagraphJoining:
+    """USENIX abstracts often span several <p> elements.
+
+    Selectors are tried in order and the first valid result wins, so a selector
+    that can only return one paragraph must never precede one that joins the
+    whole sequence. Ordering them the other way truncated multi-paragraph
+    abstracts to their opening paragraph.
+    """
+
+    def test_joining_selectors_precede_single_paragraph_selectors(self):
+        xpaths = USENIXExtractor().xpaths
+        joining = [i for i, xpath in enumerate(xpaths) if "string-join" in xpath]
+        single = [i for i, xpath in enumerate(xpaths) if "string-join" not in xpath]
+        assert joining, "at least one selector must join the paragraph sequence"
+        assert max(joining) < min(single), (
+            "a single-paragraph selector precedes a joining one, which truncates "
+            "multi-paragraph abstracts"
+        )
+
+    def test_first_selector_targets_the_abstract_container(self):
+        assert "field-name-field-paper-description" in USENIXExtractor().xpaths[0]

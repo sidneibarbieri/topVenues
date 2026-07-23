@@ -4,7 +4,7 @@
 # What this script verifies:
 #   1. Installation succeeds with declared dependencies.
 #   2. Database snapshot bootstraps to the expected counts.
-#   3. Test suite passes (250/250).
+#   3. Test suite passes (252/252).
 #   4. A representative keyword search returns within the latency budget.
 #   5. A BibTeX export produces a non-empty .bib file.
 #   6. The early-signal study reproduces the headline preprint rate.
@@ -23,7 +23,7 @@ cd "$(dirname "$0")"
 EXPECTED_PAPERS=9925
 EXPECTED_ABSTRACTS=9911
 EXPECTED_BIBTEX=9924
-EXPECTED_TESTS=250
+EXPECTED_TESTS=252
 
 step() { printf "\n\033[1;34m▶ %s\033[0m\n" "$*"; }
 ok()   { printf "  \033[32m✓\033[0m %s\n" "$*"; }
