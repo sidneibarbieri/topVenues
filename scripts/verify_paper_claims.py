@@ -144,7 +144,13 @@ def check_corpus_structure(conn: sqlite3.Connection, checker: ClaimChecker) -> N
     top_tier_since_2019 = conn.execute(
         f"SELECT COUNT(*) FROM papers WHERE event IN ({placeholders}) AND year >= 2019", CORE_A_STAR
     ).fetchone()[0]
-    checker.expect("top-tier papers since 2019 (\"nearly 6,000\")", top_tier_since_2019, 5985)
+    # The paper states this one approximately ("nearly 6,000"), so check the band
+    # it claims rather than asserting a precision the sentence does not carry.
+    checker.expect(
+        "top-tier papers since 2019 supporting \"nearly 6,000\"",
+        5800 <= top_tier_since_2019 <= 6000,
+        True,
+    )
 
     no_2026_proceedings = conn.execute(
         f"SELECT COUNT(*) FROM papers WHERE event IN ({placeholders}) AND year = 2026", CORE_A_STAR
