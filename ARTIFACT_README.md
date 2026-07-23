@@ -177,7 +177,7 @@ SHA-256 for byte-stability. Each claim can also be reproduced on its own.
   Semantic Scholar and 120 of 161 OpenAlex abstracts agree with the snapshot at
   token-set Jaccard 0.95.
 - Time and resources: under 10 seconds, under 1 GB RAM. The 200-record sample,
-  labelling protocol and adjudication sheet ship alongside, in
+  labelling protocol ship alongside, in
   `evaluation/baseline_validation/`.
 
 ## License

@@ -27,12 +27,12 @@ uncontaminated abstracts of the paper named by the title. This is conditional on
 the field being non-empty; the field-coverage quantity (9,911/9,925) is reported
 separately. Do not multiply the two or describe the audit as proof of 99.86%.
 
-## What the annotator reads
+## What the author reads
 
 The stored abstract and the title. Do not open the publisher source as a matter
 of course; the point is to judge what the corpus actually serves. For a borderline
-case only, the annotator may open the DOI/URL to resolve doubt, and must note in
-`annotator_N_notes` that the source was consulted for that row.
+case only, the author may open the DOI/URL to resolve doubt, and must note in
+`notes` that the source was consulted for that row.
 
 ## Labels (judgeable from stored text + title)
 

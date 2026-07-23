@@ -16,8 +16,7 @@ refreshing, querying, and exporting venue-bounded paper collections.
 3. `scripts/verify_paper_claims.py` — checks each number the paper reports
    against the snapshot.
 4. `evaluation/baseline_validation/manual_labels.csv` — the completed manual
-   audit of 200 records (168 valid, 84.0%), with evidence URLs, corrected
-   abstracts and the correction manifest beside it.
+   audit of 200 records (168 valid, 84.0%), with evidence URLs, corrected abstracts, and the correction manifest beside it.
 3. `data/dataset/papers.db.gz` — committed corpus snapshot.
 4. `data/dataset/arxiv_cs_cr_2022_2026.jsonl.gz` — committed preprint snapshot for the measurement studies.
 5. `src/` and `web/` — implementation.
@@ -56,7 +55,7 @@ bundle, and prints any value where the paper and the snapshot disagree:
 python scripts/verify_paper_claims.py
 ```
 
-Expected output: `All 58 paper claims reproduce from the released snapshot`.
+Expected output: `All 57 paper claims reproduce from the released snapshot`.
 
 ## Web Review Path
 

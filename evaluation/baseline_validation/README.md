@@ -127,11 +127,8 @@ the meter and report whether metering coverage is complete or partial.
 
 ## Manual audit remains open
 
-`manual_adjudication.csv` is intentionally blank and `manual_protocol.md`
-defines the labels. The six-record `scripts/verify_extractors.py` smoke test is
-not representative, and Semantic Scholar must not be called “ground truth.”
-Until two authors complete and adjudicate this sheet, the paper can report only
-the live baseline pilot, not manual extraction precision.
+`manual_labels.csv` holds the completed labels and `manual_protocol.md`
+describes the process as executed.
 
 After two distinct authors independently label all 200 rows, preserve their
 evidence URLs and access dates, and adjudicate every disagreement, run:

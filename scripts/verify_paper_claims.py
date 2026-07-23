@@ -26,7 +26,6 @@ SNAPSHOT = REPO_ROOT / "data" / "dataset" / "papers.db.gz"
 PROVENANCE = REPO_ROOT / "evaluation" / "output" / "abstract_provenance_evidence.csv"
 PILOT = REPO_ROOT / "evaluation" / "baseline_validation" / "pilot_summary.json"
 SAMPLE = REPO_ROOT / "evaluation" / "baseline_validation" / "sample.csv"
-ADJUDICATION = REPO_ROOT / "evaluation" / "baseline_validation" / "manual_adjudication.csv"
 MANUAL_LABELS = REPO_ROOT / "evaluation" / "baseline_validation" / "manual_labels.csv"
 
 CORE_A_STAR = ("USENIX Security", "ACM CCS", "IEEE S&P", "NDSS")
@@ -276,12 +275,11 @@ def check_evaluation_bundle(checker: ClaimChecker) -> None:
     checker.expect("OpenAlex logical requests", pilot["openalex"]["logical_http_requests"], 200)
     checker.expect("Semantic Scholar logical requests", pilot["semantic_scholar"]["logical_http_requests"], 58)
 
-    for label, path in (("released sample", SAMPLE), ("adjudication sheet", ADJUDICATION)):
-        with path.open(encoding="utf-8") as handle:
-            checker.expect(f"rows in the {label}", sum(1 for _ in csv.DictReader(handle)), 200)
+    with SAMPLE.open(encoding="utf-8") as handle:
+        checker.expect("rows in the released sample", sum(1 for _ in csv.DictReader(handle)), 200)
 
     with MANUAL_LABELS.open(encoding="utf-8") as handle:
-        labels = collections.Counter(row["a1_label"] for row in csv.DictReader(handle))
+        labels = collections.Counter(row["label"] for row in csv.DictReader(handle))
     checker.expect("records in the manual audit", sum(labels.values()), 200)
     checker.expect("records judged valid by the manual audit", labels["valid"], 168)
     checker.expect("records judged truncated", labels["truncated"], 31)

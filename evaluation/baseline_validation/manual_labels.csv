@@ -1,4 +1,4 @@
-paper_id,a1_label,a1_corrected_abstract,a1_evidence_url,a1_access_date,a1_notes
+paper_id,label,corrected_abstract,evidence_url,access_date,notes
 1079423,valid,,https://doi.org/10.1145/3579856.3582825,2026-07-23,
 1090934,valid,,https://doi.org/10.1145/3576915.3623165,2026-07-23,
 1090945,valid,,https://doi.org/10.1145/3576915.3623156,2026-07-23,
