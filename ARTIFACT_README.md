@@ -149,11 +149,25 @@ SHA-256 for byte-stability. Each claim can also be reproduced on its own.
 
 - Commands: `.venv/bin/python scripts/readiness_study.py` and
   `.venv/bin/python scripts/readiness_baselines.py`
-- Expected: prior top-tier authorship yields a 16.5x precision lift at 90%
+- Expected: prior top-tier authorship yields a 16.5x relative risk, equal to a
+  2.5x lift under the conventional population-prevalence definition, at 90%
   recall (Jaccard 0.6); the baselines show this exceeds prolific-author and
   random-author controls, and the first/senior-author variants trade precision
   for recall.
 - Time and resources: under 10 seconds, under 2 GB RAM.
+
+### Claim 6 — Source-evidence audit and cross-source comparison
+
+- Command: `bash reproduce.sh` (final stage), reading
+  `evaluation/output/abstract_provenance_evidence.csv` and
+  `evaluation/baseline_validation/pilot_summary.json`
+- Expected: 8,525 of the 9,911 abstracts carry retained source evidence, 1,386
+  are unresolved and 14 are absent; on the fixed 200-record sample, 145 of 163
+  Semantic Scholar and 120 of 161 OpenAlex abstracts agree with the snapshot at
+  token-set Jaccard 0.95.
+- Time and resources: under 10 seconds, under 1 GB RAM. The 200-record sample,
+  labelling protocol and adjudication sheet ship alongside, in
+  `evaluation/baseline_validation/`.
 
 ## License
 
