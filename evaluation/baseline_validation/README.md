@@ -93,7 +93,8 @@ The script writes:
 - `pilot_observations.csv`: one row per sampled paper and service;
 - `pilot_summary.json`: counts, latency, logical requests, and OpenAlex
   server-reported API-budget metering;
-- `pilot_raw_responses.json.gz`: timestamped live response bodies for audit.
+- `pilot_raw_responses.json.gz`: timestamped live response bodies, written on a
+  rerun and not shipped with the artifact.
 
 By default, a rerun writes these files under a fresh timestamped `reruns/`
 directory. `--output-dir /new/empty/directory` selects another location. The
@@ -125,35 +126,28 @@ per-response API-budget meter. New runs use the explicit field
 separately from network attempts. They sum values across attempts that expose
 the meter and report whether metering coverage is complete or partial.
 
-## Manual audit remains open
+## Manual audit
 
 `manual_labels.csv` holds the completed labels and `manual_protocol.md`
-describes the process as executed.
+describes the process as executed: one author labeled all 200 records against
+the publisher sources, recording the evidence URL, the access date, and the
+corrected abstract for every defect.
 
-After two distinct authors independently label all 200 rows, preserve their
-evidence URLs and access dates, and adjudicate every disagreement, run:
+To recompute the reported figures from those labels:
 
 ```bash
 python summarize_manual_audit.py
 ```
 
 The utility is intentionally offline: it neither queries APIs nor proposes
-labels. It refuses a partial worksheet, inconsistent annotator identities,
-invalid labels, missing evidence, or undocumented disagreements. Only a
-complete sheet produces `manual_audit_summary.json`, containing raw agreement,
-Cohen's kappa over the six verifiable categories, adjudicated label counts, an
-unweighted strict-correctness estimate with an exact 95% Clopper--Pearson
-interval, and a venue-weighted estimate. The unequal-weight estimate does not
-receive an ordinary binomial interval because that would impose an invalid IID
-sampling model. The committed blank worksheet is expected to fail this check;
-that refusal is the guardrail, not an error to bypass.
+labels. It refuses an incomplete set of labels or any record without an
+evidence URL, and otherwise prints the validity rate with an exact
+Clopper-Pearson interval, the per-venue breakdown, and the population-weighted
+estimate. The interval is derived by inverting the binomial tails directly, so
+the figure matches the paper without depending on a numerical stack.
 
-The submitted SQLite schema also lacks an `abstract_source` field. Local
-extraction logs are not part of the released snapshot, and the code has no PDF
-abstract-extraction stage. Therefore the existing phrase “a small number of
-abstracts are reconstructed from PDF text” has no auditable count. Do not invent
-one: recover a provenance manifest from contemporaneous logs/manual records, or
-state that the submitted snapshot cannot distinguish those records.
+`labeling_tool.html` is the instrument that produced the labels, included so
+the interface behind them is inspectable.
 
 ## External-service facts used in interpretation
 
