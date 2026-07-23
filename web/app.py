@@ -196,7 +196,7 @@ def _load_collector() -> Collector:
     working directory, and report a missing corpus instead of showing an empty one.
     """
     collector = Collector(base_dir=ARTIFACT_ROOT)
-    require_corpus(collector.db.db_path, collector.db.snapshot_path)
+    require_corpus(collector.db.db_path)
     collector.papers = collector._load_papers_from_disk()
     return collector
 
