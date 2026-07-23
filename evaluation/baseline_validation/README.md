@@ -180,3 +180,12 @@ Official references checked on 2026-07-21:
   <https://developers.openalex.org/api-reference/authentication>
 - OpenAlex February 2026 key migration:
   <https://developers.openalex.org/guides/deprecations>
+
+## Labeling instrument
+
+`labeling_tool.html` is the self-contained page used to produce
+`manual_labels.csv`. Opening it in a browser shows one record at a time with
+its title, source link and stored abstract, and records a label, the source
+consulted, the access date, and the corrected abstract for any defect. It runs
+entirely offline and is included so the instrument behind the labels is
+inspectable.
