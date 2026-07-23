@@ -220,6 +220,19 @@ cache_enabled: true
 cache_ttl_hours: 168
 ```
 
+### API credentials (optional)
+
+Reproducing the published claims needs no credentials: `reproduce.sh` runs
+offline against the committed snapshot. Keys only raise rate limits when you
+refresh the corpus from live sources or re-run the cross-source baseline.
+
+```bash
+cp .env.example .env   # then fill in your own values
+```
+
+`.env` is git-ignored, so local keys are never committed. Both Semantic Scholar
+and OpenAlex also work anonymously at lower rate limits.
+
 ---
 
 ## Extending
