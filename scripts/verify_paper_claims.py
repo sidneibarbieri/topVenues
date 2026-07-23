@@ -27,6 +27,7 @@ PROVENANCE = REPO_ROOT / "evaluation" / "output" / "abstract_provenance_evidence
 PILOT = REPO_ROOT / "evaluation" / "baseline_validation" / "pilot_summary.json"
 SAMPLE = REPO_ROOT / "evaluation" / "baseline_validation" / "sample.csv"
 ADJUDICATION = REPO_ROOT / "evaluation" / "baseline_validation" / "manual_adjudication.csv"
+MANUAL_LABELS = REPO_ROOT / "evaluation" / "baseline_validation" / "manual_labels.csv"
 
 CORE_A_STAR = ("USENIX Security", "ACM CCS", "IEEE S&P", "NDSS")
 SURVEY_VENUES = (
@@ -278,6 +279,19 @@ def check_evaluation_bundle(checker: ClaimChecker) -> None:
     for label, path in (("released sample", SAMPLE), ("adjudication sheet", ADJUDICATION)):
         with path.open(encoding="utf-8") as handle:
             checker.expect(f"rows in the {label}", sum(1 for _ in csv.DictReader(handle)), 200)
+
+    with MANUAL_LABELS.open(encoding="utf-8") as handle:
+        labels = collections.Counter(row["a1_label"] for row in csv.DictReader(handle))
+    checker.expect("records in the manual audit", sum(labels.values()), 200)
+    checker.expect("records judged valid by the manual audit", labels["valid"], 168)
+    checker.expect("records judged truncated", labels["truncated"], 31)
+    checker.expect("records judged contaminated", labels["contaminated"], 1)
+    checker.expect_near(
+        "intrinsic validity reported in the paper",
+        100.0 * labels["valid"] / sum(labels.values()),
+        84.0,
+        0.05,
+    )
 
 
 def main() -> int:

@@ -176,7 +176,7 @@ src/
   cli.py               Click CLI
 
 web/app.py             Streamlit interface
-tests/                 pytest suite (250 tests)
+tests/                 pytest suite (252 tests)
 scripts/
   api_blitz.py         Concurrent API back-fill for missing abstracts
   bibtex_blitz.py      Concurrent BibTeX back-fill from DBLP
@@ -256,7 +256,7 @@ No code outside those four touch-points needs to change.
 
 ```bash
 pip install -e ".[dev]"
-pytest                         # 250 tests
+pytest                         # 252 tests
 ruff check src/ web/ tests/
 ```
 

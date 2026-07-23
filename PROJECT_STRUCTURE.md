@@ -9,7 +9,7 @@ the curated research artifact, and active paper workspaces.
 |------|---------|
 | `src/` | collection, enrichment, persistence, export, CLI |
 | `web/` | Streamlit interface |
-| `tests/` | pytest coverage for core behavior (250 tests) |
+| `tests/` | pytest coverage for core behavior (252 tests) |
 | `data/dataset/papers.db.gz` | committed compressed SQLite snapshot |
 | `data/dataset/master_dataset.csv` | derived CSV export of the frozen snapshot |
 | `config.yaml` | venue and pipeline configuration |

@@ -24,7 +24,7 @@ claim), and the license. The repository is organized as follows.
 |------|---------|
 | `src/` | pipeline, database, models, extractors, CLI |
 | `web/` | Streamlit exploration interface |
-| `tests/` | pytest suite (250 tests) |
+| `tests/` | pytest suite (252 tests) |
 | `scripts/` | measurement scripts (`early_signal_study.py`, `readiness_study.py`, `readiness_baselines.py`) |
 | `data/dataset/papers.db.gz` | committed compressed SQLite corpus snapshot |
 | `data/dataset/master_dataset.csv` | derived CSV export of the same frozen SQLite snapshot |
@@ -125,7 +125,7 @@ SHA-256 for byte-stability. Each claim can also be reproduced on its own.
 ### Claim 2 — Reproducible snapshot and integrity tests
 
 - Command: `.venv/bin/python -m pytest -q` (also run inside `reproduce.sh`)
-- Expected: 250 tests pass, including the monotonic-enrichment (COALESCE)
+- Expected: 252 tests pass, including the monotonic-enrichment (COALESCE)
   invariant; `reproduce.sh` also prints the snapshot SHA-256.
 - Time and resources: under 30 seconds, under 1 GB RAM and disk.
 
@@ -156,7 +156,18 @@ SHA-256 for byte-stability. Each claim can also be reproduced on its own.
   for recall.
 - Time and resources: under 10 seconds, under 2 GB RAM.
 
-### Claim 6 — Source-evidence audit and cross-source comparison
+### Claim 6 — Manual audit of abstract validity
+
+- Command: `bash reproduce.sh` (final stage) reading
+  `evaluation/baseline_validation/manual_labels.csv`
+- Expected: 168 of 200 sampled records judged valid (84.0%), 31 truncated and 1
+  contaminated. The USENIX truncations trace to a selector-ordering defect that
+  is fixed in `src/extractors/usenix.py`; the released snapshot keeps the
+  original text so its digest stays citable, and repairs are listed in
+  `pending_corrections.csv`.
+- Time and resources: under 5 seconds.
+
+### Claim 7 — Source-evidence audit and cross-source comparison
 
 - Command: `bash reproduce.sh` (final stage), reading
   `evaluation/output/abstract_provenance_evidence.csv` and
