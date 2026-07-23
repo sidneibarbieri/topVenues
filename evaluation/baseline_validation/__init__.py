@@ -1,1 +1,1 @@
-"""Known-record baseline and manual-adjudication protocol."""
+"""Known-record baseline and manual abstract-validity audit."""

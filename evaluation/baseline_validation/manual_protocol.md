@@ -59,12 +59,13 @@ instead: every defective record carries the corrected abstract taken from the
 authoritative source, so any reader can re-check the judgment against the
 publisher page.
 
-With zero failures in 200 verifiable observations, the rule-of-three upper 95%
-bound on the failure rate is about 1.5%; report the exact binomial interval from
-the observed labels. Venue-stratified sampling with a minimum of one record for
-the smallest venue requires population weights for an overall estimate, so report
-both the unweighted raw counts and the weighted estimate. The sampling script and
-venue population sizes make the weights auditable.
+The 32 failures in 200 verifiable observations give an intrinsic validity of
+84.0%, with an exact Clopper-Pearson 95% interval of 78.2% to 88.8%.
+Venue-stratified sampling with a minimum of one record for the smallest venue
+requires population weights for an overall estimate, so
+`summarize_manual_audit.py` reports both the unweighted raw counts and the
+weighted estimate. The sampling script and venue population sizes make the
+weights auditable.
 
 ## What this does not measure
 
