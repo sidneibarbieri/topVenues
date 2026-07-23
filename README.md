@@ -2,8 +2,6 @@
 
 **A reproducible bibliographic explorer for configured security research sources.**
 
-> 🤗 The corpus is also published on the Hugging Face Hub: [huggingface.co/datasets/sidneibarbieri/topvenues](https://huggingface.co/datasets/sidneibarbieri/topvenues) (`load_dataset("sidneibarbieri/topvenues")`). The Hub dataset tracks the actively developed tool ([sidneibarbieri/topvenues-tool](https://github.com/sidneibarbieri/topvenues-tool)); this repository stays frozen as the artifact for the paper.
-
 `TopVenues` builds a curated, searchable SQLite dataset for a declared
 computer-security literature scope. It downloads
 metadata from DBLP, enriches every paper with abstracts pulled from open APIs
