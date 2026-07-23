@@ -5,7 +5,8 @@
 #   1. Installation succeeds with declared dependencies.
 #   2. Database snapshot bootstraps to the expected counts.
 #   3. Test suite passes (252/252).
-#   4. A representative keyword search returns within the latency budget.
+#   4. Representative keyword searches return the reported result sets, and
+#      their latency is measured and reported.
 #   5. A BibTeX export produces a non-empty .bib file.
 #   6. The early-signal study reproduces the headline preprint rate.
 #   7. The scientific-readiness study and baselines reproduce the headline
@@ -24,6 +25,8 @@ EXPECTED_PAPERS=9925
 EXPECTED_ABSTRACTS=9911
 EXPECTED_BIBTEX=9924
 EXPECTED_TESTS=252
+# Wide enough that only a broken read path trips it, not slower hardware.
+LATENCY_CEILING_MS=500
 
 step() { printf "\n\033[1;34m▶ %s\033[0m\n" "$*"; }
 ok()   { printf "  \033[32m✓\033[0m %s\n" "$*"; }
@@ -102,20 +105,53 @@ ok "all $test_count tests pass"
 
 # ── 4. Keyword search latency ─────────────────────────────────────────────
 step "Measuring keyword-search latency"
-python - <<'PY'
-import sqlite3, time
+# The result sets are machine-independent and are asserted. Latency is not:
+# it tracks the reviewer's hardware and interpreter, so it is reported as a
+# measurement and only fails against a ceiling wide enough that exceeding it
+# means the read path is broken rather than merely slower than ours.
+python - "$LATENCY_CEILING_MS" <<'PY' || fail "the keyword-search check failed for the reason printed above"
+import sqlite3
+import statistics
+import sys
+import time
+
+ceiling_ms = float(sys.argv[1])
+expected = {
+    "machine learning": 1079,
+    "fuzzing": 361,
+    "intrusion detection": 120,
+    "threat intelligence": 36,
+    "ransomware": 31,
+}
+query = "SELECT paper_id FROM papers WHERE title LIKE ? OR abstract LIKE ?"
 conn = sqlite3.connect("data/dataset/papers.db")
-for term in ("machine learning", "fuzzing", "intrusion detection", "ransomware"):
+
+for term in expected:
     pattern = f"%{term}%"
-    start = time.perf_counter()
-    rows = conn.execute(
-        "SELECT paper_id FROM papers WHERE title LIKE ? OR abstract LIKE ?",
-        (pattern, pattern),
-    ).fetchall()
-    ms = (time.perf_counter() - start) * 1000
-    print(f"  {term:<22} {len(rows):>5} results  {ms:6.1f} ms")
+    conn.execute(query, (pattern, pattern)).fetchall()
+
+medians = []
+for term, expected_count in expected.items():
+    pattern = f"%{term}%"
+    samples = []
+    for _ in range(5):
+        start = time.perf_counter()
+        rows = conn.execute(query, (pattern, pattern)).fetchall()
+        samples.append((time.perf_counter() - start) * 1000)
+    if len(rows) != expected_count:
+        print(f"  {term!r}: expected {expected_count} results, got {len(rows)}")
+        raise SystemExit(1)
+    medians.append(statistics.median(samples))
+    print(f"  {term:<22} {len(rows):>5} results  {medians[-1]:6.1f} ms")
+
+print(f"  median {statistics.median(medians):.1f} ms, slowest {max(medians):.1f} ms")
+print("  the paper reports a 24.2 ms median on an Apple M4 Max with Python 3.14.5;")
+print("  your numbers will differ with hardware and interpreter")
+if max(medians) > ceiling_ms:
+    print(f"  slowest query exceeded the {ceiling_ms:.0f} ms ceiling for an interactive read")
+    raise SystemExit(1)
 PY
-ok "search latency under the 31 ms budget on a warm cache"
+ok "keyword search reproduces every reported result set within the interactive ceiling"
 
 # ── 5. BibTeX export ──────────────────────────────────────────────────────
 step "Exporting a sample BibTeX corpus"
