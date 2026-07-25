@@ -75,10 +75,10 @@ def apply_corrections(db_path: Path, defects: list[dict[str, str]]) -> list[dict
             "SELECT event, LENGTH(abstract) FROM papers WHERE paper_id = ?", (paper_id,)
         ).fetchone()
         if row is None:
-            raise SystemExit(f"labelled record {paper_id} is absent from the snapshot")
+            raise SystemExit(f"labeled record {paper_id} is absent from the snapshot")
         venue, current_chars = row
         if not corrected:
-            raise SystemExit(f"record {paper_id} is labelled {defect['label']} with no corrected text")
+            raise SystemExit(f"record {paper_id} is labeled {defect['label']} with no corrected text")
         connection.execute(
             "UPDATE papers SET abstract = ? WHERE paper_id = ?", (corrected, paper_id)
         )

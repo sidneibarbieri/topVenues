@@ -33,7 +33,7 @@ abstracts. The remaining 1,386 stay explicitly unresolved. This is deliberate:
 the frozen database has no per-record abstract-source column, so an exact match
 is evidence consistent with a source, not proof that the source wrote the
 field. Consequently the historical PDF-derived count is reported as `null`,
-not zero; none of the retained exact matches has a PDF-labelled source.
+not zero; none of the retained exact matches has a PDF-labeled source.
 
 The deduplication report is also non-destructive. It reports five exact
 bibliographic candidate clusters (ten IEEE S&P records) but removes nothing
