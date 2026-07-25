@@ -51,7 +51,7 @@ class Match:
     arxiv_submitted: str
 
 
-# ── Author normalisation ───────────────────────────────────────────────
+# ── Author normalization ───────────────────────────────────────────────
 
 
 def normalize_author(name: str) -> str:

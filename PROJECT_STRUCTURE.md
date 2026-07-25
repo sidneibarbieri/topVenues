@@ -1,6 +1,6 @@
 # TopVenues — Project Structure
 
-The repository is organised around three purposes: the runnable tool,
+The repository is organized around three purposes: the runnable tool,
 the curated research artifact, and active paper workspaces.
 
 ## Runtime Artifact

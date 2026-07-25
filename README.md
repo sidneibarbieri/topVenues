@@ -8,7 +8,7 @@ metadata from DBLP, enriches every paper with abstracts pulled from open APIs
 and publisher websites, and exposes a fast full-text search interface for
 researchers, students and reviewers preparing literature reviews.
 
-The current local dataset snapshot covers **9,925 papers** across **11 venues**,
+The current local dataset snapshot covers **9,925 records** across **11 venues**,
 with **9,911 abstracts** and **9,924 BibTeX records**.
 
 ---
@@ -45,8 +45,8 @@ pip install -r requirements.txt
 
 That's it — the repository ships with the full SQLite database as a
 compressed snapshot (`data/dataset/papers.db.gz`, ~15 MB). On first launch
-the application transparently materialises `data/dataset/papers.db` (~74 MB)
-from that snapshot, so there is **no manual import step**: 9,925 papers,
+the application transparently materializes `data/dataset/papers.db` (~74 MB)
+from that snapshot, so there is **no manual import step**: 9,925 records,
 9,911 abstracts and 9,924 BibTeX entries are available immediately.
 
 The released corpus is pinned by the compressed SQLite snapshot. The
@@ -192,7 +192,7 @@ scripts/
   successful response wins. Publisher sites (ACM, IEEE, USENIX, NDSS) run
   *sequentially* with throttling because they sit behind Cloudflare.
 - **Strategy / Registry patterns** for both venue URL generation and event
-  name normalisation. Adding a new venue is purely additive.
+  name normalization. Adding a new venue is purely additive.
 - **Circuit breaker** wraps the DBLP downloader so a transient upstream
   outage stops cascading failures.
 - **NDSS author-leak cleaner.** A comma-aware iterative matcher strips the
@@ -241,7 +241,7 @@ To add a new venue:
    `src/models.py`.
 2. Register a `VenueURLStrategy` in `src/venue_config.py` (point it at the
    DBLP page for that venue).
-3. Add a normalisation rule in `src/event_normalizer.py` mapping DBLP's venue
+3. Add a normalization rule in `src/event_normalizer.py` mapping DBLP's venue
    string to the canonical display name.
 4. (Optional) add a publisher-specific extractor under `src/extractors/` if
    the open APIs don't cover that venue's papers reliably.

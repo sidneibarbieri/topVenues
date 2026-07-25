@@ -257,7 +257,7 @@ def check_case_studies(conn: sqlite3.Connection, checker: ClaimChecker) -> None:
     exported = conn.execute(
         f"SELECT COUNT(*) FROM papers WHERE year > 2022 AND {HAS_BIBTEX}"
     ).fetchone()[0]
-    checker.expect("post-2022 entries serialised to BibTeX", exported, 5922)
+    checker.expect("post-2022 entries serialized to BibTeX", exported, 5922)
 
 
 def check_artifact_sizes(checker: ClaimChecker) -> None:
@@ -266,7 +266,7 @@ def check_artifact_sizes(checker: ClaimChecker) -> None:
         "compressed snapshot size in MB", SNAPSHOT.stat().st_size / mebibyte, 15.0, 1.0
     )
     checker.expect_near(
-        "materialised database size in MB", DATABASE.stat().st_size / mebibyte, 74.0, 1.0
+        "materialized database size in MB", DATABASE.stat().st_size / mebibyte, 74.0, 1.0
     )
 
 

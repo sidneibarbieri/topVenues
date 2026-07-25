@@ -11,9 +11,9 @@ This directory contains local data used by the topVenues artifact.
 
 Current verified snapshot:
 
-- 9,925 papers.
-- 9,911 papers with abstracts.
-- 9,924 papers with BibTeX.
+- 9,925 records.
+- 9,911 records with abstracts.
+- 9,924 records with BibTeX.
 
 ## Reproducibility Inputs
 

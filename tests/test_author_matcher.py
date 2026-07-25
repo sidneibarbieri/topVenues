@@ -1,7 +1,7 @@
 """Tests for src/author_matcher.py.
 
 All tests are offline — no network calls, no DB. They exercise
-author normalisation, title tokenisation, Jaccard similarity, index
+author normalization, title tokenization, Jaccard similarity, index
 construction, and the full find_matches pipeline.
 """
 
@@ -51,7 +51,7 @@ def make_preprint(
     )
 
 
-# ── Author normalisation ────────────────────────────────────────────────
+# ── Author normalization ────────────────────────────────────────────────
 
 
 class TestNormaliseAuthor:

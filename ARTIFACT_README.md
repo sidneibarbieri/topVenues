@@ -42,7 +42,7 @@ The badges considered for evaluation are **Available**, **Functional**,
   README, and an MIT license.
 - **Functional** — the CLI, the web interface, and the test suite execute
   locally and expose the artifact's features.
-- **Sustainable** — a modular, typed Python package with a 250-test suite and
+- **Sustainable** — a modular, typed Python package with a 252-test suite and
   in-code documentation; each paper claim maps to a named script.
 - **Reproducible** — `reproduce.sh` re-derives every headline claim from a
   fresh clone, offline, using only the committed snapshots.
@@ -105,8 +105,8 @@ If your shell is already inside the `TopVenues` directory, skip the `cd` step.
 .venv/bin/python -m pytest -q         # test suite
 ```
 
-Expected: `stats` prints 9,925 papers across 11 venues with 9,911 abstracts and
-9,924 BibTeX entries; the suite reports `250 passed` in about one second. This
+Expected: `stats` prints 9,925 records across 11 venues with 9,911 abstracts and
+9,924 BibTeX entries; the suite reports `252 passed` in about one second. This
 confirms the snapshot bootstrapped and the package is functional.
 
 ## Experiments
@@ -118,8 +118,12 @@ SHA-256 for byte-stability. Each claim can also be reproduced on its own.
 ### Claim 1 — Corpus coverage
 
 - Command: `.venv/bin/python -m src.cli stats`
-- Expected: 9,925 papers; 9,911 abstracts (99.86%); 9,924 BibTeX (99.99%); 11
+- Expected: 9,925 records; 9,911 abstracts (99.86%); 9,924 BibTeX (99.99%); 11
   venues across 2017--2026.
+- Front matter: `.venv/bin/python scripts/flag_non_research_records.py` lists the
+  33 DBLP front-matter records (quarterly editorials, two obituaries, a chairs'
+  message) that are not research papers, and reports 99.94% abstract coverage
+  over the 9,892 research papers once they are excluded.
 - Time and resources: under 5 seconds, under 1 GB RAM and disk.
 
 ### Claim 2 — Reproducible snapshot and integrity tests

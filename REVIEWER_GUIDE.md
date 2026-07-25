@@ -33,7 +33,7 @@ Expected output: `✓ All headline claims reproduced`.
 The script verifies:
 
 - 252 tests pass after dependency installation;
-- the SQLite snapshot bootstraps to 9,925 papers, 9,911 abstracts and
+- the SQLite snapshot bootstraps to 9,925 records, 9,911 abstracts and
   9,924 BibTeX entries;
 - keyword search returns results in under 31 ms on representative
   queries;

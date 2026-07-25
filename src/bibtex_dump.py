@@ -186,7 +186,7 @@ class _EntitySubstitutingStream:
 
     Python's stdlib parser handles numeric character references natively
     but refuses to follow an external DTD without security trade-offs, so
-    we materialise the substitution on the byte stream just before it
+    we materialize the substitution on the byte stream just before it
     reaches the parser. A tail buffer guarantees an entity straddling a
     chunk boundary is never split.
     """

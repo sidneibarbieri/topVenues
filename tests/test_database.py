@@ -116,7 +116,7 @@ class TestImportAbstractsFromCsv:
 
 
 class TestBootstrapFromGzippedSnapshot:
-    """The DB materialises itself transparently from a .gz snapshot."""
+    """The DB materializes itself transparently from a .gz snapshot."""
 
     def _seeded_db_bytes(self, tmp_path, paper_id: str = "42") -> bytes:
         source = tmp_path / f"_seed_{paper_id}.db"

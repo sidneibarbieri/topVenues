@@ -8,7 +8,7 @@ denominator, and does not call machine agreement a human validation.
 
 - Submitted snapshot SHA-256:
   `0f4dbaa97d0cf39abd2340adb3280643df090b5de9cd1a29bff39a0b53ef64cd`.
-- Snapshot counts: 9,925 papers, 9,911 non-empty abstracts, 9,924 BibTeX
+- Snapshot counts: 9,925 records, 9,911 non-empty abstracts, 9,924 BibTeX
   entries, 11 venues, 2017--2026.
 - Pilot/manual-audit sample: 200 records drawn only from the 9,911 records with
   abstracts, random seed `20260721`, proportional venue strata with a minimum

@@ -49,12 +49,12 @@ def require_corpus(db_path: Path, snapshot_path: Path | None = None) -> None:
     raise CorpusNotFoundError(
         f"No corpus found: {database} holds no records and {snapshot} is missing. "
         "Run this from the artifact root directory, or run 'bash reproduce.sh' "
-        "to materialise the corpus first."
+        "to materialize the corpus first."
     )
 
 
 def bootstrap_from_gzipped_snapshot(db_path: Path) -> None:
-    """Materialise ``papers.db`` from a tracked ``papers.db.gz`` snapshot.
+    """Materialize ``papers.db`` from a tracked ``papers.db.gz`` snapshot.
 
     Called on every :class:`DatabaseManager` startup. The behavior when both
     files exist is delegated to :func:`should_refresh_from_snapshot`, which
