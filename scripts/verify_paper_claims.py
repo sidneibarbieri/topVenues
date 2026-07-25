@@ -119,6 +119,30 @@ def check_corpus_totals(conn: sqlite3.Connection, checker: ClaimChecker) -> None
     )
 
 
+def check_front_matter(conn: sqlite3.Connection, checker: ClaimChecker) -> None:
+    """The non-research front matter the paper reports, so its paper-level
+    coverage stays auditable. Uses the same classifier the artifact ships."""
+    from flag_non_research_records import flag
+
+    flagged = flag(conn)
+    flagged_with_abstract = sum(1 for r in flagged if (r["abstract"] or "").strip())
+    total = conn.execute("SELECT COUNT(*) FROM papers").fetchone()[0]
+    abstracts = conn.execute(f"SELECT COUNT(*) FROM papers WHERE {HAS_ABSTRACT}").fetchone()[0]
+    research = total - len(flagged)
+    research_with_abstract = abstracts - flagged_with_abstract
+
+    checker.expect("non-research front-matter records", len(flagged), 33)
+    checker.expect("front matter without an abstract", len(flagged) - flagged_with_abstract, 8)
+    checker.expect("research papers after excluding front matter", research, 9892)
+    checker.expect("research papers missing an abstract", research - research_with_abstract, 6)
+    checker.expect_near(
+        "research-paper abstract coverage",
+        100.0 * research_with_abstract / research,
+        99.94,
+        0.01,
+    )
+
+
 def check_corpus_structure(conn: sqlite3.Connection, checker: ClaimChecker) -> None:
     scalar = lambda sql: conn.execute(sql).fetchone()[0]
     checker.expect("distinct DBLP keys", scalar("SELECT COUNT(DISTINCT key) FROM papers"), 9925)
@@ -307,6 +331,7 @@ def main() -> int:
     checker = ClaimChecker()
     with sqlite3.connect(DATABASE) as conn:
         check_corpus_totals(conn, checker)
+        check_front_matter(conn, checker)
         check_corpus_structure(conn, checker)
         check_venue_coverage(conn, checker)
         check_case_studies(conn, checker)
