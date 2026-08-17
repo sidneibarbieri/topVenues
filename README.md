@@ -13,6 +13,13 @@ with **9,911 abstracts** and **9,924 BibTeX records**.
 
 ---
 
+## Authors
+
+- Sidnei Barbieri — `sidneibarbieri@gmail.com`
+- Ágney Lopes Roth Ferraz — `agneyroth@gmail.com`
+- Lourenço Alves Pereira Júnior — `lourenco.junior@gp.ita.br`
+
+
 ## Indexed venues
 
 | Venue                                                | Type       |
