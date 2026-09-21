@@ -912,7 +912,7 @@ security = corpus.filter(lambda paper: paper[&quot;area&quot;] == &quot;security
       <p data-l="en">Code MIT · Inter typeface, SIL Open Font License.</p>
       <p data-l="pt">Código MIT · fonte Inter, SIL Open Font License.</p>
     </div>
-    <p class="stamp"><span data-l="en">Built from</span><span data-l="pt">Gerado a partir de</span> security-20-v4 · v1.10.0 · 0c7648b · 2026-09-21</p>
+    <p class="stamp"><span data-l="en">Built from</span><span data-l="pt">Gerado a partir de</span> security-20-v4 · v1.10.0 · 0f7fe4a · 2026-09-21</p>
   </div>
 </footer>
 
@@ -935,12 +935,24 @@ security = corpus.filter(lambda paper: paper[&quot;area&quot;] == &quot;security
     document.querySelectorAll("[data-label-" + lang + "]").forEach(function (el) {
       el.setAttribute("aria-label", el.getAttribute("data-label-" + lang));
     });
-    document.querySelectorAll("video").forEach(function (v) {
-      Array.prototype.forEach.call(v.textTracks, function (t) {
-        t.mode = (t.language.indexOf(lang) === 0) ? "showing" : "disabled";
-      });
+    document.querySelectorAll("video").forEach(function (v) { syncCaptions(v); });
+  }
+
+  // A track set to "showing" is fetched at once, so captions are chosen only
+  // after playback starts: nothing leaves this page for a third party before.
+  function syncCaptions(v) {
+    if (!v.hasAttribute("data-started")) return;
+    var lang = d.getAttribute("data-lang");
+    Array.prototype.forEach.call(v.textTracks, function (t) {
+      t.mode = (t.language.indexOf(lang) === 0) ? "showing" : "disabled";
     });
   }
+  document.querySelectorAll("video").forEach(function (v) {
+    v.addEventListener("play", function () {
+      v.setAttribute("data-started", "");
+      syncCaptions(v);
+    });
+  });
 
   document.querySelectorAll("[data-set-lang]").forEach(function (b) {
     b.addEventListener("click", function () {
