@@ -2,6 +2,19 @@
 
 **A reproducible bibliographic explorer for configured security research sources.**
 
+> **This repository is the frozen artifact of the SBSeg 2026 main-track paper.**
+> Its `main` branch reproduces that paper exactly: `bash reproduce.sh`
+> (9,925 records, 11 venues, snapshot SHA-256 `0f4dbaa9…3ef64cd`). Its code and
+> data are kept unchanged on purpose.
+>
+> | I want to… | Go to |
+> | --- | --- |
+> | Reproduce the main-track paper | this repository, `bash reproduce.sh` |
+> | Use TopVenues today | [`topvenues-tool`](https://github.com/sidneibarbieri/topvenues-tool) |
+> | Reproduce the tools-track paper | [`topvenues-tool`](https://github.com/sidneibarbieri/topvenues-tool), `bash reproduce.sh --profile security-20` |
+> | Download the current corpus | [Hugging Face `sidneibarbieri/topvenues`](https://huggingface.co/datasets/sidneibarbieri/topvenues) |
+> | See every paper and its artifact | [Project page](https://sidneibarbieri.github.io/topVenues/) · [PAPERS.md](https://github.com/sidneibarbieri/topvenues-tool/blob/main/docs/PAPERS.md) |
+
 `TopVenues` builds a curated, searchable SQLite dataset for a declared
 computer-security literature scope. It downloads
 metadata from DBLP, enriches every paper with abstracts pulled from open APIs
@@ -291,7 +304,25 @@ All retrieval is read-only and respects published API rate limits.
 
 ## Citation
 
-If `TopVenues` helps your research, please cite it:
+If `TopVenues` helps your research, please cite the paper this repository
+reproduces:
+
+```bibtex
+@inproceedings{barbieri2026topvenues,
+  author    = {Sidnei Barbieri and {\'A}gney Lopes Roth Ferraz and Louren{\c{c}}o Alves {Pereira J{\'u}nior}},
+  title     = {{TopVenues}: A Reproducible Corpus and Tooling Substrate for Cybersecurity Literature Reviews},
+  booktitle = {Anais do XXVI Simp{\'o}sio Brasileiro de Ciberseguran{\c{c}}a (SBSeg 2026)},
+  pages     = {1150--1165},
+  year      = {2026},
+  publisher = {Sociedade Brasileira de Computa{\c{c}}{\~a}o},
+  address   = {Porto Alegre, RS, Brasil},
+  doi       = {10.5753/sbseg.2026.29056},
+  url       = {https://sol.sbc.org.br/index.php/sbseg/article/view/44350}
+}
+```
+
+The DOI is assigned but not yet registered with Crossref, so the SOL link is
+the one that resolves today. To cite this software release itself:
 
 ```bibtex
 @software{barbieri_topvenues,
