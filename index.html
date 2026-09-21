@@ -1,0 +1,1010 @@
+<!doctype html>
+<html lang="en" data-lang="en"
+      data-title-en="TopVenues — the denominator for cybersecurity literature reviews"
+      data-title-pt="TopVenues — o denominador das revisões de literatura em cibersegurança"
+      data-desc-en="A declared, frozen and executable corpus of cybersecurity venues. Every count is bound to one snapshot, one SHA-256 and one command."
+      data-desc-pt="Um corpus declarado, congelado e executável de veículos de cibersegurança. Cada contagem fica presa a um snapshot, um SHA-256 e um comando.">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TopVenues — the denominator for cybersecurity literature reviews</title>
+<meta name="description" content="A declared, frozen and executable corpus of cybersecurity venues. Every count is bound to one snapshot, one SHA-256 and one command.">
+<link rel="canonical" href="https://sidneibarbieri.github.io/topVenues/">
+<meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0B1627" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TopVenues">
+<meta property="og:title" content="TopVenues — the denominator for cybersecurity literature reviews">
+<meta property="og:description" content="A declared, frozen and executable corpus of cybersecurity venues. Every count is bound to one snapshot, one SHA-256 and one command.">
+<meta property="og:url" content="https://sidneibarbieri.github.io/topVenues/">
+<meta property="og:image" content="https://sidneibarbieri.github.io/topVenues/assets/brand/topvenues-social.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/brand/topvenues-mark.svg" type="image/svg+xml">
+<link rel="icon" href="assets/brand/mark-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="assets/brand/mark-180.png">
+<link rel="preload" href="assets/fonts/InterVariable-latin.woff2" as="font" type="font/woff2" crossorigin>
+<script>(function () {
+  var d = document.documentElement, store = null, lang = null, theme = null;
+  try { store = window.localStorage; } catch (e) {}
+  var q = (new URLSearchParams(location.search).get("lang") || "").toLowerCase();
+  if (q.indexOf("pt") === 0) lang = "pt"; else if (q.indexOf("en") === 0) lang = "en";
+  if (!lang) { try { lang = store && store.getItem("tv-lang"); } catch (e) {} }
+  if (lang !== "en" && lang !== "pt") lang = (navigator.language || "en").toLowerCase().indexOf("pt") === 0 ? "pt" : "en";
+  d.setAttribute("data-lang", lang);
+  d.lang = lang === "pt" ? "pt-BR" : "en";
+  try { theme = store && store.getItem("tv-theme"); } catch (e) {}
+  if (theme === "light" || theme === "dark") d.setAttribute("data-theme", theme);
+})();</script>
+<style>
+@font-face {
+  font-family: "Inter";
+  src: url("assets/fonts/InterVariable-latin.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Brand tokens (docs/brand/BRAND.md). Dark values are derived, not inverted. */
+:root {
+  --ink: #10233F;
+  --blue: #2867B2;
+  --slate: #667085;
+  --mist: #E9EEF4;
+  --paper: #FFFFFF;
+
+  --bg: var(--paper);
+  --fg: var(--ink);
+  --muted: var(--slate);
+  --accent: var(--blue);
+  --rule: var(--mist);
+  --rule-strong: #D3DBE5;
+  --surface: #F5F7FA;
+  --btn-bg: var(--ink);
+  --btn-fg: var(--paper);
+  --line: rgba(16, 35, 63, .52);
+  --wm-ink: #10233F;
+  --wm-blue: #2867B2;
+  --header: rgba(255, 255, 255, .88);
+
+  --sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  --wrap: 1180px;
+  --gut: clamp(16px, 4vw, 40px);
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0B1627;
+    --fg: #E8EDF4;
+    --muted: #9AA7B8;
+    --accent: #6FA3E0;
+    --rule: rgba(232, 237, 244, .11);
+    --rule-strong: rgba(232, 237, 244, .22);
+    --surface: #122238;
+    --btn-bg: #E8EDF4;
+    --btn-fg: #0B1627;
+    --line: rgba(232, 237, 244, .48);
+    --wm-ink: #E8EDF4;
+    --wm-blue: #6FA3E0;
+    --header: rgba(11, 22, 39, .86);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0B1627;
+  --fg: #E8EDF4;
+  --muted: #9AA7B8;
+  --accent: #6FA3E0;
+  --rule: rgba(232, 237, 244, .11);
+  --rule-strong: rgba(232, 237, 244, .22);
+  --surface: #122238;
+  --btn-bg: #E8EDF4;
+  --btn-fg: #0B1627;
+  --line: rgba(232, 237, 244, .48);
+  --wm-ink: #E8EDF4;
+  --wm-blue: #6FA3E0;
+  --header: rgba(11, 22, 39, .86);
+  color-scheme: dark;
+}
+
+/* One language at a time; English is the no-script default. */
+[data-lang="en"] [data-l="pt"],
+[data-lang="pt"] [data-l="en"] { display: none !important; }
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: 88px; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.6;
+  font-feature-settings: "calt", "cv05";
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+img, svg, video { display: block; max-width: 100%; }
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: .2em; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+code, pre { font-family: var(--mono); font-size: .88em; }
+p code, dd code, li code { overflow-wrap: anywhere; }
+.n, .num { font-variant-numeric: tabular-nums; }
+
+.skip { position: absolute; left: -9999px; top: 8px; z-index: 20; background: var(--btn-bg); color: var(--btn-fg); padding: 8px 14px; border-radius: 6px; }
+.skip:focus { left: 8px; }
+
+.wrap { max-width: var(--wrap); margin: 0 auto; padding-inline: var(--gut); }
+
+/* ------------------------------------------------------------- header */
+.top {
+  position: sticky; top: 0; z-index: 10;
+  background: var(--header);
+  -webkit-backdrop-filter: saturate(1.4) blur(10px);
+  backdrop-filter: saturate(1.4) blur(10px);
+  border-bottom: 1px solid var(--rule);
+}
+.top .wrap { display: flex; align-items: center; gap: 28px; height: 68px; }
+.brand { display: flex; align-items: center; flex: none; }
+.brand svg { height: 30px; width: auto; }
+.bi { fill: var(--wm-ink); } .bb { fill: var(--wm-blue); }
+.bis { stroke: var(--wm-ink); } .bbs { stroke: var(--wm-blue); }
+.nav { display: flex; gap: 22px; margin-left: auto; }
+.nav a { color: var(--fg); text-decoration: none; font-size: .9rem; font-weight: 500; opacity: .78; }
+.nav a:hover { opacity: 1; }
+.controls { display: flex; align-items: center; gap: 10px; }
+.seg { display: inline-flex; border: 1px solid var(--rule-strong); border-radius: 999px; padding: 2px; }
+.seg button {
+  font: 600 .72rem/1 var(--sans); letter-spacing: .06em;
+  padding: 7px 10px; border: 0; border-radius: 999px;
+  background: none; color: var(--muted); cursor: pointer;
+}
+.seg button[aria-pressed="true"] { background: var(--fg); color: var(--bg); }
+.icon-btn {
+  width: 34px; height: 34px; display: grid; place-items: center;
+  border: 1px solid var(--rule-strong); border-radius: 50%;
+  background: none; color: var(--fg); cursor: pointer;
+}
+.icon-btn svg { width: 16px; height: 16px; }
+@media (max-width: 900px) { .nav { display: none; } .controls { margin-left: auto; } }
+
+/* ------------------------------------------------------------- hero */
+.hero { padding-block: clamp(56px, 9vw, 112px) clamp(40px, 6vw, 72px); }
+.eyebrow {
+  margin: 0 0 28px; font-size: .78rem; font-weight: 550; letter-spacing: .09em;
+  text-transform: uppercase; color: var(--muted);
+}
+h1 {
+  margin: 0; display: inline-grid;
+  font-size: clamp(2.35rem, 1.1rem + 4.6vw, 4.6rem);
+  font-weight: 620; letter-spacing: -.034em; line-height: 1.04;
+}
+h1 .den { border-top: max(3px, .055em) solid var(--accent); margin-top: .16em; padding-top: .1em; }
+.lead { max-width: 40em; margin: 32px 0 0; font-size: clamp(1.06rem, 1rem + .35vw, 1.24rem); line-height: 1.6; }
+.cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 20px; border-radius: 8px; font-weight: 560; font-size: .95rem;
+  text-decoration: none; border: 1px solid transparent;
+}
+.btn.primary { background: var(--btn-bg); color: var(--btn-fg); }
+.btn.primary:hover { opacity: .9; }
+.btn.ghost { color: var(--fg); border-color: var(--rule-strong); }
+.btn.ghost:hover { border-color: var(--fg); }
+.btn .ar { transition: transform .2s; } .btn:hover .ar { transform: translateX(3px); }
+.hero-links { display: flex; flex-wrap: wrap; gap: 8px 22px; margin: 28px 0 0; padding: 0; list-style: none; font-size: .92rem; }
+.hero-links a { color: var(--muted); text-decoration: none; }
+.hero-links a:hover { color: var(--fg); }
+
+/* ------------------------------------------------------------- figure 1 */
+.fig1 { margin: clamp(48px, 7vw, 88px) 0 0; padding-top: 22px; border-top: 1px solid var(--rule); }
+.fig1 .conv { width: 100%; max-width: 980px; height: auto; font-family: var(--sans); overflow: visible; }
+.conv .vn { font-size: 13px; font-weight: 460; fill: var(--fg); }
+.conv .vc { font-size: 12px; fill: var(--muted); font-variant-numeric: tabular-nums; }
+.conv .ln { fill: none; stroke: var(--line); stroke-linecap: round; transition: stroke .2s; }
+.conv .v { transition: opacity .2s; }
+.conv:hover .v { opacity: .3; }
+.conv .v:hover { opacity: 1; }
+.conv .v:hover .ln { stroke: var(--fg); }
+.conv .pt { fill: var(--accent); }
+.conv .halo { fill: none; stroke: var(--accent); stroke-opacity: .35; stroke-width: 1.5; }
+.conv .l1 { font-size: 21px; font-weight: 630; fill: var(--fg); letter-spacing: -.01em; }
+.conv .l2 { font-size: 15px; fill: var(--fg); }
+.conv .l3 { font-size: 13px; fill: var(--muted); }
+.conv .l4 { font-size: 12px; fill: var(--muted); font-family: var(--mono); }
+.conv .ln[pathLength] { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 1.2s cubic-bezier(.3, .6, .2, 1) forwards; animation-delay: calc(var(--i) * 40ms + 120ms); }
+.conv .ln:not([pathLength]) { opacity: 0; animation: fade .8s ease forwards; animation-delay: calc(var(--i) * 40ms + 500ms); }
+.conv .pt, .conv .halo { transform-box: fill-box; transform-origin: center; animation: pop .5s cubic-bezier(.3, 1.4, .5, 1) 1.15s both; }
+.conv .lbl { animation: fade .6s ease 1.35s both; }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes pop { from { transform: scale(0); } to { transform: scale(1); } }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .conv .ln[pathLength], .conv .ln:not([pathLength]), .conv .pt, .conv .halo, .conv .lbl { animation: none; stroke-dashoffset: 0; opacity: 1; }
+}
+figcaption { margin-top: 18px; font-size: .86rem; color: var(--muted); max-width: 62em; }
+figcaption b { color: var(--fg); font-weight: 600; }
+.vlist { display: none; }
+.only-narrow { display: none; }
+.vlist .tag { font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-left: 6px; }
+@media (max-width: 720px) {
+  .fig1 .conv { display: none; }
+  .vlist { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0; margin: 0; padding: 0; list-style: none; font-size: .92rem; }
+  .vlist li { display: flex; justify-content: space-between; gap: 12px; padding: 7px 0; border-bottom: 1px solid var(--rule); }
+  .vlist .n { color: var(--muted); }
+  .only-wide { display: none; }
+  .only-narrow { display: inline; }
+}
+
+/* ------------------------------------------------------------- release strip */
+.release { padding-block: 36px 44px; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); background: var(--surface); }
+.release-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 16px; margin-bottom: 26px; font-size: .9rem; }
+.release-head strong { font-size: .78rem; letter-spacing: .09em; text-transform: uppercase; font-weight: 600; }
+.release-head .note { color: var(--muted); }
+.stats { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .8fr) minmax(0, 1.45fr) minmax(0, 1fr) minmax(0, 1fr); gap: 24px; margin: 0; }
+.stats div { border-left: 1px solid var(--rule-strong); padding-left: 16px; }
+.stats dt { order: 2; font-size: .86rem; color: var(--muted); line-height: 1.4; margin-top: 6px; }
+.stats dd { order: 1; margin: 0; font-size: clamp(1.6rem, 1rem + 1.25vw, 2.3rem); font-weight: 560; letter-spacing: -.025em; line-height: 1.05; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.stats div { display: flex; flex-direction: column; }
+@media (max-width: 960px) { .stats { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 400px) { .stats dd { white-space: normal; } }
+
+/* ------------------------------------------------------------- sections */
+.sec { padding-block: clamp(64px, 9vw, 120px); border-top: 1px solid var(--rule); }
+.release + .sec { border-top: 0; }
+.sec > .wrap { display: grid; grid-template-columns: 188px minmax(0, 1fr); gap: 56px; }
+.sec-label { position: sticky; top: 100px; align-self: start; margin: 6px 0 0; font-size: .78rem; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; color: var(--muted); }
+.sec-label .no { display: block; font-family: var(--mono); font-weight: 400; letter-spacing: 0; margin-bottom: 4px; color: var(--accent); }
+@media (max-width: 960px) {
+  .sec > .wrap { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .sec-label { position: static; }
+}
+h2 { margin: 0; max-width: 20em; font-size: clamp(1.8rem, 1.2rem + 1.9vw, 2.7rem); font-weight: 610; letter-spacing: -.026em; line-height: 1.1; }
+.sec-intro { max-width: 42em; margin: 20px 0 0; font-size: 1.06rem; }
+h3 { margin: 0; font-size: 1.14rem; font-weight: 610; letter-spacing: -.012em; line-height: 1.35; }
+.muted { color: var(--muted); }
+.small { font-size: .88rem; }
+
+.pillars { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; margin-top: 52px; }
+.pillars article { border-top: 2px solid var(--fg); padding-top: 18px; }
+.pillars .k { font-family: var(--mono); font-size: .8rem; color: var(--muted); }
+.pillars h3 { margin: 6px 0 10px; font-size: 1.3rem; }
+.pillars p { margin: 0; }
+@media (max-width: 860px) { .pillars { grid-template-columns: minmax(0, 1fr); gap: 28px; } }
+
+.notes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; margin-top: 56px; }
+.notes h3 { margin-bottom: 8px; }
+.notes p { margin: 0 0 10px; }
+@media (max-width: 860px) { .notes { grid-template-columns: minmax(0, 1fr); } }
+
+details.more { margin-top: 36px; border-top: 1px solid var(--rule-strong); border-bottom: 1px solid var(--rule-strong); }
+details.more summary { cursor: pointer; list-style: none; padding: 16px 0; font-weight: 560; display: flex; justify-content: space-between; align-items: center; }
+details.more summary::-webkit-details-marker { display: none; }
+details.more summary::after { content: "+"; font-family: var(--mono); font-size: 1.1rem; color: var(--muted); }
+details.more[open] summary::after { content: "−"; }
+.table-wrap { overflow-x: auto; padding-bottom: 16px; }
+table.venues { width: 100%; border-collapse: collapse; font-size: .9rem; }
+.venues th, .venues td { text-align: left; padding: 8px 12px 8px 0; border-bottom: 1px solid var(--rule); white-space: nowrap; }
+.venues thead th { font-size: .74rem; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.venues tbody th { font-weight: 500; }
+.venues .n { text-align: right; font-variant-numeric: tabular-nums; }
+
+/* ------------------------------------------------------------- tool */
+.shots { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 32px; margin-top: 48px; }
+.shots figure { margin: 0; }
+.shots .frame { border: 1px solid var(--rule-strong); border-radius: 8px; overflow: hidden; background: var(--surface); }
+.shots img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: contain; object-position: center; background: #FFFFFF; }
+.shots figcaption { margin-top: 14px; font-size: .92rem; }
+.shots figcaption b { display: block; margin-bottom: 2px; }
+@media (max-width: 760px) { .shots { grid-template-columns: minmax(0, 1fr); } }
+.cli { margin-top: 48px; max-width: 900px; }
+.cli h3 { margin-bottom: 12px; }
+
+/* ------------------------------------------------------------- findings */
+.findings { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; margin-top: 48px; }
+.finding { border-top: 2px solid var(--fg); padding-top: 18px; }
+.big { font-size: clamp(3.2rem, 2rem + 4vw, 5.4rem); font-weight: 600; letter-spacing: -.045em; line-height: 1; font-variant-numeric: tabular-nums; }
+.finding p { margin: 16px 0 0; }
+.finding .muted { margin-top: 10px; font-size: .92rem; }
+@media (max-width: 860px) { .findings { grid-template-columns: minmax(0, 1fr); } }
+.ratio { margin-top: 40px; padding: 24px 26px; background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; max-width: 900px; }
+.ratio h3 { margin-bottom: 14px; }
+.eq { display: grid; grid-template-columns: auto auto 1fr; gap: 8px 22px; align-items: baseline; margin: 0; }
+.eq dt { font-size: 1.5rem; font-weight: 600; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.eq dd { margin: 0; font-variant-numeric: tabular-nums; }
+.eq .why { color: var(--muted); }
+@media (max-width: 620px) { .eq { grid-template-columns: auto 1fr; } .eq .why { grid-column: 1 / -1; margin-bottom: 8px; } }
+.provenance { margin-top: 26px; font-size: .9rem; color: var(--muted); max-width: 52em; }
+
+/* ------------------------------------------------------------- papers */
+.chain { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; margin: 32px 0 0; padding: 0; list-style: none; font-size: .86rem; }
+.chain li { font-family: var(--mono); padding: 5px 10px; border: 1px solid var(--rule-strong); border-radius: 6px; }
+.chain li.sep { border: 0; padding: 0; color: var(--muted); font-family: var(--sans); }
+.papers { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; margin-top: 40px; }
+@media (max-width: 1000px) { .papers { grid-template-columns: minmax(0, 1fr); } }
+.paper, .current { border: 1px solid var(--rule-strong); border-radius: 12px; padding: clamp(20px, 3vw, 30px); display: flex; flex-direction: column; min-width: 0; }
+.kicker { margin: 0 0 10px; font-size: .74rem; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; color: var(--accent); }
+.paper .venue { margin: 8px 0 0; color: var(--muted); font-size: .92rem; }
+.paper .links { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 18px; margin: 14px 0 0; font-size: .92rem; }
+.doi { color: var(--muted); }
+.doi code { font-size: .86em; }
+.arrow { font-weight: 560; text-decoration: none; }
+.arrow::after { content: " →"; }
+.arrow:hover { text-decoration: underline; }
+dl.facts { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 8px 18px; margin: 22px 0; padding: 18px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); font-size: .9rem; }
+.facts dt { color: var(--muted); }
+.facts dd { margin: 0; min-width: 0; }
+.facts a { text-decoration: none; }
+.facts a:hover { text-decoration: underline; }
+code.hash { font-size: .78rem; word-break: break-all; color: var(--fg); }
+.paper .code { margin-top: auto; }
+.paper .code pre { font-size: 12.5px; }
+.current { margin-top: 28px; background: var(--surface); border-style: dashed; }
+.current .kicker { color: var(--muted); }
+.current p { margin: 8px 0 0; max-width: 52em; }
+.current dl.facts { margin-bottom: 0; }
+.aside { margin-top: 28px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; font-size: .94rem; }
+.aside p { margin: 6px 0 0; }
+@media (max-width: 860px) { .aside { grid-template-columns: minmax(0, 1fr); } }
+
+/* ------------------------------------------------------------- code */
+.code { background: var(--surface); border: 1px solid var(--rule-strong); border-radius: 8px; min-width: 0; }
+.code-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 7px 8px 0 16px; }
+.code-label { font-size: .72rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.code pre { margin: 0; padding: 4px 16px 16px; white-space: pre-wrap; overflow-wrap: anywhere; font-size: 13.5px; line-height: 1.65; }
+.copy {
+  flex: none; font: 500 .74rem/1 var(--sans); padding: 6px 10px;
+  border: 1px solid var(--rule-strong); border-radius: 6px;
+  background: var(--bg); color: var(--muted); cursor: pointer;
+}
+.copy:hover { color: var(--fg); border-color: var(--muted); }
+.copy.ok { color: var(--accent); border-color: var(--accent); }
+
+/* ------------------------------------------------------------- start */
+.start { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 40px; margin-top: 44px; }
+@media (max-width: 1000px) { .start { grid-template-columns: minmax(0, 1fr); } }
+.tabs [role="tablist"] { display: inline-flex; gap: 4px; padding: 3px; border: 1px solid var(--rule-strong); border-radius: 9px; margin-bottom: 16px; }
+.tabs [role="tab"] { font: 560 .86rem/1 var(--sans); padding: 8px 14px; border: 0; border-radius: 6px; background: none; color: var(--muted); cursor: pointer; }
+.tabs [role="tab"][aria-selected="true"] { background: var(--fg); color: var(--bg); }
+.tabs [role="tabpanel"] > * + * { margin-top: 18px; }
+.tabs h3, .start h3 { font-size: 1rem; margin-bottom: 10px; }
+.req { font-size: .92rem; color: var(--muted); margin: 0 0 14px; }
+.start .data p { margin: 0 0 14px; }
+
+/* ------------------------------------------------------------- demo */
+.video { margin-top: 40px; border-radius: 12px; overflow: hidden; border: 1px solid var(--rule-strong); background: #0B1627; max-width: 980px; }
+.video video { width: 100%; height: auto; aspect-ratio: 16 / 9; }
+
+/* ------------------------------------------------------------- cite */
+.cite { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; margin-top: 40px; max-width: 900px; }
+.cite pre { font-size: 12.5px; white-space: pre; overflow-x: auto; overflow-wrap: normal; }
+
+/* ------------------------------------------------------------- footer */
+footer { border-top: 1px solid var(--rule); padding-block: 48px 40px; font-size: .88rem; color: var(--muted); }
+footer .wrap { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 1fr); gap: 32px; }
+footer .mk { width: 34px; height: 34px; margin-bottom: 14px; }
+footer p { margin: 0 0 8px; }
+footer ul { list-style: none; margin: 0; padding: 0; }
+footer li { margin-bottom: 6px; }
+footer a { color: var(--fg); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+footer h2 { font-size: .74rem; letter-spacing: .09em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 12px; }
+.stamp { grid-column: 1 / -1; margin-top: 12px; padding-top: 18px; border-top: 1px solid var(--rule); font-family: var(--mono); font-size: .76rem; }
+@media (max-width: 860px) { footer .wrap { grid-template-columns: minmax(0, 1fr); } }
+
+@media print {
+  .top, .controls, .copy, .video { display: none; }
+  .sec { break-inside: avoid-page; }
+}
+
+</style>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Dataset",
+   "name": "TopVenues cybersecurity corpus (security-20-v4)",
+   "description": "14,859 bibliographic records from 20 declared security and survey venues, 2019–2026, with abstracts where available and a BibTeX entry for every record.",
+   "url": "https://huggingface.co/datasets/sidneibarbieri/topvenues",
+   "sameAs": "https://github.com/sidneibarbieri/topvenues-tool",
+   "identifier": "sha256:bcb762c1c9b1f8ce6f075a8c1a23d68310caec853b0cc8ce3f42931e43c370c5",
+   "temporalCoverage": "2019/2026",
+   "creator": [
+    {
+     "@type": "Person",
+     "name": "Sidnei Barbieri"
+    },
+    {
+     "@type": "Person",
+     "name": "Ágney Lopes Roth Ferraz"
+    },
+    {
+     "@type": "Person",
+     "name": "Lourenço Alves Pereira Júnior"
+    }
+   ],
+   "isAccessibleForFree": true
+  },
+  {
+   "@type": "SoftwareSourceCode",
+   "name": "TopVenues",
+   "codeRepository": "https://github.com/sidneibarbieri/topvenues-tool",
+   "programmingLanguage": "Python",
+   "license": "https://opensource.org/licenses/MIT",
+   "softwareVersion": "1.10.0"
+  },
+  {
+   "@type": "ScholarlyArticle",
+   "headline": "TopVenues: A Reproducible Corpus and Tooling Substrate for Cybersecurity Literature Reviews",
+   "isPartOf": "Anais do XXVI Simpósio Brasileiro de Cibersegurança (SBSeg 2026)",
+   "url": "https://sol.sbc.org.br/index.php/sbseg/article/view/44350",
+   "identifier": "doi:10.5753/sbseg.2026.29056",
+   "datePublished": "2026"
+  },
+  {
+   "@type": "ScholarlyArticle",
+   "headline": "TopVenues: An Executable Corpus and Research Tool for Cybersecurity Literature Reviews",
+   "isPartOf": "Anais Estendidos do XXVI Simpósio Brasileiro de Cibersegurança (SBSeg 2026)",
+   "url": "https://sol.sbc.org.br/index.php/sbseg_estendido/article/view/44470",
+   "identifier": "doi:10.5753/sbseg_estendido.2026.33733",
+   "datePublished": "2026"
+  }
+ ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main"><span data-l="en">Skip to content</span><span data-l="pt">Pular para o conteúdo</span></a>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#" aria-label="TopVenues"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 325 64" aria-hidden="true" focusable="false">
+  <g transform="translate(0,0)">
+  <line x1="10" y1="11" x2="32" y2="50" class="bis" stroke-width="6.4" stroke-linecap="round"/>
+  <line x1="54" y1="11" x2="32" y2="50" class="bis" stroke-width="6.4" stroke-linecap="round"/>
+  <line x1="32" y1="15" x2="32" y2="50" class="bbs" stroke-width="3.4" stroke-linecap="round"/>
+  <circle cx="32" cy="50" r="5.4" class="bb"/>
+  </g>
+  <path d="M79.783203125 19.822265625V14.98828125H105.263671875V19.822265625H95.40234375V47.0H89.666015625V19.822265625Z" class="bi"/>
+  <path d="M119.90364062500001 47.494140625Q116.40168750000001 47.494140625 113.82356250000001 45.9365234375Q111.24543750000001 44.37890625 109.83821093750001 41.5966796875Q108.43098437500001 38.814453125 108.43098437500001 35.119140625Q108.43098437500001 31.380859375 109.83821093750001 28.5771484375Q111.24543750000001 25.7734375 113.82356250000001 24.2265625Q116.40168750000001 22.6796875 119.90364062500001 22.6796875Q123.40559375000001 22.6796875 125.98371875000001 24.2265625Q128.56184375 25.7734375 129.9798125 28.5771484375Q131.39778125 31.380859375 131.39778125 35.119140625Q131.39778125 38.814453125 129.9798125 41.5966796875Q128.56184375 44.37890625 125.98371875000001 45.9365234375Q123.40559375000001 47.494140625 119.90364062500001 47.494140625ZM119.90364062500001 42.9609375Q121.85871875000001 42.9609375 123.14778125000001 41.908203125Q124.43684375000001 40.85546875 125.08137500000001 39.072265625Q125.72590625000001 37.2890625 125.72590625000001 35.09765625Q125.72590625000001 32.884765625 125.08137500000001 31.1015625Q124.43684375000001 29.318359375 123.14778125000001 28.265625Q121.85871875000001 27.212890625 119.90364062500001 27.212890625Q117.97004687500001 27.212890625 116.68098437500001 28.265625Q115.39192187500001 29.318359375 114.75813281250001 31.1015625Q114.12434375000001 32.884765625 114.12434375000001 35.09765625Q114.12434375000001 37.2890625 114.75813281250001 39.072265625Q115.39192187500001 40.85546875 116.68098437500001 41.908203125Q117.97004687500001 42.9609375 119.90364062500001 42.9609375Z" class="bi"/>
+  <path d="M135.74673437500002 55.98046875V22.98046875H141.20376562500002V26.955078125H141.56900000000002Q141.97720312500002 26.1171875 142.77212500000002 25.1181640625Q143.56704687500002 24.119140625 144.94204687500002 23.3994140625Q146.31704687500002 22.6796875 148.44400000000002 22.6796875Q151.21548437500002 22.6796875 153.46060156250002 24.09765625Q155.70571875000002 25.515625 157.02700781250002 28.2763671875Q158.34829687500002 31.037109375 158.34829687500002 35.033203125Q158.34829687500002 38.986328125 157.04849218750002 41.7578125Q155.74868750000002 44.529296875 153.51431250000002 45.9794921875Q151.27993750000002 47.4296875 148.42251562500002 47.4296875Q146.36001562500002 47.4296875 144.99575781250002 46.7314453125Q143.63150000000002 46.033203125 142.81509375000002 45.044921875Q141.99868750000002 44.056640625 141.56900000000002 43.197265625H141.33267187500002V55.98046875ZM146.91860937500002 42.83203125Q149.71157812500002 42.83203125 151.16177343750002 40.6083984375Q152.61196875000002 38.384765625 152.61196875000002 35.01171875Q152.61196875000002 31.66015625 151.18325781250002 29.46875Q149.75454687500002 27.27734375 146.91860937500002 27.27734375Q144.14712500000002 27.27734375 142.68618750000002 29.3935546875Q141.22525000000002 31.509765625 141.22525000000002 35.01171875Q141.22525000000002 38.513671875 142.70767187500002 40.6728515625Q144.19009375000002 42.83203125 146.91860937500002 42.83203125Z" class="bi"/>
+  <path d="M172.19334375000003 47.0 160.78514062500003 14.98828125H167.08006250000003L172.75193750000003 31.6171875Q173.43943750000003 33.744140625 174.20213281250003 36.4296875Q174.96482812500003 39.115234375 175.86717187500003 42.423828125Q177.56443750000003 35.849609375 178.89646875000003 31.6171875L184.39646875000003 14.98828125H190.66990625000003L179.45506250000003 47.0Z" class="bb"/>
+  <path d="M204.77276562500003 47.494140625Q201.14190625000003 47.494140625 198.53155468750003 45.96875Q195.92120312500003 44.443359375 194.51397656250003 41.671875Q193.10675000000003 38.900390625 193.10675000000003 35.140625Q193.10675000000003 31.4453125 194.49249218750003 28.6416015625Q195.87823437500003 25.837890625 198.42413281250003 24.2587890625Q200.97003125000003 22.6796875 204.40753125000003 22.6796875Q207.32940625000003 22.6796875 209.83233593750003 23.9580078125Q212.33526562500003 25.236328125 213.86065625000003 27.9111328125Q215.38604687500003 30.5859375 215.38604687500003 34.796875V36.55859375H198.67120312500003Q198.77862500000003 39.759765625 200.46514843750003 41.435546875Q202.15167187500003 43.111328125 204.83721875000003 43.111328125Q206.68487500000003 43.111328125 208.00616406250003 42.31640625Q209.32745312500003 41.521484375 209.88604687500003 39.99609375L215.02081250000003 41.048828125Q214.16143750000003 43.94921875 211.46514843750003 45.7216796875Q208.76885937500003 47.494140625 204.77276562500003 47.494140625ZM198.69268750000003 32.755859375H209.95050000000003Q209.69268750000003 30.177734375 208.30694531250003 28.6201171875Q206.92120312500003 27.0625 204.42901562500003 27.0625Q201.87237500000003 27.0625 200.37921093750003 28.7060546875Q198.88604687500003 30.349609375 198.69268750000003 32.755859375Z" class="bb"/>
+  <path d="M225.23500000000004 32.927734375V47.0H219.64906250000004V22.98046875H224.93421875000004L224.99867187500004 27.771484375Q227.14710937500004 22.6796875 232.43226562500004 22.6796875Q236.14906250000004 22.6796875 238.39417968750004 25.04296875Q240.63929687500004 27.40625 240.63929687500004 31.724609375V47.0H235.05335937500004V32.583984375Q235.05335937500004 30.177734375 233.80726562500004 28.802734375Q232.56117187500004 27.427734375 230.36976562500004 27.427734375Q228.13539062500004 27.427734375 226.68519531250004 28.8671875Q225.23500000000004 30.306640625 225.23500000000004 32.927734375Z" class="bb"/>
+  <path d="M254.26950000000005 47.30078125Q250.55270312500005 47.30078125 248.29684375000005 44.9375Q246.04098437500005 42.57421875 246.04098437500005 38.255859375V22.98046875H251.62692187500005V37.396484375Q251.62692187500005 39.802734375 252.88375781250005 41.177734375Q254.14059375000005 42.552734375 256.33200000000005 42.552734375Q258.56637500000005 42.552734375 260.00582812500005 41.11328125Q261.44528125000005 39.673828125 261.44528125000005 37.052734375V22.98046875H267.05270312500005V47.0H261.74606250000005L261.70309375000005 42.1875Q259.55465625000005 47.30078125 254.26950000000005 47.30078125Z" class="bb"/>
+  <path d="M283.06767187500003 47.494140625Q279.43681250000003 47.494140625 276.82646093750003 45.96875Q274.21610937500003 44.443359375 272.80888281250003 41.671875Q271.40165625000003 38.900390625 271.40165625000003 35.140625Q271.40165625000003 31.4453125 272.78739843750003 28.6416015625Q274.17314062500003 25.837890625 276.71903906250003 24.2587890625Q279.26493750000003 22.6796875 282.70243750000003 22.6796875Q285.62431250000003 22.6796875 288.12724218750003 23.9580078125Q290.63017187500003 25.236328125 292.15556250000003 27.9111328125Q293.68095312500003 30.5859375 293.68095312500003 34.796875V36.55859375H276.96610937500003Q277.07353125000003 39.759765625 278.76005468750003 41.435546875Q280.44657812500003 43.111328125 283.13212500000003 43.111328125Q284.97978125000003 43.111328125 286.30107031250003 42.31640625Q287.62235937500003 41.521484375 288.18095312500003 39.99609375L293.31571875000003 41.048828125Q292.45634375000003 43.94921875 289.76005468750003 45.7216796875Q287.06376562500003 47.494140625 283.06767187500003 47.494140625ZM276.98759375000003 32.755859375H288.24540625000003Q287.98759375000003 30.177734375 286.60185156250003 28.6201171875Q285.21610937500003 27.0625 282.72392187500003 27.0625Q280.16728125000003 27.0625 278.67411718750003 28.7060546875Q277.18095312500003 30.349609375 276.98759375000003 32.755859375Z" class="bb"/>
+  <path d="M307.031859375 47.494140625Q302.885375 47.494140625 300.1890859375 45.7216796875Q297.492796875 43.94921875 296.86975 40.68359375L302.090453125 39.6953125Q303.035765625 43.21875 307.13928125 43.21875Q309.20178125 43.21875 310.4156484375 42.3916015625Q311.629515625 41.564453125 311.629515625 40.33984375Q311.629515625 38.298828125 308.385375 37.58984375L304.281859375 36.708984375Q297.535765625 35.248046875 297.535765625 29.984375Q297.535765625 27.75 298.760375 26.1171875Q299.984984375 24.484375 302.1656484375 23.58203125Q304.3463125 22.6796875 307.22521875 22.6796875Q311.30725 22.6796875 313.6812734375 24.376953125Q316.055296875 26.07421875 316.785765625 28.8671875L311.801390625 29.85546875Q311.371703125 28.609375 310.297484375 27.728515625Q309.223265625 26.84765625 307.289671875 26.84765625Q305.527953125 26.84765625 304.324828125 27.6318359375Q303.121703125 28.416015625 303.121703125 29.640625Q303.121703125 30.693359375 303.9058828125 31.3701171875Q304.6900625 32.046875 306.53771875 32.455078125L310.61975 33.314453125Q317.344359375 34.75390625 317.344359375 39.802734375Q317.344359375 42.080078125 316.0338125 43.8095703125Q314.723265625 45.5390625 312.3922109375 46.5166015625Q310.06115625 47.494140625 307.031859375 47.494140625Z" class="bb"/>
+
+</svg></a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#method"><span data-l="en">Method</span><span data-l="pt">Método</span></a>
+      <a href="#tool"><span data-l="en">Tool</span><span data-l="pt">Ferramenta</span></a>
+      <a href="#findings"><span data-l="en">Findings</span><span data-l="pt">Resultados</span></a>
+      <a href="#papers"><span data-l="en">Papers</span><span data-l="pt">Artigos</span></a>
+      <a href="#start"><span data-l="en">Start</span><span data-l="pt">Começar</span></a>
+      <a href="#cite"><span data-l="en">Cite</span><span data-l="pt">Citar</span></a>
+    </nav>
+    <div class="controls">
+      <div class="seg" role="group" aria-label="Language / Idioma">
+        <button type="button" data-set-lang="en" aria-pressed="true" lang="en">EN</button>
+        <button type="button" data-set-lang="pt" aria-pressed="false" lang="pt-BR">PT</button>
+      </div>
+      <button type="button" class="icon-btn" data-theme-toggle
+              data-label-en="Switch between light and dark" data-label-pt="Alternar entre claro e escuro"
+              aria-label="Switch between light and dark">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<section class="hero">
+  <div class="wrap">
+    <p class="eyebrow"><span data-l="en">Open research artifact · Instituto Tecnológico de Aeronáutica</span><span data-l="pt">Artefato de pesquisa aberto · Instituto Tecnológico de Aeronáutica</span></p>
+    <h1 data-l="en"><span>Every literature review</span><span class="den">has a denominator.</span></h1>
+    <h1 data-l="pt"><span>Toda revisão de literatura</span><span class="den">tem um denominador.</span></h1>
+    <p class="lead" data-l="en">Before screening begins, a review must say which papers could have entered it. TopVenues turns that set into a declared, frozen and executable object: 20 cybersecurity venues, one versioned snapshot, one SHA-256, and one command that reproduces every count.</p>
+    <p class="lead" data-l="pt">Antes da triagem, uma revisão precisa dizer quais artigos poderiam ter entrado nela. O TopVenues transforma esse conjunto em um objeto declarado, congelado e executável: 20 veículos de cibersegurança, um snapshot versionado, um SHA-256 e um comando que reproduz cada contagem.</p>
+    <div class="cta">
+      <a class="btn primary" href="#start"><span data-l="en">Use the current release</span><span data-l="pt">Usar a versão atual</span> <span class="ar" aria-hidden="true">→</span></a>
+      <a class="btn ghost" href="#papers"><span data-l="en">Reproduce a published paper</span><span data-l="pt">Reproduzir um artigo publicado</span></a>
+    </div>
+    <ul class="hero-links">
+      <li><a href="https://github.com/sidneibarbieri/topvenues-tool">GitHub</a></li>
+      <li><a href="https://huggingface.co/datasets/sidneibarbieri/topvenues">Hugging Face</a></li>
+      <li><a href="#demo"><span data-l="en">Demo video</span><span data-l="pt">Vídeo de demonstração</span></a></li>
+    </ul>
+
+    <figure class="fig1">
+      <svg class="conv" viewBox="0 0 880 512" role="img" aria-labelledby="fig1-title" xmlns="http://www.w3.org/2000/svg">
+<title id="fig1-title">Twenty declared venues converge on one snapshot</title>
+<g class="v" style="--i:0"><text class="vn" x="232" y="32.5" text-anchor="end">USENIX Security</text><text class="vc" x="292" y="32.5" text-anchor="end"><tspan data-l="en">2,103</tspan><tspan data-l="pt">2.103</tspan></text><path class="ln" d="M304 28 C 430 28, 470 256.0, 560 256.0" stroke-width="5.20" pathLength="1"/></g>
+<g class="v" style="--i:1"><text class="vn" x="232" y="56.5" text-anchor="end">ACM CCS</text><text class="vc" x="292" y="56.5" text-anchor="end"><tspan data-l="en">1,972</tspan><tspan data-l="pt">1.972</tspan></text><path class="ln" d="M304 52 C 430 52, 470 256.0, 560 256.0" stroke-width="5.06" pathLength="1"/></g>
+<g class="v" style="--i:2"><text class="vn" x="232" y="80.5" text-anchor="end">TrustCom</text><text class="vc" x="292" y="80.5" text-anchor="end"><tspan data-l="en">1,915</tspan><tspan data-l="pt">1.915</tspan></text><path class="ln" d="M304 76 C 430 76, 470 256.0, 560 256.0" stroke-width="5.00" pathLength="1"/></g>
+<g class="v" style="--i:3"><text class="vn" x="232" y="104.5" text-anchor="end">ACM Computing Surveys</text><text class="vc" x="292" y="104.5" text-anchor="end"><tspan data-l="en">1,813</tspan><tspan data-l="pt">1.813</tspan></text><path class="ln" d="M304 100 C 430 100, 470 256.0, 560 256.0" stroke-width="4.89" stroke-dasharray="5 4"/></g>
+<g class="v" style="--i:4"><text class="vn" x="232" y="128.5" text-anchor="end">IEEE S&amp;P</text><text class="vc" x="292" y="128.5" text-anchor="end"><tspan data-l="en">1,164</tspan><tspan data-l="pt">1.164</tspan></text><path class="ln" d="M304 124 C 430 124, 470 256.0, 560 256.0" stroke-width="4.07" pathLength="1"/></g>
+<g class="v" style="--i:5"><text class="vn" x="232" y="152.5" text-anchor="end">NDSS</text><text class="vc" x="292" y="152.5" text-anchor="end"><tspan data-l="en">1,059</tspan><tspan data-l="pt">1.059</tspan></text><path class="ln" d="M304 148 C 430 148, 470 256.0, 560 256.0" stroke-width="3.92" pathLength="1"/></g>
+<g class="v" style="--i:6"><text class="vn" x="232" y="176.5" text-anchor="end">ACM ASIA CCS</text><text class="vc" x="292" y="176.5" text-anchor="end"><tspan data-l="en">837</tspan><tspan data-l="pt">837</tspan></text><path class="ln" d="M304 172 C 430 172, 470 256.0, 560 256.0" stroke-width="3.58" pathLength="1"/></g>
+<g class="v" style="--i:7"><text class="vn" x="232" y="200.5" text-anchor="end">IEEE Comm. Surveys &amp; Tutorials</text><text class="vc" x="292" y="200.5" text-anchor="end"><tspan data-l="en">833</tspan><tspan data-l="pt">833</tspan></text><path class="ln" d="M304 196 C 430 196, 470 256.0, 560 256.0" stroke-width="3.57" stroke-dasharray="5 4"/></g>
+<g class="v" style="--i:8"><text class="vn" x="232" y="224.5" text-anchor="end">ESORICS</text><text class="vc" x="292" y="224.5" text-anchor="end"><tspan data-l="en">598</tspan><tspan data-l="pt">598</tspan></text><path class="ln" d="M304 220 C 430 220, 470 256.0, 560 256.0" stroke-width="3.15" pathLength="1"/></g>
+<g class="v" style="--i:9"><text class="vn" x="232" y="248.5" text-anchor="end">ACSAC</text><text class="vc" x="292" y="248.5" text-anchor="end"><tspan data-l="en">509</tspan><tspan data-l="pt">509</tspan></text><path class="ln" d="M304 244 C 430 244, 470 256.0, 560 256.0" stroke-width="2.96" pathLength="1"/></g>
+<g class="v" style="--i:10"><text class="vn" x="232" y="272.5" text-anchor="end">IEEE CNS</text><text class="vc" x="292" y="272.5" text-anchor="end"><tspan data-l="en">381</tspan><tspan data-l="pt">381</tspan></text><path class="ln" d="M304 268 C 430 268, 470 256.0, 560 256.0" stroke-width="2.67" pathLength="1"/></g>
+<g class="v" style="--i:11"><text class="vn" x="232" y="296.5" text-anchor="end">IEEE EURO S&amp;P</text><text class="vc" x="292" y="296.5" text-anchor="end"><tspan data-l="en">339</tspan><tspan data-l="pt">339</tspan></text><path class="ln" d="M304 292 C 430 292, 470 256.0, 560 256.0" stroke-width="2.57" pathLength="1"/></g>
+<g class="v" style="--i:12"><text class="vn" x="232" y="320.5" text-anchor="end">ACM CODASPY</text><text class="vc" x="292" y="320.5" text-anchor="end"><tspan data-l="en">316</tspan><tspan data-l="pt">316</tspan></text><path class="ln" d="M304 316 C 430 316, 470 256.0, 560 256.0" stroke-width="2.51" pathLength="1"/></g>
+<g class="v" style="--i:13"><text class="vn" x="232" y="344.5" text-anchor="end">ACM WiSec</text><text class="vc" x="292" y="344.5" text-anchor="end"><tspan data-l="en">314</tspan><tspan data-l="pt">314</tspan></text><path class="ln" d="M304 340 C 430 340, 470 256.0, 560 256.0" stroke-width="2.50" pathLength="1"/></g>
+<g class="v" style="--i:14"><text class="vn" x="232" y="368.5" text-anchor="end">RAID</text><text class="vc" x="292" y="368.5" text-anchor="end"><tspan data-l="en">290</tspan><tspan data-l="pt">290</tspan></text><path class="ln" d="M304 364 C 430 364, 470 256.0, 560 256.0" stroke-width="2.43" pathLength="1"/></g>
+<g class="v" style="--i:15"><text class="vn" x="232" y="392.5" text-anchor="end">ACM SACMAT</text><text class="vc" x="292" y="392.5" text-anchor="end"><tspan data-l="en">176</tspan><tspan data-l="pt">176</tspan></text><path class="ln" d="M304 388 C 430 388, 470 256.0, 560 256.0" stroke-width="2.07" pathLength="1"/></g>
+<g class="v" style="--i:16"><text class="vn" x="232" y="416.5" text-anchor="end">IEEE SaTML</text><text class="vc" x="292" y="416.5" text-anchor="end"><tspan data-l="en">127</tspan><tspan data-l="pt">127</tspan></text><path class="ln" d="M304 412 C 430 412, 470 256.0, 560 256.0" stroke-width="1.88" pathLength="1"/></g>
+<g class="v" style="--i:17"><text class="vn" x="232" y="440.5" text-anchor="end">ACM AISec</text><text class="vc" x="292" y="440.5" text-anchor="end"><tspan data-l="en">77</tspan><tspan data-l="pt">77</tspan></text><path class="ln" d="M304 436 C 430 436, 470 256.0, 560 256.0" stroke-width="1.64" pathLength="1"/></g>
+<g class="v" style="--i:18"><text class="vn" x="232" y="464.5" text-anchor="end">FnT Privacy and Security</text><text class="vc" x="292" y="464.5" text-anchor="end"><tspan data-l="en">18</tspan><tspan data-l="pt">18</tspan></text><path class="ln" d="M304 460 C 430 460, 470 256.0, 560 256.0" stroke-width="1.21" stroke-dasharray="5 4"/></g>
+<g class="v" style="--i:19"><text class="vn" x="232" y="488.5" text-anchor="end">USENIX WOOT</text><text class="vc" x="292" y="488.5" text-anchor="end"><tspan data-l="en">18</tspan><tspan data-l="pt">18</tspan></text><path class="ln" d="M304 484 C 430 484, 470 256.0, 560 256.0" stroke-width="1.21" pathLength="1"/></g>
+<circle class="halo" cx="560" cy="256.0" r="17"/>
+<circle class="pt" cx="560" cy="256.0" r="8.5"/>
+<g class="lbl" transform="translate(594 218.0)">
+<text class="l1" y="0">security-20-v4</text>
+<text class="l2" y="26"><tspan data-l="en">14,859 records</tspan><tspan data-l="pt">14.859 registros</tspan></text>
+<text class="l3" y="48"><tspan data-l="en">20 venues · 2019–2026</tspan><tspan data-l="pt">20 veículos · 2019–2026</tspan></text>
+<text class="l4" y="74">sha256 bcb762c1…c370c5</text>
+</g></svg>
+      <ol class="vlist"><li><span>USENIX Security</span><span class="n"><span data-l="en">2,103</span><span data-l="pt">2.103</span></span></li><li><span>ACM CCS</span><span class="n"><span data-l="en">1,972</span><span data-l="pt">1.972</span></span></li><li><span>TrustCom</span><span class="n"><span data-l="en">1,915</span><span data-l="pt">1.915</span></span></li><li><span>ACM Computing Surveys <small class="tag"><span data-l="en">survey</span><span data-l="pt">surveys</span></small></span><span class="n"><span data-l="en">1,813</span><span data-l="pt">1.813</span></span></li><li><span>IEEE S&amp;P</span><span class="n"><span data-l="en">1,164</span><span data-l="pt">1.164</span></span></li><li><span>NDSS</span><span class="n"><span data-l="en">1,059</span><span data-l="pt">1.059</span></span></li><li><span>ACM ASIA CCS</span><span class="n"><span data-l="en">837</span><span data-l="pt">837</span></span></li><li><span>IEEE Communications Surveys &amp; Tutorials <small class="tag"><span data-l="en">survey</span><span data-l="pt">surveys</span></small></span><span class="n"><span data-l="en">833</span><span data-l="pt">833</span></span></li><li><span>ESORICS</span><span class="n"><span data-l="en">598</span><span data-l="pt">598</span></span></li><li><span>ACSAC</span><span class="n"><span data-l="en">509</span><span data-l="pt">509</span></span></li><li><span>IEEE CNS</span><span class="n"><span data-l="en">381</span><span data-l="pt">381</span></span></li><li><span>IEEE EURO S&amp;P</span><span class="n"><span data-l="en">339</span><span data-l="pt">339</span></span></li><li><span>ACM CODASPY</span><span class="n"><span data-l="en">316</span><span data-l="pt">316</span></span></li><li><span>ACM WiSec</span><span class="n"><span data-l="en">314</span><span data-l="pt">314</span></span></li><li><span>RAID</span><span class="n"><span data-l="en">290</span><span data-l="pt">290</span></span></li><li><span>ACM SACMAT</span><span class="n"><span data-l="en">176</span><span data-l="pt">176</span></span></li><li><span>IEEE SaTML</span><span class="n"><span data-l="en">127</span><span data-l="pt">127</span></span></li><li><span>ACM AISec</span><span class="n"><span data-l="en">77</span><span data-l="pt">77</span></span></li><li><span>Foundations and Trends in Privacy and Security <small class="tag"><span data-l="en">survey</span><span data-l="pt">surveys</span></small></span><span class="n"><span data-l="en">18</span><span data-l="pt">18</span></span></li><li><span>USENIX WOOT</span><span class="n"><span data-l="en">18</span><span data-l="pt">18</span></span></li></ol>
+      <figcaption data-l="en"><b>Figure 1.</b> The current release. 20 declared venues converge on one snapshot. <span class="only-wide">Line weight follows the number of records per venue; the 3 dashed lines are survey venues.</span><span class="only-narrow">Survey venues are tagged.</span> Every value on this page about the current release is read from <code>data/profiles/security-20-v4/manifest.json</code> when the page is built.</figcaption>
+      <figcaption data-l="pt"><b>Figura 1.</b> A versão atual. 20 veículos declarados convergem em um único snapshot. <span class="only-wide">A espessura da linha acompanha o número de registros por veículo; as 3 linhas tracejadas são periódicos de surveys.</span><span class="only-narrow">Os periódicos de surveys estão marcados.</span> Todo valor desta página sobre a versão atual é lido de <code>data/profiles/security-20-v4/manifest.json</code> quando a página é gerada.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="release" aria-labelledby="release-h">
+  <div class="wrap">
+    <div class="release-head">
+      <strong id="release-h"><span data-l="en">Current release</span><span data-l="pt">Versão atual</span></strong>
+      <code>security-20-v4</code>
+      <span class="note"><span data-l="en">TopVenues v1.10.0 · snapshot built 2026-08-24 · a maintained corpus, not the denominator of a paper (<a href="#papers">those are frozen</a>).</span><span data-l="pt">TopVenues v1.10.0 · snapshot gerado em 2026-08-24 · um corpus mantido, não o denominador de um artigo (<a href="#papers">esses estão congelados</a>).</span></span>
+    </div>
+    <dl class="stats">
+      <div><dt><span data-l="en">records</span><span data-l="pt">registros</span></dt><dd><span data-l="en">14,859</span><span data-l="pt">14.859</span></dd></div>
+      <div><dt><span data-l="en">venues: 17 security, 3 survey</span><span data-l="pt">veículos: 17 de segurança, 3 de surveys</span></dt><dd>20</dd></div>
+      <div><dt><span data-l="en">declared window</span><span data-l="pt">janela declarada</span></dt><dd>2019–2026</dd></div>
+      <div><dt><span data-l="en">with abstract (13,987)</span><span data-l="pt">com resumo (13.987)</span></dt><dd><span data-l="en">94.1%</span><span data-l="pt">94,1%</span></dd></div>
+      <div><dt><span data-l="en">with a BibTeX entry</span><span data-l="pt">com entrada BibTeX</span></dt><dd><span data-l="en">100%</span><span data-l="pt">100%</span></dd></div>
+    </dl>
+  </div>
+</section>
+
+<section class="sec" id="method" aria-labelledby="method-h">
+  <div class="wrap">
+    <p class="sec-label"><span class="no">01</span><span data-l="en">Method</span><span data-l="pt">Método</span></p>
+    <div>
+      <h2 id="method-h"><span data-l="en">Declared. Frozen. Executable.</span><span data-l="pt">Declarado. Congelado. Executável.</span></h2>
+      <div class="pillars">
+        <article>
+          <span class="k">scope</span>
+          <h3><span data-l="en">Declared</span><span data-l="pt">Declarado</span></h3>
+          <p data-l="en">The scope is written down before anything is counted: a venue list and a year window in a versioned configuration file.</p>
+          <p data-l="pt">O escopo é escrito antes de qualquer contagem: uma lista de veículos e uma janela de anos em um arquivo de configuração versionado.</p>
+        </article>
+        <article>
+          <span class="k">snapshot</span>
+          <h3><span data-l="en">Frozen</span><span data-l="pt">Congelado</span></h3>
+          <p data-l="en">Each release ships a compressed SQLite snapshot with a published SHA-256. A number cited in a paper stays bound to it when the tool changes.</p>
+          <p data-l="pt">Cada versão traz um snapshot SQLite comprimido com SHA-256 publicado. Um número citado em artigo continua preso a ele quando a ferramenta muda.</p>
+        </article>
+        <article>
+          <span class="k">reproduce.sh</span>
+          <h3><span data-l="en">Executable</span><span data-l="pt">Executável</span></h3>
+          <p data-l="en">One command verifies the snapshot, runs the tests, starts the interface and reproduces the counts. No API key, GPU or institutional access; offline once installed.</p>
+          <p data-l="pt">Um comando verifica o snapshot, roda os testes, sobe a interface e reproduz as contagens. Sem chave de API, GPU ou acesso institucional; offline depois de instalado.</p>
+        </article>
+      </div>
+
+      <div class="notes">
+        <div>
+          <h3><span data-l="en">Scope is decided by venue, not by topic</span><span data-l="pt">O escopo é decidido pelo veículo, não pelo tema</span></h3>
+          <p data-l="en">A paper is in the corpus because it appeared in a declared venue within the window, not because a classifier judged it to be about security. 17 venues are security venues and form a core of 12,195 records. The other 3 are survey venues (ACM Computing Surveys, IEEE Communications Surveys &amp; Tutorials, Foundations and Trends in Privacy and Security), kept because reviews lean on surveys; they are labelled cross-area and one filter removes them.</p>
+          <p data-l="pt">Um artigo está no corpus porque saiu em um veículo declarado dentro da janela, não porque um classificador julgou que ele trata de segurança. 17 veículos são de segurança e formam um núcleo de 12.195 registros. Os outros 3 são periódicos de surveys (ACM Computing Surveys, IEEE Communications Surveys &amp; Tutorials, Foundations and Trends in Privacy and Security), mantidos porque revisões se apoiam em surveys; eles têm o rótulo cross-area e um filtro os remove.</p>
+        </div>
+        <div>
+          <h3><span data-l="en">Gaps are reported, not hidden</span><span data-l="pt">Lacunas são relatadas, não escondidas</span></h3>
+          <p data-l="en">DBLP supplies metadata and BibTeX, not abstracts. Abstracts come from open scholarly APIs and publisher pages, and coverage is reported per venue: ESORICS, for instance, has 39 abstracts for 598 records. A venue-stratified manual audit of 200 abstracts found 84.5% usable (95% Wilson interval 78.8%–88.9%).</p>
+          <p data-l="pt">O DBLP fornece metadados e BibTeX, não resumos. Os resumos vêm de APIs acadêmicas abertas e de páginas das editoras, e a cobertura é relatada por veículo: o ESORICS, por exemplo, tem 39 resumos para 598 registros. Uma auditoria manual estratificada por veículo, com 200 resumos, encontrou 84,5% utilizáveis (intervalo de Wilson de 95%: 78,8%–88,9%).</p>
+        </div>
+      </div>
+
+      <details class="more">
+        <summary><span data-l="en">Per-venue coverage (20 venues)</span><span data-l="pt">Cobertura por veículo (20 veículos)</span></summary>
+        <div class="table-wrap"><table class="venues"><thead><tr><th scope="col"><span data-l="en">Venue</span><span data-l="pt">Veículo</span></th><th scope="col"><span data-l="en">Area</span><span data-l="pt">Área</span></th><th scope="col" class="n"><span data-l="en">Records</span><span data-l="pt">Registros</span></th><th scope="col" class="n"><span data-l="en">Abstracts</span><span data-l="pt">Resumos</span></th><th scope="col" class="n"><span data-l="en">Coverage</span><span data-l="pt">Cobertura</span></th><th scope="col" class="n"><span data-l="en">Years</span><span data-l="pt">Anos</span></th></tr></thead><tbody><tr><th scope="row">USENIX Security</th><td><span data-l="en">security</span><span data-l="pt">segurança</span></td><td class="n"><span data-l="en">2,103</span><span data-l="pt">2.103</span></td><td class="n"><span data-l="en">2,056</span><span data-l="pt">2.056</span></td><td class="n"><span data-l="en">97.8%</span><span data-l="pt">97,8%</span></td><td class="n">2019–2025</td></tr><tr><th scope="row">ACM CCS</th><td><span data-l="en">security</span><span data-l="pt">segurança</span></td><td class="n"><span data-l="en">1,972</span><span data-l="pt">1.972</span></td><td class="n"><span data-l="en">1,971</span><span data-l="pt">1.971</span></td><td class="n"><span data-l="en">99.9%</span><span data-l="pt">99,9%</span></td><td class="n">2019–2025</td></tr><tr><th scope="row">TrustCom</th><td><span data-l="en">security</span><span data-l="pt">segurança</span></td><td class="n"><span data-l="en">1,915</span><span data-l="pt">1.915</span></td><td class="n"><span data-l="en">1,912</span><span data-l="pt">1.912</span></td><td class="n"><span data-l="en">99.8%</span><span data-l="pt">99,8%</span></td><td class="n">2019–2025</td></tr><tr><th scope="row">ACM Computing Surveys</th><td><span data-l="en">survey</span><span data-l="pt">surveys</span></td><td class="n"><span data-l="en">1,813</span><span data-l="pt">1.813</span></td><td class="n"><span data-l="en">1,812</span><span data-l="pt">1.812</span></td><td class="n"><span data-l="en">99.9%</span><span data-l="pt">99,9%</span></td><td class="n">2019–2026</td></tr><tr><th scope="row">IEEE S&amp;P</th><td><span data-l="en">security</span><span data-l="pt">segurança</span></td><td class="n"><span data-l="en">1,164</span><span data-l="pt">1.164</span></td><td class="n"><span data-l="en">1,163</span><span data-l="pt">1.163</span></td><td class="n"><span data-l="en">99.9%</span><span data-l="pt">99,9%</span></td><td class="n">2019–2025</td></tr><tr><th scope="row">NDSS</th><td><span data-l="en">security</span><span data-l="pt">segurança</span></td><td class="n"><span data-l="en">1,059</span><span data-l="pt">1.059</span></td><td class="n"><span data-l="en">1,058</span><span data-l="pt">1.058</span></td><td class="n"><span data-l="en">99.9%</span><span data-l="pt">99,9%</span></td><td class="n">2019–2026</td></tr><tr><th scope="row">ACM ASIA CCS</th><td><span data-l="en">security</span><span data-l="pt">segurança</span></td><td class="n"><span data-l="en">837</span><span data-l="pt">837</span></td><td class="n"><span data-l="en">827</span><span data-l="pt">827</span></td><td class="n"><span data-l="en">98.8%</span><span data-l="pt">98,8%</span></td><td class="n">2019–2026</td></tr><tr><th scope="row">IEEE Communications Surveys &amp; Tutorials</th><td><span data-l="en">survey</span><span data-l="pt">surveys</span></td><td class="n"><span data-l="en">833</span><span data-l="pt">833</span></td><td class="n"><span data-l="en">804</span><span data-l="pt">804</span></td><td class="n"><span data-l="en">96.5%</span><span data-l="pt">96,5%</span></td><td class="n">2019–2026</td></tr><tr><th scope="row">ESORICS</th><td><span data-l="en">security</span><span data-l="pt">segurança</span></td><td class="n"><span data-l="en">598</span><span data-l="pt">598</span></td><td class="n"><span data-l="en">39</span><span data-l="pt">39</span></td><td class="n"><span data-l="en">6.5%</span><span data-l="pt">6,5%</span></td><td class="n">2019–2025</td></tr><tr><th scope="row">ACSAC</th><td><span data-l="en">security</span><span data-l="pt">segurança</span></td><td class="n"><span data-l="en">509</span><span data-l="pt">509</span></td><td class="n"><span data-l="en">509</span><span data-l="pt">509</span></td><td class="n"><span data-l="en">100.0%</span><span data-l="pt">100,0%</span></td><td class="n">2019–2025</td></tr><tr><th scope="row">IEEE CNS</th><td><span data-l="en">security</span><span data-l="pt">segurança</span></td><td class="n"><span data-l="en">381</span><span data-l="pt">381</span></td><td class="n"><span data-l="en">381</span><span data-l="pt">381</span></td><td class="n"><span data-l="en">100.0%</span><span data-l="pt">100,0%</span></td><td class="n">2019–2025</td></tr><tr><th scope="row">IEEE EURO S&amp;P</th><td><span data-l="en">security</span><span data-l="pt">segurança</span></td><td class="n"><span data-l="en">339</span><span data-l="pt">339</span></td><td class="n"><span data-l="en">339</span><span data-l="pt">339</span></td><td class="n"><span data-l="en">100.0%</span><span data-l="pt">100,0%</span></td><td class="n">2019–2025</td></tr><tr><th scope="row">ACM CODASPY</th><td><span data-l="en">security</span><span data-l="pt">segurança</span></td><td class="n"><span data-l="en">316</span><span data-l="pt">316</span></td><td class="n"><span data-l="en">281</span><span data-l="pt">281</span></td><td class="n"><span data-l="en">88.9%</span><span data-l="pt">88,9%</span></td><td class="n">2019–2026</td></tr><tr><th scope="row">ACM WiSec</th><td><span data-l="en">security</span><span data-l="pt">segurança</span></td><td class="n"><span data-l="en">314</span><span data-l="pt">314</span></td><td class="n"><span data-l="en">270</span><span data-l="pt">270</span></td><td class="n"><span data-l="en">86.0%</span><span data-l="pt">86,0%</span></td><td class="n">2019–2026</td></tr><tr><th scope="row">RAID</th><td><span data-l="en">security</span><span data-l="pt">segurança</span></td><td class="n"><span data-l="en">290</span><span data-l="pt">290</span></td><td class="n"><span data-l="en">222</span><span data-l="pt">222</span></td><td class="n"><span data-l="en">76.6%</span><span data-l="pt">76,6%</span></td><td class="n">2019–2025</td></tr><tr><th scope="row">ACM SACMAT</th><td><span data-l="en">security</span><span data-l="pt">segurança</span></td><td class="n"><span data-l="en">176</span><span data-l="pt">176</span></td><td class="n"><span data-l="en">176</span><span data-l="pt">176</span></td><td class="n"><span data-l="en">100.0%</span><span data-l="pt">100,0%</span></td><td class="n">2019–2025</td></tr><tr><th scope="row">IEEE SaTML</th><td><span data-l="en">security</span><span data-l="pt">segurança</span></td><td class="n"><span data-l="en">127</span><span data-l="pt">127</span></td><td class="n"><span data-l="en">74</span><span data-l="pt">74</span></td><td class="n"><span data-l="en">58.3%</span><span data-l="pt">58,3%</span></td><td class="n">2023–2025</td></tr><tr><th scope="row">ACM AISec</th><td><span data-l="en">security</span><span data-l="pt">segurança</span></td><td class="n"><span data-l="en">77</span><span data-l="pt">77</span></td><td class="n"><span data-l="en">73</span><span data-l="pt">73</span></td><td class="n"><span data-l="en">94.8%</span><span data-l="pt">94,8%</span></td><td class="n">2019–2023</td></tr><tr><th scope="row">Foundations and Trends in Privacy and Security</th><td><span data-l="en">survey</span><span data-l="pt">surveys</span></td><td class="n"><span data-l="en">18</span><span data-l="pt">18</span></td><td class="n"><span data-l="en">18</span><span data-l="pt">18</span></td><td class="n"><span data-l="en">100.0%</span><span data-l="pt">100,0%</span></td><td class="n">2020–2025</td></tr><tr><th scope="row">USENIX WOOT</th><td><span data-l="en">security</span><span data-l="pt">segurança</span></td><td class="n"><span data-l="en">18</span><span data-l="pt">18</span></td><td class="n"><span data-l="en">2</span><span data-l="pt">2</span></td><td class="n"><span data-l="en">11.1%</span><span data-l="pt">11,1%</span></td><td class="n">2025–2025</td></tr></tbody></table></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="tool" aria-labelledby="tool-h">
+  <div class="wrap">
+    <p class="sec-label"><span class="no">02</span><span data-l="en">Tool</span><span data-l="pt">Ferramenta</span></p>
+    <div>
+      <h2 id="tool-h"><span data-l="en">A literature workbench on a fixed population.</span><span data-l="pt">Uma bancada de literatura sobre uma população fixa.</span></h2>
+      <p class="sec-intro" data-l="en">A local web interface and a command-line tool over the same snapshot. Every aggregate links back to the records behind it.</p>
+      <p class="sec-intro" data-l="pt">Uma interface web local e uma ferramenta de linha de comando sobre o mesmo snapshot. Todo agregado leva de volta aos registros que o sustentam.</p>
+      <div class="shots">
+        <figure>
+          <div class="frame"><img src="assets/screens/search-top4-llm.png" width="1280" height="720" loading="lazy" alt="Search page with ranked results for LLM in the Security top-4 scope"></div>
+          <figcaption data-l="en"><b>Ranked search</b>BM25 over titles and abstracts, with an explicit Security top-4 scope: ACM CCS, IEEE S&amp;P, USENIX Security and NDSS.</figcaption>
+          <figcaption data-l="pt"><b>Busca ranqueada</b>BM25 sobre títulos e resumos, com escopo explícito Security top-4: ACM CCS, IEEE S&amp;P, USENIX Security e NDSS.</figcaption>
+        </figure>
+        <figure>
+          <div class="frame"><img src="assets/screens/insights-llm-top4.png" width="828" height="326" loading="lazy" alt="Two charts: papers per year and share of the year's corpus for LLM in the Security top-4"></div>
+          <figcaption data-l="en"><b>Topic trends</b>How often a topic appears per year, in absolute counts and as a share of that year's corpus.</figcaption>
+          <figcaption data-l="pt"><b>Tendências de tema</b>Com que frequência um tema aparece por ano, em contagem absoluta e como fração do corpus daquele ano.</figcaption>
+        </figure>
+        <figure>
+          <div class="frame"><img src="assets/screens/researcher-radar-llm-top4.png" width="828" height="440" loading="lazy" alt="Researcher Radar with author trajectories for a topic"></div>
+          <figcaption data-l="en"><b>Researcher Radar</b>Exact-identity trajectories and direct coauthorship for a topic. Corpus observations, not measures of quality or impact.</figcaption>
+          <figcaption data-l="pt"><b>Researcher Radar</b>Trajetórias por identidade exata e coautoria direta para um tema. Observações do corpus, não medidas de qualidade ou impacto.</figcaption>
+        </figure>
+        <figure>
+          <div class="frame"><img src="assets/screens/evidence.png" width="1280" height="720" loading="lazy" alt="Evidence page showing snapshot identity and the manual abstract audit"></div>
+          <figcaption data-l="en"><b>Evidence and claim boundaries</b>What the snapshot verifies, and what needs a separate protocol, such as the manual abstract audit.</figcaption>
+          <figcaption data-l="pt"><b>Evidências e limites das afirmações</b>O que o snapshot verifica e o que exige um protocolo separado, como a auditoria manual de resumos.</figcaption>
+        </figure>
+      </div>
+      <div class="cli">
+        <h3><span data-l="en">The same operations from the command line</span><span data-l="pt">As mesmas operações pela linha de comando</span></h3>
+        <div class="code"><div class="code-bar"><span class="code-label"></span><button class="copy" type="button" data-copy><span data-l="en">Copy</span><span data-l="pt">Copiar</span></button></div><pre><code>python -m src.cli --profile security-20-v4 search --rank &quot;LLM security&quot; \
+  --tier-scope &quot;Security top-4&quot; --limit 20
+python -m src.cli --profile security-20-v4 export --format bibtex --tech &quot;fuzzing&quot; \
+  --tier-scope &quot;Security top-4&quot; -o fuzzing-tier1.bib</code></pre></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="findings" aria-labelledby="findings-h">
+  <div class="wrap">
+    <p class="sec-label"><span class="no">03</span><span data-l="en">Findings</span><span data-l="pt">Resultados</span></p>
+    <div>
+      <h2 id="findings-h"><span data-l="en">What a fixed denominator makes measurable.</span><span data-l="pt">O que um denominador fixo torna mensurável.</span></h2>
+      <p class="sec-intro" data-l="en">Two measurements from Paper A, taken on its May 2026 snapshot of 9,925 records. They are reproduced by that paper's release, not recomputed on the current corpus.</p>
+      <p class="sec-intro" data-l="pt">Duas medições do Artigo A, feitas sobre seu snapshot de maio de 2026, com 9.925 registros. Elas são reproduzidas pela versão daquele artigo, não recalculadas sobre o corpus atual.</p>
+      <div class="findings">
+        <div class="finding">
+          <div class="big"><span data-l="en">29.2%</span><span data-l="pt">29,2%</span></div>
+          <p data-l="en">of the 2,537 papers published at the four CORE A* security venues in 2024–2025 had a matching arXiv <code>cs.CR</code> preprint (742 papers).</p>
+          <p data-l="pt">dos 2.537 artigos publicados nos quatro veículos CORE A* de segurança em 2024–2025 tinham um preprint correspondente no arXiv <code>cs.CR</code> (742 artigos).</p>
+          <p class="muted" data-l="en">The preprint came a median of 154 days before the conference. The rate held between 28.4% and 31.1% across the four venues.</p>
+          <p class="muted" data-l="pt">O preprint veio, em mediana, 154 dias antes da conferência. A taxa ficou entre 28,4% e 31,1% nos quatro veículos.</p>
+        </div>
+        <div class="finding">
+          <div class="big"><span data-l="en">16.5×</span><span data-l="pt">16,5×</span></div>
+          <p data-l="en">relative risk for a triage filter over 5,185 <code>cs.CR</code> preprints from 2023: preprints with a coauthor already published in the top-4 later appeared there 15.9% of the time, against 0.97% for the rest.</p>
+          <p data-l="pt">de risco relativo para um filtro de triagem sobre 5.185 preprints <code>cs.CR</code> de 2023: preprints com um coautor já publicado no top-4 apareceram depois nele em 15,9% dos casos, contra 0,97% dos demais.</p>
+          <p class="muted" data-l="en">The filter reads 36% of the preprints and keeps 90.3% of those that later reached the top-4.</p>
+          <p class="muted" data-l="pt">O filtro lê 36% dos preprints e mantém 90,3% dos que depois chegaram ao top-4.</p>
+        </div>
+      </div>
+      <div class="ratio">
+        <h3><span data-l="en">16.5× or 2.5×? Same filter, two baselines.</span><span data-l="pt">16,5× ou 2,5×? Mesmo filtro, duas linhas de base.</span></h3>
+        <dl class="eq">
+          <dt><span data-l="en">16.5×</span><span data-l="pt">16,5×</span></dt>
+          <dd><span data-l="en">15.9% ÷ 0.97%</span><span data-l="pt">15,9% ÷ 0,97%</span></dd>
+          <dd class="why"><span data-l="en">flagged against unflagged preprints: relative risk</span><span data-l="pt">sinalizados contra não sinalizados: risco relativo</span></dd>
+          <dt><span data-l="en">2.5×</span><span data-l="pt">2,5×</span></dt>
+          <dd><span data-l="en">15.9% ÷ 6.4%</span><span data-l="pt">15,9% ÷ 6,4%</span></dd>
+          <dd class="why"><span data-l="en">flagged against all preprints: conventional lift</span><span data-l="pt">sinalizados contra todos os preprints: lift convencional</span></dd>
+        </dl>
+      </div>
+      <p class="provenance" data-l="en">A correlational triage signal, not a judgement of quality. The controls, the author-position variants and the replication on the 2022 cohort are in Table 5 of <a href="#paper-a">Paper A</a>.</p>
+      <p class="provenance" data-l="pt">Um sinal correlacional de triagem, não um juízo de qualidade. Os controles, as variantes por posição de autoria e a replicação na coorte de 2022 estão na Tabela 5 do <a href="#paper-a">Artigo A</a>.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="papers" aria-labelledby="papers-h">
+  <div class="wrap">
+    <p class="sec-label"><span class="no">04</span><span data-l="en">Papers</span><span data-l="pt">Artigos</span></p>
+    <div>
+      <h2 id="papers-h"><span data-l="en">Published evidence does not move.</span><span data-l="pt">Evidência publicada não se move.</span></h2>
+      <p class="sec-intro" data-l="en">The software evolves. Each paper stays bound to one repository, one release, one snapshot and one SHA-256, and its numbers are reproduced from that snapshot, never from whatever the current release ships.</p>
+      <p class="sec-intro" data-l="pt">O software evolui. Cada artigo fica preso a um repositório, uma versão, um snapshot e um SHA-256, e seus números são reproduzidos desse snapshot, nunca do que a versão atual traz.</p>
+      <ol class="chain" aria-label="Chain of evidence">
+        <li><span data-l="en">paper</span><span data-l="pt">artigo</span></li><li class="sep" aria-hidden="true">→</li>
+        <li><span data-l="en">repository</span><span data-l="pt">repositório</span></li><li class="sep" aria-hidden="true">→</li>
+        <li>release</li><li class="sep" aria-hidden="true">→</li>
+        <li>snapshot</li><li class="sep" aria-hidden="true">→</li>
+        <li>sha-256</li><li class="sep" aria-hidden="true">→</li>
+        <li><span data-l="en">command</span><span data-l="pt">comando</span></li>
+      </ol>
+      <div class="papers">
+        
+<article class="paper" id="paper-a">
+  <p class="kicker"><span data-l="en">Paper A · Main track, SBSeg 2026</span><span data-l="pt">Artigo A · Trilha principal, SBSeg 2026</span></p>
+  <h3>TopVenues: A Reproducible Corpus and Tooling Substrate for Cybersecurity Literature Reviews</h3>
+  <p class="venue">Anais do XXVI Simpósio Brasileiro de Cibersegurança (SBSeg 2026), <span data-l="en">pp.</span><span data-l="pt">p.</span> 1150–1165</p>
+  <p class="links"><a class="arrow" href="https://sol.sbc.org.br/index.php/sbseg/article/view/44350"><span data-l="en">Read on SOL</span><span data-l="pt">Ler no SOL</span></a>
+     <span class="doi">DOI <code>10.5753/sbseg.2026.29056</code></span></p>
+  <dl class="facts"><dt><span data-l="en">Repository</span><span data-l="pt">Repositório</span></dt><dd><a href="https://github.com/sidneibarbieri/topVenues"><code>sidneibarbieri/topVenues</code></a></dd><dt><span data-l="en">Release</span><span data-l="pt">Versão</span></dt><dd><a href="https://github.com/sidneibarbieri/topVenues/releases/tag/sbseg2026-camera-ready"><code>sbseg2026-camera-ready</code></a></dd><dt><span data-l="en">Snapshot</span><span data-l="pt">Snapshot</span></dt><dd><span data-l="en">May 2026 · 9,925 records · 11 venues</span><span data-l="pt">maio de 2026 · 9.925 registros · 11 veículos</span></dd><dt>SHA-256</dt><dd><code class="hash">0f4dbaa97d0cf39abd2340adb3280643df090b5de9cd1a29bff39a0b53ef64cd</code></dd><dt><span data-l="en">Tests</span><span data-l="pt">Testes</span></dt><dd><span data-l="en">252 tests</span><span data-l="pt">252 testes</span></dd></dl>
+  <div class="code"><div class="code-bar"><span class="code-label"><span data-l="en">Reproduce</span><span data-l="pt">Reproduzir</span></span><button class="copy" type="button" data-copy><span data-l="en">Copy</span><span data-l="pt">Copiar</span></button></div><pre><code>git clone https://github.com/sidneibarbieri/topVenues
+cd topVenues
+bash reproduce.sh</code></pre></div>
+</article>
+        
+<article class="paper" id="paper-b">
+  <p class="kicker"><span data-l="en">Paper B · Tools track, SBSeg 2026</span><span data-l="pt">Artigo B · Salão de Ferramentas, SBSeg 2026</span></p>
+  <h3>TopVenues: An Executable Corpus and Research Tool for Cybersecurity Literature Reviews</h3>
+  <p class="venue">Anais Estendidos do XXVI Simpósio Brasileiro de Cibersegurança (SBSeg 2026), <span data-l="en">pp.</span><span data-l="pt">p.</span> 234–241</p>
+  <p class="links"><a class="arrow" href="https://sol.sbc.org.br/index.php/sbseg_estendido/article/view/44470"><span data-l="en">Read on SOL</span><span data-l="pt">Ler no SOL</span></a>
+     <span class="doi">DOI <code>10.5753/sbseg_estendido.2026.33733</code></span></p>
+  <dl class="facts"><dt><span data-l="en">Repository</span><span data-l="pt">Repositório</span></dt><dd><a href="https://github.com/sidneibarbieri/topvenues-tool"><code>sidneibarbieri/topvenues-tool</code></a></dd><dt><span data-l="en">Release</span><span data-l="pt">Versão</span></dt><dd><a href="https://github.com/sidneibarbieri/topvenues-tool/releases/tag/sbseg2026-sf-submission-r1"><code>sbseg2026-sf-submission-r1</code></a></dd><dt><span data-l="en">Profile</span><span data-l="pt">Perfil</span></dt><dd><code>security-20</code></dd><dt><span data-l="en">Snapshot</span><span data-l="pt">Snapshot</span></dt><dd><span data-l="en">20,305 records · 20 venues · 2017–2026</span><span data-l="pt">20.305 registros · 20 veículos · 2017–2026</span></dd><dt>SHA-256</dt><dd><code class="hash">5a35bd6e3ec6845a0fde4cc3d6aa05b1db04e511cb39e783eeaee2cea7493b08</code></dd></dl>
+  <div class="code"><div class="code-bar"><span class="code-label"><span data-l="en">Reproduce</span><span data-l="pt">Reproduzir</span></span><button class="copy" type="button" data-copy><span data-l="en">Copy</span><span data-l="pt">Copiar</span></button></div><pre><code>git clone https://github.com/sidneibarbieri/topvenues-tool
+cd topvenues-tool
+bash reproduce.sh --profile security-20</code></pre></div>
+</article>
+      </div>
+
+      <div class="current">
+        <p class="kicker"><span data-l="en">Current release · not a paper</span><span data-l="pt">Versão atual · não é um artigo</span></p>
+        <h3><span data-l="en">The corpus TopVenues ships today</span><span data-l="pt">O corpus que o TopVenues distribui hoje</span></h3>
+        <p data-l="en"><code>security-20-v4</code> succeeds <code>security-20</code>; it does not correct Paper B. Exact-resource deduplication and a declared 2019–2026 window make it a different population, with its own identity.</p>
+        <p data-l="pt"><code>security-20-v4</code> sucede o <code>security-20</code>; não corrige o Artigo B. A deduplicação por recurso exato e a janela declarada de 2019–2026 fazem dele outra população, com identidade própria.</p>
+        <dl class="facts">
+          <dt><span data-l="en">Repository</span><span data-l="pt">Repositório</span></dt><dd><a href="https://github.com/sidneibarbieri/topvenues-tool"><code>sidneibarbieri/topvenues-tool</code></a></dd>
+          <dt><span data-l="en">Profile</span><span data-l="pt">Perfil</span></dt><dd><code>security-20-v4</code> · <span data-l="en">14,859 records · 20 venues · 2019–2026</span><span data-l="pt">14.859 registros · 20 veículos · 2019–2026</span></dd>
+          <dt>SHA-256</dt><dd><code class="hash">bcb762c1c9b1f8ce6f075a8c1a23d68310caec853b0cc8ce3f42931e43c370c5</code></dd>
+          <dt>Parquet</dt><dd><a href="https://huggingface.co/datasets/sidneibarbieri/topvenues"><code>sidneibarbieri/topvenues</code></a> <span class="muted">· Hugging Face</span></dd>
+        </dl>
+      </div>
+
+      <div class="aside">
+        <div>
+          <h3><span data-l="en">Why two repositories</span><span data-l="pt">Por que dois repositórios</span></h3>
+          <p data-l="en"><code>topVenues</code> is the frozen artifact of Paper A; its main branch still reproduces that paper exactly. <code>topvenues-tool</code> is where TopVenues is developed, and it also carries the snapshot Paper B cites. Merging them would break a command already in print, so neither moves. This page is the front door to both.</p>
+          <p data-l="pt"><code>topVenues</code> é o artefato congelado do Artigo A; sua branch principal ainda reproduz aquele artigo exatamente. <code>topvenues-tool</code> é onde o TopVenues é desenvolvido, e também carrega o snapshot que o Artigo B cita. Uni-los quebraria um comando já impresso, então nenhum dos dois se move. Esta página é a porta de entrada para ambos.</p>
+        </div>
+        <div>
+          <h3><span data-l="en">About the DOIs</span><span data-l="pt">Sobre os DOIs</span></h3>
+          <p data-l="en">SBC assigned both DOIs in the proceedings metadata, but they are not yet registered with Crossref, so <code>doi.org</code> does not resolve them. The SOL links are the working ones.</p>
+          <p data-l="pt">A SBC atribuiu os dois DOIs nos metadados dos anais, mas eles ainda não foram registrados no Crossref, então o <code>doi.org</code> não os resolve. Os links do SOL são os que funcionam.</p>
+          <p data-l="en">The widest exploratory corpus is on <a href="https://huggingface.co/datasets/sidneibarbieri/topvenues-complete">Hugging Face</a>; it is not the denominator of any paper.</p>
+          <p data-l="pt">O corpus exploratório mais amplo está no <a href="https://huggingface.co/datasets/sidneibarbieri/topvenues-complete">Hugging Face</a>; ele não é o denominador de nenhum artigo.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="start" aria-labelledby="start-h">
+  <div class="wrap">
+    <p class="sec-label"><span class="no">05</span><span data-l="en">Start</span><span data-l="pt">Começar</span></p>
+    <div>
+      <h2 id="start-h"><span data-l="en">One command, then a local interface.</span><span data-l="pt">Um comando, depois uma interface local.</span></h2>
+      <div class="start">
+        <div class="tabs">
+          <div role="tablist" aria-label="Operating system">
+            <button role="tab" type="button" id="tab-unix" aria-controls="pane-unix" aria-selected="true">macOS · Linux</button>
+            <button role="tab" type="button" id="tab-win" aria-controls="pane-win" aria-selected="false" tabindex="-1">Windows</button>
+          </div>
+          <div role="tabpanel" id="pane-unix" aria-labelledby="tab-unix">
+            <p class="req" data-l="en">Python 3.11–3.14, Git and Bash. No API key, GPU or institutional access.</p>
+            <p class="req" data-l="pt">Python 3.11–3.14, Git e Bash. Sem chave de API, GPU ou acesso institucional.</p>
+            <div class="code"><div class="code-bar"><span class="code-label"></span><button class="copy" type="button" data-copy><span data-l="en">Copy</span><span data-l="pt">Copiar</span></button></div><pre><code>git clone --depth 1 --branch v1.10.0 https://github.com/sidneibarbieri/topvenues-tool.git
+cd topvenues-tool
+bash reproduce.sh --profile security-20-v4</code></pre></div>
+            <h3><span data-l="en">Then open the interface</span><span data-l="pt">Depois, abra a interface</span></h3>
+            <div class="code"><div class="code-bar"><span class="code-label"></span><button class="copy" type="button" data-copy><span data-l="en">Copy</span><span data-l="pt">Copiar</span></button></div><pre><code>source .venv/bin/activate
+python -m streamlit run web/app.py</code></pre></div>
+          </div>
+          <div role="tabpanel" id="pane-win" aria-labelledby="tab-win" hidden>
+            <p class="req" data-l="en">Python 3.11–3.14 with the <code>py</code> launcher, Git and PowerShell.</p>
+            <p class="req" data-l="pt">Python 3.11–3.14 com o launcher <code>py</code>, Git e PowerShell.</p>
+            <div class="code"><div class="code-bar"><span class="code-label"></span><button class="copy" type="button" data-copy><span data-l="en">Copy</span><span data-l="pt">Copiar</span></button></div><pre><code>git clone --depth 1 --branch v1.10.0 https://github.com/sidneibarbieri/topvenues-tool.git
+cd topvenues-tool
+powershell -ExecutionPolicy Bypass -File .\reproduce.ps1 -Profile security-20-v4</code></pre></div>
+            <h3><span data-l="en">Then open the interface</span><span data-l="pt">Depois, abra a interface</span></h3>
+            <div class="code"><div class="code-bar"><span class="code-label"></span><button class="copy" type="button" data-copy><span data-l="en">Copy</span><span data-l="pt">Copiar</span></button></div><pre><code>.\.venv\Scripts\Activate.ps1
+python -m streamlit run web/app.py</code></pre></div>
+          </div>
+        </div>
+        <div class="data">
+          <h3><span data-l="en">Only the data</span><span data-l="pt">Só os dados</span></h3>
+          <p data-l="en">The same snapshot as a Parquet export on Hugging Face, with the same SHA-256 recorded on its card.</p>
+          <p data-l="pt">O mesmo snapshot como exportação Parquet no Hugging Face, com o mesmo SHA-256 registrado no cartão.</p>
+          <div class="code"><div class="code-bar"><span class="code-label"></span><button class="copy" type="button" data-copy><span data-l="en">Copy</span><span data-l="pt">Copiar</span></button></div><pre><code>from datasets import load_dataset
+
+corpus = load_dataset(&quot;sidneibarbieri/topvenues&quot;, split=&quot;train&quot;)
+security = corpus.filter(lambda paper: paper[&quot;area&quot;] == &quot;security&quot;)</code></pre></div>
+          <p class="small muted" style="margin-top:14px" data-l="en">Code: MIT. Metadata and BibTeX: DBLP, CC0. Abstracts remain under their publishers' terms.</p>
+          <p class="small muted" style="margin-top:14px" data-l="pt">Código: MIT. Metadados e BibTeX: DBLP, CC0. Os resumos seguem os termos de suas editoras.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="demo" aria-labelledby="demo-h">
+  <div class="wrap">
+    <p class="sec-label"><span class="no">06</span><span data-l="en">Demo</span><span data-l="pt">Demo</span></p>
+    <div>
+      <h2 id="demo-h"><span data-l="en">The tool end to end, in under eight minutes.</span><span data-l="pt">A ferramenta de ponta a ponta, em menos de oito minutos.</span></h2>
+      <p class="sec-intro" data-l="en">Installation and offline verification, search and export, the Insights page and the audit evidence. Narration in English, captions in English and Brazilian Portuguese. Recorded with v1.5.9, before the current visual identity.</p>
+      <p class="sec-intro" data-l="pt">Instalação e verificação offline, busca e exportação, a página Insights e as evidências de auditoria. Narração em inglês, legendas em inglês e português do Brasil. Gravado com a v1.5.9, antes da identidade visual atual.</p>
+      <div class="video">
+        <video controls preload="none" playsinline crossorigin="anonymous" poster="assets/demo-poster.jpg" width="1280" height="720">
+          <source src="https://huggingface.co/datasets/sidneibarbieri/topvenues/resolve/main/assets/demo/topvenues-demo-v1.5.9.mp4" type="video/mp4">
+          <track kind="captions" src="https://huggingface.co/datasets/sidneibarbieri/topvenues/resolve/main/assets/demo/topvenues-demo-v1.5.9.en.vtt" srclang="en" label="English" data-track="en">
+          <track kind="captions" src="https://huggingface.co/datasets/sidneibarbieri/topvenues/resolve/main/assets/demo/topvenues-demo-v1.5.9.pt-BR.vtt" srclang="pt-BR" label="Português (Brasil)" data-track="pt">
+        </video>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="cite" aria-labelledby="cite-h">
+  <div class="wrap">
+    <p class="sec-label"><span class="no">07</span><span data-l="en">Cite</span><span data-l="pt">Citar</span></p>
+    <div>
+      <h2 id="cite-h"><span data-l="en">Cite the paper whose numbers you use.</span><span data-l="pt">Cite o artigo cujos números você usa.</span></h2>
+      <p class="sec-intro" data-l="en">Paper A for the corpus method and the measurements; Paper B for the tool. When you use the current release, also name the profile and its SHA-256.</p>
+      <p class="sec-intro" data-l="pt">O Artigo A para o método do corpus e as medições; o Artigo B para a ferramenta. Ao usar a versão atual, informe também o perfil e seu SHA-256.</p>
+      <div class="cite">
+        <div class="code"><div class="code-bar"><span class="code-label"><span data-l="en">Paper A</span><span data-l="pt">Artigo A</span></span><button class="copy" type="button" data-copy><span data-l="en">Copy</span><span data-l="pt">Copiar</span></button></div><pre><code>@inproceedings{barbieri2026topvenues,
+  author    = {Sidnei Barbieri and {\&#x27;A}gney Lopes Roth Ferraz and Louren{\c{c}}o Alves {Pereira J{\&#x27;u}nior}},
+  title     = {{TopVenues}: A Reproducible Corpus and Tooling Substrate for Cybersecurity Literature Reviews},
+  booktitle = {Anais do XXVI Simp{\&#x27;o}sio Brasileiro de Ciberseguran{\c{c}}a (SBSeg 2026)},
+  pages     = {1150--1165},
+  year      = {2026},
+  publisher = {Sociedade Brasileira de Computa{\c{c}}{\~a}o},
+  address   = {Porto Alegre, RS, Brasil},
+  doi       = {10.5753/sbseg.2026.29056},
+  url       = {https://sol.sbc.org.br/index.php/sbseg/article/view/44350}
+}</code></pre></div>
+        <div class="code"><div class="code-bar"><span class="code-label"><span data-l="en">Paper B</span><span data-l="pt">Artigo B</span></span><button class="copy" type="button" data-copy><span data-l="en">Copy</span><span data-l="pt">Copiar</span></button></div><pre><code>@inproceedings{barbieri2026topvenuestool,
+  author    = {Sidnei Barbieri and {\&#x27;A}gney Lopes Roth Ferraz and Louren{\c{c}}o Alves {Pereira J{\&#x27;u}nior}},
+  title     = {{TopVenues}: An Executable Corpus and Research Tool for Cybersecurity Literature Reviews},
+  booktitle = {Anais Estendidos do XXVI Simp{\&#x27;o}sio Brasileiro de Ciberseguran{\c{c}}a (SBSeg 2026)},
+  pages     = {234--241},
+  year      = {2026},
+  publisher = {Sociedade Brasileira de Computa{\c{c}}{\~a}o},
+  address   = {Porto Alegre, RS, Brasil},
+  doi       = {10.5753/sbseg_estendido.2026.33733},
+  url       = {https://sol.sbc.org.br/index.php/sbseg_estendido/article/view/44470}
+}</code></pre></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <svg class="mk" viewBox="0 0 64 64" aria-hidden="true">
+  <line x1="10" y1="11" x2="32" y2="50" class="bis" stroke-width="6.4" stroke-linecap="round"/>
+  <line x1="54" y1="11" x2="32" y2="50" class="bis" stroke-width="6.4" stroke-linecap="round"/>
+  <line x1="32" y1="15" x2="32" y2="50" class="bbs" stroke-width="3.4" stroke-linecap="round"/>
+  <circle cx="32" cy="50" r="5.4" class="bb"/>
+</svg>
+      <p><strong style="color:var(--fg)">TopVenues</strong></p>
+      <p>Sidnei Barbieri, Ágney Lopes Roth Ferraz, Lourenço Alves Pereira Júnior</p>
+      <p><span data-l="en">Computer Science Division, Instituto Tecnológico de Aeronáutica (ITA), São José dos Campos, Brazil</span><span data-l="pt">Divisão de Ciência da Computação, Instituto Tecnológico de Aeronáutica (ITA), São José dos Campos, Brasil</span></p>
+    </div>
+    <div>
+      <h2><span data-l="en">Artifacts</span><span data-l="pt">Artefatos</span></h2>
+      <ul>
+        <li><a href="https://github.com/sidneibarbieri/topvenues-tool">topvenues-tool</a> <span data-l="en">· current tool</span><span data-l="pt">· ferramenta atual</span></li>
+        <li><a href="https://github.com/sidneibarbieri/topVenues">topVenues</a> <span data-l="en">· Paper A artifact</span><span data-l="pt">· artefato do Artigo A</span></li>
+        <li><a href="https://huggingface.co/datasets/sidneibarbieri/topvenues">Hugging Face · topvenues</a></li>
+        <li><a href="https://github.com/sidneibarbieri/topvenues-tool/blob/main/docs/PAPERS.md">PAPERS.md</a></li>
+        <li><a href="https://github.com/sidneibarbieri/topvenues-tool/issues"><span data-l="en">Issues and questions</span><span data-l="pt">Problemas e dúvidas</span></a></li>
+      </ul>
+    </div>
+    <div>
+      <h2><span data-l="en">This page</span><span data-l="pt">Esta página</span></h2>
+      <p data-l="en">Sets no cookies and loads nothing from third parties until you play the video, which streams from Hugging Face.</p>
+      <p data-l="pt">Não usa cookies e não carrega nada de terceiros até você iniciar o vídeo, que vem do Hugging Face.</p>
+      <p data-l="en">Code MIT · Inter typeface, SIL Open Font License.</p>
+      <p data-l="pt">Código MIT · fonte Inter, SIL Open Font License.</p>
+    </div>
+    <p class="stamp"><span data-l="en">Built from</span><span data-l="pt">Gerado a partir de</span> security-20-v4 · v1.10.0 · 0c7648b · 2026-09-21</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+  var d = document.documentElement;
+
+  function save(key, value) { try { localStorage.setItem(key, value); } catch (e) {} }
+
+  function applyLang(lang) {
+    d.setAttribute("data-lang", lang);
+    d.lang = lang === "pt" ? "pt-BR" : "en";
+    document.title = d.getAttribute("data-title-" + lang);
+    var meta = document.querySelector('meta[name="description"]');
+    if (meta) meta.setAttribute("content", d.getAttribute("data-desc-" + lang));
+    document.querySelectorAll("[data-set-lang]").forEach(function (b) {
+      b.setAttribute("aria-pressed", String(b.getAttribute("data-set-lang") === lang));
+    });
+    document.querySelectorAll("[data-label-" + lang + "]").forEach(function (el) {
+      el.setAttribute("aria-label", el.getAttribute("data-label-" + lang));
+    });
+    document.querySelectorAll("video").forEach(function (v) {
+      Array.prototype.forEach.call(v.textTracks, function (t) {
+        t.mode = (t.language.indexOf(lang) === 0) ? "showing" : "disabled";
+      });
+    });
+  }
+
+  document.querySelectorAll("[data-set-lang]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var lang = b.getAttribute("data-set-lang");
+      save("tv-lang", lang);
+      applyLang(lang);
+    });
+  });
+  applyLang(d.getAttribute("data-lang") || "en");
+
+  var toggle = document.querySelector("[data-theme-toggle]");
+  if (toggle) toggle.addEventListener("click", function () {
+    var current = d.getAttribute("data-theme") ||
+      (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    var next = current === "dark" ? "light" : "dark";
+    d.setAttribute("data-theme", next);
+    save("tv-theme", next);
+  });
+
+  function copyText(text) {
+    if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
+    return new Promise(function (resolve, reject) {
+      var ta = document.createElement("textarea");
+      ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand("copy") ? resolve() : reject(); } catch (e) { reject(e); }
+      document.body.removeChild(ta);
+    });
+  }
+  document.querySelectorAll("[data-copy]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var code = btn.parentElement.querySelector("pre code");
+      copyText(code.textContent).then(function () {
+        btn.classList.add("ok");
+        var original = btn.innerHTML;
+        btn.innerHTML = '<span data-l="en">Copied</span><span data-l="pt">Copiado</span>';
+        setTimeout(function () { btn.classList.remove("ok"); btn.innerHTML = original; }, 1600);
+      });
+    });
+  });
+
+  document.querySelectorAll(".tabs").forEach(function (group) {
+    var tabs = Array.prototype.slice.call(group.querySelectorAll('[role="tab"]'));
+    function select(tab) {
+      tabs.forEach(function (t) {
+        var on = t === tab;
+        t.setAttribute("aria-selected", String(on));
+        t.tabIndex = on ? 0 : -1;
+        document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
+      });
+    }
+    tabs.forEach(function (t, i) {
+      t.addEventListener("click", function () { select(t); });
+      t.addEventListener("keydown", function (e) {
+        var k = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
+        if (!k) return;
+        var next = tabs[(i + k + tabs.length) % tabs.length];
+        select(next); next.focus(); e.preventDefault();
+      });
+    });
+    if (/Win/.test(navigator.platform || navigator.userAgent)) select(tabs[tabs.length - 1]);
+  });
+})();
+
+</script>
+</body>
+</html>
