@@ -1,10 +1,17 @@
 """Configuration management with YAML support."""
 
+import os
 from pathlib import Path
 
 import yaml
 
 from .models import Configuration
+from .profiles import (
+    PROFILE_ENV_VAR,
+    PROJECT_ROOT,
+    profile_config_path,
+    select_profile_id,
+)
 
 
 class ConfigManager:
@@ -50,8 +57,32 @@ _config_manager: ConfigManager | None = None
 def get_config_manager() -> ConfigManager:
     global _config_manager
     if _config_manager is None:
-        _config_manager = ConfigManager()
+        requested_profile = os.getenv(PROFILE_ENV_VAR)
+        config_path = (
+            profile_config_path(select_profile_id(requested_profile), PROJECT_ROOT)
+            if requested_profile
+            else PROJECT_ROOT / "config.yaml"
+        )
+        if not config_path.is_file():
+            raise FileNotFoundError(config_path)
+        _config_manager = ConfigManager(config_path)
     return _config_manager
+
+
+def set_configuration_path(config_path: Path) -> None:
+    """Select one configuration for the current process before collectors start."""
+    global _config_manager
+    _config_manager = ConfigManager(Path(config_path))
+
+
+def activate_profile(profile_id: str | None = None, root: Path = PROJECT_ROOT) -> str:
+    """Select a named profile for subsequent configuration loads."""
+    selected = select_profile_id(profile_id)
+    config_path = profile_config_path(selected, root)
+    if not config_path.is_file():
+        raise FileNotFoundError(config_path)
+    set_configuration_path(config_path)
+    return selected
 
 
 def load_configuration(config_path: Path | None = None) -> Configuration:

@@ -94,6 +94,7 @@ class _FakeCollector:
 
     def get_random_user_agent(self) -> str:
         import random
+
         return random.choice(self.config.user_agents)
 
     def is_acm_blocked(self) -> bool:
@@ -114,7 +115,7 @@ async def _verify_paper(paper: dict) -> dict:
     extractor = get_extractor_for_event(event)
     collector = _FakeCollector()
 
-    print(f"\n{'─'*60}")
+    print(f"\n{'─' * 60}")
     print(f"Event  : {event}")
     print(f"Title  : {paper['title'][:70]}")
     print(f"EE     : {paper['ee']}")
@@ -170,20 +171,24 @@ async def main() -> None:
         results.append(result)
         await asyncio.sleep(2)  # be polite to servers
 
-    print(f"\n{'='*60}")
+    print(f"\n{'=' * 60}")
     print("Summary")
-    print(f"{'='*60}")
+    print(f"{'=' * 60}")
     ok = sum(1 for r in results if r["extracted"])
     print(f"Extracted: {ok}/{len(results)}")
     for r in results:
         status = "✓" if r["extracted"] else "✗"
-        print(f"  {status} {r['event']:<35} {r['extractor']:<20} {r['length']:>5} chars  {r['comparison']}")
+        print(
+            f"  {status} {r['event']:<35} {r['extractor']:<20} {r['length']:>5} chars  {r['comparison']}"
+        )
 
     # Write results CSV
     out = Path("data/log/extractor_verification.csv")
     out.parent.mkdir(parents=True, exist_ok=True)
     with open(out, "w", newline="", encoding="utf-8") as f:
-        w = csv.DictWriter(f, fieldnames=["event", "extractor", "extracted", "length", "comparison"])
+        w = csv.DictWriter(
+            f, fieldnames=["event", "extractor", "extracted", "length", "comparison"]
+        )
         w.writeheader()
         w.writerows(results)
     print(f"\nResults saved to {out}")

@@ -1,14 +1,22 @@
 """SQLite database layer for complex paper queries."""
 
 import gzip
+import hashlib
 import logging
+import os
 import shutil
 import sqlite3
+import tempfile
+import time
+from contextlib import contextmanager, suppress
 from pathlib import Path
 
 import pandas as pd
 
+from src.sql_patterns import LIKE_ESCAPE_CLAUSE, contains_pattern
+
 from .models import AbstractImportResult, Paper
+from .sqlite_connection import managed_sqlite_connection
 
 MIN_ABSTRACT_LENGTH = 50
 
@@ -19,10 +27,42 @@ class CorpusNotFoundError(RuntimeError):
     """Raised when a read-only consumer finds no corpus to open."""
 
 
+class CorpusBusyError(RuntimeError):
+    """Raised when a running process prevents a safe snapshot replacement."""
+
+
+@contextmanager
+def _materialization_lock(db_path: Path, *, timeout_seconds: float = 30.0):
+    """Serialize snapshot materialization using an atomic, cross-platform lock."""
+    db_path.parent.mkdir(parents=True, exist_ok=True)
+    lock_path = db_path.with_name(f"{db_path.name}.materializing.lock")
+    deadline = time.monotonic() + timeout_seconds
+    descriptor: int | None = None
+    while descriptor is None:
+        try:
+            descriptor = os.open(lock_path, os.O_CREAT | os.O_EXCL | os.O_WRONLY)
+            os.write(descriptor, str(os.getpid()).encode("ascii"))
+        except FileExistsError:
+            if time.monotonic() >= deadline:
+                raise CorpusBusyError(
+                    f"Timed out waiting for {lock_path.name}. Another TopVenues "
+                    "process may be materializing the corpus; wait for it to finish "
+                    "and retry."
+                ) from None
+            time.sleep(0.1)
+    try:
+        yield
+    finally:
+        if descriptor is not None:
+            os.close(descriptor)
+        with suppress(FileNotFoundError):
+            lock_path.unlink()
+
+
 def _has_records(database: Path) -> bool:
     if not database.exists():
         return False
-    with sqlite3.connect(database) as conn:
+    with managed_sqlite_connection(database) as conn:
         has_table = conn.execute(
             "SELECT 1 FROM sqlite_master WHERE type='table' AND name='papers'"
         ).fetchone()
@@ -49,32 +89,54 @@ def require_corpus(db_path: Path, snapshot_path: Path | None = None) -> None:
     raise CorpusNotFoundError(
         f"No corpus found: {database} holds no records and {snapshot} is missing. "
         "Run this from the artifact root directory, or run 'bash reproduce.sh' "
-        "to materialize the corpus first."
+        "to materialise the corpus first."
     )
 
 
-def bootstrap_from_gzipped_snapshot(db_path: Path) -> None:
-    """Materialize ``papers.db`` from a tracked ``papers.db.gz`` snapshot.
+def bootstrap_from_gzipped_snapshot(
+    db_path: Path,
+    snapshot_path: Path | None = None,
+) -> None:
+    """Materialise ``papers.db`` from a tracked ``papers.db.gz`` snapshot.
 
     Called on every :class:`DatabaseManager` startup. The behavior when both
     files exist is delegated to :func:`should_refresh_from_snapshot`, which
     implements lineage-tracked auto-refresh: pure readers always get the
     newest upstream data; users with local modifications keep their work.
     """
-    gz_path = db_path.with_suffix(db_path.suffix + ".gz")
+    gz_path = (
+        Path(snapshot_path)
+        if snapshot_path is not None
+        else db_path.with_suffix(db_path.suffix + ".gz")
+    )
     if not gz_path.exists():
         return
 
-    if not db_path.exists():
-        _decompress(gz_path, db_path)
-        _write_sync_marker(db_path, gz_path)
-        logger.info("Bootstrapped %s from %s", db_path.name, gz_path.name)
-        return
+    with _materialization_lock(db_path):
+        if not db_path.exists():
+            _decompress_atomically(gz_path, db_path)
+            _write_sync_marker(db_path, gz_path)
+            logger.info("Bootstrapped %s from %s", db_path.name, gz_path.name)
+            return
+        if should_refresh_from_snapshot(db_path, gz_path):
+            _decompress_atomically(gz_path, db_path)
+            _write_sync_marker(db_path, gz_path)
+            logger.info("Auto-refreshed %s from updated %s", db_path.name, gz_path.name)
 
-    if should_refresh_from_snapshot(db_path, gz_path):
-        _decompress(gz_path, db_path)
-        _write_sync_marker(db_path, gz_path)
-        logger.info("Auto-refreshed %s from updated %s", db_path.name, gz_path.name)
+
+def refresh_from_gzipped_snapshot(db_path: Path, snapshot_path: Path) -> None:
+    """Replace a disposable database atomically from a known snapshot."""
+    if not snapshot_path.exists():
+        raise FileNotFoundError(snapshot_path)
+    with _materialization_lock(db_path):
+        try:
+            _decompress_atomically(snapshot_path, db_path)
+        except PermissionError as error:
+            raise CorpusBusyError(
+                f"Cannot refresh {db_path.name} because it is open. Stop the "
+                "TopVenues Streamlit app (or any process using this corpus), then retry."
+            ) from error
+        _write_sync_marker(db_path, snapshot_path)
 
 
 def should_refresh_from_snapshot(db_path: Path, gz_path: Path) -> bool:
@@ -110,14 +172,25 @@ def should_refresh_from_snapshot(db_path: Path, gz_path: Path) -> bool:
         "%s and %s have both changed since the last sync. Your local DB has "
         "unpublished modifications. Run `python -m src.cli refresh-db` to "
         "discard them, or `python -m src.cli write-snapshot` to publish.",
-        gz_path.name, db_path.name,
+        gz_path.name,
+        db_path.name,
     )
     return False
 
 
-def _decompress(gz_path: Path, db_path: Path) -> None:
-    with gzip.open(gz_path, "rb") as src, db_path.open("wb") as dst:
-        shutil.copyfileobj(src, dst, length=1 << 20)
+def _decompress_atomically(gz_path: Path, db_path: Path) -> None:
+    """Write a candidate beside the DB, then atomically replace it."""
+    descriptor, temporary_name = tempfile.mkstemp(
+        prefix=f".{db_path.name}.", suffix=".tmp", dir=db_path.parent
+    )
+    temporary_path = Path(temporary_name)
+    try:
+        with os.fdopen(descriptor, "wb") as dst, gzip.open(gz_path, "rb") as src:
+            shutil.copyfileobj(src, dst, length=1 << 20)
+        os.replace(temporary_path, db_path)
+    finally:
+        with suppress(FileNotFoundError):
+            temporary_path.unlink()
 
 
 def write_gzipped_snapshot(db_path: Path) -> Path:
@@ -139,9 +212,22 @@ def _marker_path(db_path: Path) -> Path:
 
 
 def _file_fingerprint(path: Path) -> str:
-    """Cheap identity fingerprint: file size + modification time (ns)."""
-    st = path.stat()
-    return f"{st.st_size}-{st.st_mtime_ns}"
+    """Content identity: file size plus the SHA-256 of its bytes.
+
+    Size and modification time are cheaper, but they are not identity. A local
+    edit that leaves the file the same size and lands in the same timestamp tick
+    as the last sync produces the same pair, and the snapshot then overwrites
+    work this policy exists to protect. Filesystems differ in how finely they
+    record mtime -- container overlay filesystems are coarser than APFS -- so
+    the collision is reachable in practice, not only in theory.
+
+    Hashing 232 MB takes about 0.09 s, and this runs once per bootstrap.
+    """
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for block in iter(lambda: handle.read(1 << 20), b""):
+            digest.update(block)
+    return f"{path.stat().st_size}-{digest.hexdigest()}"
 
 
 def _read_sync_marker(db_path: Path) -> tuple[str, str] | None:
@@ -165,14 +251,19 @@ def _write_sync_marker(db_path: Path, gz_path: Path) -> None:
 class DatabaseManager:
     """Manages an SQLite database of papers, supporting full-text search and export."""
 
-    def __init__(self, db_path: Path):
+    def __init__(self, db_path: Path, snapshot_path: Path | None = None):
         self.db_path = Path(db_path)
+        self.snapshot_path = (
+            Path(snapshot_path)
+            if snapshot_path is not None
+            else self.db_path.with_suffix(self.db_path.suffix + ".gz")
+        )
         self.db_path.parent.mkdir(parents=True, exist_ok=True)
-        bootstrap_from_gzipped_snapshot(self.db_path)
+        bootstrap_from_gzipped_snapshot(self.db_path, self.snapshot_path)
         self._init_schema()
 
     def _init_schema(self) -> None:
-        with sqlite3.connect(self.db_path) as conn:
+        with managed_sqlite_connection(self.db_path) as conn:
             conn.execute("""
                 CREATE TABLE IF NOT EXISTS papers (
                     score REAL,
@@ -248,13 +339,13 @@ class DatabaseManager:
 
     def upsert_paper(self, paper: Paper) -> None:
         """Insert or update a single paper, preserving any existing abstract."""
-        with sqlite3.connect(self.db_path) as conn:
+        with managed_sqlite_connection(self.db_path) as conn:
             conn.execute(self._UPSERT_SQL, self._paper_row(paper))
 
     def upsert_papers(self, papers: list[Paper]) -> int:
         """Insert or update papers in a single bulk transaction, preserving existing abstracts."""
         rows = [self._paper_row(p) for p in papers]
-        with sqlite3.connect(self.db_path) as conn:
+        with managed_sqlite_connection(self.db_path) as conn:
             conn.executemany(self._UPSERT_SQL, rows)
         return len(rows)
 
@@ -279,31 +370,31 @@ class DatabaseManager:
             if not title or not pd.notna(year_raw):
                 continue
             paper_type_raw = str(row.get("Type", "")).lower() if pd.notna(row.get("Type")) else ""
-            papers.append(Paper(
-                score=row.get("Score") if pd.notna(row.get("Score")) else None,
-                paper_id=str(row.get("ID", "")) if pd.notna(row.get("ID")) else "",
-                authors=row.get("Authors") if pd.notna(row.get("Authors")) else None,
-                title=title,
-                venue=row.get("Venue") if pd.notna(row.get("Venue")) else None,
-                pages=row.get("Pages") if pd.notna(row.get("Pages")) else None,
-                year=int(year_raw),
-                paper_type=self._PAPER_TYPE_MAP.get(paper_type_raw, "unknown"),
-                access=row.get("Access") if pd.notna(row.get("Access")) else None,
-                key=row.get("Key") if pd.notna(row.get("Key")) else None,
-                ee=row.get("EE") if pd.notna(row.get("EE")) else None,
-                url=row.get("URL") if pd.notna(row.get("URL")) else None,
-                event=row.get("Event") if pd.notna(row.get("Event")) else None,
-                abstract=row.get("Abstract") if pd.notna(row.get("Abstract")) else None,
-            ))
+            papers.append(
+                Paper(
+                    score=row.get("Score") if pd.notna(row.get("Score")) else None,
+                    paper_id=str(row.get("ID", "")) if pd.notna(row.get("ID")) else "",
+                    authors=row.get("Authors") if pd.notna(row.get("Authors")) else None,
+                    title=title,
+                    venue=row.get("Venue") if pd.notna(row.get("Venue")) else None,
+                    pages=row.get("Pages") if pd.notna(row.get("Pages")) else None,
+                    year=int(year_raw),
+                    paper_type=self._PAPER_TYPE_MAP.get(paper_type_raw, "unknown"),
+                    access=row.get("Access") if pd.notna(row.get("Access")) else None,
+                    key=row.get("Key") if pd.notna(row.get("Key")) else None,
+                    ee=row.get("EE") if pd.notna(row.get("EE")) else None,
+                    url=row.get("URL") if pd.notna(row.get("URL")) else None,
+                    event=row.get("Event") if pd.notna(row.get("Event")) else None,
+                    abstract=row.get("Abstract") if pd.notna(row.get("Abstract")) else None,
+                )
+            )
         return self.upsert_papers(papers)
 
     def get_all_papers(self) -> list[dict]:
         """Return all papers as dicts with field names matching the Paper model."""
-        with sqlite3.connect(self.db_path) as conn:
+        with managed_sqlite_connection(self.db_path) as conn:
             conn.row_factory = sqlite3.Row
-            rows = conn.execute(
-                "SELECT * FROM papers ORDER BY year DESC, event, title"
-            ).fetchall()
+            rows = conn.execute("SELECT * FROM papers ORDER BY year DESC, event, title").fetchall()
         return [dict(row) for row in rows]
 
     def search(
@@ -320,14 +411,14 @@ class DatabaseManager:
         params: list = []
 
         if title_contains:
-            query += " AND title LIKE ?"
-            params.append(f"%{title_contains}%")
+            query += f" AND title LIKE ? {LIKE_ESCAPE_CLAUSE}"
+            params.append(contains_pattern(title_contains))
         if abstract_contains:
-            query += " AND abstract LIKE ?"
-            params.append(f"%{abstract_contains}%")
+            query += f" AND abstract LIKE ? {LIKE_ESCAPE_CLAUSE}"
+            params.append(contains_pattern(abstract_contains))
         if author_contains:
-            query += " AND authors LIKE ?"
-            params.append(f"%{author_contains}%")
+            query += f" AND authors LIKE ? {LIKE_ESCAPE_CLAUSE}"
+            params.append(contains_pattern(author_contains))
         if event:
             query += " AND event = ?"
             params.append(event)
@@ -335,8 +426,11 @@ class DatabaseManager:
             query += " AND year = ?"
             params.append(year)
         if technology:
-            query += " AND (title LIKE ? OR abstract LIKE ?)"
-            params.extend([f"%{technology}%", f"%{technology}%"])
+            query += (
+                f" AND (title LIKE ? {LIKE_ESCAPE_CLAUSE} OR abstract LIKE ? {LIKE_ESCAPE_CLAUSE})"
+            )
+            pattern = contains_pattern(technology)
+            params.extend([pattern, pattern])
 
         query += " ORDER BY year DESC, event, title"
 
@@ -344,12 +438,118 @@ class DatabaseManager:
             query += " LIMIT ?"
             params.append(limit)
 
-        with sqlite3.connect(self.db_path) as conn:
+        with managed_sqlite_connection(self.db_path) as conn:
             conn.row_factory = sqlite3.Row
             return [dict(row) for row in conn.execute(query, params).fetchall()]
 
+    # ── Ranked full-text search (FTS5) ─────────────────────────────────
+
+    # Column order of the papers_fts virtual table; the BM25 weights below
+    # follow the same order. A title hit outranks an author hit, which
+    # outranks an abstract hit.
+    _FTS_COLUMNS = ("title", "abstract", "authors")
+    _FTS_WEIGHTS = (5.0, 1.0, 2.0)
+
+    def has_fts_index(self) -> bool:
+        with managed_sqlite_connection(self.db_path) as conn:
+            row = conn.execute(
+                "SELECT 1 FROM sqlite_master WHERE type = 'table' AND name = 'papers_fts'"
+            ).fetchone()
+        return row is not None
+
+    def build_fts_index(self) -> None:
+        """Create and populate the BM25 index over title/abstract/authors.
+
+        The index is derived state: it is built locally on demand and is not
+        part of the published snapshot contract. Triggers keep it in sync
+        with later upserts, so a rebuild is only needed after bulk operations
+        performed outside this class.
+        """
+        cols = ", ".join(self._FTS_COLUMNS)
+        with managed_sqlite_connection(self.db_path) as conn:
+            conn.execute(
+                f"CREATE VIRTUAL TABLE IF NOT EXISTS papers_fts USING fts5("
+                f"{cols}, content='papers', content_rowid='rowid')"
+            )
+            conn.executescript(f"""
+                CREATE TRIGGER IF NOT EXISTS papers_fts_ai AFTER INSERT ON papers BEGIN
+                    INSERT INTO papers_fts(rowid, {cols})
+                    VALUES (new.rowid, new.title, new.abstract, new.authors);
+                END;
+                CREATE TRIGGER IF NOT EXISTS papers_fts_ad AFTER DELETE ON papers BEGIN
+                    INSERT INTO papers_fts(papers_fts, rowid, {cols})
+                    VALUES ('delete', old.rowid, old.title, old.abstract, old.authors);
+                END;
+                CREATE TRIGGER IF NOT EXISTS papers_fts_au AFTER UPDATE ON papers BEGIN
+                    INSERT INTO papers_fts(papers_fts, rowid, {cols})
+                    VALUES ('delete', old.rowid, old.title, old.abstract, old.authors);
+                    INSERT INTO papers_fts(rowid, {cols})
+                    VALUES (new.rowid, new.title, new.abstract, new.authors);
+                END;
+            """)
+            conn.execute("INSERT INTO papers_fts(papers_fts) VALUES ('rebuild')")
+
+    @staticmethod
+    def _fts_match_expression(raw_query: str) -> str:
+        """Convert free text into a safe FTS5 MATCH expression.
+
+        Each whitespace token becomes a quoted phrase term (AND semantics),
+        so user input can never break the MATCH syntax. A trailing ``*`` is
+        preserved as the FTS5 prefix operator.
+        """
+        terms = []
+        for token in raw_query.split():
+            prefix = token.endswith("*")
+            token = token.rstrip("*").replace('"', '""')
+            if not token:
+                continue
+            terms.append(f'"{token}"*' if prefix else f'"{token}"')
+        return " ".join(terms)
+
+    def search_ranked(
+        self,
+        query: str,
+        event: str | None = None,
+        year: int | None = None,
+        limit: int | None = 50,
+    ) -> list[dict]:
+        """BM25-ranked search over title, abstract, and authors.
+
+        Builds the FTS index on first use. Results carry a ``rank`` key
+        (SQLite BM25: lower is more relevant) and are ordered best-first.
+        """
+        if not self.has_fts_index():
+            logger.info("FTS index missing; building it now (one-time cost)")
+            self.build_fts_index()
+
+        match_expr = self._fts_match_expression(query)
+        if not match_expr:
+            return []
+
+        weights = ", ".join(str(w) for w in self._FTS_WEIGHTS)
+        sql = (
+            f"SELECT p.*, bm25(papers_fts, {weights}) AS rank "
+            "FROM papers_fts JOIN papers p ON p.rowid = papers_fts.rowid "
+            "WHERE papers_fts MATCH ?"
+        )
+        params: list = [match_expr]
+        if event:
+            sql += " AND p.event = ?"
+            params.append(event)
+        if year:
+            sql += " AND p.year = ?"
+            params.append(year)
+        sql += " ORDER BY rank"
+        if limit:
+            sql += " LIMIT ?"
+            params.append(limit)
+
+        with managed_sqlite_connection(self.db_path) as conn:
+            conn.row_factory = sqlite3.Row
+            return [dict(row) for row in conn.execute(sql, params).fetchall()]
+
     def get_statistics(self) -> dict:
-        with sqlite3.connect(self.db_path) as conn:
+        with managed_sqlite_connection(self.db_path) as conn:
             total = conn.execute("SELECT COUNT(*) FROM papers").fetchone()[0]
             with_abstracts = conn.execute(
                 "SELECT COUNT(*) FROM papers WHERE abstract IS NOT NULL AND abstract != ''"
@@ -374,21 +574,19 @@ class DatabaseManager:
         }
 
     def export_to_csv(self, csv_path: Path) -> None:
-        with sqlite3.connect(self.db_path) as conn:
+        with managed_sqlite_connection(self.db_path) as conn:
             pd.read_sql_query("SELECT * FROM papers", conn).to_csv(
                 csv_path, index=False, encoding="utf-8"
             )
 
     def get_paper_by_id(self, paper_id: str) -> dict | None:
-        with sqlite3.connect(self.db_path) as conn:
+        with managed_sqlite_connection(self.db_path) as conn:
             conn.row_factory = sqlite3.Row
-            row = conn.execute(
-                "SELECT * FROM papers WHERE paper_id = ?", (paper_id,)
-            ).fetchone()
+            row = conn.execute("SELECT * FROM papers WHERE paper_id = ?", (paper_id,)).fetchone()
         return dict(row) if row else None
 
     def update_abstract(self, paper_id: str, abstract: str) -> bool:
-        with sqlite3.connect(self.db_path) as conn:
+        with managed_sqlite_connection(self.db_path) as conn:
             cursor = conn.execute(
                 "UPDATE papers SET abstract = ?, updated_at = CURRENT_TIMESTAMP WHERE paper_id = ?",
                 (abstract, paper_id),
@@ -396,7 +594,7 @@ class DatabaseManager:
         return cursor.rowcount > 0
 
     def update_bibtex(self, paper_id: str, bibtex: str) -> bool:
-        with sqlite3.connect(self.db_path) as conn:
+        with managed_sqlite_connection(self.db_path) as conn:
             cursor = conn.execute(
                 "UPDATE papers SET bibtex = ?, updated_at = CURRENT_TIMESTAMP WHERE paper_id = ?",
                 (bibtex, paper_id),
@@ -404,15 +602,17 @@ class DatabaseManager:
         return cursor.rowcount > 0
 
     def get_papers_without_bibtex(self, limit: int | None = None) -> list[dict]:
-        query = ("SELECT * FROM papers WHERE (bibtex IS NULL OR bibtex = '') "
-                 "AND key IS NOT NULL AND key != '' "
-                 "ORDER BY year DESC, event, title")
+        query = (
+            "SELECT * FROM papers WHERE (bibtex IS NULL OR bibtex = '') "
+            "AND key IS NOT NULL AND key != '' "
+            "ORDER BY year DESC, event, title"
+        )
         if limit:
             query += " LIMIT ?"
             params: tuple = (limit,)
         else:
             params = ()
-        with sqlite3.connect(self.db_path) as conn:
+        with managed_sqlite_connection(self.db_path) as conn:
             conn.row_factory = sqlite3.Row
             return [dict(row) for row in conn.execute(query, params).fetchall()]
 
@@ -432,7 +632,7 @@ class DatabaseManager:
         df = df[df["Abstract"].astype(str).str.len() >= MIN_ABSTRACT_LENGTH]
         candidates = list(zip(df["ID"], df["Abstract"], strict=True))
 
-        with sqlite3.connect(self.db_path) as conn:
+        with managed_sqlite_connection(self.db_path) as conn:
             conn.execute("DROP TABLE IF EXISTS _abstract_import")
             conn.execute(
                 "CREATE TEMP TABLE _abstract_import "
@@ -445,8 +645,7 @@ class DatabaseManager:
 
             scanned = conn.execute("SELECT COUNT(*) FROM _abstract_import").fetchone()[0]
             matched = conn.execute(
-                "SELECT COUNT(*) FROM _abstract_import i "
-                "JOIN papers p ON p.paper_id = i.paper_id"
+                "SELECT COUNT(*) FROM _abstract_import i JOIN papers p ON p.paper_id = i.paper_id"
             ).fetchone()[0]
             already_full = conn.execute(
                 "SELECT COUNT(*) FROM _abstract_import i "
@@ -490,6 +689,6 @@ class DatabaseManager:
             query += " LIMIT ?"
             params.append(limit)
 
-        with sqlite3.connect(self.db_path) as conn:
+        with managed_sqlite_connection(self.db_path) as conn:
             conn.row_factory = sqlite3.Row
             return [dict(row) for row in conn.execute(query, params).fetchall()]

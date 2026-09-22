@@ -1,0 +1,558 @@
+1
+00:00:00,000 --> 00:00:05,722
+Every systematic review rests on a number
+that almost never gets written down.
+
+2
+00:00:05,762 --> 00:00:06,904
+The denominator.
+
+3
+00:00:06,944 --> 00:00:11,376
+The set of papers that were
+eligible before screening began.
+
+4
+00:00:11,976 --> 00:00:14,687
+In practice that set is rebuilt by hand,
+
+5
+00:00:14,727 --> 00:00:17,576
+from portals and interfaces whose coverage
+
+6
+00:00:17,616 --> 00:00:20,465
+and query semantics change underneath you.
+
+7
+00:00:20,505 --> 00:00:25,320
+Two people follow the same protocol
+and end up with different corpora.
+
+8
+00:00:25,920 --> 00:00:28,460
+TopVenues makes that
+denominator an object.
+
+9
+00:00:28,500 --> 00:00:30,740
+Declared, frozen, hashed, and citable.
+
+10
+00:00:30,780 --> 00:00:33,240
+This is what working with one looks like.
+
+11
+00:00:33,840 --> 00:00:36,561
+Installation is a clone and one script.
+
+12
+00:00:36,601 --> 00:00:40,170
+Nothing is fetched from a
+publisher at review time,
+
+13
+00:00:40,210 --> 00:00:43,608
+and nothing depends on
+a service staying online.
+
+14
+00:00:44,208 --> 00:00:49,686
+The script builds an isolated environment
+from pinned, hash-checked dependencies,
+
+15
+00:00:49,726 --> 00:00:53,432
+then materializes the corpus
+from a compressed snapshot
+
+16
+00:00:53,472 --> 00:00:55,584
+that ships with the repository.
+
+17
+00:00:56,184 --> 00:00:58,685
+Then it verifies rather than asserts.
+
+18
+00:00:58,725 --> 00:01:02,463
+The snapshot's SHA-256 is
+checked against the manifest,
+
+19
+00:01:02,503 --> 00:01:07,064
+the record counts are checked
+against the numbers the paper prints,
+
+20
+00:01:07,104 --> 00:01:09,096
+and the full test suite runs.
+
+21
+00:01:09,696 --> 00:01:13,094
+Twenty thousand three
+hundred and five records.
+
+22
+00:01:13,134 --> 00:01:18,727
+Seventeen thousand four hundred and
+ninety-one abstracts. Every test passing.
+
+23
+00:01:18,767 --> 00:01:23,376
+A reviewer reaches this state
+without asking anyone for access.
+
+24
+00:01:23,976 --> 00:01:26,909
+The interface opens on
+what you are holding.
+
+25
+00:01:26,949 --> 00:01:32,584
+Fourteen thousand eight hundred and fifty-nine
+papers across twenty declared venues,
+
+26
+00:01:32,624 --> 00:01:38,232
+ninety-four percent carrying a searchable
+abstract, and every record ready to cite.
+
+27
+00:01:38,832 --> 00:01:40,870
+Nothing here is a live query.
+
+28
+00:01:40,910 --> 00:01:44,166
+The venue list is a
+declared scientific scope,
+
+29
+00:01:44,206 --> 00:01:48,648
+and changing it is a release
+decision, not a filter you slide.
+
+30
+00:01:49,248 --> 00:01:51,721
+Start with an ordinary question.
+
+31
+00:01:51,761 --> 00:01:57,140
+Ranked search orders title, abstract
+and author matches by relevance,
+
+32
+00:01:57,180 --> 00:02:00,792
+over the whole frozen
+corpus, in milliseconds.
+
+33
+00:02:01,392 --> 00:02:07,231
+Narrow it the way a protocol narrows: by
+venue tier, by year, by author position.
+
+34
+00:02:07,271 --> 00:02:13,368
+The count updates, and that count is the
+number you will report as your denominator.
+
+35
+00:02:13,968 --> 00:02:17,221
+Every row opens into the record behind it.
+
+36
+00:02:17,261 --> 00:02:23,808
+The abstract that was matched, the venue,
+the tier, the DOI, and the publisher link.
+
+37
+00:02:23,848 --> 00:02:27,768
+You are reading the
+evidence, not a summary of it.
+
+38
+00:02:28,368 --> 00:02:29,492
+And it leaves.
+
+39
+00:02:29,532 --> 00:02:35,644
+CSV for a screening sheet, JSON for
+a pipeline, BibTeX for the manuscript,
+
+40
+00:02:35,684 --> 00:02:41,088
+taken straight from DBLP's canonical
+entries rather than retyped.
+
+41
+00:02:41,688 --> 00:02:45,687
+Insights is where the
+corpus stops being a list.
+
+42
+00:02:45,727 --> 00:02:50,568
+It reads in four passes: what
+it holds, how a topic moves,
+
+43
+00:02:50,608 --> 00:02:55,488
+who produces that work, and
+where it cannot answer at all.
+
+44
+00:02:56,088 --> 00:02:57,362
+Composition first.
+
+45
+00:02:57,402 --> 00:03:00,939
+Papers per venue, per
+year, and per record class.
+
+46
+00:03:00,979 --> 00:03:04,880
+Full articles are seventy-eight
+percent of the corpus;
+
+47
+00:03:04,920 --> 00:03:10,176
+the rare classes are the ones a
+protocol has to decide about explicitly.
+
+48
+00:03:10,776 --> 00:03:12,751
+Every aggregate is a door.
+
+49
+00:03:12,791 --> 00:03:18,097
+Click a bar and you are in Search,
+filtered to exactly those records.
+
+50
+00:03:18,137 --> 00:03:21,624
+No chart here is a
+picture you have to trust.
+
+51
+00:03:22,224 --> 00:03:25,651
+Now the pass that changes
+how you read a field.
+
+52
+00:03:25,691 --> 00:03:29,044
+Ask for a topic and you
+get its yearly volume.
+
+53
+00:03:29,084 --> 00:03:33,396
+Large language models: six
+papers in two thousand nineteen,
+
+54
+00:03:33,436 --> 00:03:37,272
+two hundred and seventy in
+two thousand twenty-five.
+
+55
+00:03:37,872 --> 00:03:39,424
+But the corpus grew too.
+
+56
+00:03:39,464 --> 00:03:43,072
+So the second chart divides
+by each year's corpus size.
+
+57
+00:03:43,112 --> 00:03:48,112
+That is the difference between a topic
+that is genuinely taking over a field
+
+58
+00:03:48,152 --> 00:03:51,336
+and a topic that is merely
+riding its expansion.
+
+59
+00:03:51,936 --> 00:03:55,360
+And it names the venues
+carrying that growth,
+
+60
+00:03:55,400 --> 00:03:58,440
+so the next question, where do I submit,
+
+61
+00:03:58,480 --> 00:04:03,792
+or where do I read, has an answer
+grounded in the same frozen corpus.
+
+62
+00:04:04,392 --> 00:04:06,536
+The fourth pass is people.
+
+63
+00:04:06,576 --> 00:04:13,004
+Researcher Radar ranks who recurs, and
+it is deliberate about what it is not:
+
+64
+00:04:13,044 --> 00:04:16,028
+it measures presence in this corpus,
+
+65
+00:04:16,068 --> 00:04:20,184
+never citations, quality,
+seniority or authority.
+
+66
+00:04:20,784 --> 00:04:25,986
+Three rankings answer three different
+questions. Paper count finds volume.
+
+67
+00:04:26,026 --> 00:04:29,103
+Tier weighting favours
+the strongest venues.
+
+68
+00:04:29,143 --> 00:04:32,787
+Top-four concentration asks
+something else entirely:
+
+69
+00:04:32,827 --> 00:04:38,352
+what share of an author's work lands at
+the four venues that define the field.
+
+70
+00:04:38,952 --> 00:04:41,235
+Authorship position asks a third.
+
+71
+00:04:41,275 --> 00:04:44,614
+First author surfaces
+the people doing the work;
+
+72
+00:04:44,654 --> 00:04:47,781
+last author surfaces
+the people directing it.
+
+73
+00:04:47,821 --> 00:04:53,664
+For building a reference list, or a program
+committee, those are not the same list.
+
+74
+00:04:54,264 --> 00:04:56,044
+And no row is a verdict.
+
+75
+00:04:56,084 --> 00:05:00,593
+Open one and you get the
+trajectory behind it, year by year,
+
+76
+00:05:00,633 --> 00:05:05,825
+split by byline position, with the
+direct collaborations it rests on.
+
+77
+00:05:05,865 --> 00:05:08,064
+The heuristic shows its work.
+
+78
+00:05:08,664 --> 00:05:11,208
+Two derived views close the pass.
+
+79
+00:05:11,248 --> 00:05:14,809
+Authors whose byline
+moved from first to last,
+
+80
+00:05:14,849 --> 00:05:18,019
+which is where new groups become visible.
+
+81
+00:05:18,059 --> 00:05:21,151
+And authors whose annual rate is rising.
+
+82
+00:05:21,191 --> 00:05:26,280
+Both are described as shortlists
+to investigate, not as findings.
+
+83
+00:05:26,880 --> 00:05:32,379
+The fourth pass is the one most tools
+omit: where the corpus cannot speak.
+
+84
+00:05:32,419 --> 00:05:36,721
+Abstract coverage per venue,
+published rather than hidden.
+
+85
+00:05:36,761 --> 00:05:42,600
+ESORICS sits at six percent, because
+Springer does not expose those abstracts.
+
+86
+00:05:43,200 --> 00:05:48,846
+That matters, because an abstract search
+cannot include what it cannot read.
+
+87
+00:05:48,886 --> 00:05:52,063
+A gap you can see is
+an inclusion decision.
+
+88
+00:05:52,103 --> 00:05:56,592
+A gap you cannot see is a silent
+exclusion in your protocol.
+
+89
+00:05:57,192 --> 00:06:02,299
+The Evidence page states what this
+snapshot verifies and what it does not.
+
+90
+00:06:02,339 --> 00:06:04,664
+Abstract quality was not asserted;
+
+91
+00:06:04,704 --> 00:06:07,793
+it was measured, on a
+venue-stratified sample
+
+92
+00:06:07,833 --> 00:06:10,824
+of two hundred records
+reviewed by a human.
+
+93
+00:06:11,424 --> 00:06:14,288
+One hundred and sixty-nine were complete,
+
+94
+00:06:14,328 --> 00:06:17,545
+uncontaminated, and
+matched the sampled paper.
+
+95
+00:06:17,585 --> 00:06:19,741
+Eighty-four and a half percent,
+
+96
+00:06:19,781 --> 00:06:23,069
+with a ninety-five percent
+Wilson interval from
+
+97
+00:06:23,109 --> 00:06:26,822
+seventy-eight point eight
+to eighty-eight point nine.
+
+98
+00:06:26,862 --> 00:06:30,120
+The uncertainty is
+reported, not rounded away.
+
+99
+00:06:30,720 --> 00:06:34,640
+And the release cannot be
+edited from the interface.
+
+100
+00:06:34,680 --> 00:06:38,066
+Refreshing creates a
+named successor profile;
+
+101
+00:06:38,106 --> 00:06:42,102
+the snapshot a paper cites
+is never mutated in place.
+
+102
+00:06:42,142 --> 00:06:45,264
+That is what makes a hash worth printing.
+
+103
+00:06:45,864 --> 00:06:50,434
+So what does this buy a researcher
+who already knows their field.
+
+104
+00:06:50,474 --> 00:06:53,808
+Three things, and none
+of them is a search box.
+
+105
+00:06:54,408 --> 00:06:57,794
+A denominator you can put
+in a paper, with a hash,
+
+106
+00:06:57,834 --> 00:07:01,426
+that a reviewer can reproduce
+offline in one command.
+
+107
+00:07:01,466 --> 00:07:05,606
+The methods section stops being
+a description of what you did
+
+108
+00:07:05,646 --> 00:07:08,592
+and becomes something
+someone else can run.
+
+109
+00:07:09,192 --> 00:07:11,282
+A fixed corpus turns questions
+
+110
+00:07:11,322 --> 00:07:16,892
+that used to take a week of manual
+counting into questions you ask in a second.
+
+111
+00:07:16,932 --> 00:07:19,804
+Topic dynamics normalized against growth.
+
+112
+00:07:19,844 --> 00:07:22,432
+Author concentration at the top four.
+
+113
+00:07:22,472 --> 00:07:24,744
+Byline movement across a decade.
+
+114
+00:07:25,344 --> 00:07:30,851
+And every number on every screen
+opens into the records underneath it.
+
+115
+00:07:30,891 --> 00:07:33,070
+Nothing asks for your trust.
+
+116
+00:07:33,110 --> 00:07:37,944
+That is the difference between
+a dashboard and an instrument.
+
+117
+00:07:38,544 --> 00:07:39,377
+TopVenues.
+
+118
+00:07:39,417 --> 00:07:44,353
+Open source, MIT licensed,
+with the corpus, the manifest,
+
+119
+00:07:44,393 --> 00:07:48,408
+and the reproduction
+script in one repository.

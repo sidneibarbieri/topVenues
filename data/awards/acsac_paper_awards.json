@@ -1,0 +1,474 @@
+[
+  {
+    "award": "Distinguished Paper",
+    "source_url": "https://www.acsac.org/archive/",
+    "title": "InteractionShield: Harnessing Event Relations for Interaction Threat Detection and Resolution in Smart Homes",
+    "url": "/2025/program/final/s453.html",
+    "venue": "ACSAC",
+    "year": 2025
+  },
+  {
+    "award": "Distinguished Paper",
+    "source_url": "https://www.acsac.org/archive/",
+    "title": "MoEvil: Poisoning Experts to Compromise the Safety of Mixture-of-Experts LLMs",
+    "url": "/2025/program/final/s12.html",
+    "venue": "ACSAC",
+    "year": 2025
+  },
+  {
+    "award": "Distinguished Paper",
+    "source_url": "https://www.acsac.org/archive/",
+    "title": "Single Sign-On Privacy: We Still Know What You Did Last Summer",
+    "url": "/2024/program/final/s318.html",
+    "venue": "ACSAC",
+    "year": 2024
+  },
+  {
+    "award": "Distinguished Paper",
+    "source_url": "https://www.acsac.org/archive/",
+    "title": "I'll Be There for You! Perpetual Availability in the A\u2078 MVX System",
+    "url": "/2024/program/final/s73.html",
+    "venue": "ACSAC",
+    "year": 2024
+  },
+  {
+    "award": "Distinguished Paper",
+    "source_url": "https://www.acsac.org/archive/",
+    "title": "Protecting Your Voice from Speech Synthesis Attacks",
+    "url": "/2023/program/final/s179.html",
+    "venue": "ACSAC",
+    "year": 2023
+  },
+  {
+    "award": "Distinguished Paper",
+    "source_url": "https://www.acsac.org/archive/",
+    "title": "SePanner: Analyzing Semantics of Controller Variables in Industrial Control Systems based on Network Traffic",
+    "url": "/2023/program/final/s87.html",
+    "venue": "ACSAC",
+    "year": 2023
+  },
+  {
+    "award": "Distinguished Paper with Artifacts",
+    "source_url": "https://www.acsac.org/archive/",
+    "title": "Artemis: Defanging Software Supply Chain Attacks in Multi-repository Update Systems",
+    "url": "/2023/program/final/s268.html",
+    "venue": "ACSAC",
+    "year": 2023
+  },
+  {
+    "award": "Distinguished Paper with Artifacts",
+    "source_url": "https://www.acsac.org/archive/",
+    "title": "Remote Attestation of Confidential VMs Using Ephemeral vTPMs",
+    "url": "/2023/program/final/s49.html",
+    "venue": "ACSAC",
+    "year": 2023
+  },
+  {
+    "award": "Distinguished Paper",
+    "source_url": "https://www.acsac.org/archive/",
+    "title": "BayesImposter: Bayesian Estimation Based .bss Imposter Attack on Industrial Control Systems",
+    "url": "/2022/program/final/s151.html",
+    "venue": "ACSAC",
+    "year": 2022
+  },
+  {
+    "award": "Distinguished Paper",
+    "source_url": "https://www.acsac.org/archive/",
+    "title": "Making Memory Account Accountable: Analyzing and Detecting Memory Missing-account bugs for Container Platforms",
+    "url": "/2022/program/final/s102.html",
+    "venue": "ACSAC",
+    "year": 2022
+  },
+  {
+    "award": "Distinguished Paper with Artifacts",
+    "source_url": "https://www.acsac.org/archive/",
+    "title": "Assessing Model-free Anomaly Detection in Industrial Control Systems Against Generic Concealment Attacks",
+    "url": "/2022/program/final/s99.html",
+    "venue": "ACSAC",
+    "year": 2022
+  },
+  {
+    "award": "Distinguished Paper",
+    "source_url": "https://www.acsac.org/archive/",
+    "title": "Two Souls in an Adversarial Image: Towards Universal Adversarial Example Detection using Multi-view Inconsistency",
+    "url": "/2021/program/final/s253.html",
+    "venue": "ACSAC",
+    "year": 2021
+  },
+  {
+    "award": "Distinguished Paper with Artifacts",
+    "source_url": "https://www.acsac.org/archive/",
+    "title": "Repack Me If You Can: An Anti-Repackaging Solution based on Android Virtualization",
+    "url": "/2021/program/final/s258.html",
+    "venue": "ACSAC",
+    "year": 2021
+  },
+  {
+    "award": "Distinguished Paper with Artifacts",
+    "source_url": "https://www.acsac.org/archive/",
+    "title": "argXtract: Deriving IoT Security Configurations via Automated Static Analysis of Stripped ARM Cortex-M Binaries",
+    "url": "/2021/program/final/s31.html",
+    "venue": "ACSAC",
+    "year": 2021
+  },
+  {
+    "award": "Distinguished Paper",
+    "source_url": "https://www.acsac.org/archive/",
+    "title": "Measuring the Effectiveness of Privacy Policies for Voice Assistant Applications",
+    "url": "/2020/program/final/s91.html",
+    "venue": "ACSAC",
+    "year": 2020
+  },
+  {
+    "award": "Distinguished Paper",
+    "source_url": "https://www.acsac.org/archive/",
+    "title": "Betrayed by the Guardian: Security and Privacy Risks of Parental Control Solutions",
+    "url": "/2020/program/final/s282.html",
+    "venue": "ACSAC",
+    "year": 2020
+  },
+  {
+    "award": "Distinguished Paper with Artifacts",
+    "source_url": "https://www.acsac.org/archive/",
+    "title": "SAIBERSOC: Synthetic Attack Injection to Benchmark and Evaluate the Performance of Security Operation Centers",
+    "url": "/2020/program/final/s28.html",
+    "venue": "ACSAC",
+    "year": 2020
+  },
+  {
+    "award": "Distinguished Paper with Artifacts",
+    "source_url": "https://www.acsac.org/archive/",
+    "title": "Faulty Point Unit: ABI Poisoning Attacks on Intel SGX",
+    "url": "/2020/program/final/s231.html",
+    "venue": "ACSAC",
+    "year": 2020
+  },
+  {
+    "award": "Distinguished Paper",
+    "source_url": "https://www.acsac.org/archive/",
+    "title": "Opening Pandora's Box through ATFuzzer: Dynamic Analysis of AT Interface for Android Smartphones",
+    "url": "/2019/program/final/s210.html",
+    "venue": "ACSAC",
+    "year": 2019
+  },
+  {
+    "award": "Distinguished Paper",
+    "source_url": "https://www.acsac.org/archive/",
+    "title": "Premadoma: An Operational Solution for DNS Registries to Prevent Malicious Domain Registrations",
+    "url": "/2019/program/final/s222.html",
+    "venue": "ACSAC",
+    "year": 2019
+  },
+  {
+    "award": "Distinguished Paper",
+    "source_url": "https://www.acsac.org/archive/",
+    "title": "Hiding in the Shadows: Empowering ARM for Stealthy Virtual Machine Introspection",
+    "url": "/2018/program-files/s17.html",
+    "venue": "ACSAC",
+    "year": 2018
+  },
+  {
+    "award": "Distinguished Paper",
+    "source_url": "https://www.acsac.org/archive/",
+    "title": "Tracking Users across the Web via TLS Session Resumption",
+    "url": "/2018/program-files/s76.html",
+    "venue": "ACSAC",
+    "year": 2018
+  },
+  {
+    "award": "Distinguished Paper",
+    "source_url": "https://www.acsac.org/archive/",
+    "title": "Kakute: A Precise, Unified Information Flow Analysis System for Big-data Security",
+    "url": "/2017/program-files/s78.html",
+    "venue": "ACSAC",
+    "year": 2017
+  },
+  {
+    "award": "Distinguished Paper",
+    "source_url": "https://www.acsac.org/archive/",
+    "title": "Supporting Transparent Snapshot for Bare-metal Malware Analysis on Mobile Devices",
+    "url": "/2017/program-files/s300.html",
+    "venue": "ACSAC",
+    "year": 2017
+  },
+  {
+    "award": "Outstanding Paper",
+    "source_url": "https://www.acsac.org/archive/",
+    "title": "Code Obfuscation Against Symbolic Execution Attacks",
+    "url": "/2016/program-files/s167.html",
+    "venue": "ACSAC",
+    "year": 2016
+  },
+  {
+    "award": "Outstanding Student Paper",
+    "source_url": "https://www.acsac.org/archive/",
+    "title": "A Security Analysis of Automated Chinese Turing Tests",
+    "url": "/2016/program-files/s22.html",
+    "venue": "ACSAC",
+    "year": 2016
+  },
+  {
+    "award": "Outstanding Paper",
+    "source_url": "https://www.acsac.org/archive/",
+    "title": "ErsatzPasswords: Ending Password Cracking and Detecting Password Leakage",
+    "url": "/2015/program-final/s61.html",
+    "venue": "ACSAC",
+    "year": 2015
+  },
+  {
+    "award": "Outstanding Student Paper",
+    "source_url": "https://www.acsac.org/archive/",
+    "title": "ShrinkWrap: VTable protection without loose ends",
+    "url": "/2015/program-final/s96.html",
+    "venue": "ACSAC",
+    "year": 2015
+  },
+  {
+    "award": "Outstanding Paper",
+    "source_url": "https://www.acsac.org/archive/",
+    "title": "Using Automatic Speech Recognition for Attacking Acoustic CAPTCHAs: The Trade-off between Usability and Security",
+    "url": "/2014/program-final/s80.html",
+    "venue": "ACSAC",
+    "year": 2014
+  },
+  {
+    "award": "Outstanding Student Paper",
+    "source_url": "https://www.acsac.org/archive/",
+    "title": "IMSI-Catch Me If You Can: IMSI-Catcher-Catchers",
+    "url": "/2014/program-final/s156.html",
+    "venue": "ACSAC",
+    "year": 2014
+  },
+  {
+    "award": "Outstanding Paper",
+    "source_url": "https://www.acsac.org/archive/",
+    "title": "PRIME: Private RSA Infrastructure for Memory-less Encryption",
+    "url": "/2013/program-files/s30.html",
+    "venue": "ACSAC",
+    "year": 2013
+  },
+  {
+    "award": "Outstanding Student Paper",
+    "source_url": "https://www.acsac.org/archive/",
+    "title": "Implementation and Implications of a Stealth Hard-Drive Backdoor",
+    "url": "/2013/program-files/s78.html",
+    "venue": "ACSAC",
+    "year": 2013
+  },
+  {
+    "award": "Outstanding Paper",
+    "source_url": "https://www.acsac.org/archive/",
+    "title": "Generalized Vulnerability Extrapolation using Abstract Syntax Trees",
+    "url": "/2012/program-files/s72.html",
+    "venue": "ACSAC",
+    "year": 2012
+  },
+  {
+    "award": "Outstanding Student Paper",
+    "source_url": "https://www.acsac.org/archive/",
+    "title": "Securing Untrusted Code via Compiler-Agnostic Binary Rewriting",
+    "url": "/2012/program-files/s223.html",
+    "venue": "ACSAC",
+    "year": 2012
+  },
+  {
+    "award": "Outstanding Paper",
+    "source_url": "https://www.acsac.org/archive/",
+    "title": "The Socialbot Network: When Bots Socialize for Fame and Money",
+    "url": "/2011/program-files/s175.html",
+    "venue": "ACSAC",
+    "year": 2011
+  },
+  {
+    "award": "Outstanding Student Paper",
+    "source_url": "https://www.acsac.org/archive/",
+    "title": "Distilling Critical Attack Graph Surface iteratively through Minimum-Cost SAT Solving",
+    "url": "/2011/program-files/s164.html",
+    "venue": "ACSAC",
+    "year": 2011
+  },
+  {
+    "award": "Outstanding Paper",
+    "source_url": "https://www.acsac.org/archive/",
+    "title": "A Quantitative Analysis of The Insecurity of Embedded Network Devices: Results of a Wide-area Scan",
+    "url": null,
+    "venue": "ACSAC",
+    "year": 2010
+  },
+  {
+    "award": "Outstanding Student Paper",
+    "source_url": "https://www.acsac.org/archive/",
+    "title": "Detecting Spammers On Social Networks",
+    "url": null,
+    "venue": "ACSAC",
+    "year": 2010
+  },
+  {
+    "award": "Outstanding Paper",
+    "source_url": "https://www.acsac.org/archive/",
+    "title": "Semantically Rich Application-Centric Security in Android",
+    "url": null,
+    "venue": "ACSAC",
+    "year": 2009
+  },
+  {
+    "award": "Outstanding Student Paper",
+    "source_url": "https://www.acsac.org/archive/",
+    "title": "Analyzing Information Flow in JavaScript-based Browser Extensions",
+    "url": null,
+    "venue": "ACSAC",
+    "year": 2009
+  },
+  {
+    "award": "Outstanding Paper",
+    "source_url": "https://www.acsac.org/archive/",
+    "title": "Soft-Timer Driven Transient Kernel Control Flow Attacks and Defense",
+    "url": null,
+    "venue": "ACSAC",
+    "year": 2008
+  },
+  {
+    "award": "Outstanding Student Paper",
+    "source_url": "https://www.acsac.org/archive/",
+    "title": "Automatic Inference and Enforcement of Kernel Data Structure Invariants",
+    "url": null,
+    "venue": "ACSAC",
+    "year": 2008
+  },
+  {
+    "award": "Outstanding Paper",
+    "source_url": "https://www.acsac.org/archive/",
+    "title": "Tracking Darkports for Network Defense",
+    "url": "/2007/abstracts/147.html",
+    "venue": "ACSAC",
+    "year": 2007
+  },
+  {
+    "award": "Outstanding Student Paper",
+    "source_url": "https://www.acsac.org/archive/",
+    "title": "Automated Vulnerability Analysis: Leveraging Control Flow for Evolutionary Input Crafting",
+    "url": "/2007/abstracts/22.html",
+    "venue": "ACSAC",
+    "year": 2007
+  },
+  {
+    "award": "Outstanding Paper",
+    "source_url": "https://www.acsac.org/archive/",
+    "title": "Backtracking Algorithmic Complexity Attacks Against a NIDS",
+    "url": "/2006/abstracts/54.html",
+    "venue": "ACSAC",
+    "year": 2006
+  },
+  {
+    "award": "Outstanding Student Paper",
+    "source_url": "https://www.acsac.org/archive/",
+    "title": "From Languages to Systems: Understanding Practical Application Development in Security-typed Languages",
+    "url": "/2006/abstracts/101.html",
+    "venue": "ACSAC",
+    "year": 2006
+  },
+  {
+    "award": "Outstanding Paper",
+    "source_url": "https://www.acsac.org/archive/",
+    "title": "Automated and Safe Vulnerability Assessment",
+    "url": "/2005/abstracts/180.html",
+    "venue": "ACSAC",
+    "year": 2005
+  },
+  {
+    "award": "Outstanding Student Paper",
+    "source_url": "https://www.acsac.org/archive/",
+    "title": "Model Checking An Entire Linux Distribution for Security Violations",
+    "url": "/2005/abstracts/165.html",
+    "venue": "ACSAC",
+    "year": 2005
+  },
+  {
+    "award": "Outstanding Paper and Student Paper",
+    "source_url": "https://www.acsac.org/archive/",
+    "title": "Automatic Generation and Analysis of NIDS Attacks",
+    "url": "/2004/abstracts/59.html",
+    "venue": "ACSAC",
+    "year": 2004
+  },
+  {
+    "award": "Outstanding Paper",
+    "source_url": "https://www.acsac.org/archive/",
+    "title": "Isolated Program Execution: An Application Transparent Approach for Executing Untrusted Programs",
+    "url": "/2003/abstracts/99.html",
+    "venue": "ACSAC",
+    "year": 2003
+  },
+  {
+    "award": "Outstanding Student Paper",
+    "source_url": "https://www.acsac.org/archive/",
+    "title": "Intrusion Detection: A Bio-Informatics Approach",
+    "url": "/2003/abstracts/35.html",
+    "venue": "ACSAC",
+    "year": 2003
+  },
+  {
+    "award": "Outstanding Paper",
+    "source_url": "https://www.acsac.org/archive/",
+    "title": "Throttling Viruses: Restricting propagation to defeat malicious mobile code",
+    "url": "/2002/abstracts/97.html",
+    "venue": "ACSAC",
+    "year": 2002
+  },
+  {
+    "award": "Outstanding Student Paper",
+    "source_url": "https://www.acsac.org/archive/",
+    "title": "Controlled Physical Random Functions",
+    "url": "/2002/abstracts/110.html",
+    "venue": "ACSAC",
+    "year": 2002
+  },
+  {
+    "award": "Outstanding Paper",
+    "source_url": "https://www.acsac.org/archive/",
+    "title": "Genoa TIE, Advanced Boundary Controller Experiment",
+    "url": "/2001/abstracts/wed-1030-b-monteith.html",
+    "venue": "ACSAC",
+    "year": 2001
+  },
+  {
+    "award": "Outstanding Paper",
+    "source_url": "https://www.acsac.org/archive/",
+    "title": "ITS4: A Static Vulnerability Scanner for C and C++ Code",
+    "url": "/2000/abstracts/78.html",
+    "venue": "ACSAC",
+    "year": 2000
+  },
+  {
+    "award": "Outstanding Student Paper",
+    "source_url": "https://www.acsac.org/archive/",
+    "title": "The Chinese Remainder Theorem and its Application in a High-Speed RSA Crypto-Chip",
+    "url": "/2000/abstracts/48.html",
+    "venue": "ACSAC",
+    "year": 2000
+  },
+  {
+    "award": "Outstanding Paper",
+    "source_url": "https://www.acsac.org/archive/",
+    "title": "Adding Availability To Log Services Of Untrusted Machines",
+    "url": "/1999/abstracts/thu-a-1030-rosti.html",
+    "venue": "ACSAC",
+    "year": 1999
+  },
+  {
+    "award": "Outstanding Paper",
+    "source_url": "https://www.acsac.org/archive/",
+    "title": "NetSTAT: A Network-based Intrusion Detection Approach",
+    "url": "/1998/abstracts/wed-a-1030-vigna.html",
+    "venue": "ACSAC",
+    "year": 1998
+  },
+  {
+    "award": "Outstanding Student Paper",
+    "source_url": "https://www.acsac.org/archive/",
+    "title": "Security Modeling Using Hierarchical State Machines",
+    "url": "/1998/abstracts/wed-a-1030-vigna.html",
+    "venue": "ACSAC",
+    "year": 1991
+  }
+]

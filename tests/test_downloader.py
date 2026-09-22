@@ -23,6 +23,10 @@ class TestGetEventUrls:
         urls = downloader._get_event_urls("sacmat", 2023)
         assert urls == ["https://dblp.org/db/conf/sacmat/sacmat2023.html"]
 
+    def test_acsac(self, downloader):
+        urls = downloader._get_event_urls("acsac", 2023)
+        assert urls == ["https://dblp.org/db/conf/acsac/acsac2023.html"]
+
     def test_acm_csur(self, downloader):
         # Journals use volume-based URLs; 2022 maps to vol 54
         urls = downloader._get_event_urls("acm_csur", 2022)
@@ -55,10 +59,16 @@ class TestGetEventUrls:
 
 class TestValidateJson:
     def test_valid_structure(self, downloader, tmp_path):
-        data = {"result": {"hits": {"hit": []}}}
+        data = {"result": {"hits": {"hit": [{"info": {"title": "Demo"}}]}}}
         f = tmp_path / "ok.json"
         f.write_text(json.dumps(data), encoding="utf-8")
         assert downloader._validate_json(f)
+
+    def test_empty_hit_list_is_not_materialized_data(self, downloader, tmp_path):
+        data = {"result": {"hits": {"hit": []}}}
+        f = tmp_path / "empty.json"
+        f.write_text(json.dumps(data), encoding="utf-8")
+        assert not downloader._validate_json(f)
 
     def test_missing_hits_key(self, downloader, tmp_path):
         f = tmp_path / "bad.json"
@@ -72,3 +82,31 @@ class TestValidateJson:
 
     def test_nonexistent_file(self, downloader, tmp_path):
         assert not downloader._validate_json(tmp_path / "ghost.json")
+
+
+class TestRetryPolicy:
+    @pytest.mark.parametrize("status_code", [400, 401, 403, 404])
+    def test_permanent_client_errors_are_not_retried(self, downloader, status_code):
+        assert downloader._is_permanent_client_error(status_code)
+
+    @pytest.mark.parametrize("status_code", [200, 429, 500, 502, 503])
+    def test_retryable_or_success_statuses_are_not_permanent(self, downloader, status_code):
+        assert not downloader._is_permanent_client_error(status_code)
+
+
+class TestDblpTocApi:
+    def test_toc_key_from_standard_dblp_url(self, downloader):
+        assert (
+            downloader._toc_key_from_dblp_url("https://dblp.org/db/conf/aaai/aaai2025.html")
+            == "db/conf/aaai/aaai2025.bht"
+        )
+
+    def test_toc_key_rejects_non_dblp_url(self, downloader):
+        assert downloader._toc_key_from_dblp_url("https://example.com/aaai2025.html") is None
+
+    def test_toc_api_url_uses_pagination_offset(self, downloader):
+        url = downloader._toc_api_url("db/conf/aaai/aaai2025.bht", 1000)
+        assert "format=json" in url
+        assert "h=1000" in url
+        assert "f=1000" in url
+        assert "toc%3Adb/conf/aaai/aaai2025.bht%3A" in url

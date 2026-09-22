@@ -1,0 +1,223 @@
+{
+  "schema_version": "1.0.0",
+  "profile_id": "security-20",
+  "release_status": "sf-submission",
+  "paper_denominator": false,
+  "origin": "security-oriented Salão de Ferramentas release",
+  "source_release_tag": "sbseg2026-sf-submission-r1",
+  "distribution": {
+    "bundled": false,
+    "url": "https://raw.githubusercontent.com/sidneibarbieri/topvenues-tool/v1.0.1/data/profiles/security-20/papers.db.gz"
+  },
+  "configuration": {
+    "path": "profiles/security-20/config.yaml",
+    "event_keys": [
+      "ccs",
+      "asiaccs",
+      "uss",
+      "ndss",
+      "sp",
+      "eurosp",
+      "sacmat",
+      "acsac",
+      "esorics",
+      "codaspy",
+      "raid",
+      "cns",
+      "wisec",
+      "woot",
+      "satml",
+      "aisec",
+      "trustcom",
+      "acm_csur",
+      "ieee_comst",
+      "fnt_privsec"
+    ],
+    "declared_years": [
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025,
+      2026
+    ],
+    "workspace_data_dir": "data/workspaces/security-20/dataset"
+  },
+  "snapshot": {
+    "path": "data/profiles/security-20/papers.db.gz",
+    "gzip_bytes": 76218785,
+    "gzip_sha256": "5a35bd6e3ec6845a0fde4cc3d6aa05b1db04e511cb39e783eeaee2cea7493b08",
+    "sqlite_bytes": 243613696,
+    "sqlite_sha256": "6ca8f8efb6cb235b7b85a34c95d89ed4642ee26f06fb38f9521089268af05c25",
+    "papers": 20305,
+    "abstracts": 17491,
+    "bibtex": 20305,
+    "venues": 20,
+    "observed_year_min": 2017,
+    "observed_year_max": 2026,
+    "event_counts": [
+      {
+        "event": "ACM AISec",
+        "papers": 77,
+        "abstracts": 73,
+        "bibtex": 77,
+        "year_min": 2019,
+        "year_max": 2023
+      },
+      {
+        "event": "ACM ASIA CCS",
+        "papers": 1062,
+        "abstracts": 957,
+        "bibtex": 1062,
+        "year_min": 2019,
+        "year_max": 2026
+      },
+      {
+        "event": "ACM CCS",
+        "papers": 4329,
+        "abstracts": 4090,
+        "bibtex": 4329,
+        "year_min": 2019,
+        "year_max": 2025
+      },
+      {
+        "event": "ACM CODASPY",
+        "papers": 357,
+        "abstracts": 281,
+        "bibtex": 357,
+        "year_min": 2019,
+        "year_max": 2026
+      },
+      {
+        "event": "ACM Computing Surveys",
+        "papers": 2382,
+        "abstracts": 2374,
+        "bibtex": 2382,
+        "year_min": 2019,
+        "year_max": 2026
+      },
+      {
+        "event": "ACM SACMAT",
+        "papers": 199,
+        "abstracts": 176,
+        "bibtex": 199,
+        "year_min": 2019,
+        "year_max": 2025
+      },
+      {
+        "event": "ACM WiSec",
+        "papers": 353,
+        "abstracts": 270,
+        "bibtex": 353,
+        "year_min": 2019,
+        "year_max": 2026
+      },
+      {
+        "event": "ACSAC",
+        "papers": 593,
+        "abstracts": 593,
+        "bibtex": 593,
+        "year_min": 2019,
+        "year_max": 2025
+      },
+      {
+        "event": "ESORICS",
+        "papers": 598,
+        "abstracts": 39,
+        "bibtex": 598,
+        "year_min": 2019,
+        "year_max": 2025
+      },
+      {
+        "event": "Foundations and Trends in Privacy and Security",
+        "papers": 23,
+        "abstracts": 23,
+        "bibtex": 23,
+        "year_min": 2017,
+        "year_max": 2025
+      },
+      {
+        "event": "IEEE CNS",
+        "papers": 471,
+        "abstracts": 381,
+        "bibtex": 471,
+        "year_min": 2019,
+        "year_max": 2025
+      },
+      {
+        "event": "IEEE Communications Surveys & Tutorials",
+        "papers": 1094,
+        "abstracts": 804,
+        "bibtex": 1094,
+        "year_min": 2019,
+        "year_max": 2026
+      },
+      {
+        "event": "IEEE EURO S&P",
+        "papers": 399,
+        "abstracts": 339,
+        "bibtex": 399,
+        "year_min": 2019,
+        "year_max": 2025
+      },
+      {
+        "event": "IEEE S&P",
+        "papers": 1420,
+        "abstracts": 1165,
+        "bibtex": 1420,
+        "year_min": 2019,
+        "year_max": 2025
+      },
+      {
+        "event": "IEEE SaTML",
+        "papers": 127,
+        "abstracts": 74,
+        "bibtex": 127,
+        "year_min": 2023,
+        "year_max": 2025
+      },
+      {
+        "event": "NDSS",
+        "papers": 1535,
+        "abstracts": 1534,
+        "bibtex": 1535,
+        "year_min": 2019,
+        "year_max": 2026
+      },
+      {
+        "event": "RAID",
+        "papers": 414,
+        "abstracts": 346,
+        "bibtex": 414,
+        "year_min": 2019,
+        "year_max": 2025
+      },
+      {
+        "event": "TrustCom",
+        "papers": 2311,
+        "abstracts": 1914,
+        "bibtex": 2311,
+        "year_min": 2019,
+        "year_max": 2025
+      },
+      {
+        "event": "USENIX Security",
+        "papers": 2542,
+        "abstracts": 2056,
+        "bibtex": 2542,
+        "year_min": 2019,
+        "year_max": 2025
+      },
+      {
+        "event": "USENIX WOOT",
+        "papers": 19,
+        "abstracts": 2,
+        "bibtex": 19,
+        "year_min": 2025,
+        "year_max": 2025
+      }
+    ]
+  }
+}

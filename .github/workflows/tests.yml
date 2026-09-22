@@ -11,30 +11,73 @@ permissions:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    name: ${{ matrix.os }} / Python ${{ matrix.python-version }}
+    runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.11", "3.12"]
+        os: [ubuntu-latest, windows-latest]
+        python-version: ["3.11", "3.12", "3.13", "3.14"]
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
           python-version: ${{ matrix.python-version }}
-          cache: pip
 
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
+      # The published paper prints `--profile security-20` as the reviewer's
+      # command, so that profile is reproduced here and not only the default.
+      - name: Reproduce the published profile on Linux
+        if: runner.os == 'Linux'
+        shell: bash
+        env:
+          PYTHON: python
+        run: bash reproduce.sh --profile security-20
 
-      - name: Run test suite
-        run: python -m pytest -q
+      - name: Reproduce the current profile on Linux
+        if: runner.os == 'Linux'
+        shell: bash
+        env:
+          PYTHON: python
+        run: bash reproduce.sh
 
-      - name: Verify dataset claims
-        run: |
-          python -m src.cli stats
-          python scripts/verify_claims.py
+      - name: Reproduce the published profile on Windows
+        if: runner.os == 'Windows'
+        shell: powershell
+        run: .\reproduce.ps1 -PythonCommand python -Profile security-20
+
+      - name: Reproduce the current profile on Windows
+        if: runner.os == 'Windows'
+        shell: powershell
+        run: .\reproduce.ps1 -PythonCommand python
+
+      - name: Publish the execution evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: evidence-${{ matrix.os }}-py${{ matrix.python-version }}
+          path: evidence-*.txt
+          if-no-files-found: ignore
+
+  # The main-track paper prints only this repository's address; its evidence is
+  # the frozen release below, with its own code, snapshot and 252-test suite.
+  main-track-paper:
+    name: main-track paper / sbseg2026-camera-ready
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: sbseg2026-camera-ready
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Reproduce the main-track paper from its frozen release
+        shell: bash
+        env:
+          PYTHON: python
+        run: bash reproduce.sh

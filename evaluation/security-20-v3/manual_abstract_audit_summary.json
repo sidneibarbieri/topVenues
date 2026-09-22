@@ -1,0 +1,31 @@
+{
+  "profile_id": "security-20-v3",
+  "protocol": "deterministic venue-stratified source audit",
+  "sample_size": 200,
+  "labelled": 200,
+  "usable": 169,
+  "usable_rate": 0.845,
+  "wilson_95_ci": [0.7884, 0.8886],
+  "criteria": {
+    "complete_yes": 171,
+    "uncontaminated_yes": 198,
+    "matches_paper_yes": 190
+  },
+  "decision_provenance": {
+    "final_human_only": 200,
+    "final_human_supervised_codex_assisted": 0,
+    "append_only_events": 473,
+    "decision_events": 141,
+    "provenance_corrections": 273,
+    "provenance_backfills": 59,
+    "resolution": "latest event per sample_id"
+  },
+  "non_usable_by_venue": {
+    "ACM AISec": 1,
+    "ESORICS": 7,
+    "NDSS": 2,
+    "RAID": 1,
+    "USENIX Security": 20
+  },
+  "interpretation": "A record is usable only when all three criteria are yes. The final adjudication contains 200 human-only decisions by Sidnei Barbieri. Earlier superseded provenance events remain in the append-only log and must not be counted as additional sampled records."
+}

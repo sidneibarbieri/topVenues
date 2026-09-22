@@ -76,13 +76,21 @@ class TestPaperComputedProperties:
         assert p.paper_class == PaperClass.POSTER
 
     def test_paper_class_journal(self):
-        p = Paper(paper_id="1", title="Distributed Systems Survey", year=2023,
-                  event="ACM Computing Surveys")
+        p = Paper(
+            paper_id="1",
+            title="Distributed Systems Survey",
+            year=2023,
+            event="ACM Computing Surveys",
+        )
         assert p.paper_class == PaperClass.SURVEY  # title wins
 
     def test_paper_class_journal_when_title_neutral(self):
-        p = Paper(paper_id="1", title="On the Hardness of Lattice Problems", year=2023,
-                  event="ACM Computing Surveys")
+        p = Paper(
+            paper_id="1",
+            title="On the Hardness of Lattice Problems",
+            year=2023,
+            event="ACM Computing Surveys",
+        )
         assert p.paper_class == PaperClass.JOURNAL
 
     def test_paper_class_default_article(self):

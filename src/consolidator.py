@@ -8,6 +8,7 @@ from pathlib import Path
 
 import pandas as pd
 
+from .deduplication import deduplicate_papers
 from .event_normalizer import EventNormalizer
 from .models import Paper
 
@@ -18,6 +19,7 @@ def _decode_entities(value: str | None) -> str | None:
     ``html.unescape`` is idempotent on already-decoded strings.
     """
     return html.unescape(value) if isinstance(value, str) else value
+
 
 logger = logging.getLogger(__name__)
 
@@ -53,13 +55,7 @@ class DataConsolidator:
 
     @staticmethod
     def _deduplicate(papers: list[Paper]) -> list[Paper]:
-        seen: set[str] = set()
-        unique: list[Paper] = []
-        for paper in papers:
-            if paper.paper_id in seen:
-                continue
-            seen.add(paper.paper_id)
-            unique.append(paper)
+        unique, _ = deduplicate_papers(papers)
         return unique
 
     _PAPER_TYPE_MAP: dict[str, str] = {
@@ -90,6 +86,10 @@ class DataConsolidator:
             paper_type = self._PAPER_TYPE_MAP.get(raw_type, "unknown")
 
             venue = info.get("venue", "")
+            if isinstance(venue, list):
+                # DBLP occasionally returns multi-venue records; the first
+                # entry is the primary venue.
+                venue = venue[0] if venue else ""
             paper = Paper(
                 score=hit.get("@score"),
                 paper_id=paper_id,
@@ -147,4 +147,3 @@ class DataConsolidator:
         df.to_pickle(master_file)
         df.to_csv(csv_file, index=False, encoding="utf-8")
         return master_file, csv_file
-

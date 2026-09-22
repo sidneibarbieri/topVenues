@@ -5,6 +5,7 @@ import re
 import subprocess
 from typing import TYPE_CHECKING
 
+from ..abstract_quality import normalize_abstract_text
 from .base import AbstractExtractor
 
 if TYPE_CHECKING:
@@ -55,8 +56,8 @@ class IEEEExtractor(AbstractExtractor):
         if not matches:
             return None
 
-        abstract = matches[0].replace('\\"', '"').replace("\\n", " ")
-        return re.sub(r"\s+", " ", abstract).strip()
+        abstract = matches[0].replace('\\"', '"')
+        return normalize_abstract_text(abstract)
 
     def _extract_from_json(self, script_text: str) -> str | None:
         """Parse metadata JSON object and extract abstract field."""
@@ -73,5 +74,5 @@ class IEEEExtractor(AbstractExtractor):
         if not abstract:
             return None
 
-        abstract = abstract.replace('\\"', '"').replace("\\n", " ")
-        return re.sub(r"\s+", " ", abstract).strip()
+        abstract = abstract.replace('\\"', '"')
+        return normalize_abstract_text(abstract)

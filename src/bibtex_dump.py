@@ -47,19 +47,37 @@ ALL_TAGS = INPROCEEDINGS_TAGS | {PROCEEDINGS_TAG}
 # Fields inherited from a parent ``proceedings`` entry when an inproceedings
 # uses ``<crossref>``. DBLP's API does the same when called with ``?param=1``.
 INHERITED_FIELDS = (
-    "editor", "booktitle", "publisher", "series", "volume", "address", "isbn",
+    "editor",
+    "booktitle",
+    "publisher",
+    "series",
+    "volume",
+    "address",
+    "isbn",
 )
 
 # BibTeX field order matches the DBLP API output for visual diff parity.
 FIELD_ORDER = (
-    "author", "editor", "title", "booktitle", "journal",
-    "volume", "number", "pages", "year",
-    "publisher", "series", "address", "isbn",
-    "url", "doi",
-    "biburl", "bibsource",
+    "author",
+    "editor",
+    "title",
+    "booktitle",
+    "journal",
+    "volume",
+    "number",
+    "pages",
+    "year",
+    "publisher",
+    "series",
+    "address",
+    "isbn",
+    "url",
+    "doi",
+    "biburl",
+    "bibsource",
 )
 
-_FIELD_PADDING = 13   # ``author       = `` style alignment
+_FIELD_PADDING = 13  # ``author       = `` style alignment
 _AUTHOR_INDENT = " " * 18  # column where each ``and``-joined name starts
 
 
@@ -96,9 +114,11 @@ def download_dump(target_dir: Path, force: bool = False) -> tuple[Path, Path]:
                         received += len(chunk)
                         if received >= next_threshold or received == total:
                             pct = (received / total * 100) if total else 0
-                            print(f"  download… {received >> 20:>5} / "
-                                  f"{(total or received) >> 20} MiB ({pct:5.1f}%)",
-                                  flush=True)
+                            print(
+                                f"  download… {received >> 20:>5} / "
+                                f"{(total or received) >> 20} MiB ({pct:5.1f}%)",
+                                flush=True,
+                            )
                             next_threshold += report_every
 
     return xml_path, dtd_path
@@ -155,8 +175,11 @@ def parse_dump_for_keys(
                     elif key in targets:
                         matched[key] = (tag, _extract_fields(elem))
                 if progress_every and seen % progress_every == 0:
-                    print(f"  parse… {seen:>10,} entries seen, "
-                          f"{len(matched):>5,}/{len(targets):,} matched", flush=True)
+                    print(
+                        f"  parse… {seen:>10,} entries seen, "
+                        f"{len(matched):>5,}/{len(targets):,} matched",
+                        flush=True,
+                    )
                 elem.clear()
 
     return _resolve_crossrefs_and_format(matched, proceedings_index)
@@ -176,8 +199,7 @@ def _load_entity_table(dtd_path: Path) -> dict[bytes, bytes]:
     if not dtd_path.exists():
         raise FileNotFoundError(f"DBLP DTD not found at {dtd_path}")
     return {
-        match.group(1): match.group(2)
-        for match in _DTD_ENTITY_RE.finditer(dtd_path.read_bytes())
+        match.group(1): match.group(2) for match in _DTD_ENTITY_RE.finditer(dtd_path.read_bytes())
     }
 
 
@@ -186,7 +208,7 @@ class _EntitySubstitutingStream:
 
     Python's stdlib parser handles numeric character references natively
     but refuses to follow an external DTD without security trade-offs, so
-    we materialize the substitution on the byte stream just before it
+    we materialise the substitution on the byte stream just before it
     reaches the parser. A tail buffer guarantees an entity straddling a
     chunk boundary is never split.
     """

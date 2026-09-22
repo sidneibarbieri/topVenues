@@ -8,7 +8,6 @@ Usage::
 
 import argparse
 import asyncio
-import sqlite3
 import sys
 import time
 from pathlib import Path
@@ -18,6 +17,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 from src.bibtex_fetcher import BibTeXFetcher
 from src.collector import Collector
 from src.models import Paper
+from src.sqlite_connection import managed_sqlite_connection
 
 
 async def main(concurrency: int, limit: int | None) -> None:
@@ -34,10 +34,9 @@ async def main(concurrency: int, limit: int | None) -> None:
         nonlocal recovered, failed, completed
         completed += 1
         if bibtex:
-            with sqlite3.connect(db_path) as conn:
+            with managed_sqlite_connection(db_path) as conn:
                 conn.execute(
-                    "UPDATE papers SET bibtex=?, updated_at=CURRENT_TIMESTAMP "
-                    "WHERE paper_id=?",
+                    "UPDATE papers SET bibtex=?, updated_at=CURRENT_TIMESTAMP WHERE paper_id=?",
                     (bibtex, paper.paper_id),
                 )
             recovered += 1
@@ -48,14 +47,20 @@ async def main(concurrency: int, limit: int | None) -> None:
             rate = completed / max(elapsed, 0.1)
             eta_min = (len(papers) - completed) / max(rate, 0.1) / 60
             pct = recovered / completed * 100
-            print(f"  {completed:>5}/{len(papers):,}  ok {recovered:>5} ({pct:5.1f}%)  "
-                  f"rate {rate:5.1f}/s  ETA {eta_min:5.1f} min", flush=True)
+            print(
+                f"  {completed:>5}/{len(papers):,}  ok {recovered:>5} ({pct:5.1f}%)  "
+                f"rate {rate:5.1f}/s  ETA {eta_min:5.1f} min",
+                flush=True,
+            )
 
     async with BibTeXFetcher(concurrency=concurrency) as fetcher:
         await fetcher.fetch_many(papers, on_result=persist)
 
-    print(f"\nDone — {recovered:,}/{len(papers):,} BibTeX entries fetched in "
-          f"{(time.time() - start) / 60:.1f} min  (failures: {failed})", flush=True)
+    print(
+        f"\nDone — {recovered:,}/{len(papers):,} BibTeX entries fetched in "
+        f"{(time.time() - start) / 60:.1f} min  (failures: {failed})",
+        flush=True,
+    )
 
 
 if __name__ == "__main__":

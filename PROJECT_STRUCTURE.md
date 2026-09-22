@@ -1,32 +1,5 @@
-# TopVenues — Project Structure
+# Project structure
 
-The repository is organized around three purposes: the runnable tool,
-the curated research artifact, and active paper workspaces.
+`src/` contains the typed Python domain and persistence code; `web/` contains the local interface; `scripts/` contains explicit maintenance and verification commands; `tests/` contains regression checks; `profiles/` declares the scope; and `data/profiles/` contains immutable manifests plus the bundled current snapshot. Historical binaries remain in their original release tags and are fetched only when explicitly requested.
 
-## Runtime Artifact
-
-| Path | Purpose |
-|------|---------|
-| `src/` | collection, enrichment, persistence, export, CLI |
-| `web/` | Streamlit interface |
-| `tests/` | pytest coverage for core behavior (252 tests) |
-| `data/dataset/papers.db.gz` | committed compressed SQLite snapshot |
-| `data/dataset/master_dataset.csv` | derived CSV export of the frozen snapshot |
-| `config.yaml` | venue and pipeline configuration |
-| `scripts/` | reproducibility, claim verification, ad-hoc maintenance |
-| `Dockerfile`, `docker-compose.yml` | reproducible execution environment |
-| `reproduce.sh` | single-command end-to-end verification |
-
-## Evaluation Documents
-
-| Path | Purpose |
-|------|---------|
-| `README.md` | primary entry point for users |
-| `ARTIFACT_README.md` | artifact overview for evaluation |
-| `REVIEWER_GUIDE.md` | how to verify each headline claim |
-
-## Paper Workspaces
-
-Manuscript drafts live under `papers/`, a local writing workspace that is
-excluded from the public artifact so the released code and corpus remain
-independent of any specific manuscript or venue.
+Run `bash reproduce.sh` for the reviewer path. Generated databases, caches, and live-source workspaces are not source artifacts and are ignored by Git.

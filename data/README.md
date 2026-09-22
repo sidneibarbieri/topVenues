@@ -1,34 +1,9 @@
-# Data Directory
+# Data layout
 
-This directory contains local data used by the topVenues artifact.
+`data/profiles/security-20/` declares the frozen data object for the accepted SBSeg-SF paper. `security-20-v2` is its exact-resource deduplicated successor, `security-20-v3` applies the strict year window and identity adjudication, and `security-20-v4` repairs ten titles truncated at inline DBLP markup. Every profile retains a manifest with its SHA-256, counts, venue-level coverage, and observed years. Only the current v4 binary is bundled; historical binaries remain unchanged in their original release tags and can be fetched explicitly with `scripts/fetch_archived_profile.py`.
 
-## Canonical Dataset Snapshot
+The local web and CLI default to `security-20-v4`; manifested profile snapshots are authoritative for reproduction. `data/adjudication/` records evidence-backed identity and title-repair decisions rather than hiding them in implementation code.
 
-- `dataset/papers.db`: current SQLite source of truth for local search,
-  statistics, and paper claims.
-- `dataset/master_dataset.csv`: derived CSV export.
-- `dataset/master_dataset.rds`: derived RDS export.
+`data/awards/` contains source-backed optional award annotations. They enrich exploration output and do not change corpus inclusion, coverage, or ranking claims.
 
-Current verified snapshot:
-
-- 9,925 records.
-- 9,911 records with abstracts.
-- 9,924 records with BibTeX.
-
-## Reproducibility Inputs
-
-- `dblp/`: DBLP XML dump and DTD used for offline BibTeX enrichment.
-- `json/`: DBLP venue/year JSON downloads.
-- `cache/`: abstract-fetch cache.
-- `checkpoints/`: long-running pipeline checkpoints.
-
-## Archive
-
-- `archive/`: historical data package retained for traceability. Do not cite it
-  as the current corpus unless it is explicitly revalidated.
-
-## Maintenance Rule
-
-Generated logs and Python caches should not be kept here. Dataset snapshots,
-DBLP inputs, JSON downloads, cache files, and checkpoints are retained because
-they support repeatability and artifact evaluation.
+Generated databases, caches, downloaded DBLP dumps, and live-enrichment workspaces are intentionally excluded from the release.

@@ -1,0 +1,14 @@
+{
+  "source_profile": "security-20-v3",
+  "target_profile": "security-20-v4",
+  "source_records": 14859,
+  "target_records": 14859,
+  "same_paper_id_set": true,
+  "changed_abstracts": 0,
+  "changed_titles": 10,
+  "changed_titles_in_audit_sample": 0,
+  "audit_sample_size": 200,
+  "transfer_valid": true,
+  "primary_audit_csv": "evaluation/security-20-v3/manual_abstract_audit.csv",
+  "primary_decision_log": "evaluation/security-20-v3/manual_abstract_audit_decisions.jsonl"
+}

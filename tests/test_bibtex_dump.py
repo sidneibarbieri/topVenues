@@ -68,16 +68,20 @@ class TestExtractFields:
 
 class TestFormatBibtex:
     def test_renders_dblp_style_article(self):
-        out = format_bibtex("article", "journals/x/Smith24", {
-            "author": ["Alice Smith", "Bob Jones"],
-            "title": "On Foo",
-            "journal": "Journal of Foo",
-            "volume": "42",
-            "pages": "1-15",
-            "year": "2024",
-            "doi": "10.1145/3000000",
-            "url": "https://doi.org/10.1145/3000000",
-        })
+        out = format_bibtex(
+            "article",
+            "journals/x/Smith24",
+            {
+                "author": ["Alice Smith", "Bob Jones"],
+                "title": "On Foo",
+                "journal": "Journal of Foo",
+                "volume": "42",
+                "pages": "1-15",
+                "year": "2024",
+                "doi": "10.1145/3000000",
+                "url": "https://doi.org/10.1145/3000000",
+            },
+        )
         assert out.startswith("@article{DBLP:journals/x/Smith24,")
         assert "  author       = {Alice Smith and\n                  Bob Jones}," in out
         assert "  pages        = {1--15}," in out
@@ -85,15 +89,28 @@ class TestFormatBibtex:
         assert out.endswith("}")
 
     def test_pages_already_double_dashed(self):
-        out = format_bibtex("article", "x", {
-            "author": ["A"], "title": "T", "year": "2024", "pages": "10--20",
-        })
+        out = format_bibtex(
+            "article",
+            "x",
+            {
+                "author": ["A"],
+                "title": "T",
+                "year": "2024",
+                "pages": "10--20",
+            },
+        )
         assert "{10--20}" in out
 
     def test_omits_missing_optional_fields(self):
-        out = format_bibtex("inproceedings", "conf/sp/x", {
-            "author": ["A"], "title": "T", "year": "2024",
-        })
+        out = format_bibtex(
+            "inproceedings",
+            "conf/sp/x",
+            {
+                "author": ["A"],
+                "title": "T",
+                "year": "2024",
+            },
+        )
         assert "volume" not in out
         assert "doi" not in out
 
@@ -101,10 +118,15 @@ class TestFormatBibtex:
 class TestCrossrefResolution:
     def test_inherits_editor_and_booktitle(self):
         matched = {
-            "conf/sp/Smith24": ("inproceedings", {
-                "author": ["Smith"], "title": "Foo", "year": "2024",
-                "__crossref": "conf/sp/2024",
-            })
+            "conf/sp/Smith24": (
+                "inproceedings",
+                {
+                    "author": ["Smith"],
+                    "title": "Foo",
+                    "year": "2024",
+                    "__crossref": "conf/sp/2024",
+                },
+            )
         }
         proceedings = {
             "conf/sp/2024": {
@@ -121,9 +143,14 @@ class TestCrossrefResolution:
 
     def test_no_crossref_passes_through(self):
         matched = {
-            "conf/sp/Smith24": ("inproceedings", {
-                "author": ["Smith"], "title": "Foo", "year": "2024",
-            })
+            "conf/sp/Smith24": (
+                "inproceedings",
+                {
+                    "author": ["Smith"],
+                    "title": "Foo",
+                    "year": "2024",
+                },
+            )
         }
         result = _resolve_crossrefs_and_format(matched, {})
         assert "Smith" in result["conf/sp/Smith24"]

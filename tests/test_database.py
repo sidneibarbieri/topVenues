@@ -1,16 +1,19 @@
 """Tests for DatabaseManager."""
 
 import gzip
-import sqlite3
+import hashlib
 
 import pandas as pd
 import pytest
 
 from src.database import (
+    CorpusBusyError,
     DatabaseManager,
     bootstrap_from_gzipped_snapshot,
+    refresh_from_gzipped_snapshot,
 )
 from src.models import Paper
+from src.sqlite_connection import managed_sqlite_connection
 
 
 @pytest.fixture
@@ -55,8 +58,10 @@ class TestImportAbstractsFromCsv:
         assert result.skipped_existing == 0
         assert result.missing_in_db == 0
 
-        with sqlite3.connect(db.db_path) as conn:
-            rows = conn.execute("SELECT paper_id, abstract FROM papers ORDER BY paper_id").fetchall()
+        with managed_sqlite_connection(db.db_path) as conn:
+            rows = conn.execute(
+                "SELECT paper_id, abstract FROM papers ORDER BY paper_id"
+            ).fetchall()
         assert rows == [("1", "A" * 200), ("2", "B" * 200)]
 
     def test_never_overwrites_existing_abstract(self, db, tmp_path):
@@ -72,7 +77,7 @@ class TestImportAbstractsFromCsv:
         assert result.skipped_existing == 1
         assert result.missing_in_db == 0
 
-        with sqlite3.connect(db.db_path) as conn:
+        with managed_sqlite_connection(db.db_path) as conn:
             (current,) = conn.execute("SELECT abstract FROM papers WHERE paper_id = '1'").fetchone()
         assert current.startswith("ORIGINAL")
 
@@ -116,7 +121,7 @@ class TestImportAbstractsFromCsv:
 
 
 class TestBootstrapFromGzippedSnapshot:
-    """The DB materializes itself transparently from a .gz snapshot."""
+    """The DB materialises itself transparently from a .gz snapshot."""
 
     def _seeded_db_bytes(self, tmp_path, paper_id: str = "42") -> bytes:
         source = tmp_path / f"_seed_{paper_id}.db"
@@ -138,6 +143,44 @@ class TestBootstrapFromGzippedSnapshot:
         assert (tmp_path / "papers.db.sync-id").exists()
         rows = DatabaseManager(db_path).get_all_papers()
         assert any(r["paper_id"] == "42" for r in rows)
+
+    def test_refresh_replaces_database_atomically(self, tmp_path):
+        db_path = tmp_path / "papers.db"
+        source = tmp_path / "papers.db.gz"
+        source.write_bytes(gzip.compress(self._seeded_db_bytes(tmp_path, "new")))
+        DatabaseManager(db_path).upsert_paper(_paper("old"))
+
+        refresh_from_gzipped_snapshot(db_path, source)
+
+        rows = DatabaseManager(db_path).get_all_papers()
+        assert any(row["paper_id"] == "new" for row in rows)
+        assert not any(row["paper_id"] == "old" for row in rows)
+
+    def test_materialization_lock_reports_concurrent_startup(self, tmp_path):
+        db_path = tmp_path / "papers.db"
+        lock = tmp_path / "papers.db.materializing.lock"
+        lock.write_text("another-process", encoding="utf-8")
+
+        with pytest.raises(CorpusBusyError, match="Timed out waiting"):
+            from src.database import _materialization_lock
+
+            with _materialization_lock(db_path, timeout_seconds=0):
+                pass
+
+    def test_external_snapshot_is_copied_to_disposable_workspace(self, tmp_path):
+        snapshot = tmp_path / "data" / "profiles" / "security-20" / "papers.db.gz"
+        snapshot.parent.mkdir(parents=True)
+        snapshot.write_bytes(gzip.compress(self._seeded_db_bytes(tmp_path)))
+        original_digest = hashlib.sha256(snapshot.read_bytes()).hexdigest()
+        workspace = tmp_path / "data" / "workspaces" / "security-20" / "papers.db"
+
+        manager = DatabaseManager(workspace, snapshot_path=snapshot)
+        manager.upsert_paper(_paper("local", title="Workspace-only change"))
+
+        assert any(row["paper_id"] == "42" for row in manager.get_all_papers())
+        assert any(row["paper_id"] == "local" for row in manager.get_all_papers())
+        assert hashlib.sha256(snapshot.read_bytes()).hexdigest() == original_digest
+        assert workspace.parent != snapshot.parent
 
     def test_noop_when_no_snapshot(self, tmp_path):
         bootstrap_from_gzipped_snapshot(tmp_path / "papers.db")  # must not raise
@@ -167,6 +210,7 @@ class TestBootstrapFromGzippedSnapshot:
         # Upstream publishes a new snapshot with a different paper
         import os
         import time
+
         new_bytes = gzip.compress(self._seeded_db_bytes(tmp_path, "new"))
         gz_path.write_bytes(new_bytes)
         future = time.time() + 60
@@ -182,6 +226,7 @@ class TestBootstrapFromGzippedSnapshot:
         import logging
         import os
         import time
+
         db_path = tmp_path / "papers.db"
         gz_path = tmp_path / "papers.db.gz"
 
@@ -205,3 +250,28 @@ class TestBootstrapFromGzippedSnapshot:
         assert not any(r["paper_id"] == "upstream" for r in rows)
         # User was warned
         assert any("modifications" in r.message for r in caplog.records)
+
+
+def test_a_local_edit_is_detected_even_within_one_timestamp_tick(tmp_path):
+    """Identity must come from content, not from size and modification time.
+
+    An edit that keeps the file the same size and lands in the same timestamp
+    tick as the last sync produced an identical size-mtime pair, so the snapshot
+    overwrote local work. Coarse mtime resolution on container filesystems makes
+    that reachable; the failure appeared inside the image and not on APFS.
+    """
+    import os
+
+    from src.database import _file_fingerprint
+
+    first = tmp_path / "a.db"
+    second = tmp_path / "b.db"
+    first.write_bytes(b"A" * 4096)
+    second.write_bytes(b"B" * 4096)  # same size, different content
+    stamp = (1_700_000_000, 1_700_000_000)
+    os.utime(first, stamp)
+    os.utime(second, stamp)
+
+    assert first.stat().st_size == second.stat().st_size
+    assert first.stat().st_mtime_ns == second.stat().st_mtime_ns
+    assert _file_fingerprint(first) != _file_fingerprint(second)

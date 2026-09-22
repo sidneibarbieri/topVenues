@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="en" data-lang="en"
+      data-title-en="TopVenues — the denominator for cybersecurity literature reviews"
+      data-title-pt="TopVenues — o denominador das revisões de literatura em cibersegurança"
+      data-desc-en="A declared, frozen and executable corpus of cybersecurity venues. Every count is bound to one snapshot, one SHA-256 and one command."
+      data-desc-pt="Um corpus declarado, congelado e executável de veículos de cibersegurança. Cada contagem fica presa a um snapshot, um SHA-256 e um comando.">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TopVenues — the denominator for cybersecurity literature reviews</title>
+<meta name="description" content="A declared, frozen and executable corpus of cybersecurity venues. Every count is bound to one snapshot, one SHA-256 and one command.">
+<link rel="canonical" href="{{SITE}}">
+<meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0B1627" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TopVenues">
+<meta property="og:title" content="TopVenues — the denominator for cybersecurity literature reviews">
+<meta property="og:description" content="A declared, frozen and executable corpus of cybersecurity venues. Every count is bound to one snapshot, one SHA-256 and one command.">
+<meta property="og:url" content="{{SITE}}">
+<meta property="og:image" content="{{SITE}}assets/brand/topvenues-social.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/brand/topvenues-mark.svg" type="image/svg+xml">
+<link rel="icon" href="assets/brand/mark-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="assets/brand/mark-180.png">
+<link rel="preload" href="assets/fonts/InterVariable-latin.woff2" as="font" type="font/woff2" crossorigin>
+<script>{{BOOT}}</script>
+<style>
+{{CSS}}
+</style>
+<script type="application/ld+json">
+{{JSONLD}}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">{{SKIP}}</a>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#" aria-label="TopVenues">{{WORDMARK_LIGHT}}{{WORDMARK_DARK}}</a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#method"><span data-l="en">Method</span><span data-l="pt">Método</span></a>
+      <a href="#tool"><span data-l="en">Tool</span><span data-l="pt">Ferramenta</span></a>
+      <a href="#findings"><span data-l="en">Findings</span><span data-l="pt">Resultados</span></a>
+      <a href="#papers"><span data-l="en">Papers</span><span data-l="pt">Artigos</span></a>
+      <a href="#start"><span data-l="en">Start</span><span data-l="pt">Começar</span></a>
+      <a href="#cite"><span data-l="en">Cite</span><span data-l="pt">Citar</span></a>
+    </nav>
+    <div class="controls">
+      <div class="seg" role="group" aria-label="Language / Idioma">
+        <button type="button" data-set-lang="en" aria-pressed="true" lang="en">EN</button>
+        <button type="button" data-set-lang="pt" aria-pressed="false" lang="pt-BR">PT</button>
+      </div>
+      <button type="button" class="icon-btn" data-theme-toggle
+              data-label-en="Switch between light and dark" data-label-pt="Alternar entre claro e escuro"
+              aria-label="Switch between light and dark">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-mark" aria-hidden="true">{{MARK_LIGHT}}{{MARK_DARK}}</div>
+    <p class="eyebrow">Reproducible research. Stronger insights.</p>
+    <h1 data-l="en"><span>Every literature review</span><span class="den">has a denominator.</span></h1>
+    <h1 data-l="pt"><span>Toda revisão de literatura</span><span class="den">tem um denominador.</span></h1>
+    <p class="lead" data-l="en">Before screening begins, a review must say which papers could have entered it. TopVenues turns that set into a declared, frozen and executable object: {{VENUES}} cybersecurity venues, one versioned snapshot, one SHA-256, and one command that reproduces every count.</p>
+    <p class="lead" data-l="pt">Antes da triagem, uma revisão precisa dizer quais artigos poderiam ter entrado nela. O TopVenues transforma esse conjunto em um objeto declarado, congelado e executável: {{VENUES}} veículos de cibersegurança, um snapshot versionado, um SHA-256 e um comando que reproduz cada contagem.</p>
+    <div class="cta">
+      <a class="btn primary" href="#start"><span data-l="en">Use the current release</span><span data-l="pt">Usar a versão atual</span> <span class="ar" aria-hidden="true">→</span></a>
+      <a class="btn ghost" href="#papers"><span data-l="en">Reproduce a published paper</span><span data-l="pt">Reproduzir um artigo publicado</span></a>
+    </div>
+    <ul class="hero-links">
+      <li><a class="star-link" href="{{REPO}}"><svg class="star" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.2l2.1 4.3 4.7.7-3.4 3.3.8 4.7L8 12l-4.2 2.2.8-4.7L1.2 6.2l4.7-.7z" fill="currentColor"/></svg><span data-l="en">Star on GitHub</span><span data-l="pt">Estrela no GitHub</span></a></li>
+      <li><a href="{{HF}}/topvenues">Hugging Face</a></li>
+      <li><a href="#demo"><span data-l="en">Demo video</span><span data-l="pt">Vídeo de demonstração</span></a></li>
+    </ul>
+
+    <figure class="fig1">
+      {{FIGURE}}
+      {{VLIST}}
+      <figcaption data-l="en"><b>Figure 1.</b> The current release. {{VENUES}} declared venues converge on one snapshot. <span class="only-wide">Line weight follows the number of records per venue; the {{SURVEY_N}} dashed lines are survey venues.</span><span class="only-narrow">Survey venues are tagged.</span> Every value on this page about the current release is read from <code>data/profiles/{{PROFILE}}/manifest.json</code> when the page is built.</figcaption>
+      <figcaption data-l="pt"><b>Figura 1.</b> A versão atual. {{VENUES}} veículos declarados convergem em um único snapshot. <span class="only-wide">A espessura da linha acompanha o número de registros por veículo; as {{SURVEY_N}} linhas tracejadas são periódicos de surveys.</span><span class="only-narrow">Os periódicos de surveys estão marcados.</span> Todo valor desta página sobre a versão atual é lido de <code>data/profiles/{{PROFILE}}/manifest.json</code> quando a página é gerada.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="release" aria-labelledby="release-h">
+  <div class="wrap">
+    <div class="release-head">
+      <strong id="release-h"><span data-l="en">Current release</span><span data-l="pt">Versão atual</span></strong>
+      <code>{{PROFILE}}</code>
+      <span class="note"><span data-l="en">TopVenues v{{VERSION}} · snapshot built {{BUILT_ON}} · a maintained corpus, not the denominator of a paper (<a href="#papers">those are frozen</a>).</span><span data-l="pt">TopVenues v{{VERSION}} · snapshot gerado em {{BUILT_ON}} · um corpus mantido, não o denominador de um artigo (<a href="#papers">esses estão congelados</a>).</span></span>
+    </div>
+    <dl class="stats">
+      <div><dt><span data-l="en">records</span><span data-l="pt">registros</span></dt><dd><span data-l="en">{{RECORDS_EN}}</span><span data-l="pt">{{RECORDS_PT}}</span></dd></div>
+      <div><dt><span data-l="en">venues: {{CORE_N}} security, {{SURVEY_N}} survey</span><span data-l="pt">veículos: {{CORE_N}} de segurança, {{SURVEY_N}} de surveys</span></dt><dd>{{VENUES}}</dd></div>
+      <div><dt><span data-l="en">declared window</span><span data-l="pt">janela declarada</span></dt><dd>{{Y0}}–{{Y1}}</dd></div>
+      <div><dt><span data-l="en">with abstract ({{ABS_EN}})</span><span data-l="pt">com resumo ({{ABS_PT}})</span></dt><dd><span data-l="en">{{ABSPCT_EN}}</span><span data-l="pt">{{ABSPCT_PT}}</span></dd></div>
+      <div><dt><span data-l="en">with a BibTeX entry</span><span data-l="pt">com entrada BibTeX</span></dt><dd><span data-l="en">{{BIBPCT_EN}}</span><span data-l="pt">{{BIBPCT_PT}}</span></dd></div>
+    </dl>
+  </div>
+</section>
+
+<section class="sec" id="method" aria-labelledby="method-h">
+  <div class="wrap">
+    <p class="sec-label"><span class="no">01</span><span data-l="en">Method</span><span data-l="pt">Método</span></p>
+    <div>
+      <h2 id="method-h"><span data-l="en">Declared. Frozen. Executable.</span><span data-l="pt">Declarado. Congelado. Executável.</span></h2>
+      <div class="pillars">
+        <article>
+          <span class="k">scope</span>
+          <h3><span data-l="en">Declared</span><span data-l="pt">Declarado</span></h3>
+          <p data-l="en">The scope is written down before anything is counted: a venue list and a year window in a versioned configuration file.</p>
+          <p data-l="pt">O escopo é escrito antes de qualquer contagem: uma lista de veículos e uma janela de anos em um arquivo de configuração versionado.</p>
+        </article>
+        <article>
+          <span class="k">snapshot</span>
+          <h3><span data-l="en">Frozen</span><span data-l="pt">Congelado</span></h3>
+          <p data-l="en">Each release ships a compressed SQLite snapshot with a published SHA-256. A number cited in a paper stays bound to it when the tool changes.</p>
+          <p data-l="pt">Cada versão traz um snapshot SQLite comprimido com SHA-256 publicado. Um número citado em artigo continua preso a ele quando a ferramenta muda.</p>
+        </article>
+        <article>
+          <span class="k">reproduce.sh</span>
+          <h3><span data-l="en">Executable</span><span data-l="pt">Executável</span></h3>
+          <p data-l="en">One command verifies the snapshot, runs the tests, starts the interface and reproduces the counts. No API key, GPU or institutional access; offline once installed.</p>
+          <p data-l="pt">Um comando verifica o snapshot, roda os testes, sobe a interface e reproduz as contagens. Sem chave de API, GPU ou acesso institucional; offline depois de instalado.</p>
+        </article>
+      </div>
+
+      <div class="notes">
+        <div>
+          <h3><span data-l="en">Scope is decided by venue, not by topic</span><span data-l="pt">O escopo é decidido pelo veículo, não pelo tema</span></h3>
+          <p data-l="en">A paper is in the corpus because it appeared in a declared venue within the window, not because a classifier judged it to be about security. {{CORE_N}} venues are security venues and form a core of {{CORE_EN}} records. The other {{SURVEY_N}} are survey venues ({{SURVEYS}}), kept because reviews lean on surveys; they are labelled cross-area and one filter removes them.</p>
+          <p data-l="pt">Um artigo está no corpus porque saiu em um veículo declarado dentro da janela, não porque um classificador julgou que ele trata de segurança. {{CORE_N}} veículos são de segurança e formam um núcleo de {{CORE_PT}} registros. Os outros {{SURVEY_N}} são periódicos de surveys ({{SURVEYS}}), mantidos porque revisões se apoiam em surveys; eles têm o rótulo cross-area e um filtro os remove.</p>
+        </div>
+        <div>
+          <h3><span data-l="en">Gaps are reported, not hidden</span><span data-l="pt">Lacunas são relatadas, não escondidas</span></h3>
+          <p data-l="en">DBLP supplies metadata and BibTeX, not abstracts. Abstracts come from open scholarly APIs and publisher pages, and coverage is reported per venue: ESORICS, for instance, has {{ESO_A}} abstracts for {{ESO_P_EN}} records. A venue-stratified manual audit of {{AUD_N}} abstracts found {{AUD_EN}} usable (95% Wilson interval {{AUD_CI_EN}}).</p>
+          <p data-l="pt">O DBLP fornece metadados e BibTeX, não resumos. Os resumos vêm de APIs acadêmicas abertas e de páginas das editoras, e a cobertura é relatada por veículo: o ESORICS, por exemplo, tem {{ESO_A}} resumos para {{ESO_P_PT}} registros. Uma auditoria manual estratificada por veículo, com {{AUD_N}} resumos, encontrou {{AUD_PT}} utilizáveis (intervalo de Wilson de 95%: {{AUD_CI_PT}}).</p>
+        </div>
+      </div>
+
+      <details class="more">
+        <summary><span data-l="en">Per-venue coverage ({{VENUES}} venues)</span><span data-l="pt">Cobertura por veículo ({{VENUES}} veículos)</span></summary>
+        {{VTABLE}}
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="tool" aria-labelledby="tool-h">
+  <div class="wrap">
+    <p class="sec-label"><span class="no">02</span><span data-l="en">Tool</span><span data-l="pt">Ferramenta</span></p>
+    <div>
+      <h2 id="tool-h"><span data-l="en">A literature workbench on a fixed population.</span><span data-l="pt">Uma bancada de literatura sobre uma população fixa.</span></h2>
+      <p class="sec-intro" data-l="en">A local web interface and a command-line tool over the same snapshot. Every aggregate links back to the records behind it.</p>
+      <p class="sec-intro" data-l="pt">Uma interface web local e uma ferramenta de linha de comando sobre o mesmo snapshot. Todo agregado leva de volta aos registros que o sustentam.</p>
+      <div class="shots">
+        <figure>
+          <div class="frame"><img src="assets/screens/search-top4-llm.png" width="1280" height="720" loading="lazy" alt="Search page with ranked results for LLM in the Security top-4 scope"></div>
+          <figcaption data-l="en"><b>Ranked search</b>BM25 over titles and abstracts, with an explicit Security top-4 scope: ACM CCS, IEEE S&amp;P, USENIX Security and NDSS.</figcaption>
+          <figcaption data-l="pt"><b>Busca ranqueada</b>BM25 sobre títulos e resumos, com escopo explícito Security top-4: ACM CCS, IEEE S&amp;P, USENIX Security e NDSS.</figcaption>
+        </figure>
+        <figure>
+          <div class="frame"><img src="assets/screens/insights-llm-top4.png" width="820" height="320" loading="lazy" alt="Two charts: papers per year and share of the year's corpus for LLM in the Security top-4"></div>
+          <figcaption data-l="en"><b>Topic trends</b>How often a topic appears per year, in absolute counts and as a share of that year's corpus.</figcaption>
+          <figcaption data-l="pt"><b>Tendências de tema</b>Com que frequência um tema aparece por ano, em contagem absoluta e como fração do corpus daquele ano.</figcaption>
+        </figure>
+        <figure>
+          <div class="frame"><img src="assets/screens/researcher-radar-llm-top4.png" width="820" height="434" loading="lazy" alt="Researcher Radar with author trajectories for a topic"></div>
+          <figcaption data-l="en"><b>Researcher Radar</b>Exact-identity trajectories and direct coauthorship for a topic. Corpus observations, not measures of quality or impact.</figcaption>
+          <figcaption data-l="pt"><b>Researcher Radar</b>Trajetórias por identidade exata e coautoria direta para um tema. Observações do corpus, não medidas de qualidade ou impacto.</figcaption>
+        </figure>
+        <figure>
+          <div class="frame"><img src="assets/screens/evidence.png" width="1280" height="720" loading="lazy" alt="Evidence page showing snapshot identity and the manual abstract audit"></div>
+          <figcaption data-l="en"><b>Evidence and claim boundaries</b>What the snapshot verifies, and what needs a separate protocol, such as the manual abstract audit.</figcaption>
+          <figcaption data-l="pt"><b>Evidências e limites das afirmações</b>O que o snapshot verifica e o que exige um protocolo separado, como a auditoria manual de resumos.</figcaption>
+        </figure>
+      </div>
+      <div class="cli">
+        <h3><span data-l="en">The same operations from the command line</span><span data-l="pt">As mesmas operações pela linha de comando</span></h3>
+        {{CLI}}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="findings" aria-labelledby="findings-h">
+  <div class="wrap">
+    <p class="sec-label"><span class="no">03</span><span data-l="en">Findings</span><span data-l="pt">Resultados</span></p>
+    <div>
+      <h2 id="findings-h"><span data-l="en">What a fixed denominator makes measurable.</span><span data-l="pt">O que um denominador fixo torna mensurável.</span></h2>
+      <p class="sec-intro" data-l="en">Two measurements from Paper A, taken on its May 2026 snapshot of 9,925 records. They are reproduced by that paper's release, not recomputed on the current corpus.</p>
+      <p class="sec-intro" data-l="pt">Duas medições do Artigo A, feitas sobre seu snapshot de maio de 2026, com 9.925 registros. Elas são reproduzidas pela versão daquele artigo, não recalculadas sobre o corpus atual.</p>
+      <div class="findings">
+        <div class="finding">
+          <div class="big"><span data-l="en">29.2%</span><span data-l="pt">29,2%</span></div>
+          <p data-l="en">of the 2,537 papers published at the four CORE A* security venues in 2024–2025 had a matching arXiv <code>cs.CR</code> preprint (742 papers).</p>
+          <p data-l="pt">dos 2.537 artigos publicados nos quatro veículos CORE A* de segurança em 2024–2025 tinham um preprint correspondente no arXiv <code>cs.CR</code> (742 artigos).</p>
+          <p class="muted" data-l="en">The preprint came a median of 154 days before the conference. The rate held between 28.4% and 31.1% across the four venues.</p>
+          <p class="muted" data-l="pt">O preprint veio, em mediana, 154 dias antes da conferência. A taxa ficou entre 28,4% e 31,1% nos quatro veículos.</p>
+        </div>
+        <div class="finding">
+          <div class="big"><span data-l="en">16.5×</span><span data-l="pt">16,5×</span></div>
+          <p data-l="en">relative risk for a triage filter over 5,185 <code>cs.CR</code> preprints from 2023: preprints with a coauthor already published in the top-4 later appeared there 15.9% of the time, against 0.97% for the rest.</p>
+          <p data-l="pt">de risco relativo para um filtro de triagem sobre 5.185 preprints <code>cs.CR</code> de 2023: preprints com um coautor já publicado no top-4 apareceram depois nele em 15,9% dos casos, contra 0,97% dos demais.</p>
+          <p class="muted" data-l="en">The filter reads 36% of the preprints and keeps 90.3% of those that later reached the top-4.</p>
+          <p class="muted" data-l="pt">O filtro lê 36% dos preprints e mantém 90,3% dos que depois chegaram ao top-4.</p>
+        </div>
+      </div>
+      <div class="ratio">
+        <h3><span data-l="en">16.5× or 2.5×? Same filter, two baselines.</span><span data-l="pt">16,5× ou 2,5×? Mesmo filtro, duas linhas de base.</span></h3>
+        <dl class="eq">
+          <dt><span data-l="en">16.5×</span><span data-l="pt">16,5×</span></dt>
+          <dd><span data-l="en">15.9% ÷ 0.97%</span><span data-l="pt">15,9% ÷ 0,97%</span></dd>
+          <dd class="why"><span data-l="en">flagged against unflagged preprints: relative risk</span><span data-l="pt">sinalizados contra não sinalizados: risco relativo</span></dd>
+          <dt><span data-l="en">2.5×</span><span data-l="pt">2,5×</span></dt>
+          <dd><span data-l="en">15.9% ÷ 6.4%</span><span data-l="pt">15,9% ÷ 6,4%</span></dd>
+          <dd class="why"><span data-l="en">flagged against all preprints: conventional lift</span><span data-l="pt">sinalizados contra todos os preprints: lift convencional</span></dd>
+        </dl>
+      </div>
+      <p class="provenance" data-l="en">A correlational triage signal, not a judgement of quality. The controls, the author-position variants and the replication on the 2022 cohort are in Table 5 of <a href="#paper-a">Paper A</a>.</p>
+      <p class="provenance" data-l="pt">Um sinal correlacional de triagem, não um juízo de qualidade. Os controles, as variantes por posição de autoria e a replicação na coorte de 2022 estão na Tabela 5 do <a href="#paper-a">Artigo A</a>.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="papers" aria-labelledby="papers-h">
+  <div class="wrap">
+    <p class="sec-label"><span class="no">04</span><span data-l="en">Papers</span><span data-l="pt">Artigos</span></p>
+    <div>
+      <h2 id="papers-h"><span data-l="en">Published evidence does not move.</span><span data-l="pt">Evidência publicada não se move.</span></h2>
+      <p class="sec-intro" data-l="en">The software evolves. Each paper stays bound to one repository, one release, one snapshot and one SHA-256, and its numbers are reproduced from that snapshot, never from whatever the current release ships.</p>
+      <p class="sec-intro" data-l="pt">O software evolui. Cada artigo fica preso a um repositório, uma versão, um snapshot e um SHA-256, e seus números são reproduzidos desse snapshot, nunca do que a versão atual traz.</p>
+      <ol class="chain" aria-label="Chain of evidence">
+        <li><span data-l="en">paper</span><span data-l="pt">artigo</span></li><li class="sep" aria-hidden="true">→</li>
+        <li><span data-l="en">repository</span><span data-l="pt">repositório</span></li><li class="sep" aria-hidden="true">→</li>
+        <li>release</li><li class="sep" aria-hidden="true">→</li>
+        <li>snapshot</li><li class="sep" aria-hidden="true">→</li>
+        <li>sha-256</li><li class="sep" aria-hidden="true">→</li>
+        <li><span data-l="en">command</span><span data-l="pt">comando</span></li>
+      </ol>
+      <div class="papers">
+        {{PAPER_A}}
+        {{PAPER_B}}
+      </div>
+
+      <div class="current">
+        <p class="kicker"><span data-l="en">Current release · not a paper</span><span data-l="pt">Versão atual · não é um artigo</span></p>
+        <h3><span data-l="en">The corpus TopVenues ships today</span><span data-l="pt">O corpus que o TopVenues distribui hoje</span></h3>
+        <p data-l="en"><code>{{PROFILE}}</code> succeeds <code>security-20</code>; it does not correct Paper B. Exact-resource deduplication and a declared {{Y0}}–{{Y1}} window make it a different population, with its own identity.</p>
+        <p data-l="pt"><code>{{PROFILE}}</code> sucede o <code>security-20</code>; não corrige o Artigo B. A deduplicação por recurso exato e a janela declarada de {{Y0}}–{{Y1}} fazem dele outra população, com identidade própria.</p>
+        <dl class="facts">
+          <dt><span data-l="en">Repository</span><span data-l="pt">Repositório</span></dt><dd><a href="{{REPO}}"><code>sidneibarbieri/topVenues</code></a></dd>
+          <dt><span data-l="en">Profile</span><span data-l="pt">Perfil</span></dt><dd><code>{{PROFILE}}</code> · <span data-l="en">{{RECORDS_EN}} records · {{VENUES}} venues · {{Y0}}–{{Y1}}</span><span data-l="pt">{{RECORDS_PT}} registros · {{VENUES}} veículos · {{Y0}}–{{Y1}}</span></dd>
+          <dt>SHA-256</dt><dd><code class="hash">{{SHA}}</code></dd>
+          <dt>Parquet</dt><dd><a href="{{HF}}/topvenues"><code>sidneibarbieri/topvenues</code></a> <span class="muted">· Hugging Face</span></dd>
+        </dl>
+      </div>
+
+      <div class="aside">
+        <div>
+          <h3><span data-l="en">One repository</span><span data-l="pt">Um repositório</span></h3>
+          <p data-l="en">TopVenues lives in <a href="{{REPO}}"><code>topVenues</code></a>: the current tool on its main branch, Paper A frozen at its release. Until v1.10.0 the tool was developed in <code>topvenues-tool</code>, the address Paper B prints. That repository is archived and still answers the printed command. Continuous integration re-runs both papers on every change, so quality only moves forward.</p>
+          <p data-l="pt">O TopVenues mora em <a href="{{REPO}}"><code>topVenues</code></a>: a ferramenta atual na branch principal e o Artigo A congelado na sua versão. Até a v1.10.0 a ferramenta foi desenvolvida em <code>topvenues-tool</code>, o endereço que o Artigo B imprime. Aquele repositório está arquivado e continua atendendo ao comando impresso. A integração contínua reproduz os dois artigos a cada mudança, então a qualidade só avança.</p>
+        </div>
+        <div>
+          <h3><span data-l="en">About the DOIs</span><span data-l="pt">Sobre os DOIs</span></h3>
+          <p data-l="en">SBC assigned both DOIs in the proceedings metadata, but they are not yet registered with Crossref, so <code>doi.org</code> does not resolve them. The SOL links are the working ones.</p>
+          <p data-l="pt">A SBC atribuiu os dois DOIs nos metadados dos anais, mas eles ainda não foram registrados no Crossref, então o <code>doi.org</code> não os resolve. Os links do SOL são os que funcionam.</p>
+          <p data-l="en">The widest exploratory corpus is on <a href="{{HF}}/topvenues-complete">Hugging Face</a>; it is not the denominator of any paper.</p>
+          <p data-l="pt">O corpus exploratório mais amplo está no <a href="{{HF}}/topvenues-complete">Hugging Face</a>; ele não é o denominador de nenhum artigo.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="start" aria-labelledby="start-h">
+  <div class="wrap">
+    <p class="sec-label"><span class="no">05</span><span data-l="en">Start</span><span data-l="pt">Começar</span></p>
+    <div>
+      <h2 id="start-h"><span data-l="en">One command, then a local interface.</span><span data-l="pt">Um comando, depois uma interface local.</span></h2>
+      <div class="start">
+        <div class="tabs">
+          <div role="tablist" aria-label="Operating system">
+            <button role="tab" type="button" id="tab-unix" aria-controls="pane-unix" aria-selected="true">macOS · Linux</button>
+            <button role="tab" type="button" id="tab-win" aria-controls="pane-win" aria-selected="false" tabindex="-1">Windows</button>
+          </div>
+          <div role="tabpanel" id="pane-unix" aria-labelledby="tab-unix">
+            <p class="req" data-l="en">Python 3.11–3.14, Git and Bash. No API key, GPU or institutional access.</p>
+            <p class="req" data-l="pt">Python 3.11–3.14, Git e Bash. Sem chave de API, GPU ou acesso institucional.</p>
+            {{QUICK_UNIX}}
+            <h3><span data-l="en">Then open the interface</span><span data-l="pt">Depois, abra a interface</span></h3>
+            {{UI_UNIX}}
+          </div>
+          <div role="tabpanel" id="pane-win" aria-labelledby="tab-win" hidden>
+            <p class="req" data-l="en">Python 3.11–3.14 with the <code>py</code> launcher, Git and PowerShell.</p>
+            <p class="req" data-l="pt">Python 3.11–3.14 com o launcher <code>py</code>, Git e PowerShell.</p>
+            {{QUICK_WIN}}
+            <h3><span data-l="en">Then open the interface</span><span data-l="pt">Depois, abra a interface</span></h3>
+            {{UI_WIN}}
+          </div>
+        </div>
+        <div class="data">
+          <h3><span data-l="en">Only the data</span><span data-l="pt">Só os dados</span></h3>
+          <p data-l="en">The same snapshot as a Parquet export on Hugging Face, with the same SHA-256 recorded on its card.</p>
+          <p data-l="pt">O mesmo snapshot como exportação Parquet no Hugging Face, com o mesmo SHA-256 registrado no cartão.</p>
+          {{HFCODE}}
+          <p class="small muted" style="margin-top:14px" data-l="en">Code: MIT. Metadata and BibTeX: DBLP, CC0. Abstracts remain under their publishers' terms.</p>
+          <p class="small muted" style="margin-top:14px" data-l="pt">Código: MIT. Metadados e BibTeX: DBLP, CC0. Os resumos seguem os termos de suas editoras.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="demo" aria-labelledby="demo-h">
+  <div class="wrap">
+    <p class="sec-label"><span class="no">06</span><span data-l="en">Demo</span><span data-l="pt">Demo</span></p>
+    <div>
+      <h2 id="demo-h"><span data-l="en">The tool end to end, in under eight minutes.</span><span data-l="pt">A ferramenta de ponta a ponta, em menos de oito minutos.</span></h2>
+      <p class="sec-intro" data-l="en">Installation and offline verification, search and export, the Insights page and the audit evidence. Narration in English, captions in English and Brazilian Portuguese. Recorded with v1.5.9, before the current visual identity.</p>
+      <p class="sec-intro" data-l="pt">Instalação e verificação offline, busca e exportação, a página Insights e as evidências de auditoria. Narração em inglês, legendas em inglês e português do Brasil. Gravado com a v1.5.9, antes da identidade visual atual.</p>
+      <div class="video">
+        <video controls preload="none" playsinline crossorigin="anonymous" poster="assets/demo-poster.jpg" width="1280" height="720">
+          <source src="{{DEMO}}.mp4" type="video/mp4">
+          <track kind="captions" src="{{DEMO}}.en.vtt" srclang="en" label="English" data-track="en">
+          <track kind="captions" src="{{DEMO}}.pt-BR.vtt" srclang="pt-BR" label="Português (Brasil)" data-track="pt">
+        </video>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="cite" aria-labelledby="cite-h">
+  <div class="wrap">
+    <p class="sec-label"><span class="no">07</span><span data-l="en">Cite</span><span data-l="pt">Citar</span></p>
+    <div>
+      <h2 id="cite-h"><span data-l="en">Cite the paper whose numbers you use.</span><span data-l="pt">Cite o artigo cujos números você usa.</span></h2>
+      <p class="sec-intro" data-l="en">Paper A for the corpus method and the measurements; Paper B for the tool. When you use the current release, also name the profile and its SHA-256.</p>
+      <p class="sec-intro" data-l="pt">O Artigo A para o método do corpus e as medições; o Artigo B para a ferramenta. Ao usar a versão atual, informe também o perfil e seu SHA-256.</p>
+      <div class="cite">
+        {{BIB_A}}
+        {{BIB_B}}
+      </div>
+      <div class="star-panel">
+        <p data-l="en">Found TopVenues useful? Cite it, and star the repository so that other researchers find it.</p>
+        <p data-l="pt">O TopVenues foi útil? Cite-o e dê uma estrela no repositório para que outros pesquisadores o encontrem.</p>
+        <a class="btn primary" href="{{REPO}}"><svg class="star" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.2l2.1 4.3 4.7.7-3.4 3.3.8 4.7L8 12l-4.2 2.2.8-4.7L1.2 6.2l4.7-.7z" fill="currentColor"/></svg><span data-l="en">Star on GitHub</span><span data-l="pt">Estrela no GitHub</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <img class="mk" src="assets/brand/topvenues-app-icon.svg" width="40" height="40" alt="">
+      <p><strong style="color:var(--fg)">TopVenues</strong></p>
+      <p>Sidnei Barbieri, Ágney Lopes Roth Ferraz, Lourenço Alves Pereira Júnior</p>
+      <p><span data-l="en">Computer Science Division, Instituto Tecnológico de Aeronáutica (ITA), São José dos Campos, Brazil</span><span data-l="pt">Divisão de Ciência da Computação, Instituto Tecnológico de Aeronáutica (ITA), São José dos Campos, Brasil</span></p>
+    </div>
+    <div>
+      <h2><span data-l="en">Artifacts</span><span data-l="pt">Artefatos</span></h2>
+      <ul>
+        <li><a href="{{REPO}}">topVenues</a> <span data-l="en">· tool and Paper A</span><span data-l="pt">· ferramenta e Artigo A</span></li>
+        <li><a href="{{GH}}/topvenues-tool">topvenues-tool</a> <span data-l="en">· archived, Paper B</span><span data-l="pt">· arquivado, Artigo B</span></li>
+        <li><a href="{{HF}}/topvenues">Hugging Face · topvenues</a></li>
+        <li><a href="{{REPO}}/blob/main/docs/PAPERS.md">PAPERS.md</a></li>
+        <li><a href="{{REPO}}/issues"><span data-l="en">Issues and questions</span><span data-l="pt">Problemas e dúvidas</span></a></li>
+      </ul>
+    </div>
+    <div>
+      <h2><span data-l="en">This page</span><span data-l="pt">Esta página</span></h2>
+      <p data-l="en">Sets no cookies and loads nothing from third parties until you play the video, which streams from Hugging Face.</p>
+      <p data-l="pt">Não usa cookies e não carrega nada de terceiros até você iniciar o vídeo, que vem do Hugging Face.</p>
+      <p data-l="en">Code MIT · Inter typeface, SIL Open Font License.</p>
+      <p data-l="pt">Código MIT · fonte Inter, SIL Open Font License.</p>
+    </div>
+    <p class="stamp"><span data-l="en">Built from</span><span data-l="pt">Gerado a partir de</span> {{STAMP}}</p>
+  </div>
+</footer>
+
+<script>
+{{JS}}
+</script>
+</body>
+</html>
