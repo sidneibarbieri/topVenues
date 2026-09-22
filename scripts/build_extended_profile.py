@@ -46,6 +46,7 @@ sys.path.insert(0, str(ROOT))
 from src.collector import Collector  # noqa: E402
 from src.dblp_dump_materializer import DblpDumpMaterializer  # noqa: E402
 from src.profiles import load_profile, verified_profile_snapshot  # noqa: E402
+from src.sqlite_connection import managed_sqlite_connection  # noqa: E402
 
 DEFAULT_SOURCE = "security-20-v4"
 DEFAULT_TARGET = "security-20-v5"
@@ -137,7 +138,7 @@ def merged_resources(identity_log: Path) -> set[str]:
 
 
 def source_identity(database: Path) -> tuple[set[str], set[str]]:
-    with sqlite3.connect(database) as connection:
+    with managed_sqlite_connection(database) as connection:
         rows = connection.execute("SELECT key, ee FROM papers").fetchall()
     keys = {key for key, _ in rows}
     resources = {canonical_resource(link) for _, link in rows if link}
@@ -183,7 +184,7 @@ def staging_collector(staging: Path) -> Collector:
 
 
 def staged_records(database: Path) -> list[StagedRecord]:
-    with sqlite3.connect(database) as connection:
+    with managed_sqlite_connection(database) as connection:
         rows = connection.execute("SELECT key, event, year, ee FROM papers").fetchall()
     return [
         StagedRecord(key=key, event=event, year=int(year), resource=canonical_resource(link))
@@ -214,7 +215,7 @@ def stage(succession: Succession, dump: Path, staging: Path, identity_log: Path)
         elif reason not in {"already in the source", "resource already in the source"}:
             excluded.append(ExcludedRecord(**record.model_dump(), reason=reason))
 
-    with sqlite3.connect(collector.db.db_path) as connection:
+    with managed_sqlite_connection(collector.db.db_path) as connection:
         connection.execute("CREATE TEMP TABLE kept(key TEXT PRIMARY KEY)")
         connection.executemany("INSERT INTO kept VALUES (?)", [(record.key,) for record in added])
         connection.execute("DELETE FROM papers WHERE key NOT IN (SELECT key FROM kept)")
@@ -257,13 +258,13 @@ def write_gzip(source: Path, target: Path) -> None:
 
 def insert_additions(target: Path, staged: Path, expected_keys: set[str]) -> None:
     columns = ", ".join(COPIED_COLUMNS)
-    with sqlite3.connect(staged) as source_connection:
+    with managed_sqlite_connection(staged) as source_connection:
         rows = source_connection.execute(f"SELECT {columns} FROM papers").fetchall()
     staged_keys = {row[COPIED_COLUMNS.index("key")] for row in rows}
     if staged_keys != expected_keys:
         raise SystemExit("the staged database no longer matches its extension log")
     placeholders = ", ".join("?" for _ in COPIED_COLUMNS)
-    with sqlite3.connect(target) as connection:
+    with managed_sqlite_connection(target) as connection:
         connection.executemany(f"INSERT INTO papers ({columns}) VALUES ({placeholders})", rows)
 
 
@@ -285,7 +286,7 @@ def event_counts(connection: sqlite3.Connection) -> list[dict]:
 
 
 def snapshot_declaration(database: Path, archive: Path, declared_path: str) -> dict:
-    with sqlite3.connect(database) as connection:
+    with managed_sqlite_connection(database) as connection:
         counts = event_counts(connection)
         years = connection.execute("SELECT MIN(year), MAX(year) FROM papers").fetchone()
     return {
@@ -366,7 +367,7 @@ def freeze(staging: Path, dump_release: str, output_root: Path) -> None:
 
 def fill_missing_abstracts(database: Path, repairs: tuple[AbstractRepair, ...]) -> None:
     """Fill each named record's abstract; a record that already has one is an error."""
-    with sqlite3.connect(database) as connection:
+    with managed_sqlite_connection(database) as connection:
         for repair in repairs:
             row = connection.execute(
                 "SELECT abstract FROM papers WHERE paper_id = ?", (repair.paper_id,)
