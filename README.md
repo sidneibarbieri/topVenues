@@ -323,8 +323,10 @@ resolve today.
 
 Instituto Tecnológico de Aeronáutica (ITA), São José dos Campos, Brazil.
 
-For a concise evidence map, read [REVIEWER_GUIDE.md](REVIEWER_GUIDE.md). For the
-full artifact boundary, read [ARTIFACT_README.md](ARTIFACT_README.md).
+Each published result and the command that reproduces it are in
+[docs/PAPERS.md](docs/PAPERS.md). The reviewer guide and artifact README written
+for the tools-track evaluation are kept, unchanged, in
+[docs/history/](docs/history/).
 
 ## License and provenance
 

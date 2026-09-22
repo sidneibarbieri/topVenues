@@ -10,8 +10,8 @@ help:
 	@echo "  reproduce   verify every headline claim end to end"
 	@echo "  docker      build the Docker image"
 	@echo "  docker-test run pytest inside Docker"
-	@echo "  snapshot    rewrite data/dataset/papers.db.gz from papers.db"
-	@echo "  clean       remove caches and the materialised papers.db"
+	@echo "  snapshot    compress the working papers.db into its snapshot"
+	@echo "  clean       remove caches and the materialised workspaces"
 
 install:
 	python -m venv .venv
@@ -43,4 +43,4 @@ snapshot:
 
 clean:
 	rm -rf .pytest_cache __pycache__ */__pycache__ */*/__pycache__
-	rm -f data/dataset/papers.db data/dataset/papers.db.sync-id
+	rm -rf data/workspaces

@@ -4,7 +4,7 @@
 > release it describes lives in the archived repository
 > `sidneibarbieri/topvenues-tool`, so the commands below still work as written.
 > In this repository the same claims reproduce with
-> `bash reproduce.sh --profile security-20`; see [docs/PAPERS.md](docs/PAPERS.md).
+> `bash reproduce.sh --profile security-20`; see [docs/PAPERS.md](../PAPERS.md).
 
 This guide evaluates the immutable `security-20` profile used by the accepted SBSeg-SF paper. The current `security-20-v4` profile is a separate, post-publication successor documented in the main README; it does not alter the paper's frozen claims.
 
@@ -59,7 +59,7 @@ python -m streamlit run web/app.py
 On Windows PowerShell, replace the activation command with
 `.\.venv\Scripts\Activate.ps1`.
 
-Open `http://localhost:8501`, inspect coverage, run a ranked search, and export a result set as BibTeX, CSV, or JSON. An [abstract-evidence capture](docs/assets/topvenues-abstract-search.pdf) applies the **Abstract contains** filter to `intrusion detection`; every displayed row has an abstract preview.
+Open `http://localhost:8501`, inspect coverage, run a ranked search, and export a result set as BibTeX, CSV, or JSON. An [abstract-evidence capture](../assets/topvenues-abstract-search.pdf) applies the **Abstract contains** filter to `intrusion detection`; every displayed row has an abstract preview.
 
 ## Scope and limitations
 
