@@ -49,7 +49,7 @@
 Requires Python 3.11–3.14, Git, and Bash.
 
 ```bash
-git clone --depth 1 --branch v1.11.1 https://github.com/sidneibarbieri/topVenues.git
+git clone --depth 1 --branch v1.12.0 https://github.com/sidneibarbieri/topVenues.git
 cd topVenues
 bash reproduce.sh --profile security-20-v4
 ```
@@ -67,7 +67,7 @@ Use the native PowerShell workflow rather than editing the Unix script or mixing
 Git Bash and PowerShell environments:
 
 ```powershell
-git clone --depth 1 --branch v1.11.1 https://github.com/sidneibarbieri/topVenues.git
+git clone --depth 1 --branch v1.12.0 https://github.com/sidneibarbieri/topVenues.git
 cd topVenues
 powershell -ExecutionPolicy Bypass -File .\reproduce.ps1 -Profile security-20-v4
 ```
@@ -95,7 +95,7 @@ running the same command. The interface opens at `http://localhost:8501`.
 
 | Property | Value |
 | --- | --- |
-| Tool release | `v1.11.1` |
+| Tool release | `v1.12.0` |
 | Profile | `security-20-v4` |
 | Snapshot source release | `v1.2.1` |
 | Scope | 20 declared security and security-relevant venues |
@@ -168,7 +168,7 @@ python -m src.cli --profile security-20-v4 export --format bibtex --tech "fuzzin
   --tier-scope "Security top-4" -o fuzzing-tier1.bib
 
 # Build the Hugging Face Parquet export from the immutable profile
-python -m src.cli --profile security-20-v4 export-hf --release-tag v1.11.1
+python -m src.cli --profile security-20-v4 export-hf --release-tag v1.12.0
 
 # Create and later evaluate a portable research watch
 python scripts/evaluate_watchlist.py topvenues-watchlist.json --profile security-20-v4
@@ -216,13 +216,13 @@ tools-track paper still runs against it unchanged.
 
 ## Demonstration
 
-[![TopVenues demonstration](docs/assets/demos/posters/topvenues-demo-v1.11.1.jpg)](https://huggingface.co/datasets/sidneibarbieri/topvenues/resolve/main/assets/demo/topvenues-demo-v1.11.1.mp4)
+[![TopVenues demonstration](docs/assets/demos/posters/topvenues-demo-v1.12.0.jpg)](https://huggingface.co/datasets/sidneibarbieri/topvenues/resolve/main/assets/demo/topvenues-demo-v1.12.0.mp4)
 
 Seven minutes and forty-nine seconds in 1920x1080, streamed from Hugging Face.
 It follows one path end to end: the problem a fixed denominator solves,
 installation and offline verification, an ordinary search with its exports,
 the four passes of the Insights page, the audit evidence, and the immutability
-boundary. It was recorded with v1.11.1, in the current visual identity.
+boundary. It was recorded with v1.12.0, in the current visual identity.
 Narration is US English; captions ship in Brazilian Portuguese and English.
 Sidecar SRT files, the timed narration source, and the shot plan are in
 [docs/demo/](docs/demo/README.md).
