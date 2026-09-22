@@ -49,7 +49,7 @@
 Requires Python 3.11–3.14, Git, and Bash.
 
 ```bash
-git clone --depth 1 --branch v1.13.0 https://github.com/sidneibarbieri/topVenues.git
+git clone --depth 1 --branch v1.13.1 https://github.com/sidneibarbieri/topVenues.git
 cd topVenues
 bash reproduce.sh --profile security-20-v4
 ```
@@ -67,7 +67,7 @@ Use the native PowerShell workflow rather than editing the Unix script or mixing
 Git Bash and PowerShell environments:
 
 ```powershell
-git clone --depth 1 --branch v1.13.0 https://github.com/sidneibarbieri/topVenues.git
+git clone --depth 1 --branch v1.13.1 https://github.com/sidneibarbieri/topVenues.git
 cd topVenues
 powershell -ExecutionPolicy Bypass -File .\reproduce.ps1 -Profile security-20-v4
 ```
@@ -101,7 +101,7 @@ System, Light and Dark.
 
 | Property | Value |
 | --- | --- |
-| Tool release | `v1.13.0` |
+| Tool release | `v1.13.1` |
 | Profile | `security-20-v4` |
 | Snapshot source release | `v1.2.1` |
 | Scope | 20 declared security and security-relevant venues |
@@ -292,7 +292,7 @@ other researchers can find it. Which paper to cite depends on what you used:
 
 | You… | Cite |
 | --- | --- |
-| used TopVenues to search, build a review corpus, export references or rank authors | the tools-track paper (`barbieri2026topvenuestool`), and name the release and profile, such as `TopVenues v1.13.0, profile security-20-v4` |
+| used TopVenues to search, build a review corpus, export references or rank authors | the tools-track paper (`barbieri2026topvenuestool`), and name the release and profile, such as `TopVenues v1.13.1, profile security-20-v4` |
 | use or build on the corpus method or its measurements | the main-track paper (`barbieri2026topvenues`) |
 | did both | both |
 
