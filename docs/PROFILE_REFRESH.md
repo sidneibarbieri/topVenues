@@ -79,3 +79,21 @@ python scripts/build_extended_profile.py freeze --staging STAGE \
 - **What stays unchanged:** the added records use the DBLP key as `paper_id`,
   because the dump carries no numeric DBLP identifier. The source records keep
   theirs.
+
+### When the audit finds an abstract that was never collected
+
+A sampled record can turn out to have no abstract at all, because its
+collection failed. Fill it from the publisher record the reviewer read, never
+from a guess, and keep the evidence:
+
+```bash
+python scripts/build_extended_profile.py repair-abstracts \
+  --log data/adjudication/security-20-v5-abstract-repairs.json --output-root REVIEW
+```
+
+Each entry names the record, the transcription, its source URL, the reviewer,
+and why the repair was needed. The step refuses to touch a record that already
+has an abstract, rewrites the snapshot and restates its manifest, and records
+the log under `repair_log`. Report the audit rate as it was labelled, before
+the repair: the sample measures collection as it ran, and the repair is a
+separate, disclosed correction.
