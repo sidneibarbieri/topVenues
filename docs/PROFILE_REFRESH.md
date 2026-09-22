@@ -45,3 +45,35 @@ terminal sentence is ranked above a likely truncation, and word count is used
 only after those quality checks. The final lexical tie-break makes a replay
 stable. A successor must rerun the manual audit because this rule can change
 abstract bytes without changing the bibliographic denominator.
+
+## Additive extension from a newer DBLP release
+
+When DBLP publishes new editions of declared venues, a successor can add them
+without touching anything the source already holds.
+[`scripts/build_extended_profile.py`](../scripts/build_extended_profile.py)
+admits a record only when:
+
+- its DBLP key and canonical resource are absent from the source;
+- its year is declared;
+- no decision in the identity log already merged it as an alias.
+
+Every excluded record is logged with its reason.
+
+```bash
+python scripts/build_extended_profile.py stage --dump dblp-2026-09-01.xml.gz --staging STAGE
+python -m src.cli --base-dir STAGE backfill-abstracts
+python -m src.cli --base-dir STAGE extract
+python -m src.cli --base-dir STAGE bibtex-from-dump --dump dblp-2026-09-01.xml.gz
+python scripts/build_extended_profile.py freeze --staging STAGE \
+  --dump-release 10.4230/dblp.xml.2026-09-01 --output-root REVIEW
+```
+
+- **Where the dump comes from:** use the monthly DBLP XML release archived on
+  [Dagstuhl DROPS](https://drops.dagstuhl.de/entities/collection/dblp), and
+  check its MD5.
+- **How to review before promoting:** `--output-root` writes the candidate
+  outside the repository. Review it with `compare_profiles.py` and a manual audit
+  sample drawn from the added records, then freeze it into the repository.
+- **What stays unchanged:** the added records use the DBLP key as `paper_id`,
+  because the dump carries no numeric DBLP identifier. The source records keep
+  theirs.
