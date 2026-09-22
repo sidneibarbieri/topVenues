@@ -63,14 +63,16 @@ Every excluded record is logged with its reason.
 python scripts/build_extended_profile.py stage --dump dblp-2026-09-01.xml.gz --staging STAGE
 python -m src.cli --base-dir STAGE backfill-abstracts
 python -m src.cli --base-dir STAGE extract
-python -m src.cli --base-dir STAGE bibtex-from-dump --dump dblp-2026-09-01.xml.gz
+python -m src.cli --base-dir STAGE bibtex-from-dump --dump-dir DUMPDIR
 python scripts/build_extended_profile.py freeze --staging STAGE \
   --dump-release 10.4230/dblp.xml.2026-09-01 --output-root REVIEW
 ```
 
 - **Where the dump comes from:** use the monthly DBLP XML release archived on
   [Dagstuhl DROPS](https://drops.dagstuhl.de/entities/collection/dblp), and
-  check its MD5.
+  check its MD5. `bibtex-from-dump` reads `DUMPDIR/dblp.xml.gz` and
+  `DUMPDIR/dblp.dtd`, so place (or link) the release and its DTD under those
+  names. Otherwise it tries dblp.org, whose anti-bot page returns HTML.
 - **How to review before promoting:** `--output-root` writes the candidate
   outside the repository. Review it with `compare_profiles.py` and a manual audit
   sample drawn from the added records, then freeze it into the repository.
