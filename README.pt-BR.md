@@ -107,6 +107,12 @@ evidências. Gravada com a v1.11.1, na identidade visual atual, e
 transmitida pelo
 [Hugging Face](https://huggingface.co/datasets/sidneibarbieri/topvenues/resolve/main/assets/demo/topvenues-demo-v1.11.1.mp4).
 
+**Com assistentes de IA** (Claude, Codex, ChatGPT): um agente de terminal usa a
+linha de comando e segue o [`AGENTS.md`](AGENTS.md). Ele responde a partir do
+snapshot, cita com o BibTeX exportado e declara o denominador de cada número. O
+[guia](docs/AI_ASSISTANTS.md) cobre também assistentes de desktop e de chat, com
+prompts prontos.
+
 ---
 
 # Estrutura do readme.md
@@ -135,6 +141,7 @@ Organização do repositório:
 topVenues/
 ├── README.md                  documentação em inglês
 ├── README.pt-BR.md            este arquivo (modelo do CTA)
+├── AGENTS.md                  instruções para agentes de IA (Claude Code, Codex)
 ├── reproduce.sh               reprodução em uma linha (macOS e Linux)
 ├── reproduce.ps1              reprodução em uma linha (Windows / PowerShell)
 ├── Dockerfile                 imagem alternativa, mesmas dependências fixadas

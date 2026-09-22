@@ -1,7 +1,7 @@
 """Recreate the documentation screenshots from a running interface.
 
-Start the interface first (`python -m src.cli --profile security-20-v4 web`),
-then run this script. It drives the same scenes the README shows: the overview,
+Start the interface first (`python -m streamlit run web/app.py`), then run
+this script. It drives the same scenes the README shows: the overview,
 a ranked search for "LLM" in the Security top-4 scope, that topic's trend, one
 author's trajectory in Researcher Radar, and the evidence page.
 

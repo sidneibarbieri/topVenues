@@ -39,6 +39,7 @@
 | Get only the data | `load_dataset("sidneibarbieri/topvenues")` from [Hugging Face](https://huggingface.co/datasets/sidneibarbieri/topvenues) |
 | Reproduce the SBSeg 2026 main-track paper | `git checkout sbseg2026-camera-ready && bash reproduce.sh` ([details](docs/PAPERS.md#paper-a--main-track-sbseg-2026)) |
 | Reproduce the SBSeg 2026 tools-track paper | `bash reproduce.sh --profile security-20` ([details](docs/PAPERS.md#paper-b--tools-track-sbseg-2026)) |
+| Work with Claude, Codex or ChatGPT | [With AI assistants](#with-ai-assistants) |
 | Cite TopVenues | [Citation](#citation) |
 
 ## Quick start
@@ -179,6 +180,15 @@ python scripts/manual_abstract_audit.py --profile security-20-v4 --sample-size 2
 Substring and ranked search answer different questions: substring search finds
 records that mention text, whereas ranked search orders title, abstract, and
 author matches by BM25. Multi-word ranked queries use token semantics.
+
+### With AI assistants
+
+A terminal agent such as Claude Code or Codex CLI can drive the CLI above.
+[`AGENTS.md`](AGENTS.md) tells it to answer from the snapshot, cite with the
+exported BibTeX, and state the denominator with every number. The assistant does
+the reading and writing; TopVenues guarantees that every paper exists and that
+every count can be checked. [docs/AI_ASSISTANTS.md](docs/AI_ASSISTANTS.md)
+covers desktop and chat-only assistants and gives prompts that work.
 
 ## Published papers, frozen evidence
 
