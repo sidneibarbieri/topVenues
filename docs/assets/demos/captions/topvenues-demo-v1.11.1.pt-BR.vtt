@@ -17,8 +17,8 @@ antes de a triagem começar.
 
 4
 00:00:11.976 --> 00:00:14.745
-Na prática. esse conjunto
-é remontado à mão.
+Na prática, esse conjunto
+é remontado à mão,
 
 5
 00:00:14.785 --> 00:00:17.746
@@ -42,7 +42,7 @@ denominador em um objeto.
 
 9
 00:00:28.882 --> 00:00:31.133
-Declarado. congelado. com hash e citável.
+Declarado, congelado, com hash e citável.
 
 10
 00:00:31.173 --> 00:00:33.240
@@ -55,7 +55,7 @@ A instalação é um clone e um script.
 12
 00:00:36.545 --> 00:00:40.112
 Nada é buscado em editora
-no momento da revisão.
+no momento da revisão,
 
 13
 00:00:40.152 --> 00:00:43.608
@@ -70,7 +70,7 @@ isolado a partir de
 15
 00:00:47.052 --> 00:00:49.793
 dependências fixadas
-e verificadas por hash.
+e verificadas por hash,
 
 16
 00:00:49.833 --> 00:00:53.774
@@ -83,18 +83,18 @@ que acompanha o repositório.
 
 18
 00:00:56.184 --> 00:00:58.714
-Em seguida ele verifica.
+Em seguida ele verifica,
 em vez de afirmar.
 
 19
 00:00:58.754 --> 00:01:01.883
 O SHA-256 do snapshot é
-conferido contra o manifesto.
+conferido contra o manifesto,
 
 20
 00:01:01.923 --> 00:01:06.605
 as contagens de registros são conferidas
-contra os números impressos no artigo.
+contra os números impressos no artigo,
 
 21
 00:01:06.645 --> 00:01:09.096
@@ -121,12 +121,12 @@ A interface abre no que você tem em mãos.
 26
 00:01:26.813 --> 00:01:32.240
 Catorze mil oitocentos e cinquenta e
-nove artigos em vinte veículos declarados.
+nove artigos em vinte veículos declarados,
 
 27
 00:01:32.280 --> 00:01:35.701
 noventa e quatro por cento
-com resumo pesquisável.
+com resumo pesquisável,
 
 28
 00:01:35.741 --> 00:01:38.232
@@ -139,12 +139,12 @@ Nada aqui é consulta ao vivo.
 30
 00:01:40.755 --> 00:01:44.231
 A lista de veículos é um
-escopo científico declarado.
+escopo científico declarado,
 
 31
 00:01:44.271 --> 00:01:48.648
 e alterá-la é uma decisão de
-versão. não um filtro que se arrasta.
+versão, não um filtro que se arrasta.
 
 32
 00:01:49.248 --> 00:01:51.359
@@ -153,12 +153,12 @@ Comece com uma pergunta comum.
 33
 00:01:51.399 --> 00:01:55.088
 A busca ranqueada ordena
-correspondências de título.
+correspondências de título,
 
 34
 00:01:55.128 --> 00:02:00.792
-resumo e autor por relevância. sobre
-todo o corpus congelado. em milissegundos.
+resumo e autor por relevância, sobre
+todo o corpus congelado, em milissegundos.
 
 35
 00:02:01.392 --> 00:02:03.880
@@ -166,12 +166,12 @@ Restrinja como um protocolo restringe:
 
 36
 00:02:03.920 --> 00:02:07.606
-por estrato de veículo. por
-ano. por posição de autoria.
+por estrato de veículo, por
+ano, por posição de autoria.
 
 37
 00:02:07.646 --> 00:02:10.933
-A contagem se atualiza.
+A contagem se atualiza,
 e essa contagem é o número
 
 38
@@ -184,12 +184,12 @@ Cada linha abre no registro por trás dela.
 
 40
 00:02:17.660 --> 00:02:24.212
-O resumo que correspondeu. o veículo.
-o estrato. o DOI e o link da editora.
+O resumo que correspondeu, o veículo,
+o estrato, o DOI e o link da editora.
 
 41
 00:02:24.252 --> 00:02:27.768
-Você lê a evidência. não um resumo dela.
+Você lê a evidência, não um resumo dela.
 
 42
 00:02:28.368 --> 00:02:29.099
@@ -197,8 +197,8 @@ E ele sai.
 
 43
 00:02:29.139 --> 00:02:35.420
-CSV para uma planilha de triagem. JSON
-para um pipeline. BibTeX para o manuscrito.
+CSV para uma planilha de triagem, JSON
+para um pipeline, BibTeX para o manuscrito,
 
 44
 00:02:35.460 --> 00:02:41.088
@@ -216,11 +216,11 @@ Ela se lê em quatro passagens:
 
 47
 00:02:47.920 --> 00:02:50.922
-o que ela contém. como um tópico se move.
+o que ela contém, como um tópico se move,
 
 48
 00:02:50.962 --> 00:02:55.488
-quem produz esse trabalho. e
+quem produz esse trabalho, e
 onde ela não consegue responder.
 
 49
@@ -229,7 +229,7 @@ Composição primeiro.
 
 50
 00:02:57.476 --> 00:03:01.184
-Artigos por veículo. por
+Artigos por veículo, por
 ano e por classe de registro.
 
 51
@@ -248,7 +248,7 @@ Todo agregado é uma porta.
 
 54
 00:03:12.475 --> 00:03:17.598
-Clique numa barra e você está na busca.
+Clique numa barra e você está na busca,
 filtrado exatamente naqueles registros.
 
 55
@@ -269,7 +269,7 @@ recebe seu volume anual.
 58
 00:03:29.251 --> 00:03:33.642
 Modelos de linguagem: seis
-artigos em dois mil e dezenove.
+artigos em dois mil e dezenove,
 
 59
 00:03:33.682 --> 00:03:37.272
@@ -297,12 +297,12 @@ e um que apenas acompanha a expansão dela.
 64
 00:03:51.936 --> 00:03:55.944
 E ele nomeia os veículos que
-sustentam esse crescimento.
+sustentam esse crescimento,
 
 65
 00:03:55.984 --> 00:03:59.125
 para que a próxima
-pergunta — onde submeter.
+pergunta — onde submeter,
 
 66
 00:03:59.165 --> 00:04:03.792
@@ -315,13 +315,13 @@ A quarta passagem são as pessoas.
 
 68
 00:04:07.092 --> 00:04:13.516
-O Researcher Radar ranqueia quem recorre.
+O Researcher Radar ranqueia quem recorre,
 e é deliberado sobre o que ele não é:
 
 69
 00:04:13.556 --> 00:04:20.184
-mede presença neste corpus. nunca citações.
-qualidade. senioridade ou autoridade.
+mede presença neste corpus, nunca citações,
+qualidade, senioridade ou autoridade.
 
 70
 00:04:20.784 --> 00:04:24.244
@@ -359,11 +359,11 @@ trabalho; último autor revela quem o dirige.
 
 77
 00:04:47.398 --> 00:04:49.878
-Para montar uma lista de referências.
+Para montar uma lista de referências,
 
 78
 00:04:49.918 --> 00:04:53.664
-ou um comitê de programa.
+ou um comitê de programa,
 essas listas não são a mesma.
 
 79
@@ -373,11 +373,11 @@ E nenhuma linha é um veredito.
 80
 00:04:56.366 --> 00:05:00.318
 Abra uma e você vê a trajetória
-por trás dela. ano a ano.
+por trás dela, ano a ano,
 
 81
 00:05:00.358 --> 00:05:05.922
-separada por posição na assinatura. com
+separada por posição na assinatura, com
 as colaborações diretas em que se apoia.
 
 82
@@ -391,7 +391,7 @@ Duas visões derivadas fecham a passagem.
 84
 00:05:11.612 --> 00:05:15.626
 Autores cuja assinatura
-migrou de primeiro para último.
+migrou de primeiro para último,
 
 85
 00:05:15.666 --> 00:05:18.501
@@ -404,7 +404,7 @@ E autores cuja taxa anual está subindo.
 87
 00:05:21.415 --> 00:05:26.280
 Ambas são descritas como listas
-para investigar. não como achados.
+para investigar, não como achados.
 
 88
 00:05:26.880 --> 00:05:30.753
@@ -417,17 +417,17 @@ onde o corpus não consegue falar.
 
 90
 00:05:33.020 --> 00:05:37.298
-Cobertura de resumos por veículo.
+Cobertura de resumos por veículo,
 publicada em vez de escondida.
 
 91
 00:05:37.338 --> 00:05:42.600
-O ESORICS está em seis por cento. porque
+O ESORICS está em seis por cento, porque
 a Springer não expõe aqueles resumos.
 
 92
 00:05:43.200 --> 00:05:48.909
-Isso importa. porque uma busca em resumos
+Isso importa, porque uma busca em resumos
 não pode incluir o que não consegue ler.
 
 93
@@ -451,7 +451,7 @@ A qualidade dos resumos não foi afirmada;
 
 97
 00:06:04.475 --> 00:06:07.360
-foi medida. sobre uma
+foi medida, sobre uma
 amostra estratificada por
 
 98
@@ -461,16 +461,16 @@ revisados por uma pessoa.
 
 99
 00:06:11.424 --> 00:06:14.120
-Cento e sessenta e nove estavam completos.
+Cento e sessenta e nove estavam completos,
 
 100
 00:06:14.160 --> 00:06:17.638
-não contaminados. e
+não contaminados, e
 correspondiam ao artigo amostrado.
 
 101
 00:06:17.678 --> 00:06:19.853
-Oitenta e quatro e meio por cento.
+Oitenta e quatro e meio por cento,
 
 102
 00:06:19.893 --> 00:06:24.152
@@ -484,7 +484,7 @@ oitenta e oito vírgula nove.
 
 104
 00:06:27.449 --> 00:06:30.120
-A incerteza é reportada. não arredondada.
+A incerteza é reportada, não arredondada.
 
 105
 00:06:30.720 --> 00:06:34.132
@@ -513,17 +513,17 @@ pesquisador que já conhece sua área?
 
 110
 00:06:50.384 --> 00:06:53.808
-Três coisas. e nenhuma
+Três coisas, e nenhuma
 delas é uma caixa de busca.
 
 111
 00:06:54.408 --> 00:06:57.564
 Um denominador que você
-pode colocar num artigo.
+pode colocar num artigo,
 
 112
 00:06:57.604 --> 00:07:01.294
-com hash. que um revisor
+com hash, que um revisor
 reproduz offline em um comando.
 
 113
@@ -579,7 +579,7 @@ TopVenues.
 
 124
 00:07:39.425 --> 00:07:42.996
-Código aberto. licença MIT. com o corpus.
+Código aberto, licença MIT, com o corpus,
 
 125
 00:07:43.036 --> 00:07:48.408
