@@ -7,6 +7,7 @@ import random
 from collections.abc import Callable
 from datetime import datetime
 from pathlib import Path
+from urllib.parse import quote
 
 import httpx
 from bs4 import BeautifulSoup
@@ -14,6 +15,8 @@ from bs4 import BeautifulSoup
 from .circuit_breaker import CircuitBreaker, CircuitBreakerConfig, CircuitBreakerOpenError
 from .models import Configuration, DownloadLogEntry, DownloadStatus
 from .venue_config import VenueStrategyRegistry
+
+DBLP_API_PAGE_SIZE = 1000
 
 
 class JSONDownloader:
@@ -26,7 +29,9 @@ class JSONDownloader:
         self.venue_registry = VenueStrategyRegistry()
         self.circuit_breaker = CircuitBreaker(
             CircuitBreakerConfig(
-                failure_threshold=3, recovery_timeout=120.0, expected_exception=httpx.ReadError
+                failure_threshold=3,
+                recovery_timeout=120.0,
+                expected_exception=(httpx.ReadError, httpx.TimeoutException),
             )
         )
 
@@ -122,6 +127,10 @@ class JSONDownloader:
         file_name: Path,
         timestamp: datetime,
     ) -> DownloadLogEntry:
+        toc_key = self._toc_key_from_dblp_url(url)
+        if toc_key:
+            return await self._try_download_toc_api(event, year, toc_key, file_name, timestamp)
+
         for attempt in range(1, self.config.max_retries + 1):
             try:
                 response = await self.circuit_breaker.call(
@@ -131,6 +140,17 @@ class JSONDownloader:
                 if response.status_code == 429:
                     await asyncio.sleep(10)
                     continue
+                if self._is_permanent_client_error(response.status_code):
+                    return DownloadLogEntry(
+                        event=event,
+                        year=year,
+                        file_name=str(file_name),
+                        url=url,
+                        http_code=response.status_code,
+                        status=DownloadStatus.FAILED,
+                        message=f"Permanent HTTP {response.status_code}",
+                        timestamp=timestamp,
+                    )
                 if response.status_code != 200:
                     continue
 
@@ -156,6 +176,17 @@ class JSONDownloader:
                 json_response = await self.circuit_breaker.call(
                     self.client.get, json_link, headers={"User-Agent": self._random_user_agent()}
                 )
+                if self._is_permanent_client_error(json_response.status_code):
+                    return DownloadLogEntry(
+                        event=event,
+                        year=year,
+                        file_name=str(file_name),
+                        url=json_link,
+                        http_code=json_response.status_code,
+                        status=DownloadStatus.FAILED,
+                        message=f"Permanent HTTP {json_response.status_code}",
+                        timestamp=timestamp,
+                    )
                 if json_response.status_code != 200:
                     continue
 
@@ -194,9 +225,17 @@ class JSONDownloader:
                     message="Circuit breaker OPEN - DBLP unstable",
                     timestamp=timestamp,
                 )
-            except (httpx.HTTPError, OSError):
+            except (httpx.HTTPError, OSError) as exc:
                 if attempt == self.config.max_retries:
-                    raise
+                    return DownloadLogEntry(
+                        event=event,
+                        year=year,
+                        file_name=str(file_name),
+                        url=url,
+                        status=DownloadStatus.FAILED,
+                        message=f"{type(exc).__name__}: {exc}",
+                        timestamp=timestamp,
+                    )
                 await asyncio.sleep(2**attempt)
 
             await asyncio.sleep(2**attempt)
@@ -211,6 +250,129 @@ class JSONDownloader:
             timestamp=timestamp,
         )
 
+    async def _try_download_toc_api(
+        self,
+        event: str,
+        year: int,
+        toc_key: str,
+        file_name: Path,
+        timestamp: datetime,
+    ) -> DownloadLogEntry:
+        hits: list[dict] = []
+        first_payload: dict | None = None
+        total = 0
+        first = 0
+
+        while True:
+            json_url = self._toc_api_url(toc_key, first)
+            payload, error = await self._fetch_json_payload(json_url)
+            if error:
+                return DownloadLogEntry(
+                    event=event,
+                    year=year,
+                    file_name=str(file_name),
+                    url=json_url,
+                    status=DownloadStatus.FAILED,
+                    message=error,
+                    timestamp=timestamp,
+                )
+            if payload is None:
+                return DownloadLogEntry(
+                    event=event,
+                    year=year,
+                    file_name=str(file_name),
+                    url=json_url,
+                    status=DownloadStatus.FAILED,
+                    message="Empty DBLP API payload",
+                    timestamp=timestamp,
+                )
+
+            first_payload = first_payload or payload
+            hit_block = payload.get("result", {}).get("hits", {})
+            total = int(hit_block.get("@total", "0") or 0)
+            sent = int(hit_block.get("@sent", "0") or 0)
+            page_hits = hit_block.get("hit", [])
+            if isinstance(page_hits, dict):
+                page_hits = [page_hits]
+            hits.extend(page_hits)
+
+            if total == 0:
+                return DownloadLogEntry(
+                    event=event,
+                    year=year,
+                    file_name=str(file_name),
+                    url=json_url,
+                    status=DownloadStatus.FAILED,
+                    message="No DBLP records found for TOC",
+                    timestamp=timestamp,
+                )
+            if sent == 0 or first + sent >= total:
+                break
+            first += sent
+
+        if first_payload is None or len(hits) != total:
+            return DownloadLogEntry(
+                event=event,
+                year=year,
+                file_name=str(file_name),
+                url=self._toc_api_url(toc_key, 0),
+                status=DownloadStatus.CORRUPT,
+                message=f"Incomplete DBLP API page set: {len(hits)}/{total}",
+                timestamp=timestamp,
+            )
+
+        combined = first_payload
+        combined["result"]["hits"]["hit"] = hits
+        combined["result"]["hits"]["@sent"] = str(len(hits))
+        combined["result"]["hits"]["@computed"] = str(len(hits))
+        combined["result"]["hits"]["@first"] = "0"
+        file_name.write_text(json.dumps(combined, ensure_ascii=False), encoding="utf-8")
+
+        if not self._validate_json(file_name):
+            file_name.unlink(missing_ok=True)
+            return DownloadLogEntry(
+                event=event,
+                year=year,
+                file_name=str(file_name),
+                url=self._toc_api_url(toc_key, 0),
+                status=DownloadStatus.CORRUPT,
+                message="Downloaded DBLP API payload is invalid",
+                timestamp=timestamp,
+            )
+
+        return DownloadLogEntry(
+            event=event,
+            year=year,
+            file_name=str(file_name),
+            url=self._toc_api_url(toc_key, 0),
+            http_code=200,
+            status=DownloadStatus.DOWNLOADED,
+            message=f"Downloaded {len(hits)} DBLP records via TOC API",
+            timestamp=timestamp,
+        )
+
+    async def _fetch_json_payload(self, url: str) -> tuple[dict | None, str | None]:
+        for attempt in range(1, self.config.max_retries + 1):
+            try:
+                response = await self.client.get(
+                    url, headers={"User-Agent": self._random_user_agent()}
+                )
+                if response.status_code == 429:
+                    await asyncio.sleep(10)
+                    continue
+                if self._is_permanent_client_error(response.status_code):
+                    return None, f"Permanent HTTP {response.status_code}"
+                if response.status_code != 200:
+                    continue
+                return response.json(), None
+            except (httpx.HTTPError, json.JSONDecodeError, OSError) as exc:
+                if attempt == self.config.max_retries:
+                    return None, f"{type(exc).__name__}: {exc}"
+                await asyncio.sleep(2**attempt)
+
+            await asyncio.sleep(2**attempt)
+        return None, "Max retries exceeded"
+
     def _get_event_urls(self, event: str, year: int) -> list[str]:
         strategy = self.venue_registry.get_strategy(event)
         return strategy.get_urls(event, year, self.config)
@@ -218,13 +380,40 @@ class JSONDownloader:
     def _validate_json(self, file_path: Path) -> bool:
         try:
             data = json.loads(file_path.read_text(encoding="utf-8"))
-            return (
-                isinstance(data, dict)
-                and data.get("result") is not None
-                and "hits" in data["result"]
-            )
+            if not isinstance(data, dict) or data.get("result") is None:
+                return False
+            hits = data["result"].get("hits")
+            if not isinstance(hits, dict):
+                return False
+            hit_rows = hits.get("hit")
+            if isinstance(hit_rows, dict):
+                return True
+            return isinstance(hit_rows, list) and len(hit_rows) > 0
         except (json.JSONDecodeError, KeyError, OSError):
             return False
+
+    @staticmethod
+    def _toc_key_from_dblp_url(url: str) -> str | None:
+        prefix = "https://dblp.org/"
+        if not url.startswith(prefix):
+            return None
+        path = url[len(prefix) :]
+        if not path.startswith("db/") or not path.endswith(".html"):
+            return None
+        return path.removesuffix(".html") + ".bht"
+
+    @staticmethod
+    def _toc_api_url(toc_key: str, first: int) -> str:
+        query = quote(f"toc:{toc_key}:")
+        return (
+            "https://dblp.org/search/publ/api?"
+            f"q={query}&h={DBLP_API_PAGE_SIZE}&f={first}&format=json"
+        )
+
+    @staticmethod
+    def _is_permanent_client_error(status_code: int) -> bool:
+        """Return true for client errors that should not be retried."""
+        return 400 <= status_code < 500 and status_code != 429
 
     def _random_user_agent(self) -> str:
         return random.choice(self.config.user_agents)

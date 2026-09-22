@@ -1,0 +1,32 @@
+profile_id: security-20-v3
+immutable_snapshot: true
+snapshot_path: data/profiles/security-20-v3/papers.db.gz
+events:
+- ccs
+- asiaccs
+- uss
+- ndss
+- sp
+- eurosp
+- sacmat
+- acsac
+- esorics
+- codaspy
+- raid
+- cns
+- wisec
+- woot
+- satml
+- aisec
+- trustcom
+- acm_csur
+- ieee_comst
+- fnt_privsec
+year_start: 2019
+years: [2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026]
+partial_years: [2026]
+data_dir: data/workspaces/security-20-v3/dataset
+log_dir: data/workspaces/security-20-v3/log
+json_dir: data/workspaces/security-20-v3/json
+cache_dir: data/workspaces/security-20-v3/cache
+checkpoint_dir: data/workspaces/security-20-v3/checkpoints

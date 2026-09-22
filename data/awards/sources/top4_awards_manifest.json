@@ -1,0 +1,1193 @@
+[
+  {
+    "conference": "IEEE S&P",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "COBBL: Dynamic Constraint Generation for SNARKs",
+    "official_url": "https://sp2025.ieee-security.org/awards.html",
+    "authors": "",
+    "candidate_urls": [],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "IEEE S&P",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "Transport Layer Obscurity: Circumventing SNI Censorship on the TLS Layer",
+    "official_url": "https://sp2025.ieee-security.org/awards.html",
+    "authors": "",
+    "candidate_urls": [],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "IEEE S&P",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "Follow My Flow: Unveiling Client-Side Prototype Pollution Gadgets from One Million Real-World Websites",
+    "official_url": "https://sp2025.ieee-security.org/awards.html",
+    "authors": "",
+    "candidate_urls": [],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "IEEE S&P",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "CipherSteal: Stealing Input Data from TEE-Shielded Neural Networks with Ciphertext Side Channels",
+    "official_url": "https://sp2025.ieee-security.org/awards.html",
+    "authors": "",
+    "candidate_urls": [],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "IEEE S&P",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "Characterizing Robocalls with Multiple Vantage Points",
+    "official_url": "https://sp2025.ieee-security.org/awards.html",
+    "authors": "",
+    "candidate_urls": [],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "IEEE S&P",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "Verifiable Boosted Tree Ensembles",
+    "official_url": "https://sp2025.ieee-security.org/awards.html",
+    "authors": "",
+    "candidate_urls": [],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "IEEE S&P",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "Breaking the Barrier: Post-Barrier Spectre Attacks",
+    "official_url": "https://sp2025.ieee-security.org/awards.html",
+    "authors": "",
+    "candidate_urls": [],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "IEEE S&P",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "Unveiling Security Vulnerabilities in Git Large File Storage Protocol",
+    "official_url": "https://sp2025.ieee-security.org/awards.html",
+    "authors": "",
+    "candidate_urls": [],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "IEEE S&P",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "The Inadequacy of Similarity-based Privacy Metrics: Privacy Attacks against Truly Anonymous Synthetic Datasets",
+    "official_url": "https://sp2025.ieee-security.org/awards.html",
+    "authors": "",
+    "candidate_urls": [],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "IEEE S&P",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "Empc: Effective Path Prioritization for Symbolic Execution with Path Cover",
+    "official_url": "https://sp2025.ieee-security.org/awards.html",
+    "authors": "",
+    "candidate_urls": [],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "IEEE S&P",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "SLAP: Data Speculation Attacks via Load Address Prediction on Apple Silicon",
+    "official_url": "https://sp2025.ieee-security.org/awards.html",
+    "authors": "",
+    "candidate_urls": [],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "IEEE S&P",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "Detecting Taint-Style Vulnerabilities in Microservice-Structured Web Applications",
+    "official_url": "https://sp2025.ieee-security.org/awards.html",
+    "authors": "",
+    "candidate_urls": [],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "IEEE S&P",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "DataSentinel: A Game-Theoretic Detection of Prompt Injection Attacks",
+    "official_url": "https://sp2025.ieee-security.org/awards.html",
+    "authors": "",
+    "candidate_urls": [],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "IEEE S&P",
+    "year": 2026,
+    "award": "Distinguished Paper Award",
+    "title": "Enter, Exit, Page Fault, Leak: Testing Isolation Boundaries for Microarchitectural Leaks",
+    "official_url": "https://www.ieee-security.org/TC/SP2026/awards_papers.html",
+    "authors": "",
+    "candidate_urls": [],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "IEEE S&P",
+    "year": 2026,
+    "award": "Distinguished Paper Award",
+    "title": "Your Compiler is Backdooring Your Model: Understanding and Exploiting Compilation Inconsistency Vulnerabilities in Deep Learning Compilers",
+    "official_url": "https://www.ieee-security.org/TC/SP2026/awards_papers.html",
+    "authors": "",
+    "candidate_urls": [],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "IEEE S&P",
+    "year": 2026,
+    "award": "Distinguished Paper Award",
+    "title": "Demystifying and Exploiting ASLR on NVIDIA GPUs",
+    "official_url": "https://www.ieee-security.org/TC/SP2026/awards_papers.html",
+    "authors": "",
+    "candidate_urls": [],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "IEEE S&P",
+    "year": 2026,
+    "award": "Distinguished Paper Award",
+    "title": "Phoenix: Rowhammer Attacks on DDR5 with Self-Correcting Synchronization",
+    "official_url": "https://www.ieee-security.org/TC/SP2026/awards_papers.html",
+    "authors": "",
+    "candidate_urls": [],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "IEEE S&P",
+    "year": 2026,
+    "award": "Distinguished Paper Award",
+    "title": "Nebula: Proving machine executions via folding schemes",
+    "official_url": "https://www.ieee-security.org/TC/SP2026/awards_papers.html",
+    "authors": "",
+    "candidate_urls": [],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "IEEE S&P",
+    "year": 2026,
+    "award": "Distinguished Paper Award",
+    "title": "LLMs in the SOC: An Empirical Study of Human-AI Collaboration in Security Operations Centres",
+    "official_url": "https://www.ieee-security.org/TC/SP2026/awards_papers.html",
+    "authors": "",
+    "candidate_urls": [],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "IEEE S&P",
+    "year": 2026,
+    "award": "Distinguished Paper Award",
+    "title": "Auditing Apple's DifferentialPrivacy.framework: Implementation Bugs, Misconfigurations, and Practical Risks",
+    "official_url": "https://www.ieee-security.org/TC/SP2026/awards_papers.html",
+    "authors": "",
+    "candidate_urls": [],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "IEEE S&P",
+    "year": 2026,
+    "award": "Distinguished Paper Award",
+    "title": "Lost in Translation: Text Message Spoofing via Email",
+    "official_url": "https://www.ieee-security.org/TC/SP2026/awards_papers.html",
+    "authors": "",
+    "candidate_urls": [],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "IEEE S&P",
+    "year": 2026,
+    "award": "Distinguished Paper Award",
+    "title": "BreakFAST: Confused Deputy Attack on Infinity Fabric to Break AMD SEV-SNP",
+    "official_url": "https://www.ieee-security.org/TC/SP2026/awards_papers.html",
+    "authors": "",
+    "candidate_urls": [],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "IEEE S&P",
+    "year": 2026,
+    "award": "Distinguished Paper Award",
+    "title": "Weighted Batched Threshold Encryption with Applications to Mempool Privacy",
+    "official_url": "https://www.ieee-security.org/TC/SP2026/awards_papers.html",
+    "authors": "",
+    "candidate_urls": [],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "IEEE S&P",
+    "year": 2026,
+    "award": "Distinguished Paper Award",
+    "title": "TREVEX: A Black-Box Detection Framework For Data-Flow Transient Execution Vulnerabilities",
+    "official_url": "https://www.ieee-security.org/TC/SP2026/awards_papers.html",
+    "authors": "",
+    "candidate_urls": [],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "IEEE S&P",
+    "year": 2026,
+    "award": "Distinguished Paper Award",
+    "title": "GPUBreach: Privilege Escalation Attacks on GPUs using Rowhammer",
+    "official_url": "https://www.ieee-security.org/TC/SP2026/awards_papers.html",
+    "authors": "",
+    "candidate_urls": [],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "IEEE S&P",
+    "year": 2026,
+    "award": "Distinguished Paper Award",
+    "title": "Responsible Disclosure is a Two-Way Street: Empirically Measuring the Responsible Disclosure Contract in the Firmware Ecosystem",
+    "official_url": "https://www.ieee-security.org/TC/SP2026/awards_papers.html",
+    "authors": "",
+    "candidate_urls": [],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "IEEE S&P",
+    "year": 2026,
+    "award": "Distinguished Paper Award",
+    "title": "Goldilocks and the Three P-States: Mitigating Hertzbleed with Formal Leakage Guarantees",
+    "official_url": "https://www.ieee-security.org/TC/SP2026/awards_papers.html",
+    "authors": "",
+    "candidate_urls": [],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "NDSS",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "ReThink: Reveal the Threat of Electromagnetic Interference on Power Inverters",
+    "official_url": "https://www.ndss-symposium.org/ndss-paper/rethink-reveal-the-threat-of-electromagnetic-interference-on-power-inverters/",
+    "authors": "",
+    "candidate_urls": [
+      "https://www.ndss-symposium.org/ndss-paper/rethink-reveal-the-threat-of-electromagnetic-interference-on-power-inverters/"
+    ],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "NDSS",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "An Empirical Study on Fingerprint API Misuse with Lifecycle Analysis in Real-world Android Apps",
+    "official_url": "https://www.ndss-symposium.org/ndss-paper/an-empirical-study-on-fingerprint-api-misuse-with-lifecycle-analysis-in-real-world-android-apps/",
+    "authors": "",
+    "candidate_urls": [
+      "https://www.ndss-symposium.org/ndss-paper/an-empirical-study-on-fingerprint-api-misuse-with-lifecycle-analysis-in-real-world-android-apps/"
+    ],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "NDSS",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "SafeSplit: A Novel Defense Against Client-Side Backdoor Attacks in Split Learning",
+    "official_url": "https://www.ndss-symposium.org/ndss-paper/safesplit-a-novel-defense-against-client-side-backdoor-attacks-in-split-learning/",
+    "authors": "",
+    "candidate_urls": [
+      "https://www.ndss-symposium.org/ndss-paper/safesplit-a-novel-defense-against-client-side-backdoor-attacks-in-split-learning/"
+    ],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "NDSS",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "Provably Unlearnable Data Examples",
+    "official_url": "https://www.ndss-symposium.org/ndss-paper/provably-unlearnable-data-examples/",
+    "authors": "",
+    "candidate_urls": [
+      "https://www.ndss-symposium.org/ndss-paper/provably-unlearnable-data-examples/"
+    ],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "NDSS",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "DUMPLING: Fine-grained Differential JavaScript Engine Fuzzing",
+    "official_url": "https://www.ndss-symposium.org/ndss-paper/dumpling-fine-grained-differential-javascript-engine-fuzzing/",
+    "authors": "",
+    "candidate_urls": [
+      "https://www.ndss-symposium.org/ndss-paper/dumpling-fine-grained-differential-javascript-engine-fuzzing/"
+    ],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "NDSS",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "type++: Prohibiting Type Confusion with Inline Type Information",
+    "official_url": "https://www.ndss-symposium.org/ndss-paper/type-prohibiting-type-confusion-with-inline-type-information/",
+    "authors": "",
+    "candidate_urls": [
+      "https://www.ndss-symposium.org/ndss-paper/type-prohibiting-type-confusion-with-inline-type-information/"
+    ],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "NDSS",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "Rethinking Trust in Forge-Based Git Security",
+    "official_url": "https://www.ndss-symposium.org/ndss-paper/rethinking-trust-in-forge-based-git-security/",
+    "authors": "",
+    "candidate_urls": [
+      "https://www.ndss-symposium.org/ndss-paper/rethinking-trust-in-forge-based-git-security/"
+    ],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "NDSS",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "Blindfold: Confidential Memory Management by Untrusted Operating System",
+    "official_url": "https://www.ndss-symposium.org/ndss-paper/blindfold-confidential-memory-management-by-untrusted-operating-system/",
+    "authors": "",
+    "candidate_urls": [
+      "https://www.ndss-symposium.org/ndss-paper/blindfold-confidential-memory-management-by-untrusted-operating-system/"
+    ],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "NDSS",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "PropertyGPT: LLM-driven Formal Verification of Smart Contracts through Retrieval-Augmented Property Generation",
+    "official_url": "https://www.ndss-symposium.org/ndss-paper/propertygpt-llm-driven-formal-verification-of-smart-contracts-through-retrieval-augmented-property-generation/",
+    "authors": "",
+    "candidate_urls": [
+      "https://www.ndss-symposium.org/ndss-paper/propertygpt-llm-driven-formal-verification-of-smart-contracts-through-retrieval-augmented-property-generation/"
+    ],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "NDSS",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "DiStefano: Decentralized Infrastructure for Sharing Trusted Encrypted Facts and Nothing More",
+    "official_url": "https://www.ndss-symposium.org/ndss-paper/distefano-decentralized-infrastructure-for-sharing-trusted-encrypted-facts-and-nothing-more/",
+    "authors": "",
+    "candidate_urls": [
+      "https://www.ndss-symposium.org/ndss-paper/distefano-decentralized-infrastructure-for-sharing-trusted-encrypted-facts-and-nothing-more/"
+    ],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "NDSS",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "ReDAN: An Empirical Study on Remote DoS Attacks against NAT Networks",
+    "official_url": "https://www.ndss-symposium.org/ndss-paper/redan-an-empirical-study-on-remote-dos-attacks-against-nat-networks/",
+    "authors": "",
+    "candidate_urls": [
+      "https://www.ndss-symposium.org/ndss-paper/redan-an-empirical-study-on-remote-dos-attacks-against-nat-networks/"
+    ],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "NDSS",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "VoiceRadar: Voice Deepfake Detection using Micro-Frequency and Compositional Analysis",
+    "official_url": "https://www.ndss-symposium.org/ndss-paper/voiceradar-voice-deepfake-detection-using-micro-frequency-and-compositional-analysis/",
+    "authors": "",
+    "candidate_urls": [
+      "https://www.ndss-symposium.org/ndss-paper/voiceradar-voice-deepfake-detection-using-micro-frequency-and-compositional-analysis/"
+    ],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "NDSS",
+    "year": 2026,
+    "award": "Best Paper Award",
+    "title": "Peering Inside the Black-Box: Long-Range and Scalable Model Architecture Snooping via GPU Electromagnetic Side-Channel",
+    "official_url": "https://www.ndss-symposium.org/ndss-paper/peering-inside-the-black-box-long-range-and-scalable-model-architecture-snooping-via-gpu-electromagnetic-side-channel/",
+    "authors": "",
+    "candidate_urls": [
+      "https://www.ndss-symposium.org/ndss-paper/peering-inside-the-black-box-long-range-and-scalable-model-architecture-snooping-via-gpu-electromagnetic-side-channel/"
+    ],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "NDSS",
+    "year": 2026,
+    "award": "Best Paper Award",
+    "title": "One Email, Many Faces: A Deep Dive into Identity Confusion in Email Aliases",
+    "official_url": "https://www.ndss-symposium.org/ndss-paper/one-email-many-faces-a-deep-dive-into-identity-confusion-in-email-aliases/",
+    "authors": "",
+    "candidate_urls": [
+      "https://www.ndss-symposium.org/ndss-paper/one-email-many-faces-a-deep-dive-into-identity-confusion-in-email-aliases/"
+    ],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "NDSS",
+    "year": 2026,
+    "award": "Best Paper Award",
+    "title": "LOKI: Proactively Discovering Online Scam Websites by Mining Toxic Search Queries",
+    "official_url": "https://www.ndss-symposium.org/ndss-paper/loki-proactively-discovering-online-scams-by-mining-toxic-search-queries/",
+    "authors": "",
+    "candidate_urls": [
+      "https://www.ndss-symposium.org/ndss-paper/loki-proactively-discovering-online-scams-by-mining-toxic-search-queries/"
+    ],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "NDSS",
+    "year": 2026,
+    "award": "Best Paper Award",
+    "title": "OCCUPY+PROBE: Cross-Privilege Branch Target Buffer Side-Channel Attacks at Instruction Granularity",
+    "official_url": "https://www.ndss-symposium.org/ndss-paper/occupyprobe-cross-privilege-branch-target-buffer-side-channel-attacks-at-instruction-granularity/",
+    "authors": "",
+    "candidate_urls": [
+      "https://www.ndss-symposium.org/ndss-paper/occupyprobe-cross-privilege-branch-target-buffer-side-channel-attacks-at-instruction-granularity/"
+    ],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "NDSS",
+    "year": 2026,
+    "award": "Best Paper Award",
+    "title": "Fuzzilicon: A Post-Silicon Microcode-Guided x86 CPU Fuzzer",
+    "official_url": "https://www.ndss-symposium.org/ndss-paper/fuzzilicon-a-post-silicon-microcode-guided-x86-cpu-fuzzer/",
+    "authors": "",
+    "candidate_urls": [
+      "https://www.ndss-symposium.org/ndss-paper/fuzzilicon-a-post-silicon-microcode-guided-x86-cpu-fuzzer/"
+    ],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "NDSS",
+    "year": 2026,
+    "award": "Best Paper Award",
+    "title": "Should I Trust You? Rethinking the Principle of Zone-Based Isolation DNS Bailiwick Checking",
+    "official_url": "https://www.ndss-symposium.org/ndss-paper/should-i-trust-you-rethinking-the-principle-of-zone-based-isolation-dns-bailiwick-checking/",
+    "authors": "",
+    "candidate_urls": [
+      "https://www.ndss-symposium.org/ndss-paper/should-i-trust-you-rethinking-the-principle-of-zone-based-isolation-dns-bailiwick-checking/"
+    ],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "NDSS",
+    "year": 2026,
+    "award": "Best Paper Award",
+    "title": "Decompiling the Synergy: An Empirical Study of Human–LLM Teaming in Software Reverse Engineering",
+    "official_url": "https://www.ndss-symposium.org/ndss-paper/decompiling-the-synergy-an-empirical-study-of-human-llm-teaming-in-software-reverse-engineering/",
+    "authors": "",
+    "candidate_urls": [
+      "https://www.ndss-symposium.org/ndss-paper/decompiling-the-synergy-an-empirical-study-of-human-llm-teaming-in-software-reverse-engineering/"
+    ],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "NDSS",
+    "year": 2026,
+    "award": "Best Paper Award",
+    "title": "Phishing in Wonderland: Evaluating Learning-Based Ethereum Phishing Transaction Detection and Pitfalls",
+    "official_url": "https://www.ndss-symposium.org/ndss-paper/phishing-in-wonderland-evaluating-learning-based-ethereum-phishing-transaction-detection-and-pitfalls/",
+    "authors": "",
+    "candidate_urls": [
+      "https://www.ndss-symposium.org/ndss-paper/phishing-in-wonderland-evaluating-learning-based-ethereum-phishing-transaction-detection-and-pitfalls/"
+    ],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "NDSS",
+    "year": 2026,
+    "award": "Best Paper Award",
+    "title": "Indicator of Benignity: An Industry View of False Positive in Malicious Domain Detection and its Mitigation",
+    "official_url": "https://www.ndss-symposium.org/ndss-paper/indicator-of-benignity-an-industry-view-of-false-positive-in-malicious-domain-detection-and-its-mitigation/",
+    "authors": "",
+    "candidate_urls": [
+      "https://www.ndss-symposium.org/ndss-paper/indicator-of-benignity-an-industry-view-of-false-positive-in-malicious-domain-detection-and-its-mitigation/"
+    ],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "NDSS",
+    "year": 2026,
+    "award": "Best Paper Award",
+    "title": "Small Cell, Big Risk: A Security Assessment of 4G LTE Femtocells in the Wild",
+    "official_url": "https://www.ndss-symposium.org/ndss-paper/small-cell-big-risk-a-security-assessment-of-4g-lte-femtocells-in-the-wild/",
+    "authors": "",
+    "candidate_urls": [
+      "https://www.ndss-symposium.org/ndss-paper/small-cell-big-risk-a-security-assessment-of-4g-lte-femtocells-in-the-wild/"
+    ],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "USENIX Security",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "Characterizing and Detecting Propaganda-Spreading Accounts on Telegram",
+    "official_url": "https://www.usenix.org/conference/usenixsecurity25/presentation/kireev",
+    "authors": "",
+    "candidate_urls": [
+      "https://www.usenix.org/conference/usenixsecurity25/presentation/kireev"
+    ],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "USENIX Security",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "My ZIP isn't your ZIP: Identifying and Exploiting Semantic Gaps Between ZIP Parsers",
+    "official_url": "https://www.usenix.org/conference/usenixsecurity25/presentation/you",
+    "authors": "",
+    "candidate_urls": [
+      "https://www.usenix.org/conference/usenixsecurity25/presentation/you"
+    ],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "USENIX Security",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "Catch-22: Uncovering Compromised Hosts using SSH Public Keys",
+    "official_url": "https://www.usenix.org/conference/usenixsecurity25/presentation/munteanu",
+    "authors": "",
+    "candidate_urls": [
+      "https://www.usenix.org/conference/usenixsecurity25/presentation/munteanu"
+    ],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "USENIX Security",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "Branch Privilege Injection: Compromising Spectre v2 Hardware Mitigations by Exploiting Branch Predictor Race Conditions",
+    "official_url": "https://www.usenix.org/conference/usenixsecurity25/presentation/ruegge",
+    "authors": "",
+    "candidate_urls": [
+      "https://www.usenix.org/conference/usenixsecurity25/presentation/ruegge"
+    ],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "USENIX Security",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "Confusing Value with Enumeration: Studying the Use of CVEs in Academia",
+    "official_url": "https://www.usenix.org/conference/usenixsecurity25/presentation/schloegel",
+    "authors": "",
+    "candidate_urls": [
+      "https://www.usenix.org/conference/usenixsecurity25/presentation/schloegel"
+    ],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "USENIX Security",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "We Have a Package for You! A Comprehensive Analysis of Package Hallucinations by Code Generating LLMs",
+    "official_url": "https://www.usenix.org/conference/usenixsecurity25/presentation/spracklen",
+    "authors": "",
+    "candidate_urls": [
+      "https://www.usenix.org/conference/usenixsecurity25/presentation/spracklen"
+    ],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "USENIX Security",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "How Transparent is Usable Privacy and Security Research? A Meta-Study on Current Research Transparency Practices",
+    "official_url": "https://www.usenix.org/conference/usenixsecurity25/presentation/klemmer",
+    "authors": "",
+    "candidate_urls": [
+      "https://www.usenix.org/conference/usenixsecurity25/presentation/klemmer"
+    ],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "USENIX Security",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "Fuzzing the PHP Interpreter via Dataflow Fusion",
+    "official_url": "https://www.usenix.org/conference/usenixsecurity25/presentation/jiang-yuancheng",
+    "authors": "",
+    "candidate_urls": [
+      "https://www.usenix.org/conference/usenixsecurity25/presentation/jiang-yuancheng"
+    ],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "ACM CCS",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "Split Unlearning",
+    "official_url": "https://www.sigsac.org/ccs/CCS2025/awards/",
+    "authors": "Yanna Jiang, Guangsheng Yu, QIN WANG, Xu Wang, Baihe Ma, Caijun Sun, Wei Ni, and Ren Ping Liu",
+    "candidate_urls": [],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "ACM CCS",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "SyzSpec: Specification Generation for Linux Kernel Fuzzing via Under-Constrained Symbolic Execution",
+    "official_url": "https://www.sigsac.org/ccs/CCS2025/awards/",
+    "authors": "Yu Hao, Juefei Pu, Xingyu Li, Zhiyun Qian, and Ardalan Amiri Sani",
+    "candidate_urls": [],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "ACM CCS",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "Jazzline: Composable CryptoLine functional correctness proofs for Jasmin programs",
+    "official_url": "https://www.sigsac.org/ccs/CCS2025/awards/",
+    "authors": "José Bacelar Almeida, Manuel Barbosa, Gilles Barthe, Lionel Blatter, Gustavo Delerue, João Diogo Duarte, Benjamin Gregoire, Tiago Oliveira, Miguel Quaresma, Pierre-Yves Strub, Ming-Hsien Tsai, Bow-Yaw Wang, and Bo-Yin Yang",
+    "candidate_urls": [],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "ACM CCS",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "BACScan: Automatic Black-Box Detection of Broken-Access-Control Vulnerabilities in Web Applications",
+    "official_url": "https://www.sigsac.org/ccs/CCS2025/awards/",
+    "authors": "Fengyu Liu, Yuan Zhang, Enhao Li, Wei Meng, Youkun Shi, Qianheng Wang, Chenlin Wang, Zihan Lin, and Min Yang",
+    "candidate_urls": [],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "ACM CCS",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "Forking the RANDAO: Manipulating Ethereum's Distributed Randomness Beacon",
+    "official_url": "https://www.sigsac.org/ccs/CCS2025/awards/",
+    "authors": "Ábel Nagy, János Tapolcai, Bence Ladóczki, and István András Seres",
+    "candidate_urls": [],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "ACM CCS",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "DivTrackee versus DynTracker: Promoting Diversity in Anti-Facial Recognition against Dynamic FR Strategy",
+    "official_url": "https://www.sigsac.org/ccs/CCS2025/awards/",
+    "authors": "Wenshu Fan, Minxing Zhang, Hongwei Li, Wenbo Jiang, Hanxiao Chen, Xiangyu Yue, Michael Backes, and Xiao Zhang",
+    "candidate_urls": [],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "ACM CCS",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "RingSG: Optimal Secure Vertex-Centric Computation for Collaborative Graph Processing",
+    "official_url": "https://www.sigsac.org/ccs/CCS2025/awards/",
+    "authors": "Zhenhua Zou, Zhuotao Liu, Jinyong Shan, Qi Li, Ke Xu, and Mingwei Xu",
+    "candidate_urls": [],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "ACM CCS",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "High-Throughput Universally Composable Threshold FHE Decryption",
+    "official_url": "https://www.sigsac.org/ccs/CCS2025/awards/",
+    "authors": "Guy Zyskind, Doron Zarchy, Max Leibovich, and Chris Peikert",
+    "candidate_urls": [],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "ACM CCS",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "Rethinking Tamper-Evident Logging: A High-Performance, Co-Designed Auditing System",
+    "official_url": "https://www.sigsac.org/ccs/CCS2025/awards/",
+    "authors": "Rui Zhao, Muhammad Shoaib, Viet Tung Hoang, and Wajih Ul Hassan",
+    "candidate_urls": [],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "ACM CCS",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "Empirical Security Analysis of Software-based Fault Isolation through Controlled Fault Injection",
+    "official_url": "https://www.sigsac.org/ccs/CCS2025/awards/",
+    "authors": "Nils Bars, Lukas Bernhard, Moritz Schloegel, and Thorsten Holz",
+    "candidate_urls": [],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "ACM CCS",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "Leaky Apps: Large-scale Analysis of Secrets Distributed in Android and iOS Apps",
+    "official_url": "https://www.sigsac.org/ccs/CCS2025/awards/",
+    "authors": "David Schmidt, Sebastian Schrittwieser, and Edgar Weippl",
+    "candidate_urls": [],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "ACM CCS",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "PAnDA: Rethinking Metric Differential Privacy Optimization at Scale with Anchor-Based Approximation",
+    "official_url": "https://www.sigsac.org/ccs/CCS2025/awards/",
+    "authors": "Ruiyao Liu and Chenxi Qiu",
+    "candidate_urls": [],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "ACM CCS",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "Harnessing Sparsification in Federated Learning: A Secure, Efficient, and Differentially Private Realization",
+    "official_url": "https://www.sigsac.org/ccs/CCS2025/awards/",
+    "authors": "Shuangqing Xu, Yifeng Zheng, and Zhongyun Hua",
+    "candidate_urls": [],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "ACM CCS",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "Harnessing Vital Sign Vibration Harmonics for Effortless and Inbuilt XR User Authentication",
+    "official_url": "https://www.sigsac.org/ccs/CCS2025/awards/",
+    "authors": "Tianfang Zhang, Qiufan Ji, Md Mojibur Rahman Redoy Akanda, Zhengkun Ye, Ahmed Tanvir Mahdad, Cong Shi, Yan Wang, Nitesh Saxena, and Yingying Chen",
+    "candidate_urls": [],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "ACM CCS",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "The Odyssey of robots.txt Governance: Measuring Convention Implications of Web Bots in Large Language Model Services",
+    "official_url": "https://www.sigsac.org/ccs/CCS2025/awards/",
+    "authors": "Jian Cui, Mingming Zha, XiaoFeng Wang, and Xiaojing Liao",
+    "candidate_urls": [],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "ACM CCS",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "Layered, Overlapping, and Inconsistent: A Large-Scale Analysis of the Multiple Privacy Policies and Controls of U.S. Banks",
+    "official_url": "https://www.sigsac.org/ccs/CCS2025/awards/",
+    "authors": "Lu Xian, Van Tran, Lauren Lee, Meera Kumar, Yichen Zhang, and Florian Schaub",
+    "candidate_urls": [],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "ACM CCS",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "Adversarial Observations in Weather Forecasting",
+    "official_url": "https://www.sigsac.org/ccs/CCS2025/awards/",
+    "authors": "Erik Imgrund, Thorsten Eisenhofer, and Konrad Rieck",
+    "candidate_urls": [],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "ACM CCS",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "On the Security of SSH Client Signatures",
+    "official_url": "https://www.sigsac.org/ccs/CCS2025/awards/",
+    "authors": "Fabian Bäumer, Marcus Brinkmann, Maximilian Radoy, Jörg Schwenk, and Juraj Somorovsky",
+    "candidate_urls": [],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "ACM CCS",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "A Decade-long Landscape of Advanced Persistent Threats: Longitudinal Analysis and Global Trends",
+    "official_url": "https://www.sigsac.org/ccs/CCS2025/awards/",
+    "authors": "Shakhzod Yuldoshkhujaev, Mijin Jeon, Doowon Kim, Nick Nikiforakis, and Hyungjoon Koo",
+    "candidate_urls": [],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "ACM CCS",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "BadAML: Exploiting Legacy Firmware Interfaces to Compromise Confidential Virtual Machines",
+    "official_url": "https://www.sigsac.org/ccs/CCS2025/awards/",
+    "authors": "Satoru Takekoshi, Manami Mori, Takaaki Fukai, and Takahiro Shinagawa",
+    "candidate_urls": [],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "ACM CCS",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "Looping for Good: Cyclic Proofs for Security Protocols",
+    "official_url": "https://www.sigsac.org/ccs/CCS2025/awards/",
+    "authors": "Felix Linker, Christoph Sprenger, Cas Cremers, and David Basin",
+    "candidate_urls": [],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "ACM CCS",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "Exact Robustness Certification of k-Nearest Neighbors",
+    "official_url": "https://www.sigsac.org/ccs/CCS2025/awards/",
+    "authors": "Francesco Ranzato, Ahmad Shakeel, and Marco Zanella",
+    "candidate_urls": [],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "ACM CCS",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "Sliced PIR: Offloading Heavyweight Work with NTT",
+    "official_url": "https://www.sigsac.org/ccs/CCS2025/awards/",
+    "authors": "Jonathan Weiss and Yossi Gilad",
+    "candidate_urls": [],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "ACM CCS",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "Automatically Detecting Online Deceptive Patterns",
+    "official_url": "https://www.sigsac.org/ccs/CCS2025/awards/",
+    "authors": "Asmit Nayak, Yash Wani, Shirley Zhang, Rishabh Khandelwal, and Kassem Fawaz",
+    "candidate_urls": [],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "ACM CCS",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "Don’t Look Up: There Are Sensitive Internal Links in the Clear on GEO Satellites",
+    "official_url": "https://www.sigsac.org/ccs/CCS2025/awards/",
+    "authors": "Wenyi (Morty) Zhang, Annie Dai, Keegan Ryan, Dave Levin, Nadia Heninger, and Aaron Schulman",
+    "candidate_urls": [],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "ACM CCS",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "WireTap: Breaking Server SGX via DRAM Bus Interposition",
+    "official_url": "https://www.sigsac.org/ccs/CCS2025/awards/",
+    "authors": "Alex Seto, Oytun Kuday Duran, Samy Amer, Jalen Chuang, Stephan van Schaik, Daniel Genkin, and Christina Garman",
+    "candidate_urls": [],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "ACM CCS",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "Optimistic, Signature-Free Reliable Broadcast and Its Applications",
+    "official_url": "https://www.sigsac.org/ccs/CCS2025/awards/",
+    "authors": "Nibesh Shrestha, Qianyu Yu, Aniket Kate, Giuliano Losa, Kartik Nayak, and Xuechao Wang",
+    "candidate_urls": [],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "ACM CCS",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "CITesting: Systematic Testing of Context Integrity Violations in Cellular Core Networks",
+    "official_url": "https://www.sigsac.org/ccs/CCS2025/awards/",
+    "authors": "Mincheol Son, Kwangmin Kim, Beomseok Oh, CheolJun Park, and Yongdae Kim",
+    "candidate_urls": [],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "ACM CCS",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "From OT to OLE with Subquadratic Communication",
+    "official_url": "https://www.sigsac.org/ccs/CCS2025/awards/",
+    "authors": "Jack Doerner, Iftach Haitner, Yuval Ishai, and Nikolaos Makriyannis",
+    "candidate_urls": [],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  },
+  {
+    "conference": "ACM CCS",
+    "year": 2025,
+    "award": "Distinguished Paper Award",
+    "title": "The OCH Authenticated Encryption Scheme",
+    "official_url": "https://www.sigsac.org/ccs/CCS2025/awards/",
+    "authors": "Sanketh Menda, Mihir Bellare, Viet Tung Hoang, Julia Len, and Thomas Ristenpart",
+    "candidate_urls": [],
+    "downloaded": false,
+    "output_path": "",
+    "failure": "",
+    "resolved_url": ""
+  }
+]

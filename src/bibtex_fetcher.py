@@ -27,8 +27,14 @@ logger = logging.getLogger(__name__)
 
 DBLP_BIB_URL = "https://dblp.org/rec/{key}.bib?param=1"
 RETRY_STATUS = {429, 500, 502, 503, 504}
-TRANSIENT_ERRORS = (httpx.ReadError, httpx.ConnectError, httpx.RemoteProtocolError,
-                    httpx.PoolTimeout, httpx.ReadTimeout, httpx.ConnectTimeout)
+TRANSIENT_ERRORS = (
+    httpx.ReadError,
+    httpx.ConnectError,
+    httpx.RemoteProtocolError,
+    httpx.PoolTimeout,
+    httpx.ReadTimeout,
+    httpx.ConnectTimeout,
+)
 
 # Rotated to look like a normal browser fleet rather than a single script,
 # which DBLP's rate limiter handles more gently in practice.
@@ -70,8 +76,7 @@ class BibTeXFetcher:
         self._per_request_delay = per_request_delay
         self._client = httpx.AsyncClient(
             timeout=httpx.Timeout(request_timeout),
-            limits=httpx.Limits(max_connections=concurrency,
-                                max_keepalive_connections=concurrency),
+            limits=httpx.Limits(max_connections=concurrency, max_keepalive_connections=concurrency),
             headers={"Accept": "text/x-bibtex, text/plain, */*"},
             follow_redirects=True,
         )
@@ -95,8 +100,9 @@ class BibTeXFetcher:
         for attempt in range(1, self._max_retries + 1):
             async with self._semaphore:
                 if self._per_request_delay > 0:
-                    await asyncio.sleep(self._per_request_delay
-                                        + random.uniform(0, self._per_request_delay))
+                    await asyncio.sleep(
+                        self._per_request_delay + random.uniform(0, self._per_request_delay)
+                    )
                 try:
                     response = await self._client.get(
                         url, headers={"User-Agent": random.choice(USER_AGENTS)}
@@ -105,14 +111,14 @@ class BibTeXFetcher:
                     if attempt == self._max_retries:
                         logger.warning("DBLP transient error for %s: %s", dblp_key, exc)
                         return None
-                    await asyncio.sleep(self._backoff_base ** attempt + random.uniform(0, 1))
+                    await asyncio.sleep(self._backoff_base**attempt + random.uniform(0, 1))
                     continue
 
             if response.status_code in RETRY_STATUS:
                 if attempt == self._max_retries:
                     logger.warning("DBLP %s exhausted for %s", response.status_code, dblp_key)
                     return None
-                await asyncio.sleep(self._backoff_base ** attempt + random.uniform(0, 1))
+                await asyncio.sleep(self._backoff_base**attempt + random.uniform(0, 1))
                 continue
             if response.status_code != 200:
                 return None

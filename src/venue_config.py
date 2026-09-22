@@ -65,12 +65,25 @@ class VenueStrategyRegistry:
         )
 
         self._strategies["sacmat"] = ConferenceURLStrategy()
+        self._strategies["acsac"] = ConferenceURLStrategy()
         self._strategies["hotnets"] = ConferenceURLStrategy()
         self._strategies["ccs"] = ConferenceURLStrategy()
         self._strategies["uss"] = ConferenceURLStrategy()
         self._strategies["ndss"] = ConferenceURLStrategy()
         self._strategies["sp"] = ConferenceURLStrategy()
         self._strategies["eurosp"] = ConferenceURLStrategy()
+
+        # USENIX ATC's DBLP stream is conf/usenix, not conf/atc.
+        self._strategies["atc"] = MultiURLStrategy(
+            ["https://dblp.org/db/conf/usenix/usenix{year}.html"]
+        )
+        # NeurIPS's DBLP stream is conf/nips.
+        self._strategies["neurips"] = MultiURLStrategy(
+            [
+                "https://dblp.org/db/conf/nips/neurips{year}.html",
+                "https://dblp.org/db/conf/nips/nips{year}.html",
+            ]
+        )
 
         self._strategies["acm_csur"] = JournalVolumeStrategy(
             "csur",

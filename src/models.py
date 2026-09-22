@@ -17,9 +17,42 @@ class EventType(str, Enum):
     EUROSP = "eurosp"
     HOTNETS = "hotnets"
     SACMAT = "sacmat"
+    ACSAC = "acsac"
     ACM_CSUR = "acm_csur"
     IEEE_COMST = "ieee_comst"
     FNT_PRIVSEC = "fnt_privsec"
+    # Security (additional)
+    ESORICS = "esorics"
+    CODASPY = "codaspy"
+    RAID = "raid"
+    CNS = "cns"
+    WISEC = "wisec"
+    WOOT = "woot"
+    SATML = "satml"
+    AISEC = "aisec"
+    TRUSTCOM = "trustcom"
+    # Networks and systems
+    SIGCOMM = "sigcomm"
+    NSDI = "nsdi"
+    IMC = "imc"
+    SIGMETRICS = "sigmetrics"
+    ATC = "atc"
+    EUROSYS = "eurosys"
+    # Mobile
+    MOBICOM = "mobicom"
+    MOBISYS = "mobisys"
+    SENSYS = "sensys"
+    HOTMOBILE = "hotmobile"
+    # AI / ML
+    NEURIPS = "neurips"
+    ICML = "icml"
+    ICLR = "iclr"
+    AAAI = "aaai"
+    IJCAI = "ijcai"
+    KDD = "kdd"
+    ACL = "acl"
+    EMNLP = "emnlp"
+    NAACL = "naacl"
 
 
 class PaperType(str, Enum):
@@ -131,8 +164,11 @@ class Paper(BaseModel):
             return PaperClass.WORKSHOP
         if "short paper" in title_lower:
             return PaperClass.SHORT
-        if (self.event or "").lower().startswith(("acm computing", "ieee communications",
-                                                   "foundations and trends")):
+        if (
+            (self.event or "")
+            .lower()
+            .startswith(("acm computing", "ieee communications", "foundations and trends"))
+        ):
             return PaperClass.JOURNAL
         return PaperClass.ARTICLE
 
@@ -183,35 +219,10 @@ class CheckpointData(BaseModel):
     custom_data: dict[str, Any] = Field(default_factory=dict)
 
 
-class StudyScope(BaseModel):
-    """Configuration for reproducible measurement studies."""
-
-    core_events: list[str] = Field(
-        default_factory=lambda: ["USENIX Security", "ACM CCS", "IEEE S&P", "NDSS"]
-    )
-    study_years: list[int] = Field(default_factory=lambda: [2024, 2025])
-    prior_windows: dict[int, list[int]] = Field(
-        default_factory=lambda: {2023: [2019, 2022], 2022: [2019, 2021]}
-    )
-    outcome_windows: dict[int, list[int]] = Field(
-        default_factory=lambda: {2023: [2023, 2026], 2022: [2022, 2026]}
-    )
-    title_thresholds: list[float] = Field(default_factory=lambda: [0.5, 0.6, 0.7])
-    preprint_snapshot: str = "data/dataset/arxiv_cs_cr_2022_2026.jsonl.gz"
-    preprint_categories: list[str] = Field(default_factory=lambda: ["cs.CR"])
-    preprint_since_year: int = 2022
-    preprint_until_year: int = 2026
-    publication_months: dict[str, int] = Field(
-        default_factory=lambda: {
-            "USENIX Security": 8,
-            "ACM CCS": 10,
-            "IEEE S&P": 5,
-            "NDSS": 2,
-        }
-    )
-
-
 class Configuration(BaseModel):
+    profile_id: str | None = None
+    immutable_snapshot: bool = False
+    snapshot_path: str | None = None
     events: list[str] = Field(
         default_factory=lambda: [
             "ccs",
@@ -222,6 +233,7 @@ class Configuration(BaseModel):
             "eurosp",
             "hotnets",
             "sacmat",
+            "acsac",
             "acm_csur",
             "ieee_comst",
             "fnt_privsec",
@@ -229,7 +241,7 @@ class Configuration(BaseModel):
     )
     year_start: int = 2019
     years: list[int] = Field(default_factory=list)
-    study_scope: StudyScope = Field(default_factory=StudyScope)
+    partial_years: list[int] = Field(default_factory=list)
 
     def effective_years(self) -> list[int]:
         """Return years to process."""

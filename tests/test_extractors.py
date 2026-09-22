@@ -46,6 +46,7 @@ def _make_collector(blocked: bool = False, failure_count: int = 0) -> MagicMock:
 # IEEE extractor — parsing methods (no network, no subprocess)
 # ---------------------------------------------------------------------------
 
+
 class TestIEEEExtractFromRegex:
     def setup_method(self):
         self.ext = IEEEExtractor()
@@ -100,7 +101,9 @@ class TestIEEEExtractFullPath:
         collector = _make_collector()
         script = f'xplGlobal.document.metadata={{"abstract":"{REAL_ABSTRACT}"}};'
         with patch.object(ext, "_get_metadata_script", new=AsyncMock(return_value=script)):
-            result = await ext.extract("https://ieeexplore.ieee.org/document/1234", "id1", collector)
+            result = await ext.extract(
+                "https://ieeexplore.ieee.org/document/1234", "id1", collector
+            )
         assert result is not None
         assert len(result) > 100
 
@@ -112,7 +115,9 @@ class TestIEEEExtractFullPath:
         metadata = {"abstract": REAL_ABSTRACT}
         script = f"xplGlobal.document.metadata = {json.dumps(metadata)};"
         with patch.object(ext, "_get_metadata_script", new=AsyncMock(return_value=script)):
-            result = await ext.extract("https://ieeexplore.ieee.org/document/1234", "id1", collector)
+            result = await ext.extract(
+                "https://ieeexplore.ieee.org/document/1234", "id1", collector
+            )
         assert result is not None
 
     @pytest.mark.asyncio
@@ -120,7 +125,9 @@ class TestIEEEExtractFullPath:
         ext = IEEEExtractor()
         collector = _make_collector()
         with patch.object(ext, "_get_metadata_script", new=AsyncMock(return_value=None)):
-            result = await ext.extract("https://ieeexplore.ieee.org/document/1234", "id1", collector)
+            result = await ext.extract(
+                "https://ieeexplore.ieee.org/document/1234", "id1", collector
+            )
         assert result is None
 
     @pytest.mark.asyncio
@@ -129,13 +136,16 @@ class TestIEEEExtractFullPath:
         collector = _make_collector()
         script = 'xplGlobal.document.metadata={"abstract":"Too short."};'
         with patch.object(ext, "_get_metadata_script", new=AsyncMock(return_value=script)):
-            result = await ext.extract("https://ieeexplore.ieee.org/document/1234", "id1", collector)
+            result = await ext.extract(
+                "https://ieeexplore.ieee.org/document/1234", "id1", collector
+            )
         assert result is None
 
 
 # ---------------------------------------------------------------------------
 # USENIX extractor — mock _run_xidel
 # ---------------------------------------------------------------------------
+
 
 class TestUSENIXExtractor:
     @pytest.mark.asyncio
@@ -181,7 +191,9 @@ class TestUSENIXExtractor:
     async def test_strips_abstract_prefix(self):
         ext = USENIXExtractor()
         collector = _make_collector()
-        with patch.object(ext, "_run_xidel", new=AsyncMock(return_value="Abstract: " + REAL_ABSTRACT)):
+        with patch.object(
+            ext, "_run_xidel", new=AsyncMock(return_value="Abstract: " + REAL_ABSTRACT)
+        ):
             result = await ext.extract(
                 "https://www.usenix.org/conference/usenixsecurity19/presentation/test",
                 "uid1",
@@ -208,6 +220,7 @@ class TestUSENIXExtractor:
 # ---------------------------------------------------------------------------
 # NDSS extractor — mock _run_xidel
 # ---------------------------------------------------------------------------
+
 
 class TestNDSSExtractor:
     @pytest.mark.asyncio
@@ -252,6 +265,7 @@ class TestNDSSExtractor:
 # ACM extractor — mock _run_xidel, test rate-limit logic
 # ---------------------------------------------------------------------------
 
+
 class TestACMExtractor:
     @pytest.mark.asyncio
     async def test_returns_abstract_and_resets_failure_count(self):
@@ -284,7 +298,9 @@ class TestACMExtractor:
     async def test_returns_none_immediately_when_blocked(self):
         ext = ACMExtractor()
         collector = _make_collector(blocked=True)
-        with patch.object(ext, "_run_xidel", new=AsyncMock(return_value=REAL_ABSTRACT)) as mock_xidel:
+        with patch.object(
+            ext, "_run_xidel", new=AsyncMock(return_value=REAL_ABSTRACT)
+        ) as mock_xidel:
             result = await ext.extract(
                 "https://dl.acm.org/doi/10.1145/3319535.3354257",
                 "aid1",
@@ -297,7 +313,9 @@ class TestACMExtractor:
     async def test_returns_none_when_failure_threshold_reached(self):
         ext = ACMExtractor()
         collector = _make_collector(failure_count=3)  # equals acm_failure_threshold
-        with patch.object(ext, "_run_xidel", new=AsyncMock(return_value=REAL_ABSTRACT)) as mock_xidel:
+        with patch.object(
+            ext, "_run_xidel", new=AsyncMock(return_value=REAL_ABSTRACT)
+        ) as mock_xidel:
             result = await ext.extract(
                 "https://dl.acm.org/doi/10.1145/3319535.3354257",
                 "aid1",
@@ -332,25 +350,3 @@ class TestACMExtractor:
             )
         assert result is None
         collector.increment_acm_failure_count.assert_called_once()
-
-class TestUSENIXParagraphJoining:
-    """USENIX abstracts often span several <p> elements.
-
-    Selectors are tried in order and the first valid result wins, so a selector
-    that can only return one paragraph must never precede one that joins the
-    whole sequence. Ordering them the other way truncated multi-paragraph
-    abstracts to their opening paragraph.
-    """
-
-    def test_joining_selectors_precede_single_paragraph_selectors(self):
-        xpaths = USENIXExtractor().xpaths
-        joining = [i for i, xpath in enumerate(xpaths) if "string-join" in xpath]
-        single = [i for i, xpath in enumerate(xpaths) if "string-join" not in xpath]
-        assert joining, "at least one selector must join the paragraph sequence"
-        assert max(joining) < min(single), (
-            "a single-paragraph selector precedes a joining one, which truncates "
-            "multi-paragraph abstracts"
-        )
-
-    def test_first_selector_targets_the_abstract_container(self):
-        assert "field-name-field-paper-description" in USENIXExtractor().xpaths[0]

@@ -25,16 +25,18 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 from src.abstract_fetcher import AbstractFetcher
 from src.collector import Collector, _extract_doi
 from src.extractors.base import AbstractExtractor
+from src.sqlite_connection import managed_sqlite_connection
 
 
-async def _process(paper_id: str, doi: str, fetcher: AbstractFetcher,
-                   sem: asyncio.Semaphore, db_path: Path) -> tuple[str, bool]:
+async def _process(
+    paper_id: str, doi: str, fetcher: AbstractFetcher, sem: asyncio.Semaphore, db_path: Path
+) -> tuple[str, bool]:
     async with sem:
         abstract = await fetcher.fetch_all(doi)
     if not abstract:
         return paper_id, False
     cleaned = AbstractExtractor._strip_leading_author_blocks(abstract)
-    with sqlite3.connect(db_path) as conn:
+    with managed_sqlite_connection(db_path) as conn:
         conn.execute(
             "UPDATE papers SET abstract=?, updated_at=CURRENT_TIMESTAMP WHERE paper_id=?",
             (cleaned, paper_id),
@@ -46,7 +48,7 @@ async def main(limit: int | None, concurrency: int) -> None:
     collector = Collector()
     db_path = collector.db.db_path
 
-    with sqlite3.connect(db_path) as conn:
+    with managed_sqlite_connection(db_path) as conn:
         conn.row_factory = sqlite3.Row
         rows = conn.execute(
             "SELECT paper_id, ee FROM papers "
@@ -65,8 +67,7 @@ async def main(limit: int | None, concurrency: int) -> None:
     fetcher = AbstractFetcher(collector)
     sem = asyncio.Semaphore(concurrency)
     tasks = [
-        asyncio.create_task(_process(pid, doi, fetcher, sem, db_path))
-        for pid, doi in candidates
+        asyncio.create_task(_process(pid, doi, fetcher, sem, db_path)) for pid, doi in candidates
     ]
 
     start = time.time()
@@ -79,12 +80,16 @@ async def main(limit: int | None, concurrency: int) -> None:
             rate = idx / max(time.time() - start, 0.1)
             eta_min = (len(tasks) - idx) / max(rate, 0.1) / 60
             pct = recovered / idx * 100
-            print(f"  {idx:>5}/{len(tasks):,}  recovered {recovered:>4} ({pct:5.1f}%)  "
-                  f"rate {rate:5.1f}/s  ETA {eta_min:5.1f} min")
+            print(
+                f"  {idx:>5}/{len(tasks):,}  recovered {recovered:>4} ({pct:5.1f}%)  "
+                f"rate {rate:5.1f}/s  ETA {eta_min:5.1f} min"
+            )
 
     await fetcher.close()
-    print(f"\nDone — {recovered:,}/{len(candidates):,} abstracts recovered "
-          f"in {(time.time() - start) / 60:.1f} min.")
+    print(
+        f"\nDone — {recovered:,}/{len(candidates):,} abstracts recovered "
+        f"in {(time.time() - start) / 60:.1f} min."
+    )
 
 
 if __name__ == "__main__":

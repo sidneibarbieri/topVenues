@@ -1,0 +1,60 @@
+venue	year	award	title	url	source_url
+ACSAC	2025	Distinguished Paper	InteractionShield: Harnessing Event Relations for Interaction Threat Detection and Resolution in Smart Homes	/2025/program/final/s453.html	https://www.acsac.org/archive/
+ACSAC	2025	Distinguished Paper	MoEvil: Poisoning Experts to Compromise the Safety of Mixture-of-Experts LLMs	/2025/program/final/s12.html	https://www.acsac.org/archive/
+ACSAC	2024	Distinguished Paper	Single Sign-On Privacy: We Still Know What You Did Last Summer	/2024/program/final/s318.html	https://www.acsac.org/archive/
+ACSAC	2024	Distinguished Paper	I'll Be There for You! Perpetual Availability in the A⁸ MVX System	/2024/program/final/s73.html	https://www.acsac.org/archive/
+ACSAC	2023	Distinguished Paper	Protecting Your Voice from Speech Synthesis Attacks	/2023/program/final/s179.html	https://www.acsac.org/archive/
+ACSAC	2023	Distinguished Paper	SePanner: Analyzing Semantics of Controller Variables in Industrial Control Systems based on Network Traffic	/2023/program/final/s87.html	https://www.acsac.org/archive/
+ACSAC	2023	Distinguished Paper with Artifacts	Artemis: Defanging Software Supply Chain Attacks in Multi-repository Update Systems	/2023/program/final/s268.html	https://www.acsac.org/archive/
+ACSAC	2023	Distinguished Paper with Artifacts	Remote Attestation of Confidential VMs Using Ephemeral vTPMs	/2023/program/final/s49.html	https://www.acsac.org/archive/
+ACSAC	2022	Distinguished Paper	BayesImposter: Bayesian Estimation Based .bss Imposter Attack on Industrial Control Systems	/2022/program/final/s151.html	https://www.acsac.org/archive/
+ACSAC	2022	Distinguished Paper	Making Memory Account Accountable: Analyzing and Detecting Memory Missing-account bugs for Container Platforms	/2022/program/final/s102.html	https://www.acsac.org/archive/
+ACSAC	2022	Distinguished Paper with Artifacts	Assessing Model-free Anomaly Detection in Industrial Control Systems Against Generic Concealment Attacks	/2022/program/final/s99.html	https://www.acsac.org/archive/
+ACSAC	2021	Distinguished Paper	Two Souls in an Adversarial Image: Towards Universal Adversarial Example Detection using Multi-view Inconsistency	/2021/program/final/s253.html	https://www.acsac.org/archive/
+ACSAC	2021	Distinguished Paper with Artifacts	Repack Me If You Can: An Anti-Repackaging Solution based on Android Virtualization	/2021/program/final/s258.html	https://www.acsac.org/archive/
+ACSAC	2021	Distinguished Paper with Artifacts	argXtract: Deriving IoT Security Configurations via Automated Static Analysis of Stripped ARM Cortex-M Binaries	/2021/program/final/s31.html	https://www.acsac.org/archive/
+ACSAC	2020	Distinguished Paper	Measuring the Effectiveness of Privacy Policies for Voice Assistant Applications	/2020/program/final/s91.html	https://www.acsac.org/archive/
+ACSAC	2020	Distinguished Paper	Betrayed by the Guardian: Security and Privacy Risks of Parental Control Solutions	/2020/program/final/s282.html	https://www.acsac.org/archive/
+ACSAC	2020	Distinguished Paper with Artifacts	SAIBERSOC: Synthetic Attack Injection to Benchmark and Evaluate the Performance of Security Operation Centers	/2020/program/final/s28.html	https://www.acsac.org/archive/
+ACSAC	2020	Distinguished Paper with Artifacts	Faulty Point Unit: ABI Poisoning Attacks on Intel SGX	/2020/program/final/s231.html	https://www.acsac.org/archive/
+ACSAC	2019	Distinguished Paper	Opening Pandora's Box through ATFuzzer: Dynamic Analysis of AT Interface for Android Smartphones	/2019/program/final/s210.html	https://www.acsac.org/archive/
+ACSAC	2019	Distinguished Paper	Premadoma: An Operational Solution for DNS Registries to Prevent Malicious Domain Registrations	/2019/program/final/s222.html	https://www.acsac.org/archive/
+ACSAC	2018	Distinguished Paper	Hiding in the Shadows: Empowering ARM for Stealthy Virtual Machine Introspection	/2018/program-files/s17.html	https://www.acsac.org/archive/
+ACSAC	2018	Distinguished Paper	Tracking Users across the Web via TLS Session Resumption	/2018/program-files/s76.html	https://www.acsac.org/archive/
+ACSAC	2017	Distinguished Paper	Kakute: A Precise, Unified Information Flow Analysis System for Big-data Security	/2017/program-files/s78.html	https://www.acsac.org/archive/
+ACSAC	2017	Distinguished Paper	Supporting Transparent Snapshot for Bare-metal Malware Analysis on Mobile Devices	/2017/program-files/s300.html	https://www.acsac.org/archive/
+ACSAC	2016	Outstanding Paper	Code Obfuscation Against Symbolic Execution Attacks	/2016/program-files/s167.html	https://www.acsac.org/archive/
+ACSAC	2016	Outstanding Student Paper	A Security Analysis of Automated Chinese Turing Tests	/2016/program-files/s22.html	https://www.acsac.org/archive/
+ACSAC	2015	Outstanding Paper	ErsatzPasswords: Ending Password Cracking and Detecting Password Leakage	/2015/program-final/s61.html	https://www.acsac.org/archive/
+ACSAC	2015	Outstanding Student Paper	ShrinkWrap: VTable protection without loose ends	/2015/program-final/s96.html	https://www.acsac.org/archive/
+ACSAC	2014	Outstanding Paper	Using Automatic Speech Recognition for Attacking Acoustic CAPTCHAs: The Trade-off between Usability and Security	/2014/program-final/s80.html	https://www.acsac.org/archive/
+ACSAC	2014	Outstanding Student Paper	IMSI-Catch Me If You Can: IMSI-Catcher-Catchers	/2014/program-final/s156.html	https://www.acsac.org/archive/
+ACSAC	2013	Outstanding Paper	PRIME: Private RSA Infrastructure for Memory-less Encryption	/2013/program-files/s30.html	https://www.acsac.org/archive/
+ACSAC	2013	Outstanding Student Paper	Implementation and Implications of a Stealth Hard-Drive Backdoor	/2013/program-files/s78.html	https://www.acsac.org/archive/
+ACSAC	2012	Outstanding Paper	Generalized Vulnerability Extrapolation using Abstract Syntax Trees	/2012/program-files/s72.html	https://www.acsac.org/archive/
+ACSAC	2012	Outstanding Student Paper	Securing Untrusted Code via Compiler-Agnostic Binary Rewriting	/2012/program-files/s223.html	https://www.acsac.org/archive/
+ACSAC	2011	Outstanding Paper	The Socialbot Network: When Bots Socialize for Fame and Money	/2011/program-files/s175.html	https://www.acsac.org/archive/
+ACSAC	2011	Outstanding Student Paper	Distilling Critical Attack Graph Surface iteratively through Minimum-Cost SAT Solving	/2011/program-files/s164.html	https://www.acsac.org/archive/
+ACSAC	2010	Outstanding Paper	A Quantitative Analysis of The Insecurity of Embedded Network Devices: Results of a Wide-area Scan		https://www.acsac.org/archive/
+ACSAC	2010	Outstanding Student Paper	Detecting Spammers On Social Networks		https://www.acsac.org/archive/
+ACSAC	2009	Outstanding Paper	Semantically Rich Application-Centric Security in Android		https://www.acsac.org/archive/
+ACSAC	2009	Outstanding Student Paper	Analyzing Information Flow in JavaScript-based Browser Extensions		https://www.acsac.org/archive/
+ACSAC	2008	Outstanding Paper	Soft-Timer Driven Transient Kernel Control Flow Attacks and Defense		https://www.acsac.org/archive/
+ACSAC	2008	Outstanding Student Paper	Automatic Inference and Enforcement of Kernel Data Structure Invariants		https://www.acsac.org/archive/
+ACSAC	2007	Outstanding Paper	Tracking Darkports for Network Defense	/2007/abstracts/147.html	https://www.acsac.org/archive/
+ACSAC	2007	Outstanding Student Paper	Automated Vulnerability Analysis: Leveraging Control Flow for Evolutionary Input Crafting	/2007/abstracts/22.html	https://www.acsac.org/archive/
+ACSAC	2006	Outstanding Paper	Backtracking Algorithmic Complexity Attacks Against a NIDS	/2006/abstracts/54.html	https://www.acsac.org/archive/
+ACSAC	2006	Outstanding Student Paper	From Languages to Systems: Understanding Practical Application Development in Security-typed Languages	/2006/abstracts/101.html	https://www.acsac.org/archive/
+ACSAC	2005	Outstanding Paper	Automated and Safe Vulnerability Assessment	/2005/abstracts/180.html	https://www.acsac.org/archive/
+ACSAC	2005	Outstanding Student Paper	Model Checking An Entire Linux Distribution for Security Violations	/2005/abstracts/165.html	https://www.acsac.org/archive/
+ACSAC	2004	Outstanding Paper and Student Paper	Automatic Generation and Analysis of NIDS Attacks	/2004/abstracts/59.html	https://www.acsac.org/archive/
+ACSAC	2003	Outstanding Paper	Isolated Program Execution: An Application Transparent Approach for Executing Untrusted Programs	/2003/abstracts/99.html	https://www.acsac.org/archive/
+ACSAC	2003	Outstanding Student Paper	Intrusion Detection: A Bio-Informatics Approach	/2003/abstracts/35.html	https://www.acsac.org/archive/
+ACSAC	2002	Outstanding Paper	Throttling Viruses: Restricting propagation to defeat malicious mobile code	/2002/abstracts/97.html	https://www.acsac.org/archive/
+ACSAC	2002	Outstanding Student Paper	Controlled Physical Random Functions	/2002/abstracts/110.html	https://www.acsac.org/archive/
+ACSAC	2001	Outstanding Paper	Genoa TIE, Advanced Boundary Controller Experiment	/2001/abstracts/wed-1030-b-monteith.html	https://www.acsac.org/archive/
+ACSAC	2000	Outstanding Paper	ITS4: A Static Vulnerability Scanner for C and C++ Code	/2000/abstracts/78.html	https://www.acsac.org/archive/
+ACSAC	2000	Outstanding Student Paper	The Chinese Remainder Theorem and its Application in a High-Speed RSA Crypto-Chip	/2000/abstracts/48.html	https://www.acsac.org/archive/
+ACSAC	1999	Outstanding Paper	Adding Availability To Log Services Of Untrusted Machines	/1999/abstracts/thu-a-1030-rosti.html	https://www.acsac.org/archive/
+ACSAC	1998	Outstanding Paper	NetSTAT: A Network-based Intrusion Detection Approach	/1998/abstracts/wed-a-1030-vigna.html	https://www.acsac.org/archive/
+ACSAC	1991	Outstanding Student Paper	Security Modeling Using Hierarchical State Machines	/1998/abstracts/wed-a-1030-vigna.html	https://www.acsac.org/archive/

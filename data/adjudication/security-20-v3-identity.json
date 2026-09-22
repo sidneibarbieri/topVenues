@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0.0",
+  "source_profile": "security-20-v2",
+  "target_profile": "security-20-v3",
+  "adjudicated_on": "2026-08-24",
+  "strict_year_window": [2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026],
+  "decisions": [
+    {
+      "decision": "merge_alias",
+      "canonical_paper_id": "1249057",
+      "removed_paper_ids": ["1249056"],
+      "rationale": "Crossref resolves the submitted DOI ending 10179305 to the canonical DOI ending 10179286.",
+      "evidence": "https://api.crossref.org/works/10.1109/SP46215.2023.10179305"
+    },
+    {
+      "decision": "merge_alias",
+      "canonical_paper_id": "1249119",
+      "removed_paper_ids": ["1249118"],
+      "rationale": "Crossref resolves the submitted DOI ending 10179420 to the canonical DOI ending 10179324.",
+      "evidence": "https://api.crossref.org/works/10.1109/SP46215.2023.10179420"
+    },
+    {
+      "decision": "retain_distinct_resources",
+      "paper_ids": ["190864", "689413"],
+      "rationale": "Crossref and IEEE expose two distinct DOI/document identifiers; metadata equality alone is insufficient to merge them.",
+      "evidence": [
+        "https://api.crossref.org/works/10.1109/SP61157.2025.00074",
+        "https://api.crossref.org/works/10.1109/SP61157.2025.00110"
+      ]
+    },
+    {
+      "decision": "retain_distinct_resources",
+      "paper_ids": ["1249186", "1249187"],
+      "rationale": "Crossref exposes two distinct DOI records; metadata equality alone is insufficient to merge them.",
+      "evidence": [
+        "https://api.crossref.org/works/10.1109/SP46215.2023.10179415",
+        "https://api.crossref.org/works/10.1109/SP46215.2023.10179309"
+      ]
+    },
+    {
+      "decision": "retain_distinct_resources",
+      "paper_ids": ["1248986", "1248987"],
+      "rationale": "Crossref exposes two distinct DOI records; metadata equality alone is insufficient to merge them.",
+      "evidence": [
+        "https://api.crossref.org/works/10.1109/SP46215.2023.10179396",
+        "https://api.crossref.org/works/10.1109/SP46215.2023.10179337"
+      ]
+    },
+    {
+      "decision": "retain_distinct_resources",
+      "paper_ids": ["conf/cns/Morin022", "conf/cns/Morin022a"],
+      "rationale": "Crossref and IEEE expose two distinct DOI/document identifiers; metadata equality alone is insufficient to merge them.",
+      "evidence": [
+        "https://api.crossref.org/works/10.1109/CNS56114.2022.10091442",
+        "https://api.crossref.org/works/10.1109/CNS56114.2022.10092920"
+      ]
+    }
+  ]
+}

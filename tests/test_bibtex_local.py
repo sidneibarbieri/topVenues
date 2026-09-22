@@ -1,6 +1,5 @@
 """Tests for the offline BibTeX generator."""
 
-
 from src.bibtex_local import paper_to_bibtex
 from src.models import Paper
 
@@ -12,10 +11,13 @@ class TestPaperToBibtex:
 
     def test_renders_inproceedings_for_conference(self):
         paper = Paper(
-            paper_id="1", key="conf/sp/Smith24",
-            title="On Foo.", year=2024,
+            paper_id="1",
+            key="conf/sp/Smith24",
+            title="On Foo.",
+            year=2024,
             authors="Alice Smith, Bob Jones",
-            event="IEEE S&P", pages="100-115",
+            event="IEEE S&P",
+            pages="100-115",
             ee="https://doi.org/10.1109/SP.2024.001",
         )
         out = paper_to_bibtex(paper)
@@ -26,8 +28,10 @@ class TestPaperToBibtex:
 
     def test_renders_article_for_journal_venue(self):
         paper = Paper(
-            paper_id="1", key="journals/csur/Smith24",
-            title="A Survey of Foo", year=2024,
+            paper_id="1",
+            key="journals/csur/Smith24",
+            title="A Survey of Foo",
+            year=2024,
             authors="Alice Smith",
             event="ACM Computing Surveys",
         )
@@ -37,8 +41,10 @@ class TestPaperToBibtex:
 
     def test_authors_split_by_comma(self):
         paper = Paper(
-            paper_id="1", key="x/y",
-            title="T", year=2024,
+            paper_id="1",
+            key="x/y",
+            title="T",
+            year=2024,
             authors="Alice, Bob, Carol",
         )
         out = paper_to_bibtex(paper)
@@ -46,7 +52,10 @@ class TestPaperToBibtex:
 
     def test_doi_field_populated_from_ee(self):
         paper = Paper(
-            paper_id="1", key="x/y", title="T", year=2024,
+            paper_id="1",
+            key="x/y",
+            title="T",
+            year=2024,
             ee="https://doi.org/10.1145/3000000",
         )
         out = paper_to_bibtex(paper)

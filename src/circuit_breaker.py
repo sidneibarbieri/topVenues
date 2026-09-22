@@ -19,7 +19,7 @@ class CircuitState(Enum):
 class CircuitBreakerConfig:
     failure_threshold: int = 5
     recovery_timeout: float = 60.0
-    expected_exception: type[Exception] = Exception
+    expected_exception: type[Exception] | tuple[type[Exception], ...] = Exception
 
 
 class CircuitBreaker:

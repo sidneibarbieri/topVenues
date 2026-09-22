@@ -1,0 +1,67 @@
+cff-version: 1.2.0
+message: >-
+  If you use TopVenues, cite the paper whose numbers you use. The tool is
+  described in the tools-track paper below; the corpus method and the
+  measurements are in the main-track paper listed under references.
+  docs/PAPERS.md binds each paper to its release, snapshot and SHA-256.
+title: "TopVenues"
+abstract: >-
+  An executable corpus and research tool for cybersecurity literature reviews:
+  a declared venue and year scope, frozen SQLite snapshots identified by
+  SHA-256, ranked search, author analytics and review-ready exports.
+type: software
+license: MIT
+version: "1.11.0"
+date-released: 2026-09-22
+repository-code: "https://github.com/sidneibarbieri/topVenues"
+url: "https://sidneibarbieri.github.io/topVenues/"
+keywords:
+  - cybersecurity
+  - literature review
+  - reproducibility
+  - bibliographic corpus
+  - DBLP
+authors:
+  - family-names: Barbieri
+    given-names: Sidnei
+  - family-names: Ferraz
+    given-names: "Ágney Lopes Roth"
+  - family-names: "Pereira Júnior"
+    given-names: "Lourenço Alves"
+preferred-citation:
+  type: conference-paper
+  title: "TopVenues: An Executable Corpus and Research Tool for Cybersecurity Literature Reviews"
+  authors:
+    - family-names: Barbieri
+      given-names: Sidnei
+    - family-names: Ferraz
+      given-names: "Ágney Lopes Roth"
+    - family-names: "Pereira Júnior"
+      given-names: "Lourenço Alves"
+  collection-title: "Anais Estendidos do XXVI Simpósio Brasileiro de Cibersegurança (SBSeg 2026)"
+  publisher:
+    name: "Sociedade Brasileira de Computação"
+  start: 234
+  end: 241
+  year: 2026
+  doi: "10.5753/sbseg_estendido.2026.33733"
+  url: "https://sol.sbc.org.br/index.php/sbseg_estendido/article/view/44470"
+references:
+  - type: conference-paper
+    title: "TopVenues: A Reproducible Corpus and Tooling Substrate for Cybersecurity Literature Reviews"
+    authors:
+      - family-names: Barbieri
+        given-names: Sidnei
+      - family-names: Ferraz
+        given-names: "Ágney Lopes Roth"
+      - family-names: "Pereira Júnior"
+        given-names: "Lourenço Alves"
+    collection-title: "Anais do XXVI Simpósio Brasileiro de Cibersegurança (SBSeg 2026)"
+    publisher:
+      name: "Sociedade Brasileira de Computação"
+    start: 1150
+    end: 1165
+    year: 2026
+    doi: "10.5753/sbseg.2026.29056"
+    url: "https://sol.sbc.org.br/index.php/sbseg/article/view/44350"
+    repository-code: "https://github.com/sidneibarbieri/topVenues"

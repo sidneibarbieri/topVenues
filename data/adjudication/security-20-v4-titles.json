@@ -1,0 +1,118 @@
+{
+  "schema_version": "1.0.0",
+  "successor_profile_id": "security-20-v4",
+  "source_profile_id": "security-20-v3",
+  "verified_on": "2026-08-24",
+  "rule": "DBLP marks up titles with inline elements such as <sup>. Reading only the first text node stored a prefix, so 'D3FL: ...' was kept as 'D'. Each corrected title is the full DBLP title text with inline markup stripped and whitespace normalized.",
+  "scope": "Titles only. No record is added, removed, merged or re-scoped, so every count in the source profile is preserved.",
+  "not_repaired": [
+    {
+      "paper_id": "3071303",
+      "dblp_key": "conf/acsac/LuthraCOHF20",
+      "title": "ZeroAUDIT.",
+      "reason": "Short but not truncated: DBLP and Crossref both give 'ZeroAUDIT'."
+    }
+  ],
+  "repairs": [
+    {
+      "paper_id": "conf/ccs/BernsteinHKNRS19",
+      "dblp_key": "conf/ccs/BernsteinHKNRS19",
+      "event": "ACM CCS",
+      "year": 2019,
+      "stored_title": "The SPHINCS",
+      "corrected_title": "The SPHINCS+ Signature Framework.",
+      "defect": "title truncated at inline markup",
+      "evidence": "https://dblp.org/rec/conf/ccs/BernsteinHKNRS19.xml"
+    },
+    {
+      "paper_id": "conf/ccs/MaSHZ25",
+      "dblp_key": "conf/ccs/MaSHZ25",
+      "event": "ACM CCS",
+      "year": 2025,
+      "stored_title": "Poster:",
+      "corrected_title": "Poster: LLMalware: An LLM-Powered Robust and Efficient Android Malware Detection Framework.",
+      "defect": "title truncated at inline markup",
+      "evidence": "https://dblp.org/rec/conf/ccs/MaSHZ25.xml"
+    },
+    {
+      "paper_id": "conf/ccs/MengOJL024",
+      "dblp_key": "conf/ccs/MengOJL024",
+      "event": "ACM CCS",
+      "year": 2024,
+      "stored_title": "Poster:",
+      "corrected_title": "Poster: M2ASK: A Correlation-Based Multi-Step Attack Scenario Detection Framework Using MITRE ATT&CK Mapping.",
+      "defect": "title truncated at inline markup",
+      "evidence": "https://dblp.org/rec/conf/ccs/MengOJL024.xml"
+    },
+    {
+      "paper_id": "conf/ccs/ZhangZZYH024",
+      "dblp_key": "conf/ccs/ZhangZZYH024",
+      "event": "ACM CCS",
+      "year": 2024,
+      "stored_title": "S",
+      "corrected_title": "S2NeRF: Privacy-preserving Training Framework for NeRF.",
+      "defect": "title truncated at inline markup",
+      "evidence": "https://dblp.org/rec/conf/ccs/ZhangZZYH024.xml"
+    },
+    {
+      "paper_id": "conf/trustcom/LiZZSJLHZ24",
+      "dblp_key": "conf/trustcom/LiZZSJLHZ24",
+      "event": "TrustCom",
+      "year": 2024,
+      "stored_title": "D",
+      "corrected_title": "D2FL: Dimensional Disaster-oriented Backdoor Attack Defense Of Federated Learning.",
+      "defect": "title truncated at inline markup",
+      "evidence": "https://dblp.org/rec/conf/trustcom/LiZZSJLHZ24.xml"
+    },
+    {
+      "paper_id": "conf/trustcom/NieJJMC24",
+      "dblp_key": "conf/trustcom/NieJJMC24",
+      "event": "TrustCom",
+      "year": 2024,
+      "stored_title": "ROSE",
+      "corrected_title": "ROSE+ : A Robustness-Optimized Security Scheme Against Cascading Failures in Multipath TCP under LDDoS Attack Streams.",
+      "defect": "title truncated at inline markup",
+      "evidence": "https://dblp.org/rec/conf/trustcom/NieJJMC24.xml"
+    },
+    {
+      "paper_id": "conf/trustcom/WangLD24",
+      "dblp_key": "conf/trustcom/WangLD24",
+      "event": "TrustCom",
+      "year": 2024,
+      "stored_title": "SP",
+      "corrected_title": "SP2-RD2D: Secure and Privacy-Preserving Authentication and Key Agreement Protocol for D2D Relay Communication.",
+      "defect": "title truncated at inline markup",
+      "evidence": "https://dblp.org/rec/conf/trustcom/WangLD24.xml"
+    },
+    {
+      "paper_id": "conf/trustcom/XuGKYZL24",
+      "dblp_key": "conf/trustcom/XuGKYZL24",
+      "event": "TrustCom",
+      "year": 2024,
+      "stored_title": "D",
+      "corrected_title": "D3IR: Securing Multi-Domain Networks via Extending Depth-in-Defense Strategies Across Nested Management Domains.",
+      "defect": "title truncated at inline markup",
+      "evidence": "https://dblp.org/rec/conf/trustcom/XuGKYZL24.xml"
+    },
+    {
+      "paper_id": "conf/trustcom/YinL25",
+      "dblp_key": "conf/trustcom/YinL25",
+      "event": "TrustCom",
+      "year": 2025,
+      "stored_title": "D",
+      "corrected_title": "D3FL: Label-Free and Heterogeneity-Robust Defense for Federated Learning via Distilled Reference Model against Data Poisoning Attacks.",
+      "defect": "title truncated at inline markup",
+      "evidence": "https://dblp.org/rec/conf/trustcom/YinL25.xml"
+    },
+    {
+      "paper_id": "conf/trustcom/YuTNDLJ25",
+      "dblp_key": "conf/trustcom/YuTNDLJ25",
+      "event": "TrustCom",
+      "year": 2025,
+      "stored_title": "P",
+      "corrected_title": "P3G: A Privacy-Preserving Password Guessing Model via Cross-Task Feature Sharing.",
+      "defect": "title truncated at inline markup",
+      "evidence": "https://dblp.org/rec/conf/trustcom/YuTNDLJ25.xml"
+    }
+  ]
+}

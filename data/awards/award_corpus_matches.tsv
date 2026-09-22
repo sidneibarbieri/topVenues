@@ -1,0 +1,90 @@
+venue	year	award	title	paper_id	source_url
+ACSAC	2024	Distinguished Paper	Single Sign-On Privacy: We Still Know What You Did Last Summer	1049970	https://www.acsac.org/archive/
+ACSAC	2024	Distinguished Paper	I'll Be There for You! Perpetual Availability in the A⁸ MVX System	1049947	https://www.acsac.org/archive/
+ACSAC	2023	Distinguished Paper	Protecting Your Voice from Speech Synthesis Attacks	1615773	https://www.acsac.org/archive/
+ACSAC	2023	Distinguished Paper	SePanner: Analyzing Semantics of Controller Variables in Industrial Control Systems based on Network Traffic	1615776	https://www.acsac.org/archive/
+ACSAC	2023	Distinguished Paper with Artifacts	Artemis: Defanging Software Supply Chain Attacks in Multi-repository Update Systems	1615778	https://www.acsac.org/archive/
+ACSAC	2023	Distinguished Paper with Artifacts	Remote Attestation of Confidential VMs Using Ephemeral vTPMs	1615780	https://www.acsac.org/archive/
+ACSAC	2022	Distinguished Paper	BayesImposter: Bayesian Estimation Based .bss Imposter Attack on Industrial Control Systems	2143813	https://www.acsac.org/archive/
+ACSAC	2022	Distinguished Paper	Making Memory Account Accountable: Analyzing and Detecting Memory Missing-account bugs for Container Platforms	2143872	https://www.acsac.org/archive/
+ACSAC	2022	Distinguished Paper with Artifacts	Assessing Model-free Anomaly Detection in Industrial Control Systems Against Generic Concealment Attacks	2143822	https://www.acsac.org/archive/
+ACSAC	2021	Distinguished Paper	Two Souls in an Adversarial Image: Towards Universal Adversarial Example Detection using Multi-view Inconsistency	2618528	https://www.acsac.org/archive/
+ACSAC	2021	Distinguished Paper with Artifacts	Repack Me If You Can: An Anti-Repackaging Solution based on Android Virtualization	2618559	https://www.acsac.org/archive/
+ACSAC	2021	Distinguished Paper with Artifacts	argXtract: Deriving IoT Security Configurations via Automated Static Analysis of Stripped ARM Cortex-M Binaries	2618564	https://www.acsac.org/archive/
+ACSAC	2020	Distinguished Paper	Measuring the Effectiveness of Privacy Policies for Voice Assistant Applications	3071301	https://www.acsac.org/archive/
+ACSAC	2020	Distinguished Paper	Betrayed by the Guardian: Security and Privacy Risks of Parental Control Solutions	3071278	https://www.acsac.org/archive/
+ACSAC	2020	Distinguished Paper with Artifacts	SAIBERSOC: Synthetic Attack Injection to Benchmark and Evaluate the Performance of Security Operation Centers	3071320	https://www.acsac.org/archive/
+ACSAC	2020	Distinguished Paper with Artifacts	Faulty Point Unit: ABI Poisoning Attacks on Intel SGX	3071276	https://www.acsac.org/archive/
+ACSAC	2019	Distinguished Paper	Opening Pandora's Box through ATFuzzer: Dynamic Analysis of AT Interface for Android Smartphones	3492028	https://www.acsac.org/archive/
+ACSAC	2019	Distinguished Paper	Premadoma: An Operational Solution for DNS Registries to Prevent Malicious Domain Registrations	3492055	https://www.acsac.org/archive/
+IEEE S&P	2025	Distinguished Paper Award	COBBL: Dynamic Constraint Generation for SNARKs	190877	https://sp2025.ieee-security.org/awards.html
+IEEE S&P	2025	Distinguished Paper Award	Transport Layer Obscurity: Circumventing SNI Censorship on the TLS Layer	190942	https://sp2025.ieee-security.org/awards.html
+IEEE S&P	2025	Distinguished Paper Award	Follow My Flow: Unveiling Client-Side Prototype Pollution Gadgets from One Million Real-World Websites	190881	https://sp2025.ieee-security.org/awards.html
+IEEE S&P	2025	Distinguished Paper Award	CipherSteal: Stealing Input Data from TEE-Shielded Neural Networks with Ciphertext Side Channels	191035	https://sp2025.ieee-security.org/awards.html
+IEEE S&P	2025	Distinguished Paper Award	Characterizing Robocalls with Multiple Vantage Points	190954	https://sp2025.ieee-security.org/awards.html
+IEEE S&P	2025	Distinguished Paper Award	Verifiable Boosted Tree Ensembles	190798	https://sp2025.ieee-security.org/awards.html
+IEEE S&P	2025	Distinguished Paper Award	Breaking the Barrier: Post-Barrier Spectre Attacks	191010	https://sp2025.ieee-security.org/awards.html
+IEEE S&P	2025	Distinguished Paper Award	Unveiling Security Vulnerabilities in Git Large File Storage Protocol	190810	https://sp2025.ieee-security.org/awards.html
+IEEE S&P	2025	Distinguished Paper Award	The Inadequacy of Similarity-based Privacy Metrics: Privacy Attacks against Truly Anonymous Synthetic Datasets	190844	https://sp2025.ieee-security.org/awards.html
+IEEE S&P	2025	Distinguished Paper Award	Empc: Effective Path Prioritization for Symbolic Execution with Path Cover	191032	https://sp2025.ieee-security.org/awards.html
+IEEE S&P	2025	Distinguished Paper Award	SLAP: Data Speculation Attacks via Load Address Prediction on Apple Silicon	190765	https://sp2025.ieee-security.org/awards.html
+IEEE S&P	2025	Distinguished Paper Award	Detecting Taint-Style Vulnerabilities in Microservice-Structured Web Applications	190910	https://sp2025.ieee-security.org/awards.html
+IEEE S&P	2025	Distinguished Paper Award	DataSentinel: A Game-Theoretic Detection of Prompt Injection Attacks	190914	https://sp2025.ieee-security.org/awards.html
+NDSS	2025	Distinguished Paper Award	ReThink: Reveal the Threat of Electromagnetic Interference on Power Inverters	183666	https://www.ndss-symposium.org/ndss-paper/rethink-reveal-the-threat-of-electromagnetic-interference-on-power-inverters/
+NDSS	2025	Distinguished Paper Award	An Empirical Study on Fingerprint API Misuse with Lifecycle Analysis in Real-world Android Apps	183682	https://www.ndss-symposium.org/ndss-paper/an-empirical-study-on-fingerprint-api-misuse-with-lifecycle-analysis-in-real-world-android-apps/
+NDSS	2025	Distinguished Paper Award	SafeSplit: A Novel Defense Against Client-Side Backdoor Attacks in Split Learning	183608	https://www.ndss-symposium.org/ndss-paper/safesplit-a-novel-defense-against-client-side-backdoor-attacks-in-split-learning/
+NDSS	2025	Distinguished Paper Award	Provably Unlearnable Data Examples	183633	https://www.ndss-symposium.org/ndss-paper/provably-unlearnable-data-examples/
+NDSS	2025	Distinguished Paper Award	DUMPLING: Fine-grained Differential JavaScript Engine Fuzzing	183632	https://www.ndss-symposium.org/ndss-paper/dumpling-fine-grained-differential-javascript-engine-fuzzing/
+NDSS	2025	Distinguished Paper Award	type++: Prohibiting Type Confusion with Inline Type Information	183506	https://www.ndss-symposium.org/ndss-paper/type-prohibiting-type-confusion-with-inline-type-information/
+NDSS	2025	Distinguished Paper Award	Rethinking Trust in Forge-Based Git Security	183672	https://www.ndss-symposium.org/ndss-paper/rethinking-trust-in-forge-based-git-security/
+NDSS	2025	Distinguished Paper Award	Blindfold: Confidential Memory Management by Untrusted Operating System	183568	https://www.ndss-symposium.org/ndss-paper/blindfold-confidential-memory-management-by-untrusted-operating-system/
+NDSS	2025	Distinguished Paper Award	PropertyGPT: LLM-driven Formal Verification of Smart Contracts through Retrieval-Augmented Property Generation	183497	https://www.ndss-symposium.org/ndss-paper/propertygpt-llm-driven-formal-verification-of-smart-contracts-through-retrieval-augmented-property-generation/
+NDSS	2025	Distinguished Paper Award	DiStefano: Decentralized Infrastructure for Sharing Trusted Encrypted Facts and Nothing More	183512	https://www.ndss-symposium.org/ndss-paper/distefano-decentralized-infrastructure-for-sharing-trusted-encrypted-facts-and-nothing-more/
+NDSS	2025	Distinguished Paper Award	ReDAN: An Empirical Study on Remote DoS Attacks against NAT Networks	183533	https://www.ndss-symposium.org/ndss-paper/redan-an-empirical-study-on-remote-dos-attacks-against-nat-networks/
+NDSS	2025	Distinguished Paper Award	VoiceRadar: Voice Deepfake Detection using Micro-Frequency and Compositional Analysis	183562	https://www.ndss-symposium.org/ndss-paper/voiceradar-voice-deepfake-detection-using-micro-frequency-and-compositional-analysis/
+NDSS	2026	Best Paper Award	Peering Inside the Black-Box: Long-Range and Scalable Model Architecture Snooping via GPU Electromagnetic Side-Channel	110689	https://www.ndss-symposium.org/ndss-paper/peering-inside-the-black-box-long-range-and-scalable-model-architecture-snooping-via-gpu-electromagnetic-side-channel/
+NDSS	2026	Best Paper Award	One Email, Many Faces: A Deep Dive into Identity Confusion in Email Aliases	110680	https://www.ndss-symposium.org/ndss-paper/one-email-many-faces-a-deep-dive-into-identity-confusion-in-email-aliases/
+NDSS	2026	Best Paper Award	LOKI: Proactively Discovering Online Scam Websites by Mining Toxic Search Queries	110620	https://www.ndss-symposium.org/ndss-paper/loki-proactively-discovering-online-scams-by-mining-toxic-search-queries/
+NDSS	2026	Best Paper Award	OCCUPY+PROBE: Cross-Privilege Branch Target Buffer Side-Channel Attacks at Instruction Granularity	110628	https://www.ndss-symposium.org/ndss-paper/occupyprobe-cross-privilege-branch-target-buffer-side-channel-attacks-at-instruction-granularity/
+NDSS	2026	Best Paper Award	Fuzzilicon: A Post-Silicon Microcode-Guided x86 CPU Fuzzer	110562	https://www.ndss-symposium.org/ndss-paper/fuzzilicon-a-post-silicon-microcode-guided-x86-cpu-fuzzer/
+NDSS	2026	Best Paper Award	Should I Trust You? Rethinking the Principle of Zone-Based Isolation DNS Bailiwick Checking	110684	https://www.ndss-symposium.org/ndss-paper/should-i-trust-you-rethinking-the-principle-of-zone-based-isolation-dns-bailiwick-checking/
+NDSS	2026	Best Paper Award	Decompiling the Synergy: An Empirical Study of Human–LLM Teaming in Software Reverse Engineering	110486	https://www.ndss-symposium.org/ndss-paper/decompiling-the-synergy-an-empirical-study-of-human-llm-teaming-in-software-reverse-engineering/
+NDSS	2026	Best Paper Award	Phishing in Wonderland: Evaluating Learning-Based Ethereum Phishing Transaction Detection and Pitfalls	110479	https://www.ndss-symposium.org/ndss-paper/phishing-in-wonderland-evaluating-learning-based-ethereum-phishing-transaction-detection-and-pitfalls/
+NDSS	2026	Best Paper Award	Indicator of Benignity: An Industry View of False Positive in Malicious Domain Detection and its Mitigation	110587	https://www.ndss-symposium.org/ndss-paper/indicator-of-benignity-an-industry-view-of-false-positive-in-malicious-domain-detection-and-its-mitigation/
+NDSS	2026	Best Paper Award	Small Cell, Big Risk: A Security Assessment of 4G LTE Femtocells in the Wild	110703	https://www.ndss-symposium.org/ndss-paper/small-cell-big-risk-a-security-assessment-of-4g-lte-femtocells-in-the-wild/
+USENIX Security	2025	Distinguished Paper Award	Characterizing and Detecting Propaganda-Spreading Accounts on Telegram	301515	https://www.usenix.org/conference/usenixsecurity25/presentation/kireev
+USENIX Security	2025	Distinguished Paper Award	My ZIP isn't your ZIP: Identifying and Exploiting Semantic Gaps Between ZIP Parsers	301740	https://www.usenix.org/conference/usenixsecurity25/presentation/you
+USENIX Security	2025	Distinguished Paper Award	Catch-22: Uncovering Compromised Hosts using SSH Public Keys	301587	https://www.usenix.org/conference/usenixsecurity25/presentation/munteanu
+USENIX Security	2025	Distinguished Paper Award	Branch Privilege Injection: Compromising Spectre v2 Hardware Mitigations by Exploiting Branch Predictor Race Conditions	301631	https://www.usenix.org/conference/usenixsecurity25/presentation/ruegge
+USENIX Security	2025	Distinguished Paper Award	Confusing Value with Enumeration: Studying the Use of CVEs in Academia	301639	https://www.usenix.org/conference/usenixsecurity25/presentation/schloegel
+USENIX Security	2025	Distinguished Paper Award	We Have a Package for You! A Comprehensive Analysis of Package Hallucinations by Code Generating LLMs	301658	https://www.usenix.org/conference/usenixsecurity25/presentation/spracklen
+USENIX Security	2025	Distinguished Paper Award	How Transparent is Usable Privacy and Security Research? A Meta-Study on Current Research Transparency Practices	301516	https://www.usenix.org/conference/usenixsecurity25/presentation/klemmer
+USENIX Security	2025	Distinguished Paper Award	Fuzzing the PHP Interpreter via Dataflow Fusion	301499	https://www.usenix.org/conference/usenixsecurity25/presentation/jiang-yuancheng
+ACM CCS	2025	Distinguished Paper Award	Split Unlearning	225307	https://www.sigsac.org/ccs/CCS2025/awards/
+ACM CCS	2025	Distinguished Paper Award	SyzSpec: Specification Generation for Linux Kernel Fuzzing via Under-Constrained Symbolic Execution	225170	https://www.sigsac.org/ccs/CCS2025/awards/
+ACM CCS	2025	Distinguished Paper Award	Jazzline: Composable CryptoLine functional correctness proofs for Jasmin programs	225179	https://www.sigsac.org/ccs/CCS2025/awards/
+ACM CCS	2025	Distinguished Paper Award	BACScan: Automatic Black-Box Detection of Broken-Access-Control Vulnerabilities in Web Applications	225346	https://www.sigsac.org/ccs/CCS2025/awards/
+ACM CCS	2025	Distinguished Paper Award	Forking the RANDAO: Manipulating Ethereum's Distributed Randomness Beacon	225379	https://www.sigsac.org/ccs/CCS2025/awards/
+ACM CCS	2025	Distinguished Paper Award	DivTrackee versus DynTracker: Promoting Diversity in Anti-Facial Recognition against Dynamic FR Strategy	225256	https://www.sigsac.org/ccs/CCS2025/awards/
+ACM CCS	2025	Distinguished Paper Award	RingSG: Optimal Secure Vertex-Centric Computation for Collaborative Graph Processing	225540	https://www.sigsac.org/ccs/CCS2025/awards/
+ACM CCS	2025	Distinguished Paper Award	High-Throughput Universally Composable Threshold FHE Decryption	225542	https://www.sigsac.org/ccs/CCS2025/awards/
+ACM CCS	2025	Distinguished Paper Award	Rethinking Tamper-Evident Logging: A High-Performance, Co-Designed Auditing System	225532	https://www.sigsac.org/ccs/CCS2025/awards/
+ACM CCS	2025	Distinguished Paper Award	Empirical Security Analysis of Software-based Fault Isolation through Controlled Fault Injection	225189	https://www.sigsac.org/ccs/CCS2025/awards/
+ACM CCS	2025	Distinguished Paper Award	Leaky Apps: Large-scale Analysis of Secrets Distributed in Android and iOS Apps	225430	https://www.sigsac.org/ccs/CCS2025/awards/
+ACM CCS	2025	Distinguished Paper Award	PAnDA: Rethinking Metric Differential Privacy Optimization at Scale with Anchor-Based Approximation	225352	https://www.sigsac.org/ccs/CCS2025/awards/
+ACM CCS	2025	Distinguished Paper Award	Harnessing Sparsification in Federated Learning: A Secure, Efficient, and Differentially Private Realization	225500	https://www.sigsac.org/ccs/CCS2025/awards/
+ACM CCS	2025	Distinguished Paper Award	Harnessing Vital Sign Vibration Harmonics for Effortless and Inbuilt XR User Authentication	225525	https://www.sigsac.org/ccs/CCS2025/awards/
+ACM CCS	2025	Distinguished Paper Award	The Odyssey of robots.txt Governance: Measuring Convention Implications of Web Bots in Large Language Model Services	225239	https://www.sigsac.org/ccs/CCS2025/awards/
+ACM CCS	2025	Distinguished Paper Award	Layered, Overlapping, and Inconsistent: A Large-Scale Analysis of the Multiple Privacy Policies and Controls of U.S. Banks	225493	https://www.sigsac.org/ccs/CCS2025/awards/
+ACM CCS	2025	Distinguished Paper Award	Adversarial Observations in Weather Forecasting	225301	https://www.sigsac.org/ccs/CCS2025/awards/
+ACM CCS	2025	Distinguished Paper Award	On the Security of SSH Client Signatures	225192	https://www.sigsac.org/ccs/CCS2025/awards/
+ACM CCS	2025	Distinguished Paper Award	A Decade-long Landscape of Advanced Persistent Threats: Longitudinal Analysis and Global Trends	225520	https://www.sigsac.org/ccs/CCS2025/awards/
+ACM CCS	2025	Distinguished Paper Award	BadAML: Exploiting Legacy Firmware Interfaces to Compromise Confidential Virtual Machines	225458	https://www.sigsac.org/ccs/CCS2025/awards/
+ACM CCS	2025	Distinguished Paper Award	Looping for Good: Cyclic Proofs for Security Protocols	225345	https://www.sigsac.org/ccs/CCS2025/awards/
+ACM CCS	2025	Distinguished Paper Award	Exact Robustness Certification of k-Nearest Neighbors	225414	https://www.sigsac.org/ccs/CCS2025/awards/
+ACM CCS	2025	Distinguished Paper Award	Automatically Detecting Online Deceptive Patterns	225382	https://www.sigsac.org/ccs/CCS2025/awards/
+ACM CCS	2025	Distinguished Paper Award	Don’t Look Up: There Are Sensitive Internal Links in the Clear on GEO Satellites	225524	https://www.sigsac.org/ccs/CCS2025/awards/
+ACM CCS	2025	Distinguished Paper Award	WireTap: Breaking Server SGX via DRAM Bus Interposition	225434	https://www.sigsac.org/ccs/CCS2025/awards/
+ACM CCS	2025	Distinguished Paper Award	Optimistic, Signature-Free Reliable Broadcast and Its Applications	225440	https://www.sigsac.org/ccs/CCS2025/awards/
+ACM CCS	2025	Distinguished Paper Award	From OT to OLE with Subquadratic Communication	225248	https://www.sigsac.org/ccs/CCS2025/awards/
+ACM CCS	2025	Distinguished Paper Award	The OCH Authenticated Encryption Scheme	225371	https://www.sigsac.org/ccs/CCS2025/awards/

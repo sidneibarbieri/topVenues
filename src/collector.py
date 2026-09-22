@@ -63,7 +63,15 @@ class Collector:
             self.checkpoint_dir,
             enabled=self.config.checkpoint_enabled,
         )
-        self.db = DatabaseManager(self.data_dir / "papers.db")
+        snapshot_path = None
+        if self.config.snapshot_path:
+            snapshot_path = Path(self.config.snapshot_path)
+            if not snapshot_path.is_absolute():
+                snapshot_path = self.base_dir / snapshot_path
+        self.db = DatabaseManager(
+            self.data_dir / "papers.db",
+            snapshot_path=snapshot_path,
+        )
         self._bootstrap_db_from_csv()
 
         self.acm_blocked_until: datetime | None = None
@@ -156,6 +164,48 @@ class Collector:
         await fetcher.close()
         print(f"Extracted abstracts for {processed} papers")
 
+    async def run_backfill_abstracts(
+        self,
+        event: str | None = None,
+        limit: int | None = None,
+        concurrency: int = 4,
+    ) -> dict[str, int]:
+        """Backfill missing abstracts through DOI APIs without re-scraping publishers."""
+        targets = [
+            Paper(**row) for row in self.db.get_papers_without_abstracts(event=event, limit=limit)
+        ]
+        if not targets:
+            return {"scanned": 0, "updated": 0, "missing": 0, "no_doi": 0}
+
+        fetcher = AbstractFetcher(self)
+        semaphore = asyncio.Semaphore(concurrency)
+
+        async def _fetch(paper: Paper) -> tuple[Paper, str | None]:
+            doi = _extract_doi(paper.ee)
+            if not doi:
+                return paper, None
+            async with semaphore:
+                return paper, await fetcher.fetch_all(doi)
+
+        results = await asyncio.gather(*(_fetch(paper) for paper in targets))
+        await fetcher.close()
+
+        updated = 0
+        no_doi = 0
+        for paper, abstract in results:
+            if abstract:
+                self.db.update_abstract(paper.paper_id, abstract)
+                updated += 1
+            elif not _extract_doi(paper.ee):
+                no_doi += 1
+
+        return {
+            "scanned": len(targets),
+            "updated": updated,
+            "missing": len(targets) - updated - no_doi,
+            "no_doi": no_doi,
+        }
+
     async def run_bibtex(self, concurrency: int = 8) -> int:
         """Backfill BibTeX entries from DBLP for every paper missing one."""
         targets = self.db.get_papers_without_bibtex()
@@ -180,6 +230,7 @@ class Collector:
 
     async def run_full(self) -> None:
         from .database import write_gzipped_snapshot
+
         print("Starting Top Venues Collector…")
         print("\n[1/5] Downloading JSON files…")
         await self.run_download()

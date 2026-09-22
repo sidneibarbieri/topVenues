@@ -35,8 +35,8 @@ def test_clear_removes_all(cache):
 
 def test_stats_hit_rate(cache):
     cache.set("x", "val")
-    cache.get("x")   # hit
-    cache.get("y")   # miss
+    cache.get("x")  # hit
+    cache.get("y")  # miss
     stats = cache.get_stats()
     assert stats["hits"] == 1
     assert stats["misses"] == 1

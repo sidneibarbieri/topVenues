@@ -1,7 +1,24 @@
 [theme]
 base = "light"
-primaryColor = "#2f6f73"
-backgroundColor = "#f8f8f5"
-secondaryBackgroundColor = "#f1f4f3"
-textColor = "#18212f"
-font = "sans serif"
+primaryColor = "#2867B2"
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F5F7FA"
+textColor = "#10233F"
+linkColor = "#2867B2"
+codeTextColor = "#10233F"
+codeBackgroundColor = "#E9EEF4"
+borderColor = "#D3DBE5"
+font = "Inter, sans-serif"
+
+# Inter 4.1 (SIL OFL), self-hosted from web/static so the interface stays offline.
+[[theme.fontFaces]]
+family = "Inter"
+url = "app/static/InterVariable.woff2"
+weight = "100 900"
+style = "normal"
+
+[server]
+enableStaticServing = true
+
+[browser]
+gatherUsageStats = false

@@ -1,7 +1,6 @@
 """Fallback abstract APIs."""
 
 import asyncio
-import html
 import logging
 import re
 from typing import TYPE_CHECKING
@@ -9,15 +8,12 @@ from urllib.parse import quote
 
 import httpx
 
+from .abstract_quality import looks_like_abstract, normalize_abstract_text, select_best_abstract
+
 if TYPE_CHECKING:
     from .collector import Collector
 
 logger = logging.getLogger(__name__)
-
-
-def _normalize(text: str) -> str:
-    """Decode HTML entities and collapse whitespace; idempotent."""
-    return re.sub(r"\s+", " ", html.unescape(text)).strip()
 
 
 class AbstractFetcher:
@@ -29,9 +25,13 @@ class AbstractFetcher:
             timeout=httpx.Timeout(120.0),
             headers=collector.config.headers,
         )
+        self.semantic_scholar_disabled = False
+        self.semantic_scholar_disable_logged = False
 
     async def fetch_semanticscholar(self, doi: str) -> str | None:
         if not doi or not doi.startswith("10."):
+            return None
+        if self.semantic_scholar_disabled:
             return None
 
         cache_key = f"semanticscholar_{doi}"
@@ -45,7 +45,15 @@ class AbstractFetcher:
                 url, headers={"User-Agent": self.collector.get_random_user_agent()}
             )
         except httpx.HTTPError as e:
-            logger.warning("Semantic Scholar HTTP error for %s: %s", doi, e)
+            if "CERTIFICATE_VERIFY_FAILED" in str(e):
+                self.semantic_scholar_disabled = True
+                if not self.semantic_scholar_disable_logged:
+                    logger.warning(
+                        "Semantic Scholar disabled after TLS verification failure: %s", e
+                    )
+                    self.semantic_scholar_disable_logged = True
+            else:
+                logger.warning("Semantic Scholar HTTP error for %s: %s", doi, e)
             return None
 
         if response.status_code != 200:
@@ -55,7 +63,7 @@ class AbstractFetcher:
         if not abstract or len(abstract) < 100:
             return None
 
-        abstract = _normalize(abstract)
+        abstract = normalize_abstract_text(abstract)
         self.collector.cache_manager.set(cache_key, abstract)
         return abstract
 
@@ -100,7 +108,7 @@ class AbstractFetcher:
         if len(abstract) < 100:
             return None
 
-        abstract = _normalize(abstract)
+        abstract = normalize_abstract_text(abstract)
         self.collector.cache_manager.set(cache_key, abstract)
         return abstract
 
@@ -130,9 +138,7 @@ class AbstractFetcher:
             return None
 
         abstract = re.sub(r"<jats:title>.*?</jats:title>", "", abstract, flags=re.DOTALL)
-        abstract = re.sub(r"</?jats:[a-z]+>", "", abstract)
-        abstract = re.sub(r"<.*?>", "", abstract)
-        abstract = re.sub(r"\s+", " ", abstract).strip()
+        abstract = normalize_abstract_text(abstract)
 
         if len(abstract) < 100:
             return None
@@ -141,23 +147,20 @@ class AbstractFetcher:
         return abstract
 
     async def fetch_all(self, doi: str) -> str | None:
-        """Fire all three APIs in parallel; return the first successful result."""
+        """Fetch all three APIs in parallel and retain the strongest result.
+
+        A source can return author-list metadata instead of a real abstract
+        (CrossRef does this for some ACL Anthology records); results that do
+        not pass :func:`looks_like_abstract` are skipped so junk never reaches
+        the database.
+        """
         tasks = [
             asyncio.create_task(self.fetch_semanticscholar(doi)),
             asyncio.create_task(self.fetch_openalex(doi)),
             asyncio.create_task(self.fetch_crossref(doi)),
         ]
-        try:
-            for completed in asyncio.as_completed(tasks):
-                result = await completed
-                if result:
-                    for task in tasks:
-                        task.cancel()
-                    return result
-        finally:
-            for task in tasks:
-                task.cancel()
-        return None
+        results = await asyncio.gather(*tasks)
+        return select_best_abstract(result for result in results if looks_like_abstract(result))
 
     async def close(self) -> None:
         await self.client.aclose()

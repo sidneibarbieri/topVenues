@@ -15,10 +15,10 @@ class USENIXExtractor(AbstractExtractor):
         super().__init__(timeout_seconds)
         self.source_name = "USENIX"
         # Abstracts here are frequently split across several <p> elements, so
-        # every selector joins the whole paragraph sequence. Selectors that can
-        # only ever yield one paragraph are last resorts: reaching for them
-        # first silently truncated multi-paragraph abstracts to their opening
-        # paragraph.
+        # every selector that can join the whole paragraph sequence comes first.
+        # A selector that can only ever yield one paragraph is a last resort:
+        # reaching for it first truncates a multi-paragraph abstract to its
+        # opening paragraph, and the result still reads as a valid abstract.
         self.xpaths = [
             'normalize-space(string-join(//div[contains(@class,"field-name-field-paper-description")]//p, " "))',
             'normalize-space(string-join(((//main//section)[1]//p)[position() > 1 and position() < last()], " "))',

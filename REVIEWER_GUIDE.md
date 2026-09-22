@@ -1,101 +1,72 @@
-# TopVenues — Reviewer Guide
+# TopVenues Reviewer Guide
 
-This guide is the practical entry point for reviewers who want to
-inspect the TopVenues artifact.
+> **Historical document.** Written for the tools-track artifact evaluation. The
+> release it describes lives in the archived repository
+> `sidneibarbieri/topvenues-tool`, so the commands below still work as written.
+> In this repository the same claims reproduce with
+> `bash reproduce.sh --profile security-20`; see [docs/PAPERS.md](docs/PAPERS.md).
 
-## What TopVenues Is
+This guide evaluates the immutable `security-20` profile used by the accepted SBSeg-SF paper. The current `security-20-v4` profile is a separate, post-publication successor documented in the main README; it does not alter the paper's frozen claims.
 
-TopVenues is an open-source, reproducible literature-review substrate
-for cybersecurity. It combines a tool and a methodology for constructing,
-refreshing, querying, and exporting venue-bounded paper collections.
+## What the release verifies
 
-## What To Inspect First
+- 20,305 bibliographic records from 20 declared security and security-relevant venues;
+- 17,491 abstract-enriched records and BibTeX for every record;
+- the compressed SQLite snapshot SHA-256;
+- 243 automated tests; and
+- local FTS5 ranked search and a BibTeX export.
 
-1. `ARTIFACT_README.md` — artifact overview and badge mapping.
-2. `reproduce.sh` — single-shot verification of every headline claim.
-3. `scripts/verify_paper_claims.py` — checks each number the paper reports
-   against the snapshot.
-4. `evaluation/baseline_validation/manual_labels.csv` — the completed manual
-   audit of 200 records (168 valid, 84.0%), with evidence URLs, corrected abstracts, and the correction manifest beside it.
-3. `data/dataset/papers.db.gz` — committed corpus snapshot.
-4. `data/dataset/arxiv_cs_cr_2022_2026.jsonl.gz` — committed preprint snapshot for the measurement studies.
-5. `src/` and `web/` — implementation.
-6. `tests/` — executable checks (252 tests).
+The artifact is a corpus-construction and review-workflow tool. Its evidence is limited to the declared snapshot and the workflows exercised below.
 
-## Minimal Verification
+## Reproduce from a fresh clone
+
+### Linux and macOS
+
+Requires Python 3.11 or 3.12, Git, and Bash.
 
 ```bash
+git clone --branch v1.0.1 https://github.com/sidneibarbieri/topvenues-tool.git
+cd topvenues-tool
 bash reproduce.sh
 ```
 
-Expected output: `✓ All headline claims reproduced`.
+### Native Windows
 
-The script verifies:
+Requires Python 3.11 or 3.12 with the Python Launcher (`py`), Git, and
+PowerShell.
 
-- 252 tests pass after dependency installation;
-- the SQLite snapshot bootstraps to 9,925 records, 9,911 abstracts and
-  9,924 BibTeX entries;
-- keyword search returns results in under 31 ms on representative
-  queries;
-- BibTeX export produces a non-empty `.bib` file ready for LaTeX use;
-- the scientific-readiness study reproduces the reported 16.5x relative risk at
-  90% recall;
-- the source-evidence audit and cross-source baseline reproduce;
-- every quantitative claim in the paper matches the snapshot.
-
-Total runtime is well under a minute on a 2020-or-later laptop.
-
-### Auditing the paper's numbers on their own
-
-The last stage can also run by itself. It executes each figure the paper
-reports, from per-venue coverage to case-study counts and the evaluation
-bundle, and prints any value where the paper and the snapshot disagree:
-
-```bash
-python scripts/verify_paper_claims.py
+```powershell
+git clone --branch v1.0.1 https://github.com/sidneibarbieri/topvenues-tool.git
+cd topvenues-tool
+powershell -ExecutionPolicy Bypass -File .\reproduce.ps1
 ```
 
-Expected output: `All 57 paper claims reproduce from the released snapshot`.
+Each command creates an isolated Python environment, verifies the immutable snapshot, materializes a disposable database, runs 243 tests, builds FTS5, exercises substring and ranked search, and exports a BibTeX sample. Network access is needed only to install Python dependencies on the first run; all validation after installation uses committed files.
 
-## Web Review Path
+Expected final line:
+
+```text
+Profile security-20 reproduced successfully
+```
+
+## Inspect the tool
 
 ```bash
-python -m venv .venv
 source .venv/bin/activate
-pip install -r requirements.txt -r requirements-web.txt
-streamlit run web/app.py
+python -m streamlit run web/app.py
 ```
 
-If the shell prompt already ends in `TopVenues`, skip `cd TopVenues`.
-The first page, **Overview**, is the shortest evaluation path: it exposes the
-claim set, the reproduction command, artifact-badge evidence and the two
-measurement findings. **Search** is for corpus inspection and reference
-export; **Insights** is for coverage and scope checks; **Pipeline** is only
-for refreshing the corpus from live sources.
+On Windows PowerShell, replace the activation command with
+`.\.venv\Scripts\Activate.ps1`.
 
-## Alternative Verification Paths
+Open `http://localhost:8501`, inspect coverage, run a ranked search, and export a result set as BibTeX, CSV, or JSON. An [abstract-evidence capture](docs/assets/topvenues-abstract-search.pdf) applies the **Abstract contains** filter to `intrusion detection`; every displayed row has an abstract preview.
 
-- Docker: `docker compose up` then `http://localhost:8501`.
-- Manual: `pip install -r requirements.txt -r requirements-web.txt` + `python -m pytest -q` +
-  `python -m src.cli stats`.
+## Scope and limitations
 
-## Positioning
+The profile declares its venue identifiers in `profiles/security-20/config.yaml` and its snapshot identity in `data/profiles/security-20/manifest.json`. Venue names are part of the scientific scope and intentionally remain visible. Records lacking an abstract remain available for metadata and BibTeX workflows, but abstract-dependent queries must not treat them as abstract-enriched.
 
-TopVenues is a tool-supported methodology, not a generic paper generator or
-paper search engine. Its scientific value is the reproducible construction and
-preservation of a declared cybersecurity collection, auditable as a single
-file in version control.
+Live collection and enrichment are optional maintenance operations. They depend on external sources and are not required to validate this release. The public Hugging Face export is a Parquet representation of the same profile; its card records the snapshot SHA-256 and source tag.
 
-## Common Questions
+## Reviewer boundary
 
-**Q: Does the artifact require publisher credentials?**
-No. The committed corpus and preprint snapshots make claim verification
-independent of publisher portals; only the fresh-collection pipeline
-(`download`, `extract`, `bibtex-from-dump`) calls external services.
-
-**Q: Is the dataset volatile?**
-No. The snapshot is versioned with the source code. Re-running
-verification on the same commit always produces the same numbers.
-
-**Q: How do I extend the collection to a new venue?**
-Add one entry to `config.yaml`; no code change is required.
+No API key, publisher credential, paid service, GPU, or institutional access is needed for the reproduction command. The repository contains no author-private data or operational traces. Tool code is MIT licensed; third-party abstract text remains subject to its original source terms.
