@@ -98,14 +98,14 @@ no artigo continua funcionando nele sem alteração.
 | ![Análises do corpus](docs/assets/screenshots/insights-llm-top4.png) | ![Recorrência de autores](docs/assets/screenshots/researcher-radar-llm-top4.png) |
 | **Análises** — distribuição por veículo, ano e classe; volume de um tópico e sua participação normalizada. | **Autores** — recorrência por volume, peso de estrato ou concentração no top-4, com trajetória e coautoria. |
 
-[![Demonstração de 7min49s](docs/assets/demos/posters/topvenues-demo-v1.5.9.jpg)](https://huggingface.co/datasets/sidneibarbieri/topvenues/resolve/main/assets/demo/topvenues-demo-v1.5.9.mp4)
+[![Demonstração de 7min49s](docs/assets/demos/posters/topvenues-demo-v1.11.1.jpg)](https://huggingface.co/datasets/sidneibarbieri/topvenues/resolve/main/assets/demo/topvenues-demo-v1.11.1.mp4)
 
 **Demonstração completa em vídeo** (7min49s, 1920x1080, narração em inglês com
 legendas em português e inglês): percorre a instalação, a verificação offline, a
 busca com exportações, as quatro passagens da página de análises e a página de
-evidências. Gravada com a v1.5.9, antes da identidade visual atual, e
+evidências. Gravada com a v1.11.1, na identidade visual atual, e
 transmitida pelo
-[Hugging Face](https://huggingface.co/datasets/sidneibarbieri/topvenues/resolve/main/assets/demo/topvenues-demo-v1.5.9.mp4).
+[Hugging Face](https://huggingface.co/datasets/sidneibarbieri/topvenues/resolve/main/assets/demo/topvenues-demo-v1.11.1.mp4).
 
 ---
 
@@ -590,6 +590,7 @@ relevante para quem reproduz ou audita o corpus.
 
 | Versão | Mudanças relevantes para reprodução |
 | --- | --- |
+| `v1.11.1` | Vídeo de demonstração regravado com a v1.11.1 e a identidade visual atual: a mesma narração, a instalação a partir do `topVenues` e o pôster novo. Nenhuma mudança de código ou de dados. |
 | `v1.11.0` | O TopVenues passa a morar no repositório `topVenues`, que também preserva o artefato da trilha principal na versão `sbseg2026-camera-ready`; a integração contínua reproduz os dois artigos a cada mudança. Nova identidade visual, com o logotipo vetorizado a partir do quadro de marca. O vídeo de demonstração passa a ser transmitido pelo Hugging Face. |
 | `v1.10.0` | Identidade visual aplicada à interface, com a cor da marca separada das cores de dados e as séries dos gráficos distinguidas também por traço. Seção [Qual artefato usar](#qual-artefato-usar) e registro dos artigos publicados em `docs/PAPERS.md`. `CITATION.cff` passa a declarar a versão corrente e a citar o artigo. |
 | `v1.9.3` | Reprodução em um comando movida para o topo do documento, antes de qualquer outra leitura. |

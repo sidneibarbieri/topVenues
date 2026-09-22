@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.11.1 — 2026-09-22
+
+- The demonstration is re-recorded with this release in the current visual
+  identity: the title and closing cards, the installation that clones
+  `topVenues`, the interface with its new mark, and a new poster. The
+  narration and its timing are unchanged, because nothing it says depends on
+  the release. No code or data changes.
+
 ## 1.11.0 — 2026-09-22
 
 - TopVenues moves home to `sidneibarbieri/topVenues`, the repository the

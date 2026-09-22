@@ -16,7 +16,7 @@ eligible before screening began.
 
 4
 00:00:11.976 --> 00:00:14.687
-In practice that set is rebuilt by hand.
+In practice that set is rebuilt by hand,
 
 5
 00:00:14.727 --> 00:00:17.576
@@ -38,7 +38,7 @@ denominator an object.
 
 9
 00:00:28.500 --> 00:00:30.740
-Declared. frozen. hashed. and citable.
+Declared, frozen, hashed, and citable.
 
 10
 00:00:30.780 --> 00:00:33.240
@@ -51,7 +51,7 @@ Installation is a clone and one script.
 12
 00:00:36.601 --> 00:00:40.170
 Nothing is fetched from a
-publisher at review time.
+publisher at review time,
 
 13
 00:00:40.210 --> 00:00:43.608
@@ -61,7 +61,7 @@ a service staying online.
 14
 00:00:44.208 --> 00:00:49.686
 The script builds an isolated environment
-from pinned. hash-checked dependencies.
+from pinned, hash-checked dependencies,
 
 15
 00:00:49.726 --> 00:00:53.432
@@ -79,12 +79,12 @@ Then it verifies rather than asserts.
 18
 00:00:58.725 --> 00:01:02.463
 The snapshot's SHA-256 is
-checked against the manifest.
+checked against the manifest,
 
 19
 00:01:02.503 --> 00:01:07.064
 the record counts are checked
-against the numbers the paper prints.
+against the numbers the paper prints,
 
 20
 00:01:07.104 --> 00:01:09.096
@@ -113,12 +113,12 @@ what you are holding.
 25
 00:01:26.949 --> 00:01:32.584
 Fourteen thousand eight hundred and fifty-nine
-papers across twenty declared venues.
+papers across twenty declared venues,
 
 26
 00:01:32.624 --> 00:01:38.232
 ninety-four percent carrying a searchable
-abstract. and every record ready to cite.
+abstract, and every record ready to cite.
 
 27
 00:01:38.832 --> 00:01:40.870
@@ -127,12 +127,12 @@ Nothing here is a live query.
 28
 00:01:40.910 --> 00:01:44.166
 The venue list is a
-declared scientific scope.
+declared scientific scope,
 
 29
 00:01:44.206 --> 00:01:48.648
 and changing it is a release
-decision. not a filter you slide.
+decision, not a filter you slide.
 
 30
 00:01:49.248 --> 00:01:51.721
@@ -140,22 +140,22 @@ Start with an ordinary question.
 
 31
 00:01:51.761 --> 00:01:57.140
-Ranked search orders title. abstract
-and author matches by relevance.
+Ranked search orders title, abstract
+and author matches by relevance,
 
 32
 00:01:57.180 --> 00:02:00.792
 over the whole frozen
-corpus. in milliseconds.
+corpus, in milliseconds.
 
 33
 00:02:01.392 --> 00:02:07.231
 Narrow it the way a protocol narrows: by
-venue tier. by year. by author position.
+venue tier, by year, by author position.
 
 34
 00:02:07.271 --> 00:02:13.368
-The count updates. and that count is the
+The count updates, and that count is the
 number you will report as your denominator.
 
 35
@@ -164,13 +164,13 @@ Every row opens into the record behind it.
 
 36
 00:02:17.261 --> 00:02:23.808
-The abstract that was matched. the venue.
-the tier. the DOI. and the publisher link.
+The abstract that was matched, the venue,
+the tier, the DOI, and the publisher link.
 
 37
 00:02:23.848 --> 00:02:27.768
 You are reading the
-evidence. not a summary of it.
+evidence, not a summary of it.
 
 38
 00:02:28.368 --> 00:02:29.492
@@ -178,8 +178,8 @@ And it leaves.
 
 39
 00:02:29.532 --> 00:02:35.644
-CSV for a screening sheet. JSON for
-a pipeline. BibTeX for the manuscript.
+CSV for a screening sheet, JSON for
+a pipeline, BibTeX for the manuscript,
 
 40
 00:02:35.684 --> 00:02:41.088
@@ -194,11 +194,11 @@ corpus stops being a list.
 42
 00:02:45.727 --> 00:02:50.568
 It reads in four passes: what
-it holds. how a topic moves.
+it holds, how a topic moves,
 
 43
 00:02:50.608 --> 00:02:55.488
-who produces that work. and
+who produces that work, and
 where it cannot answer at all.
 
 44
@@ -207,8 +207,8 @@ Composition first.
 
 45
 00:02:57.402 --> 00:03:00.939
-Papers per venue. per
-year. and per record class.
+Papers per venue, per
+year, and per record class.
 
 46
 00:03:00.979 --> 00:03:04.880
@@ -226,7 +226,7 @@ Every aggregate is a door.
 
 49
 00:03:12.791 --> 00:03:18.097
-Click a bar and you are in Search.
+Click a bar and you are in Search,
 filtered to exactly those records.
 
 50
@@ -247,7 +247,7 @@ get its yearly volume.
 53
 00:03:29.084 --> 00:03:33.396
 Large language models: six
-papers in two thousand nineteen.
+papers in two thousand nineteen,
 
 54
 00:03:33.436 --> 00:03:37.272
@@ -276,15 +276,15 @@ riding its expansion.
 59
 00:03:51.936 --> 00:03:55.360
 And it names the venues
-carrying that growth.
+carrying that growth,
 
 60
 00:03:55.400 --> 00:03:58.440
-so the next question. where do I submit.
+so the next question, where do I submit,
 
 61
 00:03:58.480 --> 00:04:03.792
-or where do I read. has an answer
+or where do I read, has an answer
 grounded in the same frozen corpus.
 
 62
@@ -293,16 +293,16 @@ The fourth pass is people.
 
 63
 00:04:06.576 --> 00:04:13.004
-Researcher Radar ranks who recurs. and
+Researcher Radar ranks who recurs, and
 it is deliberate about what it is not:
 
 64
 00:04:13.044 --> 00:04:16.028
-it measures presence in this corpus.
+it measures presence in this corpus,
 
 65
 00:04:16.068 --> 00:04:20.184
-never citations. quality.
+never citations, quality,
 seniority or authority.
 
 66
@@ -341,8 +341,8 @@ the people directing it.
 
 73
 00:04:47.821 --> 00:04:53.664
-For building a reference list. or a program
-committee. those are not the same list.
+For building a reference list, or a program
+committee, those are not the same list.
 
 74
 00:04:54.264 --> 00:04:56.044
@@ -351,11 +351,11 @@ And no row is a verdict.
 75
 00:04:56.084 --> 00:05:00.593
 Open one and you get the
-trajectory behind it. year by year.
+trajectory behind it, year by year,
 
 76
 00:05:00.633 --> 00:05:05.825
-split by byline position. with the
+split by byline position, with the
 direct collaborations it rests on.
 
 77
@@ -369,7 +369,7 @@ Two derived views close the pass.
 79
 00:05:11.248 --> 00:05:14.809
 Authors whose byline
-moved from first to last.
+moved from first to last,
 
 80
 00:05:14.849 --> 00:05:18.019
@@ -382,7 +382,7 @@ And authors whose annual rate is rising.
 82
 00:05:21.191 --> 00:05:26.280
 Both are described as shortlists
-to investigate. not as findings.
+to investigate, not as findings.
 
 83
 00:05:26.880 --> 00:05:32.379
@@ -391,17 +391,17 @@ omit: where the corpus cannot speak.
 
 84
 00:05:32.419 --> 00:05:36.721
-Abstract coverage per venue.
+Abstract coverage per venue,
 published rather than hidden.
 
 85
 00:05:36.761 --> 00:05:42.600
-ESORICS sits at six percent. because
+ESORICS sits at six percent, because
 Springer does not expose those abstracts.
 
 86
 00:05:43.200 --> 00:05:48.846
-That matters. because an abstract search
+That matters, because an abstract search
 cannot include what it cannot read.
 
 87
@@ -425,7 +425,7 @@ Abstract quality was not asserted;
 
 91
 00:06:04.704 --> 00:06:07.793
-it was measured. on a
+it was measured, on a
 venue-stratified sample
 
 92
@@ -435,16 +435,16 @@ reviewed by a human.
 
 93
 00:06:11.424 --> 00:06:14.288
-One hundred and sixty-nine were complete.
+One hundred and sixty-nine were complete,
 
 94
 00:06:14.328 --> 00:06:17.545
-uncontaminated. and
+uncontaminated, and
 matched the sampled paper.
 
 95
 00:06:17.585 --> 00:06:19.741
-Eighty-four and a half percent.
+Eighty-four and a half percent,
 
 96
 00:06:19.781 --> 00:06:23.069
@@ -459,7 +459,7 @@ to eighty-eight point nine.
 98
 00:06:26.862 --> 00:06:30.120
 The uncertainty is
-reported. not rounded away.
+reported, not rounded away.
 
 99
 00:06:30.720 --> 00:06:34.640
@@ -487,13 +487,13 @@ who already knows their field.
 
 104
 00:06:50.474 --> 00:06:53.808
-Three things. and none
+Three things, and none
 of them is a search box.
 
 105
 00:06:54.408 --> 00:06:57.794
 A denominator you can put
-in a paper. with a hash.
+in a paper, with a hash,
 
 106
 00:06:57.834 --> 00:07:01.426
@@ -551,8 +551,8 @@ TopVenues.
 
 118
 00:07:39.417 --> 00:07:44.353
-Open source. MIT licensed.
-with the corpus. the manifest.
+Open source, MIT licensed,
+with the corpus, the manifest,
 
 119
 00:07:44.393 --> 00:07:48.408
