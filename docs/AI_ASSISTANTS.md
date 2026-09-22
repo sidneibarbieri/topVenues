@@ -15,7 +15,7 @@ These agents run commands, so they can drive the TopVenues CLI directly.
    ```bash
    git clone https://github.com/sidneibarbieri/topVenues.git
    cd topVenues
-   bash reproduce.sh --profile security-20-v4
+   bash reproduce.sh --profile security-20-v5
    ```
 
 2. Start the agent in the `topVenues` directory. It reads
@@ -27,9 +27,9 @@ These agents run commands, so they can drive the TopVenues CLI directly.
    as:
 
    ```bash
-   .venv/bin/python -m src.cli --profile security-20-v4 search --rank "prompt injection" --tier-scope "Security top-4" --limit 20
-   .venv/bin/python -m src.cli --profile security-20-v4 trends -T "prompt injection"
-   .venv/bin/python -m src.cli --profile security-20-v4 export --format bibtex -T "prompt injection" -o prompt-injection.bib
+   .venv/bin/python -m src.cli --profile security-20-v5 search --rank "prompt injection" --tier-scope "Security top-4" --limit 20
+   .venv/bin/python -m src.cli --profile security-20-v5 trends -T "prompt injection"
+   .venv/bin/python -m src.cli --profile security-20-v5 export --format bibtex -T "prompt injection" -o prompt-injection.bib
    ```
 
 ## Desktop apps: Claude Desktop, ChatGPT Desktop
@@ -41,7 +41,7 @@ These agents run commands, so they can drive the TopVenues CLI directly.
      search, and use **Export CSV** or **Export JSON**.
   2. Attach the file to the conversation, with this first line:
 
-  > The attached file is an export of TopVenues, profile security-20-v4.
+  > The attached file is an export of TopVenues, profile security-20-v5.
   > Treat it as the complete population. Do not add papers from memory. Report
   > every count as "N of M records" and name the filter you applied.
 

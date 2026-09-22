@@ -18,7 +18,7 @@ so a change that breaks a published result cannot pass.
 
 | I want to… | Go to |
 | --- | --- |
-| Use TopVenues today | [README](../README.md#quick-start), profile `security-20-v4` |
+| Use TopVenues today | [README](../README.md#quick-start), profile `security-20-v5` |
 | Download the current corpus | [Hugging Face `sidneibarbieri/topvenues`](https://huggingface.co/datasets/sidneibarbieri/topvenues) |
 | Reproduce the main-track paper | [Paper A](#paper-a--main-track-sbseg-2026) below |
 | Reproduce the tools-track paper | [Paper B](#paper-b--tools-track-sbseg-2026) below |
@@ -104,11 +104,11 @@ Not a paper. The corpus TopVenues ships today, maintained and extended.
 | | |
 | --- | --- |
 | Repository | [`sidneibarbieri/topVenues`](https://github.com/sidneibarbieri/topVenues) |
-| Profile | `security-20-v4` · 14,859 records · 20 venues · 2019–2026 |
-| SHA-256 (`papers.db.gz`) | `bcb762c1c9b1f8ce6f075a8c1a23d68310caec853b0cc8ce3f42931e43c370c5` |
+| Profile | `security-20-v5` · 15,286 records · 20 venues · 2019–2026 |
+| SHA-256 (`papers.db.gz`) | `2487ea98bfae38982d9752e56391bbdb83820f134c01b8555dfc7d26d8a9fe58` |
 | Parquet export | [Hugging Face `sidneibarbieri/topvenues`](https://huggingface.co/datasets/sidneibarbieri/topvenues) |
 
-`security-20-v4` is a successor of `security-20`, not a correction of Paper B:
+`security-20-v5` is a successor of `security-20`, not a correction of Paper B:
 exact-resource deduplication and a declared 2019–2026 window make it a
 different population, with its own identity.
 

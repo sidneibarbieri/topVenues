@@ -1,7 +1,7 @@
 # One-command launch for reviewers.
 #
 #   docker compose up           # web UI on http://localhost:8501
-#   docker compose run --rm app python -m src.cli --profile security-20-v4 stats
+#   docker compose run --rm app python -m src.cli --profile security-20-v5 stats
 #   docker compose run --rm app python -m pytest -q
 
 services:

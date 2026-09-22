@@ -17,6 +17,12 @@ Three steps, so the enrichment runs through the same commands as any corpus:
 `stage` materializes and consolidates the declared scope from a DBLP dump into
 STAGE and keeps only the additive records. `freeze` copies the verified source,
 inserts them, and writes the snapshot, its manifest and the extension log.
+
+A human audit of the additions can find a record whose abstract collection
+failed. `repair-abstracts` fills such abstracts from a reviewed log, refuses to
+overwrite any existing text, and rewrites the snapshot and its manifest:
+
+    python scripts/build_extended_profile.py repair-abstracts --log REPAIRS.json --output-root ROOT
 """
 
 import argparse
@@ -40,6 +46,7 @@ sys.path.insert(0, str(ROOT))
 from src.collector import Collector  # noqa: E402
 from src.dblp_dump_materializer import DblpDumpMaterializer  # noqa: E402
 from src.profiles import load_profile, verified_profile_snapshot  # noqa: E402
+from src.sqlite_connection import managed_sqlite_connection  # noqa: E402
 
 DEFAULT_SOURCE = "security-20-v4"
 DEFAULT_TARGET = "security-20-v5"
@@ -79,6 +86,22 @@ class ExcludedRecord(StagedRecord):
     reason: str
 
 
+class AbstractRepair(Frozen):
+    """One missing abstract that a human reviewer transcribed from the publisher record."""
+
+    paper_id: str
+    abstract: str
+    source_url: str
+    reviewer: str
+    decided_at: str
+    reason: str
+
+
+class AbstractRepairLog(Frozen):
+    profile_id: str
+    repairs: tuple[AbstractRepair, ...]
+
+
 class ExtensionLog(Frozen):
     schema_version: str = "1.0.0"
     source_profile: str
@@ -115,7 +138,7 @@ def merged_resources(identity_log: Path) -> set[str]:
 
 
 def source_identity(database: Path) -> tuple[set[str], set[str]]:
-    with sqlite3.connect(database) as connection:
+    with managed_sqlite_connection(database) as connection:
         rows = connection.execute("SELECT key, ee FROM papers").fetchall()
     keys = {key for key, _ in rows}
     resources = {canonical_resource(link) for _, link in rows if link}
@@ -161,7 +184,7 @@ def staging_collector(staging: Path) -> Collector:
 
 
 def staged_records(database: Path) -> list[StagedRecord]:
-    with sqlite3.connect(database) as connection:
+    with managed_sqlite_connection(database) as connection:
         rows = connection.execute("SELECT key, event, year, ee FROM papers").fetchall()
     return [
         StagedRecord(key=key, event=event, year=int(year), resource=canonical_resource(link))
@@ -192,7 +215,7 @@ def stage(succession: Succession, dump: Path, staging: Path, identity_log: Path)
         elif reason not in {"already in the source", "resource already in the source"}:
             excluded.append(ExcludedRecord(**record.model_dump(), reason=reason))
 
-    with sqlite3.connect(collector.db.db_path) as connection:
+    with managed_sqlite_connection(collector.db.db_path) as connection:
         connection.execute("CREATE TEMP TABLE kept(key TEXT PRIMARY KEY)")
         connection.executemany("INSERT INTO kept VALUES (?)", [(record.key,) for record in added])
         connection.execute("DELETE FROM papers WHERE key NOT IN (SELECT key FROM kept)")
@@ -235,13 +258,13 @@ def write_gzip(source: Path, target: Path) -> None:
 
 def insert_additions(target: Path, staged: Path, expected_keys: set[str]) -> None:
     columns = ", ".join(COPIED_COLUMNS)
-    with sqlite3.connect(staged) as source_connection:
+    with managed_sqlite_connection(staged) as source_connection:
         rows = source_connection.execute(f"SELECT {columns} FROM papers").fetchall()
     staged_keys = {row[COPIED_COLUMNS.index("key")] for row in rows}
     if staged_keys != expected_keys:
         raise SystemExit("the staged database no longer matches its extension log")
     placeholders = ", ".join("?" for _ in COPIED_COLUMNS)
-    with sqlite3.connect(target) as connection:
+    with managed_sqlite_connection(target) as connection:
         connection.executemany(f"INSERT INTO papers ({columns}) VALUES ({placeholders})", rows)
 
 
@@ -263,7 +286,7 @@ def event_counts(connection: sqlite3.Connection) -> list[dict]:
 
 
 def snapshot_declaration(database: Path, archive: Path, declared_path: str) -> dict:
-    with sqlite3.connect(database) as connection:
+    with managed_sqlite_connection(database) as connection:
         counts = event_counts(connection)
         years = connection.execute("SELECT MIN(year), MAX(year) FROM papers").fetchone()
     return {
@@ -342,6 +365,56 @@ def freeze(staging: Path, dump_release: str, output_root: Path) -> None:
     print(f"{succession.target}: {snapshot['papers']} records, {snapshot['abstracts']} abstracts")
 
 
+def fill_missing_abstracts(database: Path, repairs: tuple[AbstractRepair, ...]) -> None:
+    """Fill each named record's abstract; a record that already has one is an error."""
+    with managed_sqlite_connection(database) as connection:
+        for repair in repairs:
+            row = connection.execute(
+                "SELECT abstract FROM papers WHERE paper_id = ?", (repair.paper_id,)
+            ).fetchone()
+            if row is None:
+                raise SystemExit(f"{repair.paper_id} is not in the snapshot")
+            if row[0] and row[0].strip():
+                raise SystemExit(f"{repair.paper_id} already has an abstract; repairs only fill")
+            connection.execute(
+                "UPDATE papers SET abstract = ? WHERE paper_id = ?",
+                (repair.abstract, repair.paper_id),
+            )
+
+
+def repair_abstracts(log_path: Path, output_root: Path) -> None:
+    """Apply a reviewed abstract-repair log to a frozen profile under output_root."""
+    repair_log = AbstractRepairLog.model_validate_json(log_path.read_text(encoding="utf-8"))
+    profile_id = repair_log.profile_id
+    manifest_path = output_root / "data" / "profiles" / profile_id / "manifest.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    archive = output_root / manifest["snapshot"]["path"]
+    if sha256(archive) != manifest["snapshot"]["gzip_sha256"]:
+        raise SystemExit(f"{archive} does not match its manifest")
+    with tempfile.TemporaryDirectory(prefix="topvenues-repair-") as workspace:
+        working_copy = Path(workspace) / "papers.db"
+        with gzip.open(archive, "rb") as compressed, working_copy.open("wb") as expanded:
+            shutil.copyfileobj(compressed, expanded, length=1024 * 1024)
+        fill_missing_abstracts(working_copy, repair_log.repairs)
+        write_gzip(working_copy, archive)
+        manifest["snapshot"] = snapshot_declaration(
+            working_copy, archive, manifest["snapshot"]["path"]
+        )
+    declared_log = f"data/adjudication/{profile_id}-abstract-repairs.json"
+    stored_log = output_root / declared_log
+    stored_log.parent.mkdir(parents=True, exist_ok=True)
+    if stored_log.resolve() != log_path.resolve():
+        shutil.copyfile(log_path, stored_log)
+    manifest["repair_log"] = {
+        "path": declared_log,
+        "abstracts_repaired": len(repair_log.repairs),
+        "note": "Missing abstracts only, transcribed by a human reviewer from the "
+        "publisher record; no existing text changed.",
+    }
+    manifest_path.write_text(json.dumps(manifest, indent=1) + "\n", encoding="utf-8")
+    print(f"{profile_id}: {len(repair_log.repairs)} abstracts filled")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
@@ -362,8 +435,13 @@ def main() -> None:
         default=ROOT,
         help="repository root, or a review folder",
     )
+    repair_command = commands.add_parser("repair-abstracts")
+    repair_command.add_argument("--log", type=Path, required=True)
+    repair_command.add_argument("--output-root", type=Path, default=ROOT)
     arguments = parser.parse_args()
-    if arguments.command == "stage":
+    if arguments.command == "repair-abstracts":
+        repair_abstracts(arguments.log.resolve(), arguments.output_root.resolve())
+    elif arguments.command == "stage":
         succession = Succession(source=arguments.source, target=arguments.target)
         stage(
             succession,

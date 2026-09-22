@@ -57,10 +57,13 @@ def test_the_image_carries_what_the_interface_reads_at_runtime():
     ignore = (ROOT / ".dockerignore").read_text(encoding="utf-8")
     assert "!evaluation/security-20-v3" in ignore
     assert "!evaluation/security-20-v4" in ignore
+    assert "!evaluation/security-20-v5" in ignore
     assert "COPY evaluation/" in DOCKERFILE
 
     for needed in (
         "evaluation/security-20-v3/manual_abstract_audit_summary.json",
         "evaluation/security-20-v4/audit_transfer.json",
+        "evaluation/security-20-v5/audit_transfer.json",
+        "evaluation/security-20-v5/manual_abstract_audit_additions_summary.json",
     ):
         assert (ROOT / needed).exists(), needed

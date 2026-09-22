@@ -1,7 +1,9 @@
 # Demonstration
 
 [`topvenues-demo-v1.12.0.mp4`](https://huggingface.co/datasets/sidneibarbieri/topvenues/resolve/main/assets/demo/topvenues-demo-v1.12.0.mp4) —
-7:49, 1920x1080, 30 fps, recorded with v1.12.0 in the current visual identity.
+7:49, 1920x1080, 30 fps, recorded with v1.12.0 on the `security-20-v4` profile.
+The narration states that profile's counts, so a re-recording is what a release
+that changes them needs; the visual identity is the current one.
 
 [![Demonstration poster](../assets/demos/posters/topvenues-demo-v1.12.0.jpg)](https://huggingface.co/datasets/sidneibarbieri/topvenues/resolve/main/assets/demo/topvenues-demo-v1.12.0.mp4)
 

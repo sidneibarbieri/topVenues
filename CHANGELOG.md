@@ -1,5 +1,31 @@
 # Changelog
 
+## 1.14.0 — 2026-09-22
+
+- The current release is `security-20-v5`: 15,286 records, 14,394 with an
+  abstract (94.2%), every one with BibTeX. It keeps all 14,859 `security-20-v4`
+  records unchanged in every field and adds the 427 that the September 2026 DBLP
+  release (10.4230/dblp.xml.2026-09-01) published after v4 froze:
+  - IEEE S&P 2026 (252) and IEEE EuroS&P 2026 (82);
+  - ACM SACMAT 2026 (28), ACM Computing Surveys (27), USENIX WOOT 2026 (26),
+    IEEE COMST (9), and three late DBLP additions.
+  USENIX Security 2026 and IEEE SaTML 2026 were not yet in DBLP.
+- The additions carry their own human audit: 60 records sampled by venue, all
+  judged by Sidnei Barbieri alone, 59 usable (98.3%; 95% Wilson interval
+  91.1%–99.7%), in `evaluation/security-20-v5/`. The v3 audit still holds for
+  the retained records, as `evaluation/security-20-v5/audit_transfer.json`
+  checks.
+- The one audit failure, an IEEE S&P 2026 record whose abstract collection had
+  failed, is filled from the reviewer's transcription of the publisher record.
+  `scripts/build_extended_profile.py repair-abstracts` applies such repairs; it
+  refuses to overwrite existing text, and it logs each repair in
+  `data/adjudication/security-20-v5-abstract-repairs.json`.
+- `security-20-v4` stays bundled and reproducible with
+  `bash reproduce.sh --profile security-20-v4`; `security-20` still reproduces
+  the tools-track paper.
+- The Hugging Face dataset `sidneibarbieri/topvenues` now exports
+  `security-20-v5`.
+
 ## 1.13.1 — 2026-09-22
 
 - A fresh clone following the README now passes its reproduction. A CLI test

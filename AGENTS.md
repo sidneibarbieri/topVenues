@@ -5,9 +5,9 @@ it to answer literature questions from a declared population, not from memory.
 
 ## Answer from the corpus
 
-- Run `bash reproduce.sh --profile security-20-v4` once. It creates `.venv/` and
+- Run `bash reproduce.sh --profile security-20-v5` once. It creates `.venv/` and
   verifies the snapshot. Then call the CLI as
-  `.venv/bin/python -m src.cli --profile security-20-v4 <command>`
+  `.venv/bin/python -m src.cli --profile security-20-v5 <command>`
   (`.venv\Scripts\python` on Windows).
 - **Find papers:**
   - `search --rank "<query>" --tier-scope "Security top-4" --limit 20` returns

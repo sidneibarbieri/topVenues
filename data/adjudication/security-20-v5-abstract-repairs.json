@@ -1,0 +1,13 @@
+{
+ "profile_id": "security-20-v5",
+ "repairs": [
+  {
+   "paper_id": "conf/sp/MaoSBP26",
+   "abstract": "Mobile devices rely on Trusted Execution Environments (TEEs) to execute security-critical code and protect sensitive assets. This security-critical code is modularized in components known as Trusted Applications (TAs). Vulnerabilities in TAs can compromise the TEE and, thus, the entire system. However, the closed-source nature and fragmentation of mobile TEEs severely hinder dynamic analysis of TAs, limiting testing efforts to mostly static analyses. This paper presents TÄMU, a rehosting platform enabling dynamic analysis of TAs, specifically fuzzing and debugging, by interposing their execution at the API layer. To scale to many TAs across different TEEs, TÄMU leverages the standardization of TEE APIs, driven by the GlobalPlatform specifications. For the remaining TEE-specific APIs not shared across different TEEs, TÄMU introduces the notion of greedy high-level emulation, a technique that allows prioritizing manual rehosting efforts based on the potential coverage gain during fuzzing. We implement TÄMU and use it to emulate 67 TAs across four TEEs. Our fuzzing campaigns yielded 17 zero-day vulnerabilities across 11 TAs. These results indicate a deficit of dynamic analysis capabilities across the TEE ecosystem, where not even vendors with source code unlocked these capabilities for themselves. TÄMU promises to close this gap by bringing effective and practical dynamic analysis to the mobile TEE domain.",
+   "source_url": "https://doi.org/10.1109/SP63933.2026.00139",
+   "reviewer": "Sidnei Barbieri",
+   "decided_at": "2026-09-22T15:58:40.893Z",
+   "reason": "Abstract collection failed for this record; the manual audit of the v5 additions (sample 42) found it empty. The reviewer transcribed the abstract from the publisher record; the hyphen in 'high-level' lost in transcription is restored from arXiv:2601.20507, whose abstract otherwise matches the transcription character for character."
+  }
+ ]
+}

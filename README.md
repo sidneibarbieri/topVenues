@@ -35,7 +35,7 @@
 
 | I want to… | Do this |
 | --- | --- |
-| Use TopVenues today | [Quick start](#quick-start), profile `security-20-v4` |
+| Use TopVenues today | [Quick start](#quick-start), profile `security-20-v5` |
 | Get only the data | `load_dataset("sidneibarbieri/topvenues")` from [Hugging Face](https://huggingface.co/datasets/sidneibarbieri/topvenues) |
 | Reproduce the SBSeg 2026 main-track paper | `git checkout sbseg2026-camera-ready && bash reproduce.sh` ([details](docs/PAPERS.md#paper-a--main-track-sbseg-2026)) |
 | Reproduce the SBSeg 2026 tools-track paper | `bash reproduce.sh --profile security-20` ([details](docs/PAPERS.md#paper-b--tools-track-sbseg-2026)) |
@@ -49,9 +49,9 @@
 Requires Python 3.11–3.14, Git, and Bash.
 
 ```bash
-git clone --depth 1 --branch v1.13.1 https://github.com/sidneibarbieri/topVenues.git
+git clone --depth 1 --branch v1.14.0 https://github.com/sidneibarbieri/topVenues.git
 cd topVenues
-bash reproduce.sh --profile security-20-v4
+bash reproduce.sh --profile security-20-v5
 ```
 
 The command installs the CLI and web dependencies, verifies the snapshot
@@ -67,9 +67,9 @@ Use the native PowerShell workflow rather than editing the Unix script or mixing
 Git Bash and PowerShell environments:
 
 ```powershell
-git clone --depth 1 --branch v1.13.1 https://github.com/sidneibarbieri/topVenues.git
+git clone --depth 1 --branch v1.14.0 https://github.com/sidneibarbieri/topVenues.git
 cd topVenues
-powershell -ExecutionPolicy Bypass -File .\reproduce.ps1 -Profile security-20-v4
+powershell -ExecutionPolicy Bypass -File .\reproduce.ps1 -Profile security-20-v5
 ```
 
 The script creates `.venv` and installs the hash-locked cross-platform
@@ -101,26 +101,32 @@ System, Light and Dark.
 
 | Property | Value |
 | --- | --- |
-| Tool release | `v1.13.1` |
-| Profile | `security-20-v4` |
-| Snapshot source release | `v1.2.1` |
+| Tool release | `v1.14.0` |
+| Profile | `security-20-v5` |
+| DBLP release | [10.4230/dblp.xml.2026-09-01](https://doi.org/10.4230/dblp.xml.2026-09-01) |
 | Scope | 20 declared security and security-relevant venues |
 | Declared window | 2019–2026 |
-| Records | 14,859 corpus records |
-| Abstract-enriched records | 13,987 (94.1%) |
-| BibTeX entries | 14,859 |
-| Snapshot SHA-256 | `bcb762c1c9b1f8ce6f075a8c1a23d68310caec853b0cc8ce3f42931e43c370c5` |
+| Records | 15,286 corpus records |
+| Abstract-enriched records | 14,394 (94.2%) |
+| BibTeX entries | 15,286 |
+| Snapshot SHA-256 | `2487ea98bfae38982d9752e56391bbdb83820f134c01b8555dfc7d26d8a9fe58` |
 
-The profile enforces the declared 2019–2026 window, inherits exact-resource
-deduplication, and repairs ten titles truncated at inline DBLP markup. Four
+`security-20-v5` keeps every `security-20-v4` record unchanged, field by field,
+and adds the 427 records DBLP published after v4 froze: IEEE S&P 2026 (252),
+IEEE EuroS&P 2026 (82), ACM SACMAT 2026 (28), ACM Computing Surveys (27), USENIX
+WOOT 2026 (26), IEEE COMST (9) and three late DBLP additions. USENIX Security
+2026 and IEEE SaTML 2026 were not yet in DBLP. The profile enforces the declared
+2019–2026 window, inherits exact-resource deduplication and the ten title
+repairs of v4, and keeps every earlier identity decision; each addition and
+exclusion is in `data/adjudication/security-20-v5-extension.json`. Four
 same-metadata pairs remain separate because their publisher resources remain
 distinct; metadata similarity alone is not identity evidence. The versioned
 decision records are in `data/adjudication/`. Records without abstracts remain
 available for metadata and citation workflows; abstract-dependent retrieval must
 treat them as missing data, not negative evidence. The declared scope,
 per-venue coverage, identity policy, and exact snapshot identity are in
-`profiles/security-20-v4/config.yaml` and
-`data/profiles/security-20-v4/manifest.json`.
+`profiles/security-20-v5/config.yaml` and
+`data/profiles/security-20-v5/manifest.json`.
 
 ## What you can do
 
@@ -153,34 +159,34 @@ before using a tier restriction or a monitoring signal.
 
 ```bash
 # Inspect corpus state and coverage
-python -m src.cli --profile security-20-v4 stats
+python -m src.cli --profile security-20-v5 stats
 
 # Search records that mention a term
-python -m src.cli --profile security-20-v4 search --abstract "intrusion detection"
+python -m src.cli --profile security-20-v5 search --abstract "intrusion detection"
 
 # Restrict a review query to the Security top-4
-python -m src.cli --profile security-20-v4 search --rank "LLM security" \
+python -m src.cli --profile security-20-v5 search --rank "LLM security" \
   --tier-scope "Security top-4" --limit 20
 
 # Build a topic-specific author shortlist from Tier 1 evidence
-python -m src.cli --profile security-20-v4 authors --topic "fuzzing" \
+python -m src.cli --profile security-20-v5 authors --topic "fuzzing" \
   --tier-scope "Security top-4"
 
 # Rank records by multi-token FTS5/BM25 relevance
-python -m src.cli --profile security-20-v4 search --rank "memory corruption mitigations" --limit 20
+python -m src.cli --profile security-20-v5 search --rank "memory corruption mitigations" --limit 20
 
 # Export a review-ready subset
-python -m src.cli --profile security-20-v4 export --format bibtex --tech "fuzzing" \
+python -m src.cli --profile security-20-v5 export --format bibtex --tech "fuzzing" \
   --tier-scope "Security top-4" -o fuzzing-tier1.bib
 
 # Build the Hugging Face Parquet export from the immutable profile
-python -m src.cli --profile security-20-v4 export-hf --release-tag v1.12.0
+python -m src.cli --profile security-20-v5 export-hf --release-tag v1.14.0
 
 # Create and later evaluate a portable research watch
-python scripts/evaluate_watchlist.py topvenues-watchlist.json --profile security-20-v4
+python scripts/evaluate_watchlist.py topvenues-watchlist.json --profile security-20-v5
 
 # Repeat or extend the deterministic manual-audit protocol
-python scripts/manual_abstract_audit.py --profile security-20-v4 --sample-size 200
+python scripts/manual_abstract_audit.py --profile security-20-v5 --sample-size 200
 ```
 
 Substring and ranked search answer different questions: substring search finds
@@ -228,7 +234,8 @@ Seven minutes and forty-nine seconds in 1920x1080, streamed from Hugging Face.
 It follows one path end to end: the problem a fixed denominator solves,
 installation and offline verification, an ordinary search with its exports,
 the four passes of the Insights page, the audit evidence, and the immutability
-boundary. It was recorded with v1.12.0, in the current visual identity.
+boundary. It was recorded with v1.12.0 on `security-20-v4`, so the counts on
+screen are that profile's, not the current release's.
 Narration is US English; captions ship in Brazilian Portuguese and English.
 Sidecar SRT files, the timed narration source, and the shot plan are in
 [docs/demo/](docs/demo/README.md).
@@ -253,15 +260,19 @@ The main-track paper's 200-record audit and live baseline comparison are
 documented in [docs/COMPANION_FULL_PAPER_EVALUATION.md](docs/COMPANION_FULL_PAPER_EVALUATION.md)
 and remain bound to that paper's snapshot. The current corpus has a separate
 completed 200-record human audit: 169 records satisfied all three criteria
-(84.5%; 95% Wilson interval 78.8%–88.9%). The v3 labels transfer to v4 because
-every paper ID and abstract byte is unchanged; the machine-readable transfer
-check is in `evaluation/security-20-v4/audit_transfer.json`. See
+(84.5%; 95% Wilson interval 78.8%–88.9%). The v3 labels hold for the 14,859
+records v5 keeps unchanged in every field, as
+`evaluation/security-20-v5/audit_transfer.json` checks. The 427 records v5 adds
+carry their own human audit of 60: 59 usable (98.3%; 95% Wilson interval
+91.1%–99.7%). The one failure, an abstract whose collection had failed, is now
+filled from the publisher record, as `data/adjudication/security-20-v5-abstract-repairs.json`
+records. See
 [docs/MANUAL_ABSTRACT_AUDIT.md](docs/MANUAL_ABSTRACT_AUDIT.md).
 
 ## Distribution boundary
 
-The package bundles the snapshots for `security-20`, `security-20-v3` and
-`security-20-v4`. `security-20` is among them because the published
+The package bundles the snapshots for `security-20`, `security-20-v3`,
+`security-20-v4` and `security-20-v5`. `security-20` is among them because the published
 tools-track paper prints `bash reproduce.sh --profile security-20` as its
 reviewer's command, and that command runs against a clone with no fetch step.
 
@@ -275,7 +286,7 @@ against it.
 
 The public dataset is
 [sidneibarbieri/topvenues](https://huggingface.co/datasets/sidneibarbieri/topvenues):
-a Parquet export of `security-20-v4` whose card records the profile, the source
+a Parquet export of `security-20-v5` whose card records the profile, the source
 tag, and the snapshot SHA-256.
 
 ```python
@@ -292,7 +303,7 @@ other researchers can find it. Which paper to cite depends on what you used:
 
 | You… | Cite |
 | --- | --- |
-| used TopVenues to search, build a review corpus, export references or rank authors | the tools-track paper (`barbieri2026topvenuestool`), and name the release and profile, such as `TopVenues v1.13.1, profile security-20-v4` |
+| used TopVenues to search, build a review corpus, export references or rank authors | the tools-track paper (`barbieri2026topvenuestool`), and name the release and profile, such as `TopVenues v1.14.0, profile security-20-v5` |
 | use or build on the corpus method or its measurements | the main-track paper (`barbieri2026topvenues`) |
 | did both | both |
 

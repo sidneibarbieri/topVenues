@@ -1,0 +1,2602 @@
+{
+ "schema_version": "1.0.0",
+ "source_profile": "security-20-v4",
+ "target_profile": "security-20-v5",
+ "dump": "dblp-2026-09-01.xml.gz",
+ "staged_on": "2026-09-22",
+ "policy": "Additive: every source record is copied unchanged; a record enters only when its DBLP key and canonical resource are absent from the source, its year is declared, and no identity decision merged it. Added records use the DBLP key as paper_id, because the dump carries no numeric DBLP identifier.",
+ "added": [
+  {
+   "key": "journals/csur/AbdolazimiJVZ26",
+   "event": "ACM Computing Surveys",
+   "year": 2026,
+   "resource": "doi:10.1145/3811813"
+  },
+  {
+   "key": "journals/csur/AbdullahZA26",
+   "event": "ACM Computing Surveys",
+   "year": 2026,
+   "resource": "doi:10.1145/3809483"
+  },
+  {
+   "key": "journals/csur/BertolottiC26",
+   "event": "ACM Computing Surveys",
+   "year": 2026,
+   "resource": "doi:10.1145/3814603"
+  },
+  {
+   "key": "journals/csur/BritoCJW26",
+   "event": "ACM Computing Surveys",
+   "year": 2026,
+   "resource": "doi:10.1145/3814607"
+  },
+  {
+   "key": "journals/csur/ChaudharyAHTCH26",
+   "event": "ACM Computing Surveys",
+   "year": 2026,
+   "resource": "doi:10.1145/3817115"
+  },
+  {
+   "key": "journals/csur/DarbandehAC26",
+   "event": "ACM Computing Surveys",
+   "year": 2026,
+   "resource": "doi:10.1145/3818682"
+  },
+  {
+   "key": "journals/csur/DemosthenousG26",
+   "event": "ACM Computing Surveys",
+   "year": 2026,
+   "resource": "doi:10.1145/3819577"
+  },
+  {
+   "key": "journals/csur/GhasempouriB26",
+   "event": "ACM Computing Surveys",
+   "year": 2026,
+   "resource": "doi:10.1145/3816031"
+  },
+  {
+   "key": "journals/csur/GridachNAYM26",
+   "event": "ACM Computing Surveys",
+   "year": 2026,
+   "resource": "doi:10.1145/3809164"
+  },
+  {
+   "key": "journals/csur/HerronLBG26",
+   "event": "ACM Computing Surveys",
+   "year": 2026,
+   "resource": "doi:10.1145/3815423"
+  },
+  {
+   "key": "journals/csur/HoLT26",
+   "event": "ACM Computing Surveys",
+   "year": 2026,
+   "resource": "doi:10.1145/3811409"
+  },
+  {
+   "key": "journals/csur/HuangHITL26",
+   "event": "ACM Computing Surveys",
+   "year": 2026,
+   "resource": "doi:10.1145/3817114"
+  },
+  {
+   "key": "journals/csur/JiWWLZ26",
+   "event": "ACM Computing Surveys",
+   "year": 2026,
+   "resource": "doi:10.1145/3816020"
+  },
+  {
+   "key": "journals/csur/JostHS26",
+   "event": "ACM Computing Surveys",
+   "year": 2026,
+   "resource": "doi:10.1145/3809487"
+  },
+  {
+   "key": "journals/csur/KehrenbergBLQ26",
+   "event": "ACM Computing Surveys",
+   "year": 2026,
+   "resource": "doi:10.1145/3816429"
+  },
+  {
+   "key": "journals/csur/LuoYBFZLWSNYJM26",
+   "event": "ACM Computing Surveys",
+   "year": 2026,
+   "resource": "doi:10.1145/3811822"
+  },
+  {
+   "key": "journals/csur/MallasenMBG26a",
+   "event": "ACM Computing Surveys",
+   "year": 2026,
+   "resource": "doi:10.1145/3820485"
+  },
+  {
+   "key": "journals/csur/MardzukiIWB26",
+   "event": "ACM Computing Surveys",
+   "year": 2026,
+   "resource": "doi:10.1145/3818604"
+  },
+  {
+   "key": "journals/csur/PadariyaWTB26",
+   "event": "ACM Computing Surveys",
+   "year": 2026,
+   "resource": "doi:10.1145/3815777"
+  },
+  {
+   "key": "journals/csur/SerajehhassaniGHLS26",
+   "event": "ACM Computing Surveys",
+   "year": 2026,
+   "resource": "doi:10.1145/3816041"
+  },
+  {
+   "key": "journals/csur/Sharma26",
+   "event": "ACM Computing Surveys",
+   "year": 2026,
+   "resource": "doi:10.1145/3819235"
+  },
+  {
+   "key": "journals/csur/TanisGMM26",
+   "event": "ACM Computing Surveys",
+   "year": 2026,
+   "resource": "doi:10.1145/3816725"
+  },
+  {
+   "key": "journals/csur/TchemeubeP26",
+   "event": "ACM Computing Surveys",
+   "year": 2026,
+   "resource": "doi:10.1145/3812539"
+  },
+  {
+   "key": "journals/csur/VincenziPBMBHSHS26",
+   "event": "ACM Computing Surveys",
+   "year": 2026,
+   "resource": "doi:10.1145/3814955"
+  },
+  {
+   "key": "journals/csur/WuLHLWZG26",
+   "event": "ACM Computing Surveys",
+   "year": 2026,
+   "resource": "doi:10.1145/3819588"
+  },
+  {
+   "key": "journals/csur/XuLZYGJLYZLG26",
+   "event": "ACM Computing Surveys",
+   "year": 2026,
+   "resource": "doi:10.1145/3816242"
+  },
+  {
+   "key": "journals/csur/ZhaRCYCLXXDTMWXC26",
+   "event": "ACM Computing Surveys",
+   "year": 2026,
+   "resource": "doi:10.1145/3817444"
+  },
+  {
+   "key": "conf/sacmat/AmbatiAMI26",
+   "event": "ACM SACMAT",
+   "year": 2026,
+   "resource": "doi:10.1145/3750555.3811903"
+  },
+  {
+   "key": "conf/sacmat/BaldoGPM26",
+   "event": "ACM SACMAT",
+   "year": 2026,
+   "resource": "doi:10.1145/3750555.3811892"
+  },
+  {
+   "key": "conf/sacmat/BrownJ26",
+   "event": "ACM SACMAT",
+   "year": 2026,
+   "resource": "doi:10.1145/3750555.3811895"
+  },
+  {
+   "key": "conf/sacmat/BuiM26",
+   "event": "ACM SACMAT",
+   "year": 2026,
+   "resource": "doi:10.1145/3750555.3811907"
+  },
+  {
+   "key": "conf/sacmat/ChawlaR26",
+   "event": "ACM SACMAT",
+   "year": 2026,
+   "resource": "doi:10.1145/3750555.3811898"
+  },
+  {
+   "key": "conf/sacmat/Chiasson26",
+   "event": "ACM SACMAT",
+   "year": 2026,
+   "resource": "doi:10.1145/3750555.3815160"
+  },
+  {
+   "key": "conf/sacmat/DuttaguptaSCYAA26",
+   "event": "ACM SACMAT",
+   "year": 2026,
+   "resource": "doi:10.1145/3750555.3811885"
+  },
+  {
+   "key": "conf/sacmat/EdwardsM26",
+   "event": "ACM SACMAT",
+   "year": 2026,
+   "resource": "doi:10.1145/3750555.3811905"
+  },
+  {
+   "key": "conf/sacmat/GillT26",
+   "event": "ACM SACMAT",
+   "year": 2026,
+   "resource": "doi:10.1145/3750555.3811899"
+  },
+  {
+   "key": "conf/sacmat/HanLGLSLR26",
+   "event": "ACM SACMAT",
+   "year": 2026,
+   "resource": "doi:10.1145/3750555.3811890"
+  },
+  {
+   "key": "conf/sacmat/JiaSLJSG26",
+   "event": "ACM SACMAT",
+   "year": 2026,
+   "resource": "doi:10.1145/3750555.3811884"
+  },
+  {
+   "key": "conf/sacmat/LawalZNRK26",
+   "event": "ACM SACMAT",
+   "year": 2026,
+   "resource": "doi:10.1145/3750555.3811882"
+  },
+  {
+   "key": "conf/sacmat/LinCS26",
+   "event": "ACM SACMAT",
+   "year": 2026,
+   "resource": "doi:10.1145/3750555.3811883"
+  },
+  {
+   "key": "conf/sacmat/LuoXFLQO26",
+   "event": "ACM SACMAT",
+   "year": 2026,
+   "resource": "doi:10.1145/3750555.3811886"
+  },
+  {
+   "key": "conf/sacmat/MallickKKN26",
+   "event": "ACM SACMAT",
+   "year": 2026,
+   "resource": "doi:10.1145/3750555.3811889"
+  },
+  {
+   "key": "conf/sacmat/MehriDWZ26",
+   "event": "ACM SACMAT",
+   "year": 2026,
+   "resource": "doi:10.1145/3750555.3811906"
+  },
+  {
+   "key": "conf/sacmat/Michalas26",
+   "event": "ACM SACMAT",
+   "year": 2026,
+   "resource": "doi:10.1145/3750555.3811888"
+  },
+  {
+   "key": "conf/sacmat/Nair26",
+   "event": "ACM SACMAT",
+   "year": 2026,
+   "resource": "doi:10.1145/3750555.3815161"
+  },
+  {
+   "key": "conf/sacmat/NiroulaBPH26",
+   "event": "ACM SACMAT",
+   "year": 2026,
+   "resource": "doi:10.1145/3750555.3811897"
+  },
+  {
+   "key": "conf/sacmat/PoudelBH26",
+   "event": "ACM SACMAT",
+   "year": 2026,
+   "resource": "doi:10.1145/3750555.3811894"
+  },
+  {
+   "key": "conf/sacmat/RayTV26",
+   "event": "ACM SACMAT",
+   "year": 2026,
+   "resource": "doi:10.1145/3750555.3811908"
+  },
+  {
+   "key": "conf/sacmat/Ristenpart26",
+   "event": "ACM SACMAT",
+   "year": 2026,
+   "resource": "doi:10.1145/3750555.3811901"
+  },
+  {
+   "key": "conf/sacmat/Rubio-MedranoNS26",
+   "event": "ACM SACMAT",
+   "year": 2026,
+   "resource": "doi:10.1145/3750555.3811881"
+  },
+  {
+   "key": "conf/sacmat/SarpongL26",
+   "event": "ACM SACMAT",
+   "year": 2026,
+   "resource": "doi:10.1145/3750555.3811891"
+  },
+  {
+   "key": "conf/sacmat/TariqBH26",
+   "event": "ACM SACMAT",
+   "year": 2026,
+   "resource": "doi:10.1145/3750555.3811893"
+  },
+  {
+   "key": "conf/sacmat/WaterpeaceI26",
+   "event": "ACM SACMAT",
+   "year": 2026,
+   "resource": "doi:10.1145/3750555.3811904"
+  },
+  {
+   "key": "conf/sacmat/ZhangCLNLLF26",
+   "event": "ACM SACMAT",
+   "year": 2026,
+   "resource": "doi:10.1145/3750555.3811900"
+  },
+  {
+   "key": "conf/sacmat/ZhangF26",
+   "event": "ACM SACMAT",
+   "year": 2026,
+   "resource": "doi:10.1145/3750555.3811887"
+  },
+  {
+   "key": "conf/wisec/SunCZ020",
+   "event": "ACM WiSec",
+   "year": 2020,
+   "resource": "doi:10.1145/3395351.3399341"
+  },
+  {
+   "key": "conf/esorics/HwangJKKT24",
+   "event": "ESORICS",
+   "year": 2024,
+   "resource": "doi:10.1007/978-3-031-70896-1_18"
+  },
+  {
+   "key": "journals/comsur/CaiFHZLKXJWMS26",
+   "event": "IEEE Communications Surveys & Tutorials",
+   "year": 2026,
+   "resource": "doi:10.1109/comst.2026.3712862"
+  },
+  {
+   "key": "journals/comsur/ChenWMTK26",
+   "event": "IEEE Communications Surveys & Tutorials",
+   "year": 2026,
+   "resource": "doi:10.1109/comst.2026.3712767"
+  },
+  {
+   "key": "journals/comsur/ChuLAM26",
+   "event": "IEEE Communications Surveys & Tutorials",
+   "year": 2026,
+   "resource": "doi:10.1109/comst.2026.3712084"
+  },
+  {
+   "key": "journals/comsur/GomezHDBLKAUAHFSD26",
+   "event": "IEEE Communications Surveys & Tutorials",
+   "year": 2026,
+   "resource": "doi:10.1109/comst.2026.3697499"
+  },
+  {
+   "key": "journals/comsur/LuMXLXLZAWD26",
+   "event": "IEEE Communications Surveys & Tutorials",
+   "year": 2026,
+   "resource": "doi:10.1109/comst.2026.3710938"
+  },
+  {
+   "key": "journals/comsur/ServilloSCPRLSC26",
+   "event": "IEEE Communications Surveys & Tutorials",
+   "year": 2026,
+   "resource": "doi:10.1109/comst.2026.3714569"
+  },
+  {
+   "key": "journals/comsur/SiZLHZHQ26",
+   "event": "IEEE Communications Surveys & Tutorials",
+   "year": 2026,
+   "resource": "doi:10.1109/comst.2026.3725057"
+  },
+  {
+   "key": "journals/comsur/XuFZPCWJWW26",
+   "event": "IEEE Communications Surveys & Tutorials",
+   "year": 2026,
+   "resource": "doi:10.1109/comst.2026.3716194"
+  },
+  {
+   "key": "journals/comsur/ZhangXLWXL26",
+   "event": "IEEE Communications Surveys & Tutorials",
+   "year": 2026,
+   "resource": "doi:10.1109/comst.2026.3723946"
+  },
+  {
+   "key": "conf/eurosp/AbdollahiSKKH26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00056"
+  },
+  {
+   "key": "conf/eurosp/AikataKR26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00017"
+  },
+  {
+   "key": "conf/eurosp/AlachkarBGEZ26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00054"
+  },
+  {
+   "key": "conf/eurosp/BabelJJMKMMJ26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00034"
+  },
+  {
+   "key": "conf/eurosp/BiegeBKIGS26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00068"
+  },
+  {
+   "key": "conf/eurosp/BridgesMMH26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00063"
+  },
+  {
+   "key": "conf/eurosp/BruggemannSDBISS26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00069"
+  },
+  {
+   "key": "conf/eurosp/CaiLFZWZX26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00050"
+  },
+  {
+   "key": "conf/eurosp/CalzavaraCLO26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00088"
+  },
+  {
+   "key": "conf/eurosp/CantelliFortiA26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00031"
+  },
+  {
+   "key": "conf/eurosp/CecconelloCPPT26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00043"
+  },
+  {
+   "key": "conf/eurosp/CeesaySeitzSYR26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00062"
+  },
+  {
+   "key": "conf/eurosp/ChowdhuryAB26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00078"
+  },
+  {
+   "key": "conf/eurosp/ChungLHKL26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00013"
+  },
+  {
+   "key": "conf/eurosp/DaiPIWB26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00079"
+  },
+  {
+   "key": "conf/eurosp/DasRCG26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00021"
+  },
+  {
+   "key": "conf/eurosp/DengMHZZWLZ26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00025"
+  },
+  {
+   "key": "conf/eurosp/DiazHK26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00036"
+  },
+  {
+   "key": "conf/eurosp/DijoudGHMP26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00065"
+  },
+  {
+   "key": "conf/eurosp/DreselPGPVK26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00075"
+  },
+  {
+   "key": "conf/eurosp/DuanLS26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00016"
+  },
+  {
+   "key": "conf/eurosp/EdstromGHMS26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00039"
+  },
+  {
+   "key": "conf/eurosp/FaulkenberryAAMPA26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00057"
+  },
+  {
+   "key": "conf/eurosp/FrancatiGPVA26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00087"
+  },
+  {
+   "key": "conf/eurosp/FuNZHW26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00044"
+  },
+  {
+   "key": "conf/eurosp/GhosnCKQKB26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00055"
+  },
+  {
+   "key": "conf/eurosp/GrozaCBJ26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00072"
+  },
+  {
+   "key": "conf/eurosp/GuoZMCMP26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00064"
+  },
+  {
+   "key": "conf/eurosp/HaworthPPGC26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00067"
+  },
+  {
+   "key": "conf/eurosp/HilbigKS26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00041"
+  },
+  {
+   "key": "conf/eurosp/HiltMMBLHKLV26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00042"
+  },
+  {
+   "key": "conf/eurosp/HuFGMMS26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00032"
+  },
+  {
+   "key": "conf/eurosp/ImranTMB26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00090"
+  },
+  {
+   "key": "conf/eurosp/IshgairGMCT26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00059"
+  },
+  {
+   "key": "conf/eurosp/JagielskiRSE26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00047"
+  },
+  {
+   "key": "conf/eurosp/JanichSK26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00080"
+  },
+  {
+   "key": "conf/eurosp/JungHW26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00077"
+  },
+  {
+   "key": "conf/eurosp/KateMSSR26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00037"
+  },
+  {
+   "key": "conf/eurosp/KhanIH26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00028"
+  },
+  {
+   "key": "conf/eurosp/KhantWJ26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00086"
+  },
+  {
+   "key": "conf/eurosp/KhucSDLRFK26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00015"
+  },
+  {
+   "key": "conf/eurosp/KleftogiorgosGP26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00083"
+  },
+  {
+   "key": "conf/eurosp/KosterFM26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00020"
+  },
+  {
+   "key": "conf/eurosp/LampHND26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00066"
+  },
+  {
+   "key": "conf/eurosp/LandisBP26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00070"
+  },
+  {
+   "key": "conf/eurosp/LendersSW26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00094"
+  },
+  {
+   "key": "conf/eurosp/LeonelliDH26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00076"
+  },
+  {
+   "key": "conf/eurosp/LiF26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00018"
+  },
+  {
+   "key": "conf/eurosp/LobelKSBM26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00027"
+  },
+  {
+   "key": "conf/eurosp/LuquesMTU26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00089"
+  },
+  {
+   "key": "conf/eurosp/MaierPGD26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00022"
+  },
+  {
+   "key": "conf/eurosp/MeiCSXBBWSDPD26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00060"
+  },
+  {
+   "key": "conf/eurosp/MittalKKMC26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00029"
+  },
+  {
+   "key": "conf/eurosp/MurphyR26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00038"
+  },
+  {
+   "key": "conf/eurosp/OberhanslSKGKFDHGSSZ26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00019"
+  },
+  {
+   "key": "conf/eurosp/OzfaturaOBCKG26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00052"
+  },
+  {
+   "key": "conf/eurosp/PoengS26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00053"
+  },
+  {
+   "key": "conf/eurosp/PuchPPH26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00014"
+  },
+  {
+   "key": "conf/eurosp/RezaeiBCVR26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00093"
+  },
+  {
+   "key": "conf/eurosp/RuizLezcanoUR26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00084"
+  },
+  {
+   "key": "conf/eurosp/SaberMI26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00046"
+  },
+  {
+   "key": "conf/eurosp/SaugerMRMTA26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00081"
+  },
+  {
+   "key": "conf/eurosp/SchillerBSH26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00074"
+  },
+  {
+   "key": "conf/eurosp/SegalGBEES26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00024"
+  },
+  {
+   "key": "conf/eurosp/ShenCXDDTZ26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00092"
+  },
+  {
+   "key": "conf/eurosp/SuciuCS26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00023"
+  },
+  {
+   "key": "conf/eurosp/SuleymanovNMHK26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00048"
+  },
+  {
+   "key": "conf/eurosp/SurveSE26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00030"
+  },
+  {
+   "key": "conf/eurosp/UmayyaACNKC26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00091"
+  },
+  {
+   "key": "conf/eurosp/VekariaNS26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00061"
+  },
+  {
+   "key": "conf/eurosp/VerheyenhPJ26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00071"
+  },
+  {
+   "key": "conf/eurosp/Wang26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00040"
+  },
+  {
+   "key": "conf/eurosp/WangMFYLSWXB26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00051"
+  },
+  {
+   "key": "conf/eurosp/WendlingerKBS26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00049"
+  },
+  {
+   "key": "conf/eurosp/WichtTZYY26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00035"
+  },
+  {
+   "key": "conf/eurosp/YelgundhalliZMRCC26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00058"
+  },
+  {
+   "key": "conf/eurosp/YuH26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00033"
+  },
+  {
+   "key": "conf/eurosp/YuanJLCQ26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00082"
+  },
+  {
+   "key": "conf/eurosp/YuanRACM26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00026"
+  },
+  {
+   "key": "conf/eurosp/ZhangC26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00045"
+  },
+  {
+   "key": "conf/eurosp/ZhangMOBF26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00073"
+  },
+  {
+   "key": "conf/eurosp/ZorekPB26",
+   "event": "IEEE EURO S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/eurosp68448.2026.00085"
+  },
+  {
+   "key": "conf/sp/X23",
+   "event": "IEEE S&P",
+   "year": 2023,
+   "resource": "doi:10.1109/sp46215.2023.10179446"
+  },
+  {
+   "key": "conf/sp/AbbaszadehHKM26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00194"
+  },
+  {
+   "key": "conf/sp/AgarwalBDGMPRY26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00175"
+  },
+  {
+   "key": "conf/sp/AlexopoulosSSM26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00115"
+  },
+  {
+   "key": "conf/sp/AndroutsopoulosB26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00060"
+  },
+  {
+   "key": "conf/sp/AngelCMMSW26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00059"
+  },
+  {
+   "key": "conf/sp/AranhaBHNS26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00221"
+  },
+  {
+   "key": "conf/sp/ArquintKKDKM26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00026"
+  },
+  {
+   "key": "conf/sp/ArunS26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00099"
+  },
+  {
+   "key": "conf/sp/ArunachalaramananR26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00019"
+  },
+  {
+   "key": "conf/sp/BajoGCR26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00216"
+  },
+  {
+   "key": "conf/sp/BennettTSETB26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00091"
+  },
+  {
+   "key": "conf/sp/BlaserGGB26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00085"
+  },
+  {
+   "key": "conf/sp/BouillaguetFMRSV26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00032"
+  },
+  {
+   "key": "conf/sp/BoumaSimsLLC26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00200"
+  },
+  {
+   "key": "conf/sp/BrownGH26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00093"
+  },
+  {
+   "key": "conf/sp/BurkeVSM26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00148"
+  },
+  {
+   "key": "conf/sp/CarlettiFMPV26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00193"
+  },
+  {
+   "key": "conf/sp/ChatzianagnostouBR26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00189"
+  },
+  {
+   "key": "conf/sp/ChenGWCSCZ26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00156"
+  },
+  {
+   "key": "conf/sp/ChenHYC26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00173"
+  },
+  {
+   "key": "conf/sp/ChenHZ26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00183"
+  },
+  {
+   "key": "conf/sp/ChenJCQZZDSJ26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00195"
+  },
+  {
+   "key": "conf/sp/ChenJGCZL26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00010"
+  },
+  {
+   "key": "conf/sp/ChenKDE26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00136"
+  },
+  {
+   "key": "conf/sp/ChenPHYR26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00097"
+  },
+  {
+   "key": "conf/sp/ChenSZG26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00187"
+  },
+  {
+   "key": "conf/sp/ChenWLZZ26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00214"
+  },
+  {
+   "key": "conf/sp/ChenYMHCR26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00125"
+  },
+  {
+   "key": "conf/sp/ChevalJR26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00120"
+  },
+  {
+   "key": "conf/sp/ChoncholasPARLS26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00122"
+  },
+  {
+   "key": "conf/sp/ChourasiaBJX26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00225"
+  },
+  {
+   "key": "conf/sp/ChuangSBSGG26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00101"
+  },
+  {
+   "key": "conf/sp/ChunGP26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00167"
+  },
+  {
+   "key": "conf/sp/CivitCGGKVZ26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00029"
+  },
+  {
+   "key": "conf/sp/ConnollyHHKM26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00143"
+  },
+  {
+   "key": "conf/sp/CorriasGHM26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00081"
+  },
+  {
+   "key": "conf/sp/CretuKAOMBRT26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00251"
+  },
+  {
+   "key": "conf/sp/DechandWMSRYHT26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00134"
+  },
+  {
+   "key": "conf/sp/DengCLLWCLJF26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00205"
+  },
+  {
+   "key": "conf/sp/DengZW26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00232"
+  },
+  {
+   "key": "conf/sp/DigregorioGZLC26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00123"
+  },
+  {
+   "key": "conf/sp/DingMZCDP26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00065"
+  },
+  {
+   "key": "conf/sp/DongTWBYMFY26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00203"
+  },
+  {
+   "key": "conf/sp/DorschelWPMPB26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00219"
+  },
+  {
+   "key": "conf/sp/DuanWL26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00103"
+  },
+  {
+   "key": "conf/sp/DuanXZH26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00191"
+  },
+  {
+   "key": "conf/sp/DutlyGPKC26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00035"
+  },
+  {
+   "key": "conf/sp/DuttaguptaWASP26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00210"
+  },
+  {
+   "key": "conf/sp/ErsoyLSAIBC26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00042"
+  },
+  {
+   "key": "conf/sp/EspirituKMO26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00008"
+  },
+  {
+   "key": "conf/sp/EthembabaogluWZE26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00215"
+  },
+  {
+   "key": "conf/sp/FallerNR26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00118"
+  },
+  {
+   "key": "conf/sp/FarahbakhshLPA26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00102"
+  },
+  {
+   "key": "conf/sp/FengGLTX26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00033"
+  },
+  {
+   "key": "conf/sp/FleischerZJCXK26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00223"
+  },
+  {
+   "key": "conf/sp/GaoFLLLW26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00048"
+  },
+  {
+   "key": "conf/sp/GaoMNLCH26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00080"
+  },
+  {
+   "key": "conf/sp/GaoZYZ26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00146"
+  },
+  {
+   "key": "conf/sp/GargGKS26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00109"
+  },
+  {
+   "key": "conf/sp/GhoshalZPS26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00021"
+  },
+  {
+   "key": "conf/sp/GiersfeldSS26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00259"
+  },
+  {
+   "key": "conf/sp/GlosnerM26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00163"
+  },
+  {
+   "key": "conf/sp/GongLL26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00258"
+  },
+  {
+   "key": "conf/sp/GongZZVZPW26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00181"
+  },
+  {
+   "key": "conf/sp/GrafRHR26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00046"
+  },
+  {
+   "key": "conf/sp/GuanGAHTG26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00006"
+  },
+  {
+   "key": "conf/sp/GuoLHCZHWYY26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00079"
+  },
+  {
+   "key": "conf/sp/GuoXQZ26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00190"
+  },
+  {
+   "key": "conf/sp/HanCDLSL26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00236"
+  },
+  {
+   "key": "conf/sp/HashimotoKNW26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00057"
+  },
+  {
+   "key": "conf/sp/HeLZZYAS26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00014"
+  },
+  {
+   "key": "conf/sp/HeSCD26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00004"
+  },
+  {
+   "key": "conf/sp/HertoghQRSMBK26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00063"
+  },
+  {
+   "key": "conf/sp/HhanHKLL26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00239"
+  },
+  {
+   "key": "conf/sp/HiragaNSS26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00138"
+  },
+  {
+   "key": "conf/sp/HornetzGS26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00186"
+  },
+  {
+   "key": "conf/sp/HornetzYCGGMSSZ26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00170"
+  },
+  {
+   "key": "conf/sp/HuBCBCGK26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00228"
+  },
+  {
+   "key": "conf/sp/HuLLTXZ26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00243"
+  },
+  {
+   "key": "conf/sp/HuW26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00126"
+  },
+  {
+   "key": "conf/sp/HuangZDCCRHQC26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00084"
+  },
+  {
+   "key": "conf/sp/JacobsenKSVW26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00224"
+  },
+  {
+   "key": "conf/sp/JiaLSJG26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00105"
+  },
+  {
+   "key": "conf/sp/JiangHSSH26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00197"
+  },
+  {
+   "key": "conf/sp/JiangLQL26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00233"
+  },
+  {
+   "key": "conf/sp/JiangZSZ26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00056"
+  },
+  {
+   "key": "conf/sp/KarmakarKPPPPR26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00077"
+  },
+  {
+   "key": "conf/sp/KarnamDDMBGMWZ26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00051"
+  },
+  {
+   "key": "conf/sp/KarthikeyanLML26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00041"
+  },
+  {
+   "key": "conf/sp/KatiKB26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00127"
+  },
+  {
+   "key": "conf/sp/KavianiS26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00182"
+  },
+  {
+   "key": "conf/sp/KayaLPZKV26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00062"
+  },
+  {
+   "key": "conf/sp/KeiNMC26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00113"
+  },
+  {
+   "key": "conf/sp/KempenBFGT26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00104"
+  },
+  {
+   "key": "conf/sp/KilgerFSMSF26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00096"
+  },
+  {
+   "key": "conf/sp/KimBKNKA26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00114"
+  },
+  {
+   "key": "conf/sp/KloossLSS26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00199"
+  },
+  {
+   "key": "conf/sp/KolozyanVSHCR26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00207"
+  },
+  {
+   "key": "conf/sp/KretzlerL26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00050"
+  },
+  {
+   "key": "conf/sp/KuprisS26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00055"
+  },
+  {
+   "key": "conf/sp/LangerTI26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00174"
+  },
+  {
+   "key": "conf/sp/LaytonMBT26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00088"
+  },
+  {
+   "key": "conf/sp/LeHWER26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00098"
+  },
+  {
+   "key": "conf/sp/LeeKLSHLS26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00241"
+  },
+  {
+   "key": "conf/sp/LeeRKLH26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00196"
+  },
+  {
+   "key": "conf/sp/LewisPyeNS26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00255"
+  },
+  {
+   "key": "conf/sp/LiBZM26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00129"
+  },
+  {
+   "key": "conf/sp/LiCCY26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00121"
+  },
+  {
+   "key": "conf/sp/LiE26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00068"
+  },
+  {
+   "key": "conf/sp/LiHZHGLGCL26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00045"
+  },
+  {
+   "key": "conf/sp/LiQJWGJWD26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00025"
+  },
+  {
+   "key": "conf/sp/LiQSCDALT26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00040"
+  },
+  {
+   "key": "conf/sp/LiWLHQDWQQZ26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00112"
+  },
+  {
+   "key": "conf/sp/LiXC26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00012"
+  },
+  {
+   "key": "conf/sp/LiYDJK26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00231"
+  },
+  {
+   "key": "conf/sp/LiYHCHW26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00119"
+  },
+  {
+   "key": "conf/sp/LiYSXLM26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00034"
+  },
+  {
+   "key": "conf/sp/LiYYTX26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00087"
+  },
+  {
+   "key": "conf/sp/LiZLGLHHH26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00209"
+  },
+  {
+   "key": "conf/sp/LiangWLJZGW26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00070"
+  },
+  {
+   "key": "conf/sp/LinC26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00206"
+  },
+  {
+   "key": "conf/sp/LinSLQ26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00184"
+  },
+  {
+   "key": "conf/sp/LinYDQZLS26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00177"
+  },
+  {
+   "key": "conf/sp/LiuBRUZHZDDBSW26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00257"
+  },
+  {
+   "key": "conf/sp/LiuEX26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00165"
+  },
+  {
+   "key": "conf/sp/LiuKLC26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00254"
+  },
+  {
+   "key": "conf/sp/LiuWZ26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00086"
+  },
+  {
+   "key": "conf/sp/LiuXSTW26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00038"
+  },
+  {
+   "key": "conf/sp/LiuZ26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00089"
+  },
+  {
+   "key": "conf/sp/LiuZYLKC26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00108"
+  },
+  {
+   "key": "conf/sp/LuoMSMM26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00064"
+  },
+  {
+   "key": "conf/sp/LuoWFL26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00128"
+  },
+  {
+   "key": "conf/sp/LuoZWCR26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00003"
+  },
+  {
+   "key": "conf/sp/MaWY26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00212"
+  },
+  {
+   "key": "conf/sp/MaYCZCJ26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00002"
+  },
+  {
+   "key": "conf/sp/MahdaviPSY26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00061"
+  },
+  {
+   "key": "conf/sp/MaoSBP26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00139"
+  },
+  {
+   "key": "conf/sp/MaynardAMJD26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00145"
+  },
+  {
+   "key": "conf/sp/MeerzaL26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00039"
+  },
+  {
+   "key": "conf/sp/MeulemeesterOVB26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00052"
+  },
+  {
+   "key": "conf/sp/MeyerJMQMR26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00083"
+  },
+  {
+   "key": "conf/sp/MiaoLAXW26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00260"
+  },
+  {
+   "key": "conf/sp/MinochaSOPS26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00161"
+  },
+  {
+   "key": "conf/sp/MishraS26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00092"
+  },
+  {
+   "key": "conf/sp/MitardMDDYT26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00090"
+  },
+  {
+   "key": "conf/sp/MunyendoRHTSSKSDOKSBMCR26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00005"
+  },
+  {
+   "key": "conf/sp/MustafaRHACS26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00130"
+  },
+  {
+   "key": "conf/sp/NahumBH26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00218"
+  },
+  {
+   "key": "conf/sp/NanayakkaraGV26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00157"
+  },
+  {
+   "key": "conf/sp/NasrRT26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00202"
+  },
+  {
+   "key": "conf/sp/NiSZLW26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00117"
+  },
+  {
+   "key": "conf/sp/NowmiLIPR26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00137"
+  },
+  {
+   "key": "conf/sp/OrtweinAHCFE26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00229"
+  },
+  {
+   "key": "conf/sp/PappasPP26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00240"
+  },
+  {
+   "key": "conf/sp/PatelPSY26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00075"
+  },
+  {
+   "key": "conf/sp/PengLZCLYZ26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00001"
+  },
+  {
+   "key": "conf/sp/PengWWJWZ26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00016"
+  },
+  {
+   "key": "conf/sp/PennekampLSLH26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00217"
+  },
+  {
+   "key": "conf/sp/PickeringHDWKEU26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00179"
+  },
+  {
+   "key": "conf/sp/PlantaRSFA26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00213"
+  },
+  {
+   "key": "conf/sp/QiuCKQCK26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00106"
+  },
+  {
+   "key": "conf/sp/QiuLL26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00208"
+  },
+  {
+   "key": "conf/sp/QiuXS26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00009"
+  },
+  {
+   "key": "conf/sp/QuGYZ26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00028"
+  },
+  {
+   "key": "conf/sp/RaoSSSVL26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00168"
+  },
+  {
+   "key": "conf/sp/RatheeDLP26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00149"
+  },
+  {
+   "key": "conf/sp/RatheeLP26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00024"
+  },
+  {
+   "key": "conf/sp/RauschCL26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00140"
+  },
+  {
+   "key": "conf/sp/RavichandranY26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00141"
+  },
+  {
+   "key": "conf/sp/ReittingerP26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00022"
+  },
+  {
+   "key": "conf/sp/RiederRCSKK26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00222"
+  },
+  {
+   "key": "conf/sp/RobinsonJ26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00017"
+  },
+  {
+   "key": "conf/sp/RohCCLSL26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00047"
+  },
+  {
+   "key": "conf/sp/SahinOYHSZ26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00178"
+  },
+  {
+   "key": "conf/sp/SarikayaLBH26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00058"
+  },
+  {
+   "key": "conf/sp/SchulmannV26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00188"
+  },
+  {
+   "key": "conf/sp/SedghighadikolaeiSHHY26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00164"
+  },
+  {
+   "key": "conf/sp/ShenZZLKG26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00155"
+  },
+  {
+   "key": "conf/sp/ShiYYYY26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00074"
+  },
+  {
+   "key": "conf/sp/ShiraishiCS26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00211"
+  },
+  {
+   "key": "conf/sp/ShoaibMAH26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00159"
+  },
+  {
+   "key": "conf/sp/SingerLAJBS26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00132"
+  },
+  {
+   "key": "conf/sp/SinghTJCNPL26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00111"
+  },
+  {
+   "key": "conf/sp/SmajlovicSAPC26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00256"
+  },
+  {
+   "key": "conf/sp/SongWHLKG26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00023"
+  },
+  {
+   "key": "conf/sp/SongWHXML26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00073"
+  },
+  {
+   "key": "conf/sp/SpindelK26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00253"
+  },
+  {
+   "key": "conf/sp/SridharZD26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00147"
+  },
+  {
+   "key": "conf/sp/StaatPK26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00153"
+  },
+  {
+   "key": "conf/sp/StivalaMHP26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00036"
+  },
+  {
+   "key": "conf/sp/SuCW26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00151"
+  },
+  {
+   "key": "conf/sp/SunDSWL26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00082"
+  },
+  {
+   "key": "conf/sp/SunHZLQYLC26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00133"
+  },
+  {
+   "key": "conf/sp/SunLWLYXHW26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00152"
+  },
+  {
+   "key": "conf/sp/SuriCPNOH26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00044"
+  },
+  {
+   "key": "conf/sp/TakahashiKJY26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00049"
+  },
+  {
+   "key": "conf/sp/TangQJXYADL26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00238"
+  },
+  {
+   "key": "conf/sp/TayNRBBDSDBSW26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00180"
+  },
+  {
+   "key": "conf/sp/TekinSKKD26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00227"
+  },
+  {
+   "key": "conf/sp/ThomasS26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00192"
+  },
+  {
+   "key": "conf/sp/TranTHAZ26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00027"
+  },
+  {
+   "key": "conf/sp/TrujilloKKY26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00015"
+  },
+  {
+   "key": "conf/sp/TuLLCJB26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00110"
+  },
+  {
+   "key": "conf/sp/TystahlGMCBMKE26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00067"
+  },
+  {
+   "key": "conf/sp/UlitzschBDRXGMY26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00201"
+  },
+  {
+   "key": "conf/sp/UsmanZZ26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00144"
+  },
+  {
+   "key": "conf/sp/VanjaniGTS26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00100"
+  },
+  {
+   "key": "conf/sp/VekariaDKS26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00162"
+  },
+  {
+   "key": "conf/sp/WahyudiSL26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00226"
+  },
+  {
+   "key": "conf/sp/Wallez26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00220"
+  },
+  {
+   "key": "conf/sp/WanGZLTZ26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00230"
+  },
+  {
+   "key": "conf/sp/WangBPRWY26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00066"
+  },
+  {
+   "key": "conf/sp/WangGCJ26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00198"
+  },
+  {
+   "key": "conf/sp/WangJWLWW26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00076"
+  },
+  {
+   "key": "conf/sp/WangLLZWYLF26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00071"
+  },
+  {
+   "key": "conf/sp/WangM26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00237"
+  },
+  {
+   "key": "conf/sp/WangQZ26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00160"
+  },
+  {
+   "key": "conf/sp/WangXWWAH26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00011"
+  },
+  {
+   "key": "conf/sp/WangYLYLWD26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00150"
+  },
+  {
+   "key": "conf/sp/WeberOAS26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00020"
+  },
+  {
+   "key": "conf/sp/WeberTTZS26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00135"
+  },
+  {
+   "key": "conf/sp/WuCSYFJF26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00171"
+  },
+  {
+   "key": "conf/sp/WuIYDTSTTMH26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00204"
+  },
+  {
+   "key": "conf/sp/WuLHLWH26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00072"
+  },
+  {
+   "key": "conf/sp/WuYRKZI26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00018"
+  },
+  {
+   "key": "conf/sp/XingLLLHLLZ26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00185"
+  },
+  {
+   "key": "conf/sp/XuDCLSTKM26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00169"
+  },
+  {
+   "key": "conf/sp/XuDCP26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00261"
+  },
+  {
+   "key": "conf/sp/XuHHHHLZZZSGW26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00107"
+  },
+  {
+   "key": "conf/sp/XuOZYIS26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00252"
+  },
+  {
+   "key": "conf/sp/YangHWDWZ26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00172"
+  },
+  {
+   "key": "conf/sp/YangLFSW26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00043"
+  },
+  {
+   "key": "conf/sp/YangLYHSWWTQ26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00142"
+  },
+  {
+   "key": "conf/sp/YangWSLC26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00166"
+  },
+  {
+   "key": "conf/sp/YangXTZ26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00242"
+  },
+  {
+   "key": "conf/sp/YeAXW26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00069"
+  },
+  {
+   "key": "conf/sp/YeHLW26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00131"
+  },
+  {
+   "key": "conf/sp/YeZW26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00037"
+  },
+  {
+   "key": "conf/sp/ZhaiWNHW26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00030"
+  },
+  {
+   "key": "conf/sp/ZhangADC26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00094"
+  },
+  {
+   "key": "conf/sp/ZhangFAFLA26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00013"
+  },
+  {
+   "key": "conf/sp/ZhangLLD26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00235"
+  },
+  {
+   "key": "conf/sp/ZhangLWHZST26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00031"
+  },
+  {
+   "key": "conf/sp/ZhangSJZS26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00158"
+  },
+  {
+   "key": "conf/sp/ZhangXCLYLNLF26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00053"
+  },
+  {
+   "key": "conf/sp/ZhaoHZWXGCLX26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00154"
+  },
+  {
+   "key": "conf/sp/ZhaoYWFYCC26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00234"
+  },
+  {
+   "key": "conf/sp/ZhaoZSSZWL26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00054"
+  },
+  {
+   "key": "conf/sp/ZhuCSZSCG26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00078"
+  },
+  {
+   "key": "conf/sp/ZhuXNG26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00095"
+  },
+  {
+   "key": "conf/sp/ZouPSCLTLZQ26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00124"
+  },
+  {
+   "key": "conf/sp/ZurET26",
+   "event": "IEEE S&P",
+   "year": 2026,
+   "resource": "doi:10.1109/sp63933.2026.00176"
+  },
+  {
+   "key": "conf/woot/AmebleyD26",
+   "event": "USENIX WOOT",
+   "year": 2026,
+   "resource": "https://www.usenix.org/conference/woot26/presentation/amebley"
+  },
+  {
+   "key": "conf/woot/BitsikasVR26",
+   "event": "USENIX WOOT",
+   "year": 2026,
+   "resource": "https://www.usenix.org/conference/woot26/presentation/bitsikas"
+  },
+  {
+   "key": "conf/woot/Brumley26",
+   "event": "USENIX WOOT",
+   "year": 2026,
+   "resource": "https://www.usenix.org/conference/woot26/presentation/brumley"
+  },
+  {
+   "key": "conf/woot/CarnotF26",
+   "event": "USENIX WOOT",
+   "year": 2026,
+   "resource": "https://www.usenix.org/conference/woot26/presentation/carnot"
+  },
+  {
+   "key": "conf/woot/ChenSLCL26",
+   "event": "USENIX WOOT",
+   "year": 2026,
+   "resource": "https://www.usenix.org/conference/woot26/presentation/chen"
+  },
+  {
+   "key": "conf/woot/ChinKFFKHZLZK26",
+   "event": "USENIX WOOT",
+   "year": 2026,
+   "resource": "https://www.usenix.org/conference/woot26/presentation/chin"
+  },
+  {
+   "key": "conf/woot/DuKPM26",
+   "event": "USENIX WOOT",
+   "year": 2026,
+   "resource": "https://www.usenix.org/conference/woot26/presentation/du"
+  },
+  {
+   "key": "conf/woot/DubniczkyBBT26",
+   "event": "USENIX WOOT",
+   "year": 2026,
+   "resource": "https://www.usenix.org/conference/woot26/presentation/dubniczky"
+  },
+  {
+   "key": "conf/woot/EbrahimT26",
+   "event": "USENIX WOOT",
+   "year": 2026,
+   "resource": "https://www.usenix.org/conference/woot26/presentation/ebrahim"
+  },
+  {
+   "key": "conf/woot/FallMWP26",
+   "event": "USENIX WOOT",
+   "year": 2026,
+   "resource": "https://www.usenix.org/conference/woot26/presentation/fall"
+  },
+  {
+   "key": "conf/woot/GkritsisPS26",
+   "event": "USENIX WOOT",
+   "year": 2026,
+   "resource": "https://www.usenix.org/conference/woot26/presentation/gkritsis"
+  },
+  {
+   "key": "conf/woot/GoemanCSLN26",
+   "event": "USENIX WOOT",
+   "year": 2026,
+   "resource": "https://www.usenix.org/conference/woot26/presentation/goeman"
+  },
+  {
+   "key": "conf/woot/HenesBOO26",
+   "event": "USENIX WOOT",
+   "year": 2026,
+   "resource": "https://www.usenix.org/conference/woot26/presentation/henes"
+  },
+  {
+   "key": "conf/woot/HuberS26",
+   "event": "USENIX WOOT",
+   "year": 2026,
+   "resource": "https://www.usenix.org/conference/woot26/presentation/huber"
+  },
+  {
+   "key": "conf/woot/IshizueRS26",
+   "event": "USENIX WOOT",
+   "year": 2026,
+   "resource": "https://www.usenix.org/conference/woot26/presentation/ishizue"
+  },
+  {
+   "key": "conf/woot/KimPKWWBPT26",
+   "event": "USENIX WOOT",
+   "year": 2026,
+   "resource": "https://www.usenix.org/conference/woot26/presentation/kim"
+  },
+  {
+   "key": "conf/woot/LisowskiCM26",
+   "event": "USENIX WOOT",
+   "year": 2026,
+   "resource": "https://www.usenix.org/conference/woot26/presentation/lisowski"
+  },
+  {
+   "key": "conf/woot/LoukaB26",
+   "event": "USENIX WOOT",
+   "year": 2026,
+   "resource": "https://www.usenix.org/conference/woot26/presentation/louka"
+  },
+  {
+   "key": "conf/woot/MehtaNSTG26",
+   "event": "USENIX WOOT",
+   "year": 2026,
+   "resource": "https://www.usenix.org/conference/woot26/presentation/mehta"
+  },
+  {
+   "key": "conf/woot/NeffHB26",
+   "event": "USENIX WOOT",
+   "year": 2026,
+   "resource": "https://www.usenix.org/conference/woot26/presentation/neff"
+  },
+  {
+   "key": "conf/woot/OberhuberUWKNM26",
+   "event": "USENIX WOOT",
+   "year": 2026,
+   "resource": "https://www.usenix.org/conference/woot26/presentation/oberhuber"
+  },
+  {
+   "key": "conf/woot/RoudotS26",
+   "event": "USENIX WOOT",
+   "year": 2026,
+   "resource": "https://www.usenix.org/conference/woot26/presentation/roudot"
+  },
+  {
+   "key": "conf/woot/SanftT26",
+   "event": "USENIX WOOT",
+   "year": 2026,
+   "resource": "https://www.usenix.org/conference/woot26/presentation/sanft"
+  },
+  {
+   "key": "conf/woot/SenLL26",
+   "event": "USENIX WOOT",
+   "year": 2026,
+   "resource": "https://www.usenix.org/conference/woot26/presentation/sen"
+  },
+  {
+   "key": "conf/woot/UrushigakiKTI26",
+   "event": "USENIX WOOT",
+   "year": 2026,
+   "resource": "https://www.usenix.org/conference/woot26/presentation/urushigaki"
+  },
+  {
+   "key": "conf/woot/ZhengTLP26",
+   "event": "USENIX WOOT",
+   "year": 2026,
+   "resource": "https://www.usenix.org/conference/woot26/presentation/zheng"
+  }
+ ],
+ "excluded": [
+  {
+   "key": "conf/sp/JiangZXSLY23",
+   "event": "IEEE S&P",
+   "year": 2023,
+   "resource": "doi:10.1109/sp46215.2023.10179305",
+   "reason": "merged as a DOI alias by the identity log"
+  },
+  {
+   "key": "conf/sp/PearceTAKD23",
+   "event": "IEEE S&P",
+   "year": 2023,
+   "resource": "doi:10.1109/sp46215.2023.10179420",
+   "reason": "merged as a DOI alias by the identity log"
+  },
+  {
+   "key": "journals/ftsec/BenthallGN17",
+   "event": "Foundations and Trends in Privacy and Security",
+   "year": 2017,
+   "resource": "doi:10.1561/3300000016",
+   "reason": "outside the declared year window"
+  },
+  {
+   "key": "journals/ftsec/EvansKR18",
+   "event": "Foundations and Trends in Privacy and Security",
+   "year": 2018,
+   "resource": "doi:10.1561/3300000019",
+   "reason": "outside the declared year window"
+  }
+ ]
+}

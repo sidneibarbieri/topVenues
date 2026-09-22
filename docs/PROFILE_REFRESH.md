@@ -1,6 +1,6 @@
 # Controlled profile refresh
 
-The published `security-20-v4` snapshot is read-only. The web interface can
+The published `security-20-v5` snapshot is read-only. The web interface can
 explore it, but it must not be used to refresh it from live APIs.
 
 To publish a successor, an operator works in a separate profile and records:
