@@ -9,8 +9,9 @@ already merged it away. Everything else stays out, with its reason logged.
 Three steps, so the enrichment runs through the same commands as any corpus:
 
     python scripts/build_extended_profile.py stage --dump dblp-2026-09-01.xml.gz --staging STAGE
+    python -m src.cli --base-dir STAGE backfill-abstracts
     python -m src.cli --base-dir STAGE extract
-    python -m src.cli --base-dir STAGE bibtex-from-dump --dump dblp-2026-09-01.xml.gz
+    python -m src.cli --base-dir STAGE bibtex-from-dump --dump-dir DUMPDIR
     python scripts/build_extended_profile.py freeze --staging STAGE --dump-release 10.4230/dblp.xml.2026-09-01
 
 `stage` materializes and consolidates the declared scope from a DBLP dump into
