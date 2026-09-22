@@ -303,7 +303,7 @@ def size_screenshots(page: str, screenshots: Path) -> str:
         return f'src="assets/screens/{match.group(1)}" width="{width}" height="{height}"'
 
     return re.sub(
-        r'src="assets/screens/([\w.-]+\.png)" width="\d+" height="\d+"', with_real_size, page
+        r'src="assets/screens/([\w./-]+\.png)" width="\d+" height="\d+"', with_real_size, page
     )
 
 
