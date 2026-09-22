@@ -27,6 +27,16 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
+      # The README's command runs first, on the untouched checkout, as it does
+      # for a reader. Run second, it inherited the security-20 workspace, which
+      # hid a test that opened that workspace instead of the current one.
+      - name: Reproduce the current profile on Linux
+        if: runner.os == 'Linux'
+        shell: bash
+        env:
+          PYTHON: python
+        run: bash reproduce.sh
+
       # The published paper prints `--profile security-20` as the reviewer's
       # command, so that profile is reproduced here and not only the default.
       - name: Reproduce the published profile on Linux
@@ -36,22 +46,15 @@ jobs:
           PYTHON: python
         run: bash reproduce.sh --profile security-20
 
-      - name: Reproduce the current profile on Linux
-        if: runner.os == 'Linux'
-        shell: bash
-        env:
-          PYTHON: python
-        run: bash reproduce.sh
+      - name: Reproduce the current profile on Windows
+        if: runner.os == 'Windows'
+        shell: powershell
+        run: .\reproduce.ps1 -PythonCommand python
 
       - name: Reproduce the published profile on Windows
         if: runner.os == 'Windows'
         shell: powershell
         run: .\reproduce.ps1 -PythonCommand python -Profile security-20
-
-      - name: Reproduce the current profile on Windows
-        if: runner.os == 'Windows'
-        shell: powershell
-        run: .\reproduce.ps1 -PythonCommand python
 
       - name: Publish the execution evidence
         if: always()

@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.13.1 — 2026-09-22
+
+- A fresh clone following the README now passes its reproduction. A CLI test
+  that selects `--profile` left a temporary profile in the process-wide
+  configuration, and the interface tests that followed opened its empty
+  workspace, so `bash reproduce.sh` stopped with two failures.
+  - `tests/conftest.py` starts every test from the configuration the
+    environment selects.
+  - Continuous integration runs the README's command first, on the untouched
+    checkout. Run second, it had inherited the `security-20` workspace, which
+    hid the leak.
+- No released profile or code path touching the data changed.
+
 ## 1.13.0 — 2026-09-22
 
 - The interface speaks Brazilian Portuguese as well as English. It opens in the

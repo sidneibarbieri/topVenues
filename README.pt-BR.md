@@ -602,6 +602,7 @@ relevante para quem reproduz ou audita o corpus.
 
 | Versão | Mudanças relevantes para reprodução |
 | --- | --- |
+| `v1.13.1` | Um clone novo que segue o README volta a passar na reprodução: um teste da CLI deixava um perfil temporário na configuração do processo, e os testes da interface abriam o workspace vazio dele. A integração contínua agora roda primeiro o comando do README, no checkout intocado. Nenhuma mudança de dados. |
 | `v1.13.0` | Interface completa em português do Brasil e em inglês, com números no formato de cada idioma e um teste que impede texto sem tradução. O tema escolhido no menu passa a valer na hora. Construtor aditivo de sucessores a partir de um dump mais novo do DBLP (`scripts/build_extended_profile.py`). Nenhuma mudança nos perfis publicados. |
 | `v1.12.0` | Tema escuro de verdade na interface, que segue o sistema, e paleta de gráficos validada nos dois temas. A cobertura é desenhada sobre uma trilha de 100%, o ano parcial vem marcado e os nomes longos de veículos aparecem inteiros. Guia para usar o TopVenues com assistentes de IA (`AGENTS.md`, `docs/AI_ASSISTANTS.md`). Nenhuma mudança de dados. |
 | `v1.11.1` | Vídeo de demonstração regravado com a v1.11.1 e a identidade visual atual: a mesma narração, a instalação a partir do `topVenues` e o pôster novo. Nenhuma mudança de código ou de dados. |
@@ -636,7 +637,7 @@ Cite o artigo que corresponde ao que você usou:
 
 | Você… | Cite |
 | --- | --- |
-| usou o TopVenues para buscar, montar o corpus de uma revisão, exportar referências ou ranquear autores | o artigo da trilha de ferramentas (`barbieri2026topvenuestool`), informando a versão e o perfil, por exemplo `TopVenues v1.13.0, perfil security-20-v4` |
+| usou o TopVenues para buscar, montar o corpus de uma revisão, exportar referências ou ranquear autores | o artigo da trilha de ferramentas (`barbieri2026topvenuestool`), informando a versão e o perfil, por exemplo `TopVenues v1.13.1, perfil security-20-v4` |
 | usa ou estende o método do corpus ou suas medições | o artigo da trilha principal (`barbieri2026topvenues`) |
 | fez as duas coisas | os dois |
 
