@@ -29,6 +29,7 @@ from src.release_identity import identity_from_manifest
 from src.reproduction_commands import SUPPORTED, command_for_profile, summary_line
 from src.tiers import tier_for, tier_scope_options, tiers_in_scope
 from web import charts
+from web.theme import active_theme
 
 
 @dataclass(frozen=True)
@@ -90,6 +91,7 @@ BRAND_DIR = Path(__file__).resolve().parents[1] / "docs" / "brand"
 BRAND_WORDMARK = BRAND_DIR / "topvenues-wordmark.svg"
 BRAND_MARK = BRAND_DIR / "topvenues-mark.svg"
 BRAND_ICON = BRAND_DIR / "mark-32.png"
+STYLESHEET = Path(__file__).resolve().parent / "styles.css"
 
 st.set_page_config(
     page_title="TopVenues",
@@ -97,134 +99,14 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded",
 )
-st.logo(str(BRAND_WORDMARK), size="large", icon_image=str(BRAND_MARK))
+THEME = active_theme()
+st.logo(str(BRAND_DIR / THEME.wordmark), size="large", icon_image=str(BRAND_DIR / THEME.mark))
 
 
 # ── Styles ────────────────────────────────────────────────────────────────
 
 st.markdown(
-    """
-    <style>
-        :root {
-            /* Brand tokens: docs/brand/BRAND.md. */
-            --ink:     #10233F;
-            --accent:  #2867B2;
-            --slate:   #667085;
-            --mist:    #E9EEF4;
-            --surface: #F5F7FA;
-            --border:  #D3DBE5;
-            --bg:      #FFFFFF;
-            --card:    #FFFFFF;
-        }
-
-        .stApp, [data-testid="stAppViewContainer"] {
-            background: var(--bg);
-            color: var(--ink);
-        }
-        [data-testid="stHeader"] { background: rgba(255, 255, 255, .88); }
-        [data-testid="stMainBlockContainer"] { padding-top: 2.2rem; }
-        [data-testid="stDeployButton"],
-        [data-testid="stAppDeployButton"],
-        [data-testid="stToolbarActions"],
-        [data-testid="stMainMenu"],
-        #MainMenu,
-        footer {
-            visibility: hidden;
-            height: 0;
-        }
-        [data-testid="stExpandSidebarButton"],
-        [data-testid="stSidebarCollapseButton"],
-        [data-testid="stSidebarCollapseButton"] * {
-            visibility: visible !important;
-        }
-
-        .app-header {
-            background: var(--surface);
-            border-left: 4px solid var(--accent);
-            border-radius: 6px;
-            padding: 1.35rem 1.6rem;
-            margin-bottom: 1.4rem;
-            border-top: 1px solid var(--border);
-            border-right: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-        }
-        .app-header h1 {
-            color: var(--ink) !important; font-size: 1.75rem; font-weight: 650;
-            margin: 0 0 .35rem; letter-spacing: -.01em;
-        }
-        .app-header p { color: var(--slate); font-size: .96rem; margin: 0; }
-
-
-    .tag {
-            display: inline-block; border-radius: 3px;
-        padding: 2px 9px; font-size: .72rem; font-weight: 700;
-        margin-right: 4px; letter-spacing: .3px;
-    }
-    .tag-sok      { background: #fff3cd; color: #7d5a00; }
-    .tag-survey   { background: #d1ecf1; color: #0c5460; }
-    .tag-poster   { background: #f8d7da; color: #721c24; }
-    .tag-workshop { background: #e2d9f3; color: #3d2278; }
-    .tag-short    { background: #e9ecef; color: #495057; }
-    .tag-journal  { background: #d4edda; color: #155724; }
-    .tag-article  { background: #f0f4f8; color: #0d1b2a; }
-
-    section[data-testid="stSidebar"] {
-        background: var(--surface);
-        border-right: 1px solid var(--border);
-    }
-    section[data-testid="stSidebar"] * { color: var(--ink) !important; }
-    section[data-testid="stSidebar"] h2 {
-        color: var(--ink) !important; font-size: .95rem;
-        letter-spacing: .4px; text-transform: uppercase;
-        border-bottom: 1px solid var(--border);
-        padding-bottom: .5rem; margin: .4rem 0 .8rem;
-    }
-    section[data-testid="stSidebar"] label,
-    section[data-testid="stSidebar"] p {
-        color: var(--ink) !important;
-    }
-
-        .results-bar {
-            display: flex; align-items: center; justify-content: space-between;
-            background: var(--bg); border: 1px solid var(--border); border-radius: 6px;
-            padding: .7rem 1rem; margin-bottom: 1rem;
-        }
-        .results-bar .count { color: var(--ink); font-size: 1rem; font-weight: 700; }
-    .results-bar .sub   { color: var(--slate); font-size: .85rem; }
-
-        .paper-card {
-            background: var(--card); border: 1px solid var(--border);
-            border-radius: 6px; padding: 1.35rem 1.55rem; margin-top: 1rem;
-        }
-        .paper-card h3 { color: var(--ink); margin: 0 0 .6rem; }
-    .paper-meta {
-        display: flex; gap: 1.5rem; color: var(--slate); font-size: .85rem;
-        margin-bottom: .8rem; flex-wrap: wrap;
-    }
-    .paper-abstract {
-        white-space: pre-wrap; line-height: 1.6;
-        color: var(--ink); font-size: .95rem;
-    }
-
-        .claim-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-            gap: .8rem; margin: .9rem 0 1.2rem;
-        }
-        .claim {
-            border: 1px solid var(--border); border-radius: 6px; background: var(--card);
-            padding: .95rem 1rem;
-        }
-        .claim .name { color: var(--slate); text-transform: uppercase; font-size: .72rem; font-weight: 700; letter-spacing: .04em; }
-        .claim .value { color: var(--ink); font-size: 1.6rem; font-weight: 700; line-height: 1.2; }
-        .claim .note { color: var(--slate); font-size: .84rem; }
-        .stDataFrame { border-radius: 6px; overflow: hidden; }
-        div[data-testid="stExpander"] { border-radius: 6px; }
-    .footer {
-        color: var(--slate); font-size: .78rem; text-align: center;
-        margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--border);
-    }
-</style>
-""",
+    f"<style>{THEME.interface.as_css()}\n{STYLESHEET.read_text(encoding='utf-8')}</style>",
     unsafe_allow_html=True,
 )
 
@@ -584,6 +466,21 @@ def _count_with_share(counts: pd.Series) -> list[str]:
     return [f"{count:,} ({count / total:.1%})" if total else f"{count:,}" for count in counts]
 
 
+def _yearly_counts(counts_by_year: dict[int, int], partial_years: list[int]) -> pd.DataFrame:
+    """Papers per year, with the unfinished years flagged so they read as partial."""
+    partial = set(partial_years)
+    rows = [
+        {
+            "Year": year,
+            "Papers": count,
+            "Partial": year in partial,
+            "Label": f"{count:,} · partial" if year in partial else f"{count:,}",
+        }
+        for year, count in sorted(counts_by_year.items())
+    ]
+    return pd.DataFrame(rows)
+
+
 def _interactive_bar_chart(
     data: pd.DataFrame,
     category: str,
@@ -596,9 +493,10 @@ def _interactive_bar_chart(
     category_title: str | None = None,
     value_title: str | None = None,
     value_format: str = ",",
-    color: str = charts.ACCENT,
     value_scale: alt.Scale | None = None,
     label_field: str | None = None,
+    whole: float | None = None,
+    partial_field: str | None = None,
 ) -> object | None:
     """Render a selectable bar chart and return the category the reader picked."""
     selection_name = f"{key}_selection"
@@ -609,16 +507,19 @@ def _interactive_bar_chart(
             category,
             value,
             selection,
+            THEME.chart,
             horizontal=horizontal,
             sort=sort,
             category_title=category_title,
             value_title=value_title,
             value_format=value_format,
             height=height,
-            color=color,
             value_scale=value_scale,
             label_field=label_field,
-        )
+            whole=whole,
+            partial_field=partial_field,
+        ),
+        THEME.chart,
     )
     event = st.altair_chart(
         chart, key=key, on_select="rerun", selection_mode=selection_name, theme=None
@@ -646,11 +547,13 @@ def _interactive_line_chart(
             x_field,
             y_field,
             selection,
+            THEME.chart,
             x_title=x_title,
             y_title=y_title,
             value_format=value_format,
             height=height,
-        )
+        ),
+        THEME.chart,
     )
     event = st.altair_chart(
         chart, key=key, on_select="rerun", selection_mode=selection_name, theme=None
@@ -1214,9 +1117,7 @@ def page_insights() -> None:
     col1, col2 = st.columns(2)
     with col1:
         st.subheader("Papers by year")
-        year_df = pd.DataFrame(
-            [{"Year": k, "Papers": v} for k, v in sorted(stats["by_year"].items())]
-        )
+        year_df = _yearly_counts(stats["by_year"], collector.config.partial_years)
         selected_year = _interactive_bar_chart(
             year_df,
             "Year",
@@ -1225,6 +1126,8 @@ def page_insights() -> None:
             460,
             horizontal=False,
             sort="ascending",
+            label_field="Label",
+            partial_field="Partial",
         )
         st.caption("Click a bar to open that year's records. Double-click clears the selection.")
         partial_years = sorted(set(collector.config.partial_years) & set(stats["by_year"]))
@@ -1300,13 +1203,18 @@ def page_insights() -> None:
             with col_abs:
                 st.caption(f"Papers per year — {trend['total']:,} total")
                 selected_trend_year = _interactive_bar_chart(
-                    trend_df.reset_index().rename(columns={"year": "Year", "papers": "Papers"}),
+                    _yearly_counts(
+                        dict(zip(trend_df.index, trend_df["papers"], strict=True)),
+                        collector.config.partial_years,
+                    ),
                     "Year",
                     "Papers",
                     "trend_chart",
                     280,
                     horizontal=False,
                     sort="ascending",
+                    label_field="Label",
+                    partial_field="Partial",
                 )
             with col_share:
                 st.caption("Share of the year's corpus (%)")
@@ -1534,7 +1442,7 @@ def page_insights() -> None:
                             "Measure:N",
                             scale=alt.Scale(
                                 domain=["Papers", "First author", "Last author"],
-                                range=list(charts.SERIES),
+                                range=list(THEME.chart.series),
                             ),
                             title=None,
                             legend=charts.series_legend(),
@@ -1553,7 +1461,7 @@ def page_insights() -> None:
                     .properties(height=280)
                 )
                 st.altair_chart(
-                    trajectory_chart,
+                    charts.apply_theme(trajectory_chart, THEME.chart),
                     width="stretch",
                     theme=None,
                 )
@@ -1710,12 +1618,19 @@ def page_insights() -> None:
         "Coverage (%)",
         "coverage_chart",
         460,
-        color=charts.COVERAGE,
+        value_format=".1f",
+        whole=100,
     )
     st.caption("Click a coverage bar to inspect the venue's records and missing abstracts.")
     if selected_coverage_venue:
         _queue_search_from_chart(venue=str(selected_coverage_venue))
-    st.dataframe(coverage_df.drop(columns="Coverage (%)"), width="stretch", hide_index=True)
+    st.dataframe(
+        coverage_df.drop(columns="Coverage (%)").style.format(
+            "{:,}", subset=["Total", "With abstract"]
+        ),
+        width="stretch",
+        hide_index=True,
+    )
 
 
 def _audit_choice(value: object) -> str:

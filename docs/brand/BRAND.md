@@ -85,22 +85,30 @@ panels, `#E8EDF4` for text, `#9AA7B8` for muted text, Sky Blue for accents.
 | `#E8EDF4` / Night | 15.41:1 | Text on dark |
 | `#9AA7B8` / Night | 7.42:1 | Muted text on dark |
 
-## Brand colour is not data colour
+## Brand colour is not data meaning
 
-The blues identify TopVenues. They never mean *better*, *significant*,
-*current* or *accepted* in a chart. Figures use their own palette, declared once
-in `web/charts.py`, and no chart relies on colour alone: direct labels, markers
-or line style carry the distinction as well.
+The blues identify TopVenues. In a chart they identify a series, and nothing
+more: they never mean *better*, *significant*, *current* or *accepted*. The
+palette is declared once, in `web/theme.py`, for both themes. No chart relies on
+colour alone: direct labels, line dash or markers carry the distinction too.
 
-| Role | Hex | Contrast on Paper |
-| --- | --- | --- |
-| Single series | `#44607F` | 6.51:1 |
-| Second series | `#D55E00` (Okabe–Ito vermillion) | 3.87:1 |
-| Third series | `#009E73` (Okabe–Ito bluish green) | 3.42:1 |
-| Coverage | `#4F7D4A` | 4.81:1 |
+| Role | Light | Dark | Contrast (light / dark) |
+| --- | --- | --- | --- |
+| Series 1, and every single-series chart | `#2867B2` Corpus Blue | `#4D8FE0` | 5.72:1 / 5.46:1 |
+| Series 2 | `#EB6834` | `#D95926` | ≥ 3:1 / ≥ 3:1 |
+| Series 3 | `#199E70` | `#199E70` | ≥ 3:1 / ≥ 3:1 |
+| Partial category, such as the current year | `#89ABD5` | `#2C5283` | Always labelled "partial" |
+| Track behind a part-of-a-whole bar | `#E9EEF4` Mist | `#1A2B44` | Recessive by design |
 
-Series colours fill marks and never set text; value labels use Slate. Series
-also differ by line dash, and legends draw the dashed line itself.
+The three series pass every categorical check of the data-visualization
+validator on their own surface, in both themes: lightness band, chroma floor,
+colour-vision separation for all pairs (worst ΔE 8.4 light / 9.4 dark under
+protanopia and deuteranopia) and normal-vision separation (worst ΔE 21.8 / 19.4).
+`tests/test_theme_tokens.py` re-checks the contrast on every change.
+
+Series colours fill marks and never set text; value labels use the muted text
+colour. Coverage is drawn as a bar over a 100% track, so the missing stretch is
+visible without reading the number.
 
 ## Type
 

@@ -1,0 +1,140 @@
+/* Interface styles. Colours are custom properties set per theme by web/theme.py. */
+
+.stApp, [data-testid="stAppViewContainer"] {
+    background: var(--bg);
+    color: var(--ink);
+}
+[data-testid="stHeader"] { background: var(--header-scrim); }
+[data-testid="stMainBlockContainer"] { padding-top: 2.2rem; }
+[data-testid="stDeployButton"],
+[data-testid="stAppDeployButton"],
+[data-testid="stToolbarActions"],
+footer {
+    visibility: hidden;
+    height: 0;
+}
+[data-testid="stExpandSidebarButton"],
+[data-testid="stSidebarCollapseButton"],
+[data-testid="stSidebarCollapseButton"] * {
+    visibility: visible !important;
+}
+
+.app-header {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    border-radius: 6px;
+    padding: 1.35rem 1.6rem;
+    margin-bottom: 1.4rem;
+}
+.app-header h1 {
+    color: var(--ink) !important;
+    font-size: 1.75rem;
+    font-weight: 650;
+    margin: 0 0 .35rem;
+    letter-spacing: -.01em;
+}
+.app-header p { color: var(--slate); font-size: .96rem; margin: 0; }
+
+.tag {
+    display: inline-block;
+    border-radius: 3px;
+    padding: 2px 9px;
+    margin-right: 4px;
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .3px;
+    background: var(--tag-bg);
+    color: var(--tag-text);
+}
+.tag-sok, .tag-survey { background: var(--tag-emphasis-bg); color: var(--tag-emphasis-text); }
+.tag-poster, .tag-workshop, .tag-short {
+    background: transparent;
+    color: var(--slate);
+    box-shadow: inset 0 0 0 1px var(--border);
+}
+
+section[data-testid="stSidebar"] {
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+}
+section[data-testid="stSidebar"] * { color: var(--ink) !important; }
+section[data-testid="stSidebar"] h2 {
+    color: var(--ink) !important;
+    font-size: .95rem;
+    letter-spacing: .4px;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: .5rem;
+    margin: .4rem 0 .8rem;
+}
+
+.results-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: .7rem 1rem;
+    margin-bottom: 1rem;
+}
+.results-bar .count { color: var(--ink); font-size: 1rem; font-weight: 700; }
+.results-bar .sub { color: var(--slate); font-size: .85rem; }
+
+.paper-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.35rem 1.55rem;
+    margin-top: 1rem;
+}
+.paper-card h3 { color: var(--ink); margin: 0 0 .6rem; }
+.paper-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    color: var(--slate);
+    font-size: .85rem;
+    margin-bottom: .8rem;
+}
+.paper-abstract {
+    white-space: pre-wrap;
+    line-height: 1.6;
+    color: var(--ink);
+    font-size: .95rem;
+}
+
+.claim-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: .8rem;
+    margin: .9rem 0 1.2rem;
+}
+.claim {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--card);
+    padding: .95rem 1rem;
+}
+.claim .name {
+    color: var(--slate);
+    text-transform: uppercase;
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .04em;
+}
+.claim .value { color: var(--ink); font-size: 1.6rem; font-weight: 700; line-height: 1.2; }
+.claim .note { color: var(--slate); font-size: .84rem; }
+
+.stDataFrame { border-radius: 6px; overflow: hidden; }
+div[data-testid="stExpander"] { border-radius: 6px; }
+
+.footer {
+    color: var(--slate);
+    font-size: .78rem;
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+}

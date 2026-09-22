@@ -1,5 +1,28 @@
 # Changelog
 
+## 1.12.0 — 2026-09-22
+
+- The interface has a real dark theme. It follows the reader's system, and the
+  menu offers Light, Dark or System. Every colour comes from `web/theme.py`,
+  whose Pydantic-validated tokens drive the CSS custom properties in
+  `web/styles.css`, the charts, and the reversed logo on dark.
+- Charts use a palette validated for colour-vision separation and contrast
+  against each theme's surface: the brand blue for single series, orange and
+  teal for the second and third.
+  - Coverage draws over a 100% track, so the gap is visible.
+  - The unfinished year is marked partial.
+  - Long venue names print whole.
+  - Tables use thousands separators.
+- Fixes a silent loss of chart styling: Altair's `configure()` replaced the whole
+  config and ran last, so every axis, legend and view setting was discarded.
+- `AGENTS.md` and `docs/AI_ASSISTANTS.md` show how to use TopVenues with
+  Claude, Codex or ChatGPT: answer from the snapshot, cite with the exported
+  BibTeX, and state the denominator with every number.
+- `scripts/capture_screenshots.py` regenerates the documentation screenshots;
+  they and the demonstration are refreshed for this release.
+- No code path touching the data changed; every profile and paper reproduces as
+  before.
+
 ## 1.11.1 — 2026-09-22
 
 - The demonstration is re-recorded with this release in the current visual
