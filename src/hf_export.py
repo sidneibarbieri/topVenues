@@ -144,15 +144,32 @@ dataset card does not grant rights in third-party abstract text.
 
 ## Citation
 
+If you use this dataset or the tool, cite the tools-track paper and name the
+release and profile you used, for example "TopVenues {release_tag}, profile
+`{profile_id}`", so a reader can reopen the same snapshot. If you use or build on
+the corpus method or its measurements, also cite the main-track paper.
+
 ```bibtex
-@software{{topvenues2026,
-  title  = {{TopVenues: An Executable Corpus and Research Tool for
-            Cybersecurity Literature Reviews}},
-  author = {{Barbieri, Sidnei and Ferraz, Agney Lopes Roth and
-            Pereira J{{\\'u}}nior, Louren{{\\c{{c}}}}o Alves}},
-  year   = {{2026}},
-  version = {{{release_tag}}},
-  url    = {{https://github.com/sidneibarbieri/topVenues/releases/tag/{release_tag}}}
+@inproceedings{{barbieri2026topvenuestool,
+  author    = {{Sidnei Barbieri and {{\\'A}}gney Lopes Roth Ferraz and Louren{{\\c{{c}}}}o Alves {{Pereira J{{\\'u}}nior}}}},
+  title     = {{{{TopVenues}}: An Executable Corpus and Research Tool for Cybersecurity Literature Reviews}},
+  booktitle = {{Anais Estendidos do XXVI Simp{{\\'o}}sio Brasileiro de Ciberseguran{{\\c{{c}}}}a (SBSeg 2026)}},
+  pages     = {{234--241}},
+  year      = {{2026}},
+  publisher = {{Sociedade Brasileira de Computa{{\\c{{c}}}}{{\\~a}}o}},
+  doi       = {{10.5753/sbseg_estendido.2026.33733}},
+  url       = {{https://sol.sbc.org.br/index.php/sbseg_estendido/article/view/44470}}
+}}
+
+@inproceedings{{barbieri2026topvenues,
+  author    = {{Sidnei Barbieri and {{\\'A}}gney Lopes Roth Ferraz and Louren{{\\c{{c}}}}o Alves {{Pereira J{{\\'u}}nior}}}},
+  title     = {{{{TopVenues}}: A Reproducible Corpus and Tooling Substrate for Cybersecurity Literature Reviews}},
+  booktitle = {{Anais do XXVI Simp{{\\'o}}sio Brasileiro de Ciberseguran{{\\c{{c}}}}a (SBSeg 2026)}},
+  pages     = {{1150--1165}},
+  year      = {{2026}},
+  publisher = {{Sociedade Brasileira de Computa{{\\c{{c}}}}{{\\~a}}o}},
+  doi       = {{10.5753/sbseg.2026.29056}},
+  url       = {{https://sol.sbc.org.br/index.php/sbseg/article/view/44350}}
 }}
 ```
 """

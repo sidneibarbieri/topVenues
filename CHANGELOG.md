@@ -26,7 +26,8 @@
 - The citation guidance is a rule instead of a hint: whoever used the tool cites
   the tools-track paper and names the release and profile; whoever uses the
   corpus method or its measurements cites the main-track paper. The README,
-  `README.pt-BR.md`, `CITATION.cff` and the landing page say the same.
+  `README.pt-BR.md`, `CITATION.cff`, the landing page and the Hugging Face card
+  that `export-hf` writes say the same.
 - The documentation screenshots show the language switch.
 - No released profile changed; every profile and paper reproduces as before.
 
