@@ -138,6 +138,41 @@ DARK = Theme(
 )
 
 
+# Picking Light or Dark in the menu repaints Streamlit's widgets without a rerun,
+# so st.context.theme stays stale and our colours would lag behind. The probe
+# reads the page's own background in the browser and reports every change,
+# which reruns the script with the theme the reader actually sees.
+THEME_PROBE_JS = """
+export default function (component) {
+  const { setStateValue } = component;
+  let reported = null;
+  const report = () => {
+    const channels = getComputedStyle(document.body).backgroundColor.match(/\\d+/g).map(Number);
+    const luminance = (0.2126 * channels[0] + 0.7152 * channels[1] + 0.0722 * channels[2]) / 255;
+    const mode = luminance < 0.5 ? "dark" : "light";
+    if (mode !== reported) {
+      reported = mode;
+      setStateValue("mode", mode);
+    }
+  };
+  report();
+  const timer = setInterval(report, 400);
+  return () => clearInterval(timer);
+}
+"""
+THEME_PROBE_NAME = "topvenues_theme_probe"
+THEME_PROBE_KEY = "theme-probe"
+
+
 def active_theme() -> Theme:
-    """The theme the reader's browser is showing; light until it reports one."""
-    return DARK if st.context.theme.type == "dark" else LIGHT
+    """The theme the reader's browser is showing, as the probe reports it.
+
+    The probe is registered on every run, not once at import: the registry
+    belongs to the Streamlit runtime, and a new runtime (a server restart, a
+    test harness) would otherwise find the name missing. Registering the same
+    definition again is silent.
+    """
+    probe = st.components.v2.component(THEME_PROBE_NAME, js=THEME_PROBE_JS)
+    reported = probe(key=THEME_PROBE_KEY, on_mode_change=lambda: None)
+    mode = getattr(reported, "mode", None) or st.context.theme.type
+    return DARK if mode == "dark" else LIGHT

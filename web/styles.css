@@ -6,6 +6,7 @@
 }
 [data-testid="stHeader"] { background: var(--header-scrim); }
 [data-testid="stMainBlockContainer"] { padding-top: 2.2rem; }
+.st-key-theme-probe { display: none; }
 [data-testid="stDeployButton"],
 [data-testid="stAppDeployButton"],
 [data-testid="stToolbarActions"],

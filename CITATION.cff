@@ -1,9 +1,11 @@
 cff-version: 1.2.0
 message: >-
-  If you use TopVenues, cite the paper whose numbers you use. The tool is
-  described in the tools-track paper below; the corpus method and the
-  measurements are in the main-track paper listed under references.
-  docs/PAPERS.md binds each paper to its release, snapshot and SHA-256.
+  If you used TopVenues to search, build a review corpus, export references or
+  rank authors, cite the tools-track paper below and name the release and
+  profile you used, such as "TopVenues v1.13.0, profile security-20-v4". If you
+  use or build on the corpus method or its measurements, also cite the
+  main-track paper listed under references. docs/PAPERS.md binds each paper to
+  its release, snapshot and SHA-256.
 title: "TopVenues"
 abstract: >-
   An executable corpus and research tool for cybersecurity literature reviews:
@@ -11,7 +13,7 @@ abstract: >-
   SHA-256, ranked search, author analytics and review-ready exports.
 type: software
 license: MIT
-version: "1.12.0"
+version: "1.13.0"
 date-released: 2026-09-22
 repository-code: "https://github.com/sidneibarbieri/topVenues"
 url: "https://sidneibarbieri.github.io/topVenues/"

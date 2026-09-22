@@ -303,7 +303,7 @@ def size_screenshots(page: str, screenshots: Path) -> str:
         return f'src="assets/screens/{match.group(1)}" width="{width}" height="{height}"'
 
     return re.sub(
-        r'src="assets/screens/([\w.-]+\.png)" width="\d+" height="\d+"', with_real_size, page
+        r'src="assets/screens/([\w./-]+\.png)" width="\d+" height="\d+"', with_real_size, page
     )
 
 
@@ -642,10 +642,14 @@ def page_values(release: Release, repository: Path, built_on: str) -> dict[str, 
         "{{PAPER_A}}": paper_card(PAPER_A),
         "{{PAPER_B}}": paper_card(PAPER_B),
         "{{BIB_A}}": code_block(
-            bibtex_entry("barbieri2026topvenues", PAPER_A), "Paper A", "Artigo A"
+            bibtex_entry("barbieri2026topvenues", PAPER_A),
+            "Paper A · method and measurements",
+            "Artigo A · método e medições",
         ),
         "{{BIB_B}}": code_block(
-            bibtex_entry("barbieri2026topvenuestool", PAPER_B), "Paper B", "Artigo B"
+            bibtex_entry("barbieri2026topvenuestool", PAPER_B),
+            "Paper B · using the tool",
+            "Artigo B · uso da ferramenta",
         ),
         "{{DEMO}}": DEMO_VIDEO,
         "{{GH}}": GITHUB,
