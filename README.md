@@ -234,7 +234,8 @@ Seven minutes and forty-nine seconds in 1920x1080, streamed from Hugging Face.
 It follows one path end to end: the problem a fixed denominator solves,
 installation and offline verification, an ordinary search with its exports,
 the four passes of the Insights page, the audit evidence, and the immutability
-boundary. It was recorded with v1.12.0, in the current visual identity.
+boundary. It was recorded with v1.12.0 on `security-20-v4`, so the counts on
+screen are that profile's, not the current release's.
 Narration is US English; captions ship in Brazilian Portuguese and English.
 Sidecar SRT files, the timed narration source, and the shot plan are in
 [docs/demo/](docs/demo/README.md).

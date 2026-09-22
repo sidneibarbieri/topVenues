@@ -103,7 +103,8 @@ no artigo continua funcionando nele sem alteração.
 **Demonstração completa em vídeo** (7min49s, 1920x1080, narração em inglês com
 legendas em português e inglês): percorre a instalação, a verificação offline, a
 busca com exportações, as quatro passagens da página de análises e a página de
-evidências. Gravada com a v1.12.0, na identidade visual atual, e
+evidências. Gravada com a v1.12.0 sobre o perfil `security-20-v4`, então as
+contagens que aparecem são as daquele perfil, não as da versão atual. É
 transmitida pelo
 [Hugging Face](https://huggingface.co/datasets/sidneibarbieri/topvenues/resolve/main/assets/demo/topvenues-demo-v1.12.0.mp4).
 
