@@ -544,7 +544,7 @@ def _reader_label(identity: ReleaseIdentity) -> str:
 def _count_with_share(counts: pd.Series) -> list[str]:
     """Label each bar with its count and its share, so rare rows still read.
 
-    A class holding 86 of 14,859 records draws a bar under a pixel wide. The
+    A class holding 86 of 15,286 records draws a bar under a pixel wide. The
     share is what tells a reader whether that class is worth a protocol
     decision, and no bar length can carry it at this range.
     """
@@ -2119,9 +2119,16 @@ def page_evidence() -> None:
     audit_summary_path = (
         ARTIFACT_ROOT / "evaluation" / "security-20-v3" / "manual_abstract_audit_summary.json"
     )
-    audit_transfer_path = ARTIFACT_ROOT / "evaluation" / "security-20-v4" / "audit_transfer.json"
+    audit_transfer_path = ARTIFACT_ROOT / "evaluation" / "security-20-v5" / "audit_transfer.json"
+    additions_summary_path = (
+        ARTIFACT_ROOT
+        / "evaluation"
+        / "security-20-v5"
+        / "manual_abstract_audit_additions_summary.json"
+    )
     audit_summary = json.loads(audit_summary_path.read_text(encoding="utf-8"))
     audit_transfer = json.loads(audit_transfer_path.read_text(encoding="utf-8"))
+    additions_summary = json.loads(additions_summary_path.read_text(encoding="utf-8"))
 
     st.subheader(t("Manual abstract audit"))
     metric_columns = st.columns(4)
@@ -2142,11 +2149,21 @@ def page_evidence() -> None:
         )
     )
     if audit_transfer["transfer_valid"]:
+        additions_low, additions_high = additions_summary["wilson_95_ci"]
         st.info(
             t(
-                "The audit was executed on the v3 snapshot and remains valid for this release: v3 "
-                "and v4 have the same 14,859 paper IDs and identical abstract text. The ten v4 "
-                "changes are title repairs, and none belongs to the audit sample."
+                "The audit was executed on the v3 snapshot and holds for the {retained} records "
+                "this release keeps unchanged in every field. The {added} records it adds were "
+                "audited separately, also human-only: {usable} of {labelled} usable ({rate}; 95% "
+                "Wilson interval {low}–{high}). The one failure, an abstract whose collection had "
+                "failed, is now filled from the publisher record.",
+                retained=number(audit_transfer["retained_records"]),
+                added=number(audit_transfer["added_records"]),
+                usable=additions_summary["usable"],
+                labelled=additions_summary["labelled"],
+                rate=percent(additions_summary["usable_rate"]),
+                low=percent(additions_low),
+                high=percent(additions_high),
             )
         )
     with st.expander(t("Inspect audit criteria and provenance")):
@@ -2173,7 +2190,8 @@ def page_evidence() -> None:
             t(
                 "Primary evidence: evaluation/security-20-v3/manual_abstract_audit.csv and "
                 "manual_abstract_audit_decisions.jsonl. Transfer verification: "
-                "evaluation/security-20-v4/audit_transfer.json."
+                "evaluation/security-20-v5/audit_transfer.json. Additions audit: "
+                "evaluation/security-20-v5/manual_abstract_audit_additions.csv."
             )
         )
 

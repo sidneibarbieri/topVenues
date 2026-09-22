@@ -8,7 +8,7 @@
 #   → open http://localhost:8501
 #
 # Run any CLI command:
-#   docker run --rm topvenues python -m src.cli --profile security-20-v4 stats
+#   docker run --rm topvenues python -m src.cli --profile security-20-v5 stats
 #   docker run --rm topvenues python -m src.cli search --title "intrusion"
 #
 # Run the test suite:

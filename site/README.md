@@ -9,7 +9,7 @@ python site/build_site.py --out /tmp/topvenues-site
 
 The build needs only the standard library and Pydantic, which the pinned
 requirements already install. Every figure about the current release is read
-from `data/profiles/security-20-v4/manifest.json`, the venue
+from `data/profiles/security-20-v5/manifest.json`, the venue
 areas from `src/areas.py`, and the abstract-audit result from
 `evaluation/security-20-v3/manual_abstract_audit_summary.json`. The two papers
 are frozen publications, so their values are constants in `build_site.py`; a

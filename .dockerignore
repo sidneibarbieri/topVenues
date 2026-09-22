@@ -30,6 +30,7 @@ data/dataset/master_dataset.csv
 evaluation/*
 !evaluation/security-20-v3
 !evaluation/security-20-v4
+!evaluation/security-20-v5
 papers
 llmdir
 literature

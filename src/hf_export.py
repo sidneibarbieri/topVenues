@@ -40,6 +40,10 @@ _EVIDENCE_ASSETS = (
     "topvenues-abstract-search.pdf",
 )
 
+# The recorded walkthrough the card links to; its files live under assets/demo
+# in the dataset repository, not in this export.
+DEMONSTRATION = "topvenues-demo-v1.12.0"
+
 _CARD_TEMPLATE = """\
 ---
 pretty_name: TopVenues Cybersecurity Corpus
@@ -70,15 +74,30 @@ reviews: {total:,} papers ({year_min}–{year_max}) across {n_events}
 security and security-relevant venues, with {n_abstracts:,} abstracts and a BibTeX entry for
 every record.
 
-- **Code / tool:** <https://github.com/sidneibarbieri/topVenues>
+- **Code / tool:** <https://github.com/sidneibarbieri/topVenues>. Reproduction is
+  verified on every change in eight environments (Ubuntu and Windows, Python
+  3.11 through 3.14), covering both the profile this dataset exports and the one
+  the tools-track paper cites.
 - **Project page:** <https://sidneibarbieri.github.io/topVenues/>, with both
   published papers, the repository that reproduces each one, and how to cite them.
+- **Demonstration:** [MP4](assets/demo/{demonstration}.mp4) — 7:49, 1920x1080,
+  with [Brazilian Portuguese](assets/demo/{demonstration}.pt-BR.vtt)
+  and [English](assets/demo/{demonstration}.en.vtt) captions. It covers
+  installation and offline verification, search and export, the four passes of
+  the Insights page, and the audit evidence. It was recorded on
+  `security-20-v4`, so the counts it shows are that profile's.
 - **Pinned source of truth:** the gzipped SQLite snapshot shipped with the
   tool; this dataset is a faithful Parquet export of the same named snapshot.
 
 ## Release identity
 
 {release_identity}
+
+The source release tag names the tool release that produced this export, not the
+latest one. Later tool releases change code and documentation; they do not touch
+this snapshot, and the SHA-256 above is what a reviewer should check. Regenerating
+the export would produce a new snapshot identity and is a deliberate release
+action, never a side effect of a tool update.
 
 ## Usage
 
@@ -145,9 +164,11 @@ dataset card does not grant rights in third-party abstract text.
 ## Citation
 
 If you use this dataset or the tool, cite the tools-track paper and name the
-release and profile you used, for example "TopVenues {release_tag}, profile
+dataset and profile you used, for example "TopVenues, `{repo_id}`, profile
 `{profile_id}`", so a reader can reopen the same snapshot. If you use or build on
-the corpus method or its measurements, also cite the main-track paper.
+the corpus method or its measurements, also cite the main-track paper. The
+[project page](https://sidneibarbieri.github.io/topVenues/#cite) carries the
+same rule and entries.
 
 ```bibtex
 @inproceedings{{barbieri2026topvenuestool,
@@ -269,6 +290,7 @@ def export_hf_dataset(
         profile_id=profile_id or "the selected profile",
         release_identity=release_identity,
         release_tag=release_tag or "unreleased",
+        demonstration=DEMONSTRATION,
         **stats,
     )
     (out_dir / "README.md").write_text(card, encoding="utf-8")

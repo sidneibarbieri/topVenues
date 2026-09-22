@@ -1,17 +1,17 @@
 # Where the corpus has no abstract, and what can be done about it
 
-`security-20-v4` carries an abstract for 13,987 of its 14,859 records
-(94.1%). This records what the remaining 872 are, so the gap is a known
+`security-20-v5` carries an abstract for 14,394 of its 15,286 records
+(94.2%). This records what the remaining 892 are, so the gap is a known
 quantity rather than a surprise during a review.
 
 ## The gap is concentrated, not diffuse
 
 | Source | Missing | Recoverable |
 |---|---:|---|
-| Springer (ESORICS) | 559 | No — subscription |
+| Springer (ESORICS) | 560 | No — subscription |
 | USENIX | 131 | **Yes — open access** |
+| IEEE Xplore | 105 | No — subscription |
 | ACM Digital Library | 95 | No — subscription |
-| IEEE Xplore | 86 | No — subscription |
 | NDSS | 1 | **Yes — open access** |
 
 Two thirds of the gap is ESORICS, published in Springer LNCS. Automated

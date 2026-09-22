@@ -1,0 +1,34 @@
+{
+  "profile_id": "security-20-v5",
+  "population": "the 427 records security-20-v5 adds to security-20-v4; the 14,859 inherited records are covered by the security-20-v3 audit",
+  "protocol": "deterministic venue-stratified source audit",
+  "sample_size": 60,
+  "labelled": 60,
+  "usable": 59,
+  "usable_rate": 0.9833,
+  "wilson_95_ci": [
+    0.9114,
+    0.9971
+  ],
+  "criteria": {
+    "complete_yes": 59,
+    "uncontaminated_yes": 59,
+    "matches_paper_yes": 59
+  },
+  "decision_provenance": {
+    "final_human_only": 60,
+    "final_human_supervised_codex_assisted": 0,
+    "reviewer": "Sidnei Barbieri"
+  },
+  "non_usable_by_venue": {
+    "IEEE S&P": 1
+  },
+  "repairs_after_audit": {
+    "log": "data/adjudication/security-20-v5-abstract-repairs.json",
+    "records": [
+      "conf/sp/MaoSBP26"
+    ],
+    "note": "The one non-usable record had no abstract because its collection failed; the reviewer's transcription from the publisher record now fills it. The rate above is the audit as labelled, before the repair."
+  },
+  "interpretation": "A record is usable only when all three criteria are yes. All 60 final decisions are human-only by Sidnei Barbieri."
+}

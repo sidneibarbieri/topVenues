@@ -17,6 +17,12 @@ Three steps, so the enrichment runs through the same commands as any corpus:
 `stage` materializes and consolidates the declared scope from a DBLP dump into
 STAGE and keeps only the additive records. `freeze` copies the verified source,
 inserts them, and writes the snapshot, its manifest and the extension log.
+
+A human audit of the additions can find a record whose abstract collection
+failed. `repair-abstracts` fills such abstracts from a reviewed log, refuses to
+overwrite any existing text, and rewrites the snapshot and its manifest:
+
+    python scripts/build_extended_profile.py repair-abstracts --log REPAIRS.json --output-root ROOT
 """
 
 import argparse
@@ -77,6 +83,22 @@ class StagedRecord(Frozen):
 
 class ExcludedRecord(StagedRecord):
     reason: str
+
+
+class AbstractRepair(Frozen):
+    """One missing abstract that a human reviewer transcribed from the publisher record."""
+
+    paper_id: str
+    abstract: str
+    source_url: str
+    reviewer: str
+    decided_at: str
+    reason: str
+
+
+class AbstractRepairLog(Frozen):
+    profile_id: str
+    repairs: tuple[AbstractRepair, ...]
 
 
 class ExtensionLog(Frozen):
@@ -342,6 +364,56 @@ def freeze(staging: Path, dump_release: str, output_root: Path) -> None:
     print(f"{succession.target}: {snapshot['papers']} records, {snapshot['abstracts']} abstracts")
 
 
+def fill_missing_abstracts(database: Path, repairs: tuple[AbstractRepair, ...]) -> None:
+    """Fill each named record's abstract; a record that already has one is an error."""
+    with sqlite3.connect(database) as connection:
+        for repair in repairs:
+            row = connection.execute(
+                "SELECT abstract FROM papers WHERE paper_id = ?", (repair.paper_id,)
+            ).fetchone()
+            if row is None:
+                raise SystemExit(f"{repair.paper_id} is not in the snapshot")
+            if row[0] and row[0].strip():
+                raise SystemExit(f"{repair.paper_id} already has an abstract; repairs only fill")
+            connection.execute(
+                "UPDATE papers SET abstract = ? WHERE paper_id = ?",
+                (repair.abstract, repair.paper_id),
+            )
+
+
+def repair_abstracts(log_path: Path, output_root: Path) -> None:
+    """Apply a reviewed abstract-repair log to a frozen profile under output_root."""
+    repair_log = AbstractRepairLog.model_validate_json(log_path.read_text(encoding="utf-8"))
+    profile_id = repair_log.profile_id
+    manifest_path = output_root / "data" / "profiles" / profile_id / "manifest.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    archive = output_root / manifest["snapshot"]["path"]
+    if sha256(archive) != manifest["snapshot"]["gzip_sha256"]:
+        raise SystemExit(f"{archive} does not match its manifest")
+    with tempfile.TemporaryDirectory(prefix="topvenues-repair-") as workspace:
+        working_copy = Path(workspace) / "papers.db"
+        with gzip.open(archive, "rb") as compressed, working_copy.open("wb") as expanded:
+            shutil.copyfileobj(compressed, expanded, length=1024 * 1024)
+        fill_missing_abstracts(working_copy, repair_log.repairs)
+        write_gzip(working_copy, archive)
+        manifest["snapshot"] = snapshot_declaration(
+            working_copy, archive, manifest["snapshot"]["path"]
+        )
+    declared_log = f"data/adjudication/{profile_id}-abstract-repairs.json"
+    stored_log = output_root / declared_log
+    stored_log.parent.mkdir(parents=True, exist_ok=True)
+    if stored_log.resolve() != log_path.resolve():
+        shutil.copyfile(log_path, stored_log)
+    manifest["repair_log"] = {
+        "path": declared_log,
+        "abstracts_repaired": len(repair_log.repairs),
+        "note": "Missing abstracts only, transcribed by a human reviewer from the "
+        "publisher record; no existing text changed.",
+    }
+    manifest_path.write_text(json.dumps(manifest, indent=1) + "\n", encoding="utf-8")
+    print(f"{profile_id}: {len(repair_log.repairs)} abstracts filled")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
@@ -362,8 +434,13 @@ def main() -> None:
         default=ROOT,
         help="repository root, or a review folder",
     )
+    repair_command = commands.add_parser("repair-abstracts")
+    repair_command.add_argument("--log", type=Path, required=True)
+    repair_command.add_argument("--output-root", type=Path, default=ROOT)
     arguments = parser.parse_args()
-    if arguments.command == "stage":
+    if arguments.command == "repair-abstracts":
+        repair_abstracts(arguments.log.resolve(), arguments.output_root.resolve())
+    elif arguments.command == "stage":
         succession = Succession(source=arguments.source, target=arguments.target)
         stage(
             succession,

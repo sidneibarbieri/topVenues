@@ -31,7 +31,7 @@ JSONL contains 473 events because provenance corrections and backfills retain
 superseded history. Resolve it by the latest event for each `sample_id`; do not
 count events as additional sampled records.
 
-## Applicability to v4
+## Applicability to v4 and v5
 
 The annotations were made against `security-20-v3`. They transfer to
 `security-20-v4` because the profiles contain the same 14,859 paper IDs and
@@ -40,15 +40,26 @@ to the audit sample. The comparison and decision are machine-readable in
 `evaluation/security-20-v4/audit_transfer.json` and explained in
 `evaluation/security-20-v4/AUDIT_TRANSFER.md`.
 
+`security-20-v5` keeps all 14,859 v4 records unchanged in every field, so the
+same labels hold for them, as `evaluation/security-20-v5/audit_transfer.json`
+checks.
+The 427 records v5 adds were audited separately with the same three criteria:
+a venue-stratified sample of 60, all human-only by Sidnei Barbieri, found 59
+usable (98.3%; 95% Wilson interval 91.1%–99.7%). The one failure had no
+abstract because its collection had failed; the reviewer's transcription from
+the publisher record now fills it, logged in
+`data/adjudication/security-20-v5-abstract-repairs.json`. The labels, summary
+and decision log are in `evaluation/security-20-v5/`.
+
 ## Repeat or extend the protocol
 
 Generate the fixed sample:
 
 ```bash
 python scripts/manual_abstract_audit.py \
-  --profile security-20-v4 \
+  --profile security-20-v5 \
   --sample-size 200 \
-  --output security-20-v4-manual-audit.csv
+  --output security-20-v5-manual-audit.csv
 ```
 
 For each row, open `source_url`, compare the displayed source with `abstract`,
@@ -59,7 +70,7 @@ Summarize a completed sheet:
 
 ```bash
 python scripts/manual_abstract_audit.py \
-  --summarize security-20-v4-manual-audit.csv
+  --summarize security-20-v5-manual-audit.csv
 ```
 
 Partially labelled rows are reported as incomplete and excluded; they are never

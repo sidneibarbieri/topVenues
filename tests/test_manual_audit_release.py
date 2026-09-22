@@ -39,3 +39,30 @@ def test_v4_audit_transfer_is_explicit_and_lossless() -> None:
     assert transfer["source_records"] == transfer["target_records"] == 14_859
     assert transfer["changed_abstracts"] == 0
     assert transfer["changed_titles_in_audit_sample"] == 0
+
+
+def test_v5_additions_audit_matches_its_published_summary() -> None:
+    evaluation = ROOT / "evaluation" / "security-20-v5"
+    frame = pd.read_csv(evaluation / "manual_abstract_audit_additions.csv", keep_default_na=False)
+    published = json.loads(
+        (evaluation / "manual_abstract_audit_additions_summary.json").read_text(encoding="utf-8")
+    )
+    computed = summarize_audit(frame)
+
+    assert len(frame) == 60
+    assert set(frame["reviewer"]) == {"Sidnei Barbieri"}
+    assert set(frame["decision_mode"]) == {"human_only"}
+    assert computed.labelled == published["labelled"] == 60
+    assert computed.usable == published["usable"] == 59
+
+
+def test_v5_keeps_every_v4_record_and_only_adds() -> None:
+    transfer = json.loads(
+        (ROOT / "evaluation" / "security-20-v5" / "audit_transfer.json").read_text(encoding="utf-8")
+    )
+
+    assert transfer["transfer_valid"] is True
+    assert transfer["retained_records"] == transfer["source_records"] == 14_859
+    assert transfer["changed_retained_records"] == 0
+    assert transfer["removed_records"] == 0
+    assert transfer["added_records"] == 427

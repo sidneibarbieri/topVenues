@@ -1,0 +1,32 @@
+{
+  "source_profile": "security-20-v4",
+  "target_profile": "security-20-v5",
+  "source_records": 14859,
+  "target_records": 15286,
+  "retained_records": 14859,
+  "added_records": 427,
+  "removed_records": 0,
+  "changed_retained_records": 0,
+  "compared_fields": [
+    "paper_id",
+    "authors",
+    "title",
+    "venue",
+    "pages",
+    "year",
+    "paper_type",
+    "access",
+    "key",
+    "ee",
+    "url",
+    "event",
+    "abstract",
+    "bibtex"
+  ],
+  "audit_sample_size": 200,
+  "transfer_valid": true,
+  "primary_audit_csv": "evaluation/security-20-v3/manual_abstract_audit.csv",
+  "primary_decision_log": "evaluation/security-20-v3/manual_abstract_audit_decisions.jsonl",
+  "additions_audit": "evaluation/security-20-v5/manual_abstract_audit_additions_summary.json",
+  "note": "The v3 audit covers the records v5 retains, which are byte-identical in every compared field; the records v5 adds carry their own audit."
+}

@@ -24,7 +24,7 @@ from pathlib import Path
 
 from pydantic import BaseModel, ConfigDict, Field
 
-PROFILE = "security-20-v4"
+PROFILE = "security-20-v5"
 SITE_DIR = Path(__file__).resolve().parent
 SITE_URL = "https://sidneibarbieri.github.io/topVenues/"
 GITHUB = "https://github.com/sidneibarbieri"

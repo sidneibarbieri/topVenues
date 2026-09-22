@@ -16,7 +16,7 @@ from src.profiles import (
 
 def test_default_profile_is_the_tool_denominator(monkeypatch) -> None:
     monkeypatch.delenv("TOPVENUES_PROFILE", raising=False)
-    assert select_profile_id() == DEFAULT_PROFILE_ID == "security-20-v4"
+    assert select_profile_id() == DEFAULT_PROFILE_ID == "security-20-v5"
 
 
 def test_environment_can_select_an_explicit_profile(monkeypatch) -> None:

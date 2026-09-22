@@ -82,3 +82,52 @@ def test_a_year_outside_the_declared_window_stays_out():
     assert (
         BUILDER.classify(record, set(), set(), set(), YEARS) == "outside the declared year window"
     )
+
+
+def _frozen_profile(root: Path, abstract: str | None) -> Path:
+    """A one-record frozen profile laid out as the repository keeps one."""
+    import sqlite3
+
+    database = root / "papers.db"
+    with sqlite3.connect(database) as connection:
+        connection.execute(
+            "CREATE TABLE papers (paper_id TEXT PRIMARY KEY, event TEXT, year INTEGER, "
+            "abstract TEXT, bibtex TEXT)"
+        )
+        connection.execute(
+            "INSERT INTO papers VALUES ('conf/sp/X26', 'IEEE S&P', 2026, ?, '@x{}')", (abstract,)
+        )
+    declared = "data/profiles/demo/papers.db.gz"
+    archive = root / declared
+    archive.parent.mkdir(parents=True)
+    BUILDER.write_gzip(database, archive)
+    snapshot = BUILDER.snapshot_declaration(database, archive, declared)
+    (archive.parent / "manifest.json").write_text(json.dumps({"snapshot": snapshot}))
+    log = root / "repairs.json"
+    repair = {
+        "paper_id": "conf/sp/X26",
+        "abstract": "We fill a missing abstract.",
+        "source_url": "https://doi.org/10.0/x",
+        "reviewer": "A Reviewer",
+        "decided_at": "2026-09-22",
+        "reason": "abstract collection failed",
+    }
+    log.write_text(json.dumps({"profile_id": "demo", "repairs": [repair]}))
+    return log
+
+
+def test_a_repair_fills_a_missing_abstract_and_restates_the_snapshot(tmp_path):
+    log = _frozen_profile(tmp_path, abstract=None)
+    BUILDER.repair_abstracts(log, tmp_path)
+    manifest = json.loads((tmp_path / "data/profiles/demo/manifest.json").read_text())
+    archive = tmp_path / manifest["snapshot"]["path"]
+    assert manifest["snapshot"]["abstracts"] == 1
+    assert manifest["snapshot"]["gzip_sha256"] == BUILDER.sha256(archive)
+    assert manifest["repair_log"]["abstracts_repaired"] == 1
+    assert (tmp_path / manifest["repair_log"]["path"]).is_file()
+
+
+def test_a_repair_never_overwrites_an_existing_abstract(tmp_path):
+    log = _frozen_profile(tmp_path, abstract="Text the source already carries.")
+    with pytest.raises(SystemExit, match="already has an abstract"):
+        BUILDER.repair_abstracts(log, tmp_path)
