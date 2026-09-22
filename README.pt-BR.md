@@ -154,7 +154,7 @@ topVenues/
 ├── src/                       biblioteca e interface de linha de comando
 ├── web/                       aplicação Streamlit
 ├── scripts/                   automação de verificação e de experimentos
-├── tests/                     393 testes automatizados
+├── tests/                     400 testes automatizados
 └── docs/                      guia do revisor, protocolo de auditoria, demonstração
 ```
 
@@ -406,6 +406,11 @@ python -m streamlit run web/app.py
 | 4 | `amostra.bib` com 2.928 linhas (122.391 bytes) |
 | 5 | Interface em `http://localhost:8501`, com as cinco páginas navegáveis |
 
+A interface fala português do Brasil e inglês. Ela abre no idioma do navegador,
+a troca fica no topo da barra lateral, e um link terminado em `?lang=pt` ou
+`?lang=en` abre direto no idioma. O tema claro ou escuro segue o sistema; o
+menu ⋮ no canto superior direito alterna na hora entre System, Light e Dark.
+
 ---
 
 # Experimentos
@@ -547,7 +552,7 @@ python -m pytest -q
 ```
 
 - **Tempo esperado:** ~10 s
-- **Resultado esperado:** `393 passed`, sem acesso à rede.
+- **Resultado esperado:** `400 passed`, sem acesso à rede.
 - **Contagem de testes:** o número cresce a cada versão; o
   [histórico de versões](#histórico-de-versões) registra a evolução. O valor
   corrente é verificado automaticamente contra este README.
@@ -597,6 +602,7 @@ relevante para quem reproduz ou audita o corpus.
 
 | Versão | Mudanças relevantes para reprodução |
 | --- | --- |
+| `v1.13.0` | Interface completa em português do Brasil e em inglês, com números no formato de cada idioma e um teste que impede texto sem tradução. O tema escolhido no menu passa a valer na hora. Construtor aditivo de sucessores a partir de um dump mais novo do DBLP (`scripts/build_extended_profile.py`). Nenhuma mudança nos perfis publicados. |
 | `v1.12.0` | Tema escuro de verdade na interface, que segue o sistema, e paleta de gráficos validada nos dois temas. A cobertura é desenhada sobre uma trilha de 100%, o ano parcial vem marcado e os nomes longos de veículos aparecem inteiros. Guia para usar o TopVenues com assistentes de IA (`AGENTS.md`, `docs/AI_ASSISTANTS.md`). Nenhuma mudança de dados. |
 | `v1.11.1` | Vídeo de demonstração regravado com a v1.11.1 e a identidade visual atual: a mesma narração, a instalação a partir do `topVenues` e o pôster novo. Nenhuma mudança de código ou de dados. |
 | `v1.11.0` | O TopVenues passa a morar no repositório `topVenues`, que também preserva o artefato da trilha principal na versão `sbseg2026-camera-ready`; a integração contínua reproduz os dois artigos a cada mudança. Nova identidade visual, com o logotipo vetorizado a partir do quadro de marca. O vídeo de demonstração passa a ser transmitido pelo Hugging Face. |

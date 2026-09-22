@@ -1,5 +1,30 @@
 # Changelog
 
+## 1.13.0 — unreleased
+
+- The interface speaks Brazilian Portuguese as well as English. It opens in the
+  browser's language, the switch sits at the top of the sidebar, and
+  `?lang=pt` or `?lang=en` in a link opens it in that language.
+  - Strings stay in English at the call site and are looked up in
+    `web/locales/pt.json` by `web/i18n.py`; option values stay English, so
+    filters, links between pages and session state never depend on the
+    language.
+  - Numbers follow the reader: 20.305 and 94,5% in Portuguese, in the text,
+    the tables and the chart labels.
+  - `tests/test_interface_translations.py` fails on a string without a
+    translation, a translation that drops a placeholder, an unused entry, a
+    displayed literal that bypasses translation, and any page that raises or
+    shows English in Portuguese.
+- Picking Light or Dark in the menu now recolours the interface at once; it
+  used to wait for the next interaction.
+- "Open author records" from Researcher Radar with "Any author" selected now
+  opens Search with "Any position" instead of an invalid option.
+- Emerging-activity results are cached like the other analytics; a doubled
+  decorator had left them uncached.
+- `scripts/build_extended_profile.py` builds a successor profile additively from
+  a newer DBLP release, keeping every existing record byte-identical.
+- No released profile changed; every profile and paper reproduces as before.
+
 ## 1.12.0 — 2026-09-22
 
 - The interface has a real dark theme. It follows the reader's system, and the

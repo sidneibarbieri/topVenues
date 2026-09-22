@@ -12,6 +12,7 @@ are separated here.
 from __future__ import annotations
 
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass
 
 
@@ -28,11 +29,15 @@ class ReleaseIdentity:
     @property
     def reader_label(self) -> str:
         """What the corpus covers, for someone deciding whether to trust it."""
+        return self.reader_label_in(_month_and_year, "{count} venues")
+
+    def reader_label_in(self, month_and_year: Callable[[str], str], venues_phrase: str) -> str:
+        """The reader label in another language: how it names a month and counts venues."""
         parts = []
         if self.captured_on:
-            parts.append(_month_and_year(self.captured_on))
+            parts.append(month_and_year(self.captured_on))
         if self.venue_count:
-            parts.append(f"{self.venue_count} venues")
+            parts.append(venues_phrase.format(count=self.venue_count))
         if self.first_year and self.last_year:
             parts.append(f"{self.first_year}–{self.last_year}")
         return " · ".join(parts) or self.profile_id

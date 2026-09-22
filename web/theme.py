@@ -160,12 +160,19 @@ export default function (component) {
   return () => clearInterval(timer);
 }
 """
-THEME_PROBE = st.components.v2.component("topvenues_theme_probe", js=THEME_PROBE_JS)
+THEME_PROBE_NAME = "topvenues_theme_probe"
 THEME_PROBE_KEY = "theme-probe"
 
 
 def active_theme() -> Theme:
-    """The theme the reader's browser is showing, as the probe reports it."""
-    reported = THEME_PROBE(key=THEME_PROBE_KEY, on_mode_change=lambda: None)
+    """The theme the reader's browser is showing, as the probe reports it.
+
+    The probe is registered on every run, not once at import: the registry
+    belongs to the Streamlit runtime, and a new runtime (a server restart, a
+    test harness) would otherwise find the name missing. Registering the same
+    definition again is silent.
+    """
+    probe = st.components.v2.component(THEME_PROBE_NAME, js=THEME_PROBE_JS)
+    reported = probe(key=THEME_PROBE_KEY, on_mode_change=lambda: None)
     mode = getattr(reported, "mode", None) or st.context.theme.type
     return DARK if mode == "dark" else LIGHT

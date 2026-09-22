@@ -91,6 +91,12 @@ python -m streamlit run web/app.py
 On Windows PowerShell, activate with `.\.venv\Scripts\Activate.ps1` before
 running the same command. The interface opens at `http://localhost:8501`.
 
+The interface speaks English and Brazilian Portuguese. It starts in your
+browser's language, the switch sits at the top of the sidebar, and a link
+ending in `?lang=pt` or `?lang=en` opens it in that language. It follows your
+system's light or dark theme; the ⋮ menu at the top right switches between
+System, Light and Dark.
+
 ## The current release
 
 | Property | Value |

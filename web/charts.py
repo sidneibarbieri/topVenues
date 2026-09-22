@@ -45,14 +45,20 @@ def series_legend() -> alt.Legend:
     return alt.Legend(symbolType="stroke", symbolStrokeWidth=2.3, symbolSize=320)
 
 
-def apply_theme(chart: alt.Chart, palette: ChartPalette) -> alt.Chart:
+def apply_theme(
+    chart: alt.Chart, palette: ChartPalette, number_locale: dict | None = None
+) -> alt.Chart:
     """Apply the shared visual language to a finished chart.
 
     `configure` replaces the whole config object in Altair 6, so it runs first;
     placed last, it silently discarded every axis, legend and view setting.
+
+    `number_locale` sets the digit separators of ticks and labels, so a chart
+    reads 20.305 beside a Portuguese interface that says 20.305.
     """
+    locale = {"number": number_locale} if number_locale else alt.Undefined
     return (
-        chart.configure(background="transparent")
+        chart.configure(background="transparent", locale=locale)
         .configure_axis(
             domain=False,
             ticks=False,
