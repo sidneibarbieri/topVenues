@@ -1,5 +1,17 @@
+# Brand tokens: docs/brand/BRAND.md. The same values drive web/theme.py, which
+# styles the parts of the page Streamlit's theme does not reach.
 [theme]
-base = "light"
+font = "Inter, sans-serif"
+baseRadius = "6px"
+
+# Inter 4.1 (SIL OFL), self-hosted from web/static so the interface stays offline.
+[[theme.fontFaces]]
+family = "Inter"
+url = "app/static/InterVariable.woff2"
+weight = "100 900"
+style = "normal"
+
+[theme.light]
 primaryColor = "#2867B2"
 backgroundColor = "#FFFFFF"
 secondaryBackgroundColor = "#F5F7FA"
@@ -8,14 +20,24 @@ linkColor = "#2867B2"
 codeTextColor = "#10233F"
 codeBackgroundColor = "#E9EEF4"
 borderColor = "#D3DBE5"
-font = "Inter, sans-serif"
+dataframeBorderColor = "#E9EEF4"
+dataframeHeaderBackgroundColor = "#F5F7FA"
 
-# Inter 4.1 (SIL OFL), self-hosted from web/static so the interface stays offline.
-[[theme.fontFaces]]
-family = "Inter"
-url = "app/static/InterVariable.woff2"
-weight = "100 900"
-style = "normal"
+[theme.dark]
+primaryColor = "#4DA3FF"
+backgroundColor = "#0B1627"
+secondaryBackgroundColor = "#122238"
+textColor = "#E8EDF4"
+linkColor = "#4DA3FF"
+codeTextColor = "#E8EDF4"
+codeBackgroundColor = "#1A2B44"
+borderColor = "#243A57"
+dataframeBorderColor = "#1F3350"
+dataframeHeaderBackgroundColor = "#122238"
+
+[client]
+# Viewer options only: print, record, and the Light / Dark / System theme choice.
+toolbarMode = "viewer"
 
 [server]
 enableStaticServing = true

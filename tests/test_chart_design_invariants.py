@@ -10,6 +10,7 @@ from __future__ import annotations
 import pandas as pd
 
 from web import charts
+from web.theme import LIGHT
 
 
 def _sample(rows: int) -> pd.DataFrame:
@@ -21,29 +22,42 @@ def _sample(rows: int) -> pd.DataFrame:
 def test_bars_declare_one_thickness_for_the_whole_application():
     """A 20-bar chart beside an 8-bar chart must not draw different bars."""
     assert isinstance(charts.BAR_THICKNESS, int)
-    chart = charts.bar_chart(_sample(6), "Venue", "Papers", charts.alt.selection_point())
+    chart = charts.bar_chart(
+        _sample(6), "Venue", "Papers", charts.alt.selection_point(), LIGHT.chart
+    )
     bar_layer = chart.to_dict()["layer"][0]
     assert bar_layer["mark"]["size"] == charts.BAR_THICKNESS
 
 
 def test_horizontal_height_grows_with_the_bar_count():
     """Otherwise thickness silently shrinks as categories are added."""
-    small = charts.bar_chart(_sample(4), "Venue", "Papers", charts.alt.selection_point())
-    large = charts.bar_chart(_sample(20), "Venue", "Papers", charts.alt.selection_point())
+    small = charts.bar_chart(
+        _sample(4), "Venue", "Papers", charts.alt.selection_point(), LIGHT.chart
+    )
+    large = charts.bar_chart(
+        _sample(20), "Venue", "Papers", charts.alt.selection_point(), LIGHT.chart
+    )
     assert large.to_dict()["height"] > small.to_dict()["height"]
 
 
 def test_every_bar_carries_its_value():
     """A dashboard read at a glance must not require hovering to learn a number."""
-    chart = charts.bar_chart(_sample(5), "Venue", "Papers", charts.alt.selection_point())
+    chart = charts.bar_chart(
+        _sample(5), "Venue", "Papers", charts.alt.selection_point(), LIGHT.chart
+    )
     layers = chart.to_dict()["layer"]
     assert any(layer["mark"]["type"] == "text" for layer in layers)
 
 
 def test_the_palette_is_declared_in_one_place():
     """Hex literals at call sites are how the palette drifted before."""
-    for name in ("ACCENT", "COVERAGE", "SERIES", "INK", "MUTED"):
-        assert hasattr(charts, name), f"{name} must be declared in web/charts.py"
+    import re
+    from pathlib import Path
+
+    web = Path(charts.__file__).parent
+    for name in ("app.py", "charts.py", "styles.css"):
+        source = (web / name).read_text(encoding="utf-8")
+        assert not re.search(r"#[0-9A-Fa-f]{6}\b", source), f"web/{name} hardcodes a colour"
 
 
 def test_unselected_bars_read_as_clearly_dimmed():
@@ -111,7 +125,12 @@ def test_a_line_prints_its_values_like_every_bar_does():
 
     data = pd.DataFrame([{"Year": 2024, "Share (%)": 1.8}, {"Year": 2025, "Share (%)": 9.5}])
     chart = charts.line_chart(
-        data, "Year", "Share (%)", alt.selection_point("s", fields=["Year"]), value_format=".1f"
+        data,
+        "Year",
+        "Share (%)",
+        alt.selection_point("s", fields=["Year"]),
+        LIGHT.chart,
+        value_format=".1f",
     )
 
     text_layers = [layer for layer in chart.to_dict()["layer"] if layer["mark"]["type"] == "text"]
@@ -132,7 +151,7 @@ def test_a_horizontal_chart_is_as_tall_as_its_bars():
 
     data = pd.DataFrame([{"Class": name, "Papers": 10} for name in "abcdef"])
     chart = charts.bar_chart(
-        data, "Class", "Papers", alt.selection_point("s", fields=["Class"]), height=320
+        data, "Class", "Papers", alt.selection_point("s", fields=["Class"]), LIGHT.chart, height=320
     )
 
     assert chart.to_dict()["height"] == len(data) * (charts.BAR_THICKNESS + charts.BAR_GAP)
@@ -140,6 +159,31 @@ def test_a_horizontal_chart_is_as_tall_as_its_bars():
 
 def test_series_differ_by_dash_as_well_as_hue():
     """No chart may rely on colour alone (docs/brand/BRAND.md)."""
-    assert len(charts.SERIES_DASH) == len(charts.SERIES)
+    assert len(charts.SERIES_DASH) == len(LIGHT.chart.series)
     assert len(set(charts.SERIES_DASH)) == len(charts.SERIES_DASH)
     assert charts.series_legend().to_dict()["symbolType"] == "stroke"
+
+
+def test_the_shared_visual_language_survives_every_configure_call():
+    """Altair's `configure` replaces the config; placed last, it erased the rest."""
+    chart = charts.apply_theme(
+        charts.bar_chart(_sample(3), "Venue", "Papers", charts.alt.selection_point(), LIGHT.chart),
+        LIGHT.chart,
+    )
+    config = chart.to_dict()["config"]
+    assert config["background"] == "transparent"
+    assert config["axis"]["domain"] is False and config["axis"]["ticks"] is False
+    assert config["axis"]["labelColor"] == LIGHT.chart.muted
+    assert config["view"]["strokeOpacity"] == 0
+    assert config["legend"]["labelColor"] == LIGHT.chart.muted
+
+
+def test_a_coverage_track_sorts_by_the_value_field():
+    """A channel sort ("-x") has no field in the track layer and Vega draws nothing."""
+    chart = charts.bar_chart(
+        _sample(3), "Venue", "Papers", charts.alt.selection_point(), LIGHT.chart, whole=100
+    )
+    layers = chart.to_dict()["layer"]
+    assert layers[0]["mark"]["color"] == LIGHT.chart.track
+    for layer in layers:
+        assert layer["encoding"]["y"]["sort"] == {"field": "Papers", "order": "descending"}

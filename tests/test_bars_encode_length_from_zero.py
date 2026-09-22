@@ -13,6 +13,7 @@ import pandas as pd
 import pytest
 
 from web import charts
+from web.theme import LIGHT
 
 
 @pytest.fixture
@@ -31,7 +32,9 @@ def _bar_layer(chart: alt.Chart) -> dict:
 
 
 def test_a_bar_chart_keeps_a_linear_value_scale(counts):
-    chart = charts.bar_chart(counts, "Class", "Papers", alt.selection_point("s", fields=["Class"]))
+    chart = charts.bar_chart(
+        counts, "Class", "Papers", alt.selection_point("s", fields=["Class"]), LIGHT.chart
+    )
     scale = _bar_layer(chart)["encoding"]["x"].get("scale", {})
     assert scale.get("type", "linear") == "linear"
 
@@ -44,6 +47,7 @@ def test_the_label_can_carry_more_than_the_raw_value(counts):
         "Class",
         "Papers",
         alt.selection_point("s", fields=["Class"]),
+        LIGHT.chart,
         label_field="Label",
     )
     spec = chart.to_dict()

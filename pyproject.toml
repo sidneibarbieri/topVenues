@@ -60,6 +60,9 @@ topvenues = "src.cli:main"
 [tool.setuptools]
 packages = ["src", "src.extractors", "web"]
 
+[tool.setuptools.package-data]
+web = ["styles.css", "static/*"]
+
 [tool.ruff]
 line-length = 100
 
