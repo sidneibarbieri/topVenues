@@ -4,7 +4,7 @@
 > release it describes lives in the archived repository
 > `sidneibarbieri/topvenues-tool`, so the commands below still work as written.
 > In this repository the same claims reproduce with
-> `bash reproduce.sh --profile security-20`; see [docs/PAPERS.md](docs/PAPERS.md).
+> `bash reproduce.sh --profile security-20`; see [docs/PAPERS.md](../PAPERS.md).
 
 TopVenues materializes a declared cybersecurity-literature scope as a local, versioned SQLite corpus. This document packages the frozen `security-20` profile used by the accepted SBSeg-SF paper. The current tool uses `security-20-v4` with a separate manifest and evidence boundary.
 
