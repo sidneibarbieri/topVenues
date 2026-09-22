@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.13.0 — unreleased
+## 1.13.0 — 2026-09-22
 
 - The interface speaks Brazilian Portuguese as well as English. It opens in the
   browser's language, the switch sits at the top of the sidebar, and
@@ -23,6 +23,11 @@
   decorator had left them uncached.
 - `scripts/build_extended_profile.py` builds a successor profile additively from
   a newer DBLP release, keeping every existing record byte-identical.
+- The citation guidance is a rule instead of a hint: whoever used the tool cites
+  the tools-track paper and names the release and profile; whoever uses the
+  corpus method or its measurements cites the main-track paper. The README,
+  `README.pt-BR.md`, `CITATION.cff` and the landing page say the same.
+- The documentation screenshots show the language switch.
 - No released profile changed; every profile and paper reproduces as before.
 
 ## 1.12.0 — 2026-09-22

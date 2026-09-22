@@ -49,7 +49,7 @@
 Requires Python 3.11–3.14, Git, and Bash.
 
 ```bash
-git clone --depth 1 --branch v1.12.0 https://github.com/sidneibarbieri/topVenues.git
+git clone --depth 1 --branch v1.13.0 https://github.com/sidneibarbieri/topVenues.git
 cd topVenues
 bash reproduce.sh --profile security-20-v4
 ```
@@ -67,7 +67,7 @@ Use the native PowerShell workflow rather than editing the Unix script or mixing
 Git Bash and PowerShell environments:
 
 ```powershell
-git clone --depth 1 --branch v1.12.0 https://github.com/sidneibarbieri/topVenues.git
+git clone --depth 1 --branch v1.13.0 https://github.com/sidneibarbieri/topVenues.git
 cd topVenues
 powershell -ExecutionPolicy Bypass -File .\reproduce.ps1 -Profile security-20-v4
 ```
@@ -101,7 +101,7 @@ System, Light and Dark.
 
 | Property | Value |
 | --- | --- |
-| Tool release | `v1.12.0` |
+| Tool release | `v1.13.0` |
 | Profile | `security-20-v4` |
 | Snapshot source release | `v1.2.1` |
 | Scope | 20 declared security and security-relevant venues |
@@ -287,12 +287,19 @@ security = corpus.filter(lambda paper: paper["area"] == "security")
 
 ## Citation
 
-If TopVenues supports your research, cite the paper whose numbers you use, and
-star this repository so that other researchers can find it. The tools-track paper
-describes the tool and `security-20`; the main-track paper describes the corpus
-method and its measurements. GitHub's "Cite this repository" reads
-[CITATION.cff](CITATION.cff). When you use the current release, also name the
-profile and its SHA-256.
+If TopVenues supports your research, cite it, and star this repository so that
+other researchers can find it. Which paper to cite depends on what you used:
+
+| You… | Cite |
+| --- | --- |
+| used TopVenues to search, build a review corpus, export references or rank authors | the tools-track paper (`barbieri2026topvenuestool`), and name the release and profile, such as `TopVenues v1.13.0, profile security-20-v4` |
+| use or build on the corpus method or its measurements | the main-track paper (`barbieri2026topvenues`) |
+| did both | both |
+
+The paper gives the credit that indexes count; the release and profile tell a
+reader which snapshot you queried, and [docs/PAPERS.md](docs/PAPERS.md) binds
+each one to its SHA-256. GitHub's "Cite this repository" reads
+[CITATION.cff](CITATION.cff), which proposes the tools-track paper.
 
 ```bibtex
 @inproceedings{barbieri2026topvenues,

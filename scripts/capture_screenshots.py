@@ -20,6 +20,9 @@ TOPIC = "LLM"
 SCOPE = "Security top-4"
 PREFERRED_AUTHOR = "Yang Zhang 0016"
 SETTLE_MS = 3500
+# The interface opens in the browser's language; the scenes click English
+# labels, so they pin English rather than inherit the machine's locale.
+LANGUAGE = "en"
 
 
 def open_page(page: Page, name: str) -> None:
@@ -150,7 +153,7 @@ def main() -> None:
         page = browser.new_page(
             viewport=VIEWPORT, device_scale_factor=1, color_scheme=arguments.scheme
         )
-        page.goto(arguments.url, wait_until="networkidle")
+        page.goto(f"{arguments.url}?lang={LANGUAGE}", wait_until="networkidle")
         page.wait_for_selector(".app-header", timeout=180_000)
         page.wait_for_timeout(2500)
         capture_overview(page, arguments.output)

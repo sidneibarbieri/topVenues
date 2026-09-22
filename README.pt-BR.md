@@ -630,6 +630,22 @@ foi removido; o valor corrente aparece na
 As contagens do corpus não mudaram: continuam 20.305 registros e 17.491 resumos,
 como as reivindicações #1 a #4 verificam.
 
+# Como citar
+
+Cite o artigo que corresponde ao que você usou:
+
+| Você… | Cite |
+| --- | --- |
+| usou o TopVenues para buscar, montar o corpus de uma revisão, exportar referências ou ranquear autores | o artigo da trilha de ferramentas (`barbieri2026topvenuestool`), informando a versão e o perfil, por exemplo `TopVenues v1.13.0, perfil security-20-v4` |
+| usa ou estende o método do corpus ou suas medições | o artigo da trilha principal (`barbieri2026topvenues`) |
+| fez as duas coisas | os dois |
+
+O artigo dá o crédito que os indexadores contam; a versão e o perfil dizem ao
+leitor qual snapshot foi consultado, e o [docs/PAPERS.md](docs/PAPERS.md) liga
+cada um ao seu SHA-256. As duas entradas BibTeX estão na seção
+[Citation](README.md#citation) do README em inglês e no
+[CITATION.cff](CITATION.cff).
+
 # LICENSE
 
 O código do TopVenues é distribuído sob a **licença MIT**, reproduzida em
