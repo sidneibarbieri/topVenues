@@ -5,28 +5,56 @@ this script. It drives the same scenes the README shows: the overview,
 a ranked search for "LLM" in the Security top-4 scope, that topic's trend, one
 author's trajectory in Researcher Radar, and the evidence page.
 
+`--language pt` captures the same scenes in Portuguese, into a pt-BR folder, by
+looking the labels up in the interface's own catalog.
+
 Requires Playwright with Chrome: `pip install playwright`.
 """
 
 import argparse
+import json
 from pathlib import Path
 
 from playwright.sync_api import Locator, Page, sync_playwright
 
-DEFAULT_OUTPUT = Path(__file__).resolve().parents[1] / "docs" / "assets" / "screenshots"
+REPOSITORY = Path(__file__).resolve().parents[1]
+DEFAULT_OUTPUT = REPOSITORY / "docs" / "assets" / "screenshots"
+LOCALES = REPOSITORY / "web" / "locales"
+OUTPUT_FOLDERS = {"en": "", "pt": "pt-BR"}
 VIEWPORT = {"width": 1280, "height": 720}
 TALL_VIEWPORT = {"width": 1280, "height": 2600}
 TOPIC = "LLM"
 SCOPE = "Security top-4"
 PREFERRED_AUTHOR = "Yang Zhang 0016"
 SETTLE_MS = 3500
-# The interface opens in the browser's language; the scenes click English
-# labels, so they pin English rather than inherit the machine's locale.
-LANGUAGE = "en"
 
 
-def open_page(page: Page, name: str) -> None:
-    page.locator('section[data-testid="stSidebar"]').get_by_text(name, exact=True).first.click()
+class Labels:
+    """The interface's labels in the language being captured.
+
+    The interface opens in the browser's language, so the scenes pin one and
+    click its labels, rather than inherit the machine's locale.
+    """
+
+    def __init__(self, language: str) -> None:
+        self.language = language
+        catalog = LOCALES / f"{language}.json"
+        self.catalog = json.loads(catalog.read_text(encoding="utf-8")) if catalog.exists() else {}
+
+    def __call__(self, text: str) -> str:
+        return self.catalog.get(text, text)
+
+    def prefix(self, text: str) -> str:
+        """The fixed start of a label that carries a field, such as a count.
+
+        The dash stays: "Artigos por ano" alone also names a section heading.
+        """
+        return self(text).split("{")[0].rstrip()
+
+
+def open_page(page: Page, label: Labels, name: str) -> None:
+    sidebar = page.locator('section[data-testid="stSidebar"]')
+    sidebar.get_by_text(label(name), exact=True).first.click()
     page.wait_for_timeout(SETTLE_MS)
 
 
@@ -71,28 +99,28 @@ def elements_below(
     return found
 
 
-def capture_overview(page: Page, output: Path) -> None:
+def capture_overview(page: Page, label: Labels, output: Path) -> None:
     page.screenshot(path=output / "overview.png")
 
 
-def capture_search(page: Page, output: Path) -> None:
-    open_page(page, "Search")
-    type_and_submit(page, page.get_by_label("Ranked search (BM25)", exact=True), TOPIC)
-    choose(page, select_box(page, "Venue tier scope"), SCOPE)
-    select_box(page, "Venue tier scope").scroll_into_view_if_needed()
+def capture_search(page: Page, label: Labels, output: Path) -> None:
+    open_page(page, label, "Search")
+    type_and_submit(page, page.get_by_label(label("Ranked search (BM25)"), exact=True), TOPIC)
+    choose(page, select_box(page, label("Venue tier scope")), label(SCOPE))
+    select_box(page, label("Venue tier scope")).scroll_into_view_if_needed()
     page.mouse.move(640, 10)
     page.wait_for_timeout(1500)
     page.screenshot(path=output / "search-top4-llm.png")
 
 
-def capture_topic_trend(page: Page, output: Path) -> None:
-    open_page(page, "Insights")
-    heading = page.get_by_role("heading", name="Topic trend")
+def capture_topic_trend(page: Page, label: Labels, output: Path) -> None:
+    open_page(page, label, "Insights")
+    heading = page.get_by_role("heading", name=label("Topic trend"))
     heading.scroll_into_view_if_needed()
-    type_and_submit(page, page.get_by_label("Topic", exact=True).first, TOPIC)
-    choose(page, select_box(page, "Venue tier scope"), SCOPE)
-    volume_title = page.get_by_text("Papers per year", exact=False).first
-    share_title = page.get_by_text("Share of the year", exact=False).first
+    type_and_submit(page, page.get_by_label(label("Topic"), exact=True).first, TOPIC)
+    choose(page, select_box(page, label("Venue tier scope")), label(SCOPE))
+    volume_title = page.get_by_text(label.prefix("Papers per year — {total} total")).first
+    share_title = page.get_by_text(label("Share of the year's corpus (%)"), exact=True).first
     volume_title.evaluate("element => element.scrollIntoView({block: 'center'})")
     page.wait_for_timeout(2500)
     charts = elements_below(
@@ -102,11 +130,12 @@ def capture_topic_trend(page: Page, output: Path) -> None:
     page.screenshot(path=output / "insights-llm-top4.png", clip=clip)
 
 
-def capture_researcher_radar(page: Page, output: Path) -> None:
-    page.get_by_role("heading", name="Researcher Radar").scroll_into_view_if_needed()
-    type_and_submit(page, page.get_by_label("Topic (title/abstract contains)", exact=True), TOPIC)
-    choose(page, select_box(page, "Venue tier scope", 1), SCOPE)
-    author_box = select_box(page, "Inspect an author's corpus records")
+def capture_researcher_radar(page: Page, label: Labels, output: Path) -> None:
+    page.get_by_role("heading", name=label("Researcher Radar")).scroll_into_view_if_needed()
+    topic_field = page.get_by_label(label("Topic (title/abstract contains)"), exact=True)
+    type_and_submit(page, topic_field, TOPIC)
+    choose(page, select_box(page, label("Venue tier scope"), 1), label(SCOPE))
+    author_box = select_box(page, label("Inspect an author's corpus records"))
     author_box.scroll_into_view_if_needed()
     author_box.click()
     page.wait_for_timeout(800)
@@ -115,7 +144,7 @@ def capture_researcher_radar(page: Page, output: Path) -> None:
     author = next((name for name in names if name.startswith(PREFERRED_AUTHOR)), names[0])
     page.get_by_role("option", name=author, exact=True).first.click()
     page.wait_for_timeout(SETTLE_MS)
-    heading = page.get_by_text("Publication trajectory", exact=False).first
+    heading = page.get_by_text(label.prefix("Publication trajectory — {author}")).first
     heading.evaluate("element => element.scrollIntoView({block: 'center'})")
     page.wait_for_timeout(4000)
     anchor = heading.bounding_box()["y"]
@@ -125,13 +154,13 @@ def capture_researcher_radar(page: Page, output: Path) -> None:
     collaborators = elements_below(
         page.locator('[data-testid="stDataFrame"]'), anchor - 1, within=120
     )[:1]
-    evidence = page.get_by_text("Trajectory evidence", exact=True).first
+    evidence = page.get_by_text(label("Trajectory evidence"), exact=True).first
     clip = bounding_union([heading, *trajectory, *collaborators, evidence])
     page.screenshot(path=output / "researcher-radar-llm-top4.png", clip=clip)
 
 
-def capture_evidence(page: Page, output: Path) -> None:
-    open_page(page, "Evidence")
+def capture_evidence(page: Page, label: Labels, output: Path) -> None:
+    open_page(page, label, "Evidence")
     page.evaluate(
         "() => document.querySelectorAll('*').forEach(element => { element.scrollTop = 0; })"
     )
@@ -145,26 +174,29 @@ def main() -> None:
     parser.add_argument("--url", default="http://localhost:8501/")
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     parser.add_argument("--scheme", choices=("light", "dark"), default="light")
+    parser.add_argument("--language", choices=tuple(OUTPUT_FOLDERS), default="en")
     arguments = parser.parse_args()
-    arguments.output.mkdir(parents=True, exist_ok=True)
+    label = Labels(arguments.language)
+    output = arguments.output / OUTPUT_FOLDERS[arguments.language]
+    output.mkdir(parents=True, exist_ok=True)
 
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch(channel="chrome")
         page = browser.new_page(
             viewport=VIEWPORT, device_scale_factor=1, color_scheme=arguments.scheme
         )
-        page.goto(f"{arguments.url}?lang={LANGUAGE}", wait_until="networkidle")
+        page.goto(f"{arguments.url}?lang={arguments.language}", wait_until="networkidle")
         page.wait_for_selector(".app-header", timeout=180_000)
         page.wait_for_timeout(2500)
-        capture_overview(page, arguments.output)
-        capture_search(page, arguments.output)
+        capture_overview(page, label, output)
+        capture_search(page, label, output)
         page.set_viewport_size(TALL_VIEWPORT)
-        capture_topic_trend(page, arguments.output)
-        capture_researcher_radar(page, arguments.output)
+        capture_topic_trend(page, label, output)
+        capture_researcher_radar(page, label, output)
         page.set_viewport_size(VIEWPORT)
-        capture_evidence(page, arguments.output)
+        capture_evidence(page, label, output)
         browser.close()
-    print(f"screenshots written to {arguments.output}")
+    print(f"screenshots written to {output}")
 
 
 if __name__ == "__main__":

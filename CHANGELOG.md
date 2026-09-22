@@ -28,7 +28,10 @@
   corpus method or its measurements cites the main-track paper. The README,
   `README.pt-BR.md`, `CITATION.cff`, the landing page and the Hugging Face card
   that `export-hf` writes say the same.
-- The documentation screenshots show the language switch.
+- The documentation screenshots show the language switch, and
+  `README.pt-BR.md` shows the interface in Portuguese:
+  `scripts/capture_screenshots.py --language pt` captures the same scenes
+  into `docs/assets/screenshots/pt-BR/`, reading the labels from the catalog.
 - No released profile changed; every profile and paper reproduces as before.
 
 ## 1.12.0 — 2026-09-22

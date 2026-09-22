@@ -93,10 +93,10 @@ no artigo continua funcionando nele sem alteração.
 
 | | |
 | --- | --- |
-| ![Visão geral do corpus](docs/assets/screenshots/overview.png) | ![Busca com escopo no top-4](docs/assets/screenshots/search-top4-llm.png) |
+| ![Visão geral do corpus](docs/assets/screenshots/pt-BR/overview.png) | ![Busca com escopo no top-4](docs/assets/screenshots/pt-BR/search-top4-llm.png) |
 | **Visão geral** — identidade do corpus, cobertura e caminho de verificação. | **Busca** — consulta ranqueada restrita ao top-4 de segurança, com o registro por trás de cada linha. |
-| ![Análises do corpus](docs/assets/screenshots/insights-llm-top4.png) | ![Recorrência de autores](docs/assets/screenshots/researcher-radar-llm-top4.png) |
-| **Análises** — distribuição por veículo, ano e classe; volume de um tópico e sua participação normalizada. | **Autores** — recorrência por volume, peso de estrato ou concentração no top-4, com trajetória e coautoria. |
+| ![Análises do corpus](docs/assets/screenshots/pt-BR/insights-llm-top4.png) | ![Recorrência de autores](docs/assets/screenshots/pt-BR/researcher-radar-llm-top4.png) |
+| **Análises** — distribuição por veículo, ano e classe; volume de um tópico e sua participação normalizada. | **Autores** — recorrência por volume, peso por nível ou concentração no top-4, com trajetória e coautoria. |
 
 [![Demonstração de 7min49s](docs/assets/demos/posters/topvenues-demo-v1.12.0.jpg)](https://huggingface.co/datasets/sidneibarbieri/topvenues/resolve/main/assets/demo/topvenues-demo-v1.12.0.mp4)
 
