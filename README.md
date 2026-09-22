@@ -1,10 +1,14 @@
 # gh-pages: generated project page
 
 This branch serves <https://sidneibarbieri.github.io/topVenues/>. It is
-generated, not edited: the source is `site/` in
-[`sidneibarbieri/topvenues-tool`](https://github.com/sidneibarbieri/topvenues-tool/tree/main/site),
-and every figure about the current release is read from that repository's
-profile manifest when the page is built.
+generated, not edited: the source is [`site/`](https://github.com/sidneibarbieri/topVenues/tree/main/site)
+on `main`, and every figure about the current release is read from the
+profile manifest when the page is built:
 
-The `main` branch of this repository is the frozen artifact of the SBSeg 2026
-main-track paper and is not affected by this branch.
+```bash
+python site/build_site.py --out <gh-pages worktree>
+```
+
+The main-track paper's artifact is frozen at the
+[`sbseg2026-camera-ready`](https://github.com/sidneibarbieri/topVenues/tree/sbseg2026-camera-ready)
+release and is not affected by this branch.
