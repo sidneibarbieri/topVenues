@@ -16,6 +16,8 @@ import unicodedata
 from dataclasses import dataclass
 from pathlib import Path
 
+from src.profiles import PROJECT_ROOT
+
 # Award-record venue label -> the ``papers.venue`` strings that denote the same
 # venue. The corpus stores more than one string for some venues (IEEE S&P is
 # both "SP" and "IEEE Symposium on Security and Privacy").
@@ -42,6 +44,19 @@ class AwardRecord:
 class AwardMatch:
     award: AwardRecord
     paper_id: str
+
+
+def awards_directory(root: Path = PROJECT_ROOT) -> Path:
+    """Where the curated award tables live.
+
+    The tables belong to the repository, not to a profile workspace: the same
+    awards apply to every profile built from the same venues. Callers used to
+    walk up from the database file instead, which silently resolved to a
+    directory that does not exist once a profile's database moved under
+    ``data/workspaces/<profile>/dataset/`` — and a missing directory is read as
+    "this corpus has no awards", so every award disappeared without an error.
+    """
+    return root / "data" / "awards"
 
 
 def normalize_title(title: str) -> str:

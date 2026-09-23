@@ -2,6 +2,19 @@
 
 ## Unreleased
 
+- **Fixed: awards were invisible in the interface and in the author ranking.**
+  The award tables live in `data/awards/`, but every caller except one derived
+  that path by walking up from the profile database. Once a profile's database
+  moved under `data/workspaces/<profile>/dataset/`, the walk landed on a
+  directory that does not exist — and a missing directory reads as "this corpus
+  has no awards". The Award column was blank, "Award winners only" returned
+  nothing, and no error was raised anywhere. `src.awards.awards_directory()` is
+  now the single resolver, and `tests/test_awards_reach_the_corpus.py` checks
+  the real directory against the active profile and fails if a caller goes back
+  to deriving the path. The current release resolves 104 award labels.
+- The README states what the corpus does not hold: preprints. arXiv is not a
+  venue, and the early-signal study that measures the arXiv lead stays with the
+  frozen `sbseg2026-camera-ready` release that ships its snapshot.
 - The demonstration is rebuilt: 2:32 instead of 7:49, showing `security-20-v5`
   with the current counts. The picture is rendered frame by frame at twice the
   delivered resolution rather than screen-recorded, so the interface text stays

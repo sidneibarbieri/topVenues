@@ -20,7 +20,7 @@ sys.path.insert(0, str(ARTIFACT_ROOT))
 from src.abstract_fetcher import AbstractFetcher
 from src.analytics import CONCENTRATION_MINIMUM_PAPERS, authors_at_position
 from src.areas import area_for
-from src.awards import build_corpus_award_map
+from src.awards import awards_directory, build_corpus_award_map
 from src.chart_interactions import selected_chart_value
 from src.collector import Collector
 from src.database import require_corpus
@@ -216,7 +216,7 @@ def _load_collector() -> Collector:
 def _award_map() -> dict[str, list[str]]:
     """Cached map of corpus paper_id -> award labels (empty if no award tables)."""
     db_path = _load_collector().db.db_path
-    awards_dir = db_path.parent.parent / "awards"
+    awards_dir = awards_directory()
     if not awards_dir.exists():
         return {}
     return build_corpus_award_map(awards_dir, db_path)
@@ -247,7 +247,7 @@ def _cached_reference_authors(
         area=area,
         position=position,
         limit=limit,
-        awards_dir=Path(db_path).parent.parent / "awards",
+        awards_dir=awards_directory(),
         allowed_tiers=tiers_in_scope(tier_scope),
         ranking_metric=ranking_metric,
     )
