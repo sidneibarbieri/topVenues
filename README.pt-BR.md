@@ -159,7 +159,7 @@ topVenues/
 ├── src/                       biblioteca e interface de linha de comando
 ├── web/                       aplicação Streamlit
 ├── scripts/                   automação de verificação e de experimentos
-├── tests/                     404 testes automatizados
+├── tests/                     407 testes automatizados
 └── docs/                      guia do revisor, protocolo de auditoria, demonstração
 ```
 
@@ -557,7 +557,7 @@ python -m pytest -q
 ```
 
 - **Tempo esperado:** ~10 s
-- **Resultado esperado:** `404 passed`, sem acesso à rede.
+- **Resultado esperado:** `407 passed`, sem acesso à rede.
 - **Contagem de testes:** o número cresce a cada versão; o
   [histórico de versões](#histórico-de-versões) registra a evolução. O valor
   corrente é verificado automaticamente contra este README.

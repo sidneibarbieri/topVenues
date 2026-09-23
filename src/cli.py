@@ -20,7 +20,7 @@ from .analytics import (
     top_authors,
     topic_trend,
 )
-from .awards import build_corpus_award_map
+from .awards import awards_directory, build_corpus_award_map
 from .collector import Collector
 from .config import load_configuration, set_configuration_path
 from .models import DownloadStatus, SearchFilters
@@ -37,7 +37,7 @@ console = Console()
 
 def _load_award_map(collector: Collector) -> dict[str, list[str]]:
     """Map corpus paper_id to award labels from data/awards, or empty if absent."""
-    awards_dir = collector.base_dir / "data" / "awards"
+    awards_dir = awards_directory()
     if not awards_dir.exists():
         return {}
     return build_corpus_award_map(awards_dir, collector.db.db_path)
@@ -597,7 +597,7 @@ def authors(
     """Rank author visibility in this corpus with a declared metric."""
     base_dir = ctx.obj["base_dir"]
     collector = Collector(base_dir=base_dir)
-    awards_dir = collector.db.db_path.parent.parent / "awards"
+    awards_dir = awards_directory()
 
     with console.status("[bold green]Ranking reference authors..."):
         ranked = reference_authors(
@@ -973,7 +973,7 @@ def analytics(ctx: click.Context, area: str | None, author_limit: int) -> None:
         ranking.add_row(name, str(count))
     console.print(ranking)
 
-    awards_dir = db_path.parent.parent / "awards"
+    awards_dir = awards_directory()
     if awards_dir.exists():
         by_area = awarded_by_area(awards_dir, db_path)
         standout = Table(title="Award-winning papers by area")

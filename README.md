@@ -258,6 +258,17 @@ The released profile disables live refresh controls in the web interface. The
 **Dataset lifecycle** page describes the boundary; the controlled
 successor-profile procedure is in [docs/PROFILE_REFRESH.md](docs/PROFILE_REFRESH.md).
 
+### Preprints are not in the corpus
+
+A record is here because a declared venue published it, so arXiv is not a venue
+and no preprint is indexed. The arXiv linkage the main-track paper measures —
+29.2% of the 2024–2025 top-4 papers had a matching `cs.CR` preprint, a median of
+154 days earlier — is reproduced from the frozen `sbseg2026-camera-ready`
+release, which ships the 27,749-record arXiv snapshot and the study that reads
+it. To watch for new preprints by author instead, `scripts/monitor_preprints.py`
+queries arXiv live and labels its output as name-match candidates, never as
+verified identity.
+
 The main-track paper's 200-record audit and live baseline comparison are
 documented in [docs/COMPANION_FULL_PAPER_EVALUATION.md](docs/COMPANION_FULL_PAPER_EVALUATION.md)
 and remain bound to that paper's snapshot. The current corpus has a separate
