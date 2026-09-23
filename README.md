@@ -228,17 +228,19 @@ tools-track paper still runs against it unchanged.
 
 ## Demonstration
 
-[![TopVenues demonstration](docs/assets/demos/posters/topvenues-demo-v1.12.0.jpg)](https://huggingface.co/datasets/sidneibarbieri/topvenues/resolve/main/assets/demo/topvenues-demo-v1.12.0.mp4)
+[![TopVenues demonstration](docs/assets/demos/posters/topvenues-demo-v1.14.0.jpg)](https://huggingface.co/datasets/sidneibarbieri/topvenues/resolve/main/assets/demo/topvenues-demo-v1.14.0.en.mp4)
 
-Seven minutes and forty-nine seconds in 1920x1080, streamed from Hugging Face.
-It follows one path end to end: the problem a fixed denominator solves,
-installation and offline verification, an ordinary search with its exports,
-the four passes of the Insights page, the audit evidence, and the immutability
-boundary. It was recorded with v1.12.0 on `security-20-v4`, so the counts on
-screen are that profile's, not the current release's.
-Narration is US English; captions ship in Brazilian Portuguese and English.
-Sidecar SRT files, the timed narration source, and the shot plan are in
-[docs/demo/](docs/demo/README.md).
+Two minutes and thirty-two seconds in 1920x1080, streamed from Hugging Face.
+It follows one path end to end: the list that moves on its own, the idea, one
+command on a fresh clone, a search with its exports, where the corpus is
+silent, and what a fixed list makes measurable. It shows v1.14.0 on
+`security-20-v5`, so the counts on screen are the current release's.
+
+Narration is English. Captions are burned into two files, one
+[in English](https://huggingface.co/datasets/sidneibarbieri/topvenues/resolve/main/assets/demo/topvenues-demo-v1.14.0.en.mp4) and one
+[in Brazilian Portuguese](https://huggingface.co/datasets/sidneibarbieri/topvenues/resolve/main/assets/demo/topvenues-demo-v1.14.0.pt-BR.mp4); a
+[caption-free master](https://huggingface.co/datasets/sidneibarbieri/topvenues/resolve/main/assets/demo/topvenues-demo-v1.14.0.mp4) with sidecar WebVTT is in
+[docs/demo/](docs/demo/README.md), with the narration source.
 
 ## Scope and extension
 

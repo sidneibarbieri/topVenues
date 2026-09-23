@@ -42,7 +42,7 @@ _EVIDENCE_ASSETS = (
 
 # The recorded walkthrough the card links to; its files live under assets/demo
 # in the dataset repository, not in this export.
-DEMONSTRATION = "topvenues-demo-v1.12.0"
+DEMONSTRATION = "topvenues-demo-v1.14.0"
 
 _CARD_TEMPLATE = """\
 ---
