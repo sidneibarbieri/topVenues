@@ -2388,9 +2388,16 @@ def page_radar() -> None:
         t("Early signal"),
         t("Preprints whose authors already publish at the venues you track."),
     )
+    st.info(
+        t(
+            "These are preprints, not corpus records. A paper joins the corpus only when a "
+            "declared venue publishes it. Authors are matched by name, which is a candidate "
+            "identity, not a verified one."
+        )
+    )
     radar = _radar()
     if radar is None:
-        st.info(
+        st.warning(
             t(
                 "No radar has been collected yet. Run `python scripts/collect_preprint_radar.py` "
                 "to query arXiv and apply the rule to the current corpus."
@@ -2429,13 +2436,6 @@ def page_radar() -> None:
         )
     )
 
-    st.info(
-        t(
-            "These are preprints, not corpus records. A paper joins the corpus only when a "
-            "declared venue publishes it. Authors are matched by name, which is a candidate "
-            "identity, not a verified one."
-        )
-    )
     st.caption(
         t(
             "Measured on the 2023 cohort: 16 of every 100 flagged preprints reached a top-4 "
