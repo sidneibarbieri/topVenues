@@ -1,5 +1,18 @@
 # Changelog
 
+## Unreleased
+
+- The demonstration is rebuilt: 2:32 instead of 7:49, showing `security-20-v5`
+  with the current counts. The picture is rendered frame by frame at twice the
+  delivered resolution rather than screen-recorded, so the interface text stays
+  legible; the captions are burned in from the measured narration timeline, so
+  they cannot drift; and the narration is normalised to -16 LUFS, from the
+  -24.7 LUFS the previous recording shipped with. Three files are published:
+  a caption-free master for the player that loads WebVTT, and one file each
+  with English and Brazilian Portuguese captions burned in, for a feed that
+  plays muted. The old v1.12.0 recording stays reachable on Hugging Face for
+  anyone holding its link.
+
 ## 1.14.0 — 2026-09-22
 
 - The current release is `security-20-v5`: 15,286 records, 14,394 with an

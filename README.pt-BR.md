@@ -98,15 +98,19 @@ no artigo continua funcionando nele sem alteração.
 | ![Análises do corpus](docs/assets/screenshots/pt-BR/insights-llm-top4.png) | ![Recorrência de autores](docs/assets/screenshots/pt-BR/researcher-radar-llm-top4.png) |
 | **Análises** — distribuição por veículo, ano e classe; volume de um tópico e sua participação normalizada. | **Autores** — recorrência por volume, peso por nível ou concentração no top-4, com trajetória e coautoria. |
 
-[![Demonstração de 7min49s](docs/assets/demos/posters/topvenues-demo-v1.12.0.jpg)](https://huggingface.co/datasets/sidneibarbieri/topvenues/resolve/main/assets/demo/topvenues-demo-v1.12.0.mp4)
+[![Demonstração de 2min32s](docs/assets/demos/posters/topvenues-demo-v1.14.0.jpg)](https://huggingface.co/datasets/sidneibarbieri/topvenues/resolve/main/assets/demo/topvenues-demo-v1.14.0.pt-BR.mp4)
 
-**Demonstração completa em vídeo** (7min49s, 1920x1080, narração em inglês com
-legendas em português e inglês): percorre a instalação, a verificação offline, a
-busca com exportações, as quatro passagens da página de análises e a página de
-evidências. Gravada com a v1.12.0 sobre o perfil `security-20-v4`, então as
-contagens que aparecem são as daquele perfil, não as da versão atual. É
-transmitida pelo
-[Hugging Face](https://huggingface.co/datasets/sidneibarbieri/topvenues/resolve/main/assets/demo/topvenues-demo-v1.12.0.mp4).
+**Demonstração em vídeo** (2min32s, 1920x1080, narração em inglês): a lista que
+muda sozinha, a ideia, um comando num clone novo, a busca com as exportações,
+onde o corpus se cala, e o que uma lista fixa torna mensurável. Mostra a
+v1.14.0 sobre o perfil `security-20-v5`, então as contagens que aparecem são as
+da versão atual.
+
+As legendas vêm queimadas em dois arquivos, um
+[em português](https://huggingface.co/datasets/sidneibarbieri/topvenues/resolve/main/assets/demo/topvenues-demo-v1.14.0.pt-BR.mp4) e outro
+[em inglês](https://huggingface.co/datasets/sidneibarbieri/topvenues/resolve/main/assets/demo/topvenues-demo-v1.14.0.en.mp4). O
+[master sem legenda](https://huggingface.co/datasets/sidneibarbieri/topvenues/resolve/main/assets/demo/topvenues-demo-v1.14.0.mp4), com as faixas WebVTT,
+está em [docs/demo/](docs/demo/README.md).
 
 **Com assistentes de IA** (Claude, Codex, ChatGPT): um agente de terminal usa a
 linha de comando e segue o [`AGENTS.md`](AGENTS.md). Ele responde a partir do
