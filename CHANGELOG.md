@@ -2,6 +2,18 @@
 
 ## Unreleased
 
+- **New: Early signal.** The triage rule the main-track paper measured
+  retrospectively now runs forward. `scripts/collect_preprint_radar.py` sweeps a
+  recent window of arXiv `cs.CR`, keeps the preprints whose authors already
+  published in the declared top-4 in the previous four years, and writes
+  `data/radar/preprint-radar.json`; the **Early signal** page and `src.cli radar`
+  read it. The point is to read that work months before a venue publishes it,
+  which is what a 16.5× separation is for.
+  The boundary is explicit everywhere it is shown: a flagged preprint is **not**
+  a corpus record and is never counted as one, author matching is a name match
+  rather than a verified identity, and the measured calibration is stated — 16 of
+  every 100 flagged preprints reached a top-4 venue within three years, so most
+  of the list will not.
 - **Fixed: awards were invisible in the interface and in the author ranking.**
   The award tables live in `data/awards/`, but every caller except one derived
   that path by walking up from the profile database. Once a profile's database

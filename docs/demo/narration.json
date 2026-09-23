@@ -73,11 +73,11 @@
   "id": "08",
   "act": "reproduce",
   "shot": "term:tests",
-  "speak": "Four hundred and seven tests, eight environments, on every change. The same bytes every time.",
-  "en": "407 tests, eight environments, every change.\nThe same bytes every time.",
-  "pt": "407 testes, oito ambientes, a cada mudança.\nSempre os mesmos bytes.",
+  "speak": "The whole test suite, in eight environments, on every change. The same bytes every time.",
+  "en": "The whole suite, eight environments, every change.\nThe same bytes every time.",
+  "pt": "A suíte inteira, oito ambientes, a cada mudança.\nSempre os mesmos bytes.",
   "audio": "08.wav",
-  "seconds": 7.75
+  "seconds": 7.125
  },
  {
   "id": "09",

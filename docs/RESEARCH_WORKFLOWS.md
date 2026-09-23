@@ -38,7 +38,10 @@ python scripts/evaluate_watchlist.py topvenues-watchlist.json \
 
 The corpus itself holds no preprints: a record is in it because a declared
 venue published it. The delta is deterministic. To retrieve possible new
-preprints, run `scripts/monitor_preprints.py`. Its output is deliberately labelled **name-match
+preprints, run `scripts/monitor_preprints.py` for a watchlist of authors, or
+`scripts/collect_preprint_radar.py` to sweep a whole arXiv category and keep the
+preprints the measured triage rule points at, which the **Early signal** page
+reads. Its output is deliberately labelled **name-match
 candidates**: DBLP and arXiv names are not cross-source identity proof. Confirm
 identity before citing, alerting, or attributing a preprint.
 
