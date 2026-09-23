@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import xml.etree.ElementTree as ET
+from datetime import date
 from urllib.parse import urlencode
 
 from pydantic import BaseModel
@@ -29,6 +30,33 @@ def arxiv_api_url(author: str, *, max_results: int = 20) -> str:
         {
             "search_query": f'au:"{author}"',
             "start": 0,
+            "max_results": max_results,
+            "sortBy": "submittedDate",
+            "sortOrder": "descending",
+        }
+    )
+
+
+def arxiv_window_url(
+    category: str,
+    *,
+    since: date,
+    until: date,
+    start: int = 0,
+    max_results: int = 100,
+) -> str:
+    """Submissions in one arXiv category over a date window, newest first.
+
+    The radar asks by category rather than by author: the rule decides which
+    preprints matter, so the query must not presuppose the answer. The window is
+    part of the query because paging deep into an open-ended category search is
+    answered with 406.
+    """
+    window = f"[{since:%Y%m%d}0000 TO {until:%Y%m%d}2359]"
+    return "https://export.arxiv.org/api/query?" + urlencode(
+        {
+            "search_query": f"cat:{category} AND submittedDate:{window}",
+            "start": start,
             "max_results": max_results,
             "sortBy": "submittedDate",
             "sortOrder": "descending",
