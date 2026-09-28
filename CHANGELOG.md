@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.15.0 — 2026-09-28
+
 - **Search rows now control paper details.** Selecting a result updates the
   detail card directly. The corpus remains read-only; personal reading status,
   tags, and notes live in a validated sidecar that can be imported or exported
