@@ -457,7 +457,7 @@ footer h2 { font-size: .74rem; letter-spacing: .09em; text-transform: uppercase;
    "codeRepository": "https://github.com/sidneibarbieri/topVenues",
    "programmingLanguage": "Python",
    "license": "https://opensource.org/licenses/MIT",
-   "softwareVersion": "1.14.0"
+   "softwareVersion": "1.15.0"
   },
   {
    "@type": "ScholarlyArticle",
@@ -610,7 +610,7 @@ footer h2 { font-size: .74rem; letter-spacing: .09em; text-transform: uppercase;
     <div class="release-head">
       <strong id="release-h"><span data-l="en">Current release</span><span data-l="pt">Versão atual</span></strong>
       <code>security-20-v5</code>
-      <span class="note"><span data-l="en">TopVenues v1.14.0 · snapshot built 2026-09-22 · a maintained corpus, not the denominator of a paper (<a href="#papers">those are frozen</a>).</span><span data-l="pt">TopVenues v1.14.0 · snapshot gerado em 2026-09-22 · um corpus mantido, não o denominador de um artigo (<a href="#papers">esses estão congelados</a>).</span></span>
+      <span class="note"><span data-l="en">TopVenues v1.15.0 · snapshot built 2026-09-22 · a maintained corpus, not the denominator of a paper (<a href="#papers">those are frozen</a>).</span><span data-l="pt">TopVenues v1.15.0 · snapshot gerado em 2026-09-22 · um corpus mantido, não o denominador de um artigo (<a href="#papers">esses estão congelados</a>).</span></span>
     </div>
     <dl class="stats">
       <div><dt><span data-l="en">records</span><span data-l="pt">registros</span></dt><dd><span data-l="en">15,286</span><span data-l="pt">15.286</span></dd></div>
@@ -839,7 +839,7 @@ bash reproduce.sh --profile security-20</code></pre></div></div>
           <div role="tabpanel" id="pane-unix" aria-labelledby="tab-unix">
             <p class="req" data-l="en">Python 3.11–3.14, Git and Bash. No API key, GPU or institutional access.</p>
             <p class="req" data-l="pt">Python 3.11–3.14, Git e Bash. Sem chave de API, GPU ou acesso institucional.</p>
-            <div class="code"><div class="code-bar"><span class="code-label"></span><button class="copy" type="button" data-copy><span data-l="en">Copy</span><span data-l="pt">Copiar</span></button></div><pre><code>git clone --depth 1 --branch v1.14.0 https://github.com/sidneibarbieri/topVenues.git
+            <div class="code"><div class="code-bar"><span class="code-label"></span><button class="copy" type="button" data-copy><span data-l="en">Copy</span><span data-l="pt">Copiar</span></button></div><pre><code>git clone --depth 1 --branch v1.15.0 https://github.com/sidneibarbieri/topVenues.git
 cd topVenues
 bash reproduce.sh --profile security-20-v5</code></pre></div>
             <h3><span data-l="en">Then open the interface</span><span data-l="pt">Depois, abra a interface</span></h3>
@@ -849,7 +849,7 @@ python -m streamlit run web/app.py</code></pre></div>
           <div role="tabpanel" id="pane-win" aria-labelledby="tab-win" hidden>
             <p class="req" data-l="en">Python 3.11–3.14 with the <code>py</code> launcher, Git and PowerShell.</p>
             <p class="req" data-l="pt">Python 3.11–3.14 com o launcher <code>py</code>, Git e PowerShell.</p>
-            <div class="code"><div class="code-bar"><span class="code-label"></span><button class="copy" type="button" data-copy><span data-l="en">Copy</span><span data-l="pt">Copiar</span></button></div><pre><code>git clone --depth 1 --branch v1.14.0 https://github.com/sidneibarbieri/topVenues.git
+            <div class="code"><div class="code-bar"><span class="code-label"></span><button class="copy" type="button" data-copy><span data-l="en">Copy</span><span data-l="pt">Copiar</span></button></div><pre><code>git clone --depth 1 --branch v1.15.0 https://github.com/sidneibarbieri/topVenues.git
 cd topVenues
 powershell -ExecutionPolicy Bypass -File .\reproduce.ps1 -Profile security-20-v5</code></pre></div>
             <h3><span data-l="en">Then open the interface</span><span data-l="pt">Depois, abra a interface</span></h3>
@@ -899,8 +899,8 @@ security = corpus.filter(lambda paper: paper[&quot;area&quot;] == &quot;security
     <p class="sec-label"><span class="no">07</span><span data-l="en">Cite</span><span data-l="pt">Citar</span></p>
     <div>
       <h2 id="cite-h"><span data-l="en">Cite the tool paper, and name the release you used.</span><span data-l="pt">Cite o artigo da ferramenta e informe a versão que você usou.</span></h2>
-      <p class="sec-intro" data-l="en">Used TopVenues to search, build a review corpus, export references or rank authors? Cite Paper B, the tools-track paper, and name the release and profile, such as <code>v1.14.0 · security-20-v5</code>, so a reader can reopen the same snapshot. Using or building on the corpus method or its measurements? Cite Paper A. When both apply, cite both.</p>
-      <p class="sec-intro" data-l="pt">Usou o TopVenues para buscar, montar o corpus de uma revisão, exportar referências ou ranquear autores? Cite o Artigo B, da trilha de ferramentas, e informe a versão e o perfil, como <code>v1.14.0 · security-20-v5</code>, para que o leitor reabra o mesmo snapshot. Usa ou estende o método do corpus ou suas medições? Cite o Artigo A. Quando os dois se aplicam, cite os dois.</p>
+      <p class="sec-intro" data-l="en">Used TopVenues to search, build a review corpus, export references or rank authors? Cite Paper B, the tools-track paper, and name the release and profile, such as <code>v1.15.0 · security-20-v5</code>, so a reader can reopen the same snapshot. Using or building on the corpus method or its measurements? Cite Paper A. When both apply, cite both.</p>
+      <p class="sec-intro" data-l="pt">Usou o TopVenues para buscar, montar o corpus de uma revisão, exportar referências ou ranquear autores? Cite o Artigo B, da trilha de ferramentas, e informe a versão e o perfil, como <code>v1.15.0 · security-20-v5</code>, para que o leitor reabra o mesmo snapshot. Usa ou estende o método do corpus ou suas medições? Cite o Artigo A. Quando os dois se aplicam, cite os dois.</p>
       <div class="cite">
         <div class="code"><div class="code-bar"><span class="code-label"><span data-l="en">Paper B · using the tool</span><span data-l="pt">Artigo B · uso da ferramenta</span></span><button class="copy" type="button" data-copy><span data-l="en">Copy</span><span data-l="pt">Copiar</span></button></div><pre><code>@inproceedings{barbieri2026topvenuestool,
   author    = {Sidnei Barbieri and {\&#x27;A}gney Lopes Roth Ferraz and Louren{\c{c}}o Alves {Pereira J{\&#x27;u}nior}},
@@ -961,7 +961,7 @@ security = corpus.filter(lambda paper: paper[&quot;area&quot;] == &quot;security
       <p data-l="en">Code MIT · Inter typeface, SIL Open Font License.</p>
       <p data-l="pt">Código MIT · fonte Inter, SIL Open Font License.</p>
     </div>
-    <p class="stamp"><span data-l="en">Built from</span><span data-l="pt">Gerado a partir de</span> security-20-v5 · v1.14.0 · 5165fe6 · 2026-09-23</p>
+    <p class="stamp"><span data-l="en">Built from</span><span data-l="pt">Gerado a partir de</span> security-20-v5 · v1.15.0 · 4ed3afe · 2026-09-28</p>
   </div>
 </footer>
 
