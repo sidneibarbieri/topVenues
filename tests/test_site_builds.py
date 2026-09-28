@@ -34,6 +34,16 @@ def test_the_page_builds_with_every_placeholder_filled(tmp_path):
     assert (tmp_path / "assets" / "brand" / "topvenues-app-icon.svg").is_file()
 
 
+def test_every_local_page_asset_is_published(tmp_path):
+    index = _builder().build(ROOT, tmp_path)
+    page = index.read_text(encoding="utf-8")
+    asset_paths = set(re.findall(r'(?:src|href)="(assets/[^"]+)"', page))
+
+    assert asset_paths
+    for asset_path in asset_paths:
+        assert (tmp_path / asset_path).is_file(), f"site does not publish {asset_path}"
+
+
 def test_the_frozen_paper_values_match_the_registry():
     registry = (ROOT / "docs" / "PAPERS.md").read_text(encoding="utf-8")
     for paper in _builder().PAPERS:
