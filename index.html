@@ -457,7 +457,7 @@ footer h2 { font-size: .74rem; letter-spacing: .09em; text-transform: uppercase;
    "codeRepository": "https://github.com/sidneibarbieri/topVenues",
    "programmingLanguage": "Python",
    "license": "https://opensource.org/licenses/MIT",
-   "softwareVersion": "1.15.0"
+   "softwareVersion": "1.15.1"
   },
   {
    "@type": "ScholarlyArticle",
@@ -610,7 +610,7 @@ footer h2 { font-size: .74rem; letter-spacing: .09em; text-transform: uppercase;
     <div class="release-head">
       <strong id="release-h"><span data-l="en">Current release</span><span data-l="pt">Versão atual</span></strong>
       <code>security-20-v5</code>
-      <span class="note"><span data-l="en">TopVenues v1.15.0 · snapshot built 2026-09-22 · a maintained corpus, not the denominator of a paper (<a href="#papers">those are frozen</a>).</span><span data-l="pt">TopVenues v1.15.0 · snapshot gerado em 2026-09-22 · um corpus mantido, não o denominador de um artigo (<a href="#papers">esses estão congelados</a>).</span></span>
+      <span class="note"><span data-l="en">TopVenues v1.15.1 · snapshot built 2026-09-22 · a maintained corpus, not the denominator of a paper (<a href="#papers">those are frozen</a>).</span><span data-l="pt">TopVenues v1.15.1 · snapshot gerado em 2026-09-22 · um corpus mantido, não o denominador de um artigo (<a href="#papers">esses estão congelados</a>).</span></span>
     </div>
     <dl class="stats">
       <div><dt><span data-l="en">records</span><span data-l="pt">registros</span></dt><dd><span data-l="en">15,286</span><span data-l="pt">15.286</span></dd></div>
@@ -770,7 +770,7 @@ python -m src.cli --profile security-20-v5 export --format bibtex --tech &quot;f
   <p class="kicker"><span data-l="en">Paper A · Main track, SBSeg 2026</span><span data-l="pt">Artigo A · Trilha principal, SBSeg 2026</span></p>
   <h3>TopVenues: A Reproducible Corpus and Tooling Substrate for Cybersecurity Literature Reviews</h3>
   <p class="venue">Anais do XXVI Simpósio Brasileiro de Cibersegurança (SBSeg 2026), <span data-l="en">pp.</span><span data-l="pt">p.</span> 1150–1165</p>
-  <p class="links"><a class="arrow" href="https://sol.sbc.org.br/index.php/sbseg/article/view/44350"><span data-l="en">Read on SOL</span><span data-l="pt">Ler no SOL</span></a>
+  <p class="links"><a class="arrow" href="https://sol.sbc.org.br/index.php/sbseg/article/view/44350"><span data-l="en">Read on SOL</span><span data-l="pt">Ler no SOL</span></a> <a class="arrow" href="https://arxiv.org/abs/2606.18320">arXiv:2606.18320</a>
      <span class="doi">DOI <code>10.5753/sbseg.2026.29056</code></span></p>
   <dl class="facts"><dt><span data-l="en">Repository</span><span data-l="pt">Repositório</span></dt><dd><a href="https://github.com/sidneibarbieri/topVenues"><code>sidneibarbieri/topVenues</code></a></dd><dt><span data-l="en">Release</span><span data-l="pt">Versão</span></dt><dd><a href="https://github.com/sidneibarbieri/topVenues/releases/tag/sbseg2026-camera-ready"><code>sbseg2026-camera-ready</code></a></dd><dt><span data-l="en">Snapshot</span><span data-l="pt">Snapshot</span></dt><dd><span data-l="en">May 2026 · 9,925 records · 11 venues</span><span data-l="pt">maio de 2026 · 9.925 registros · 11 veículos</span></dd><dt>SHA-256</dt><dd><code class="hash">0f4dbaa97d0cf39abd2340adb3280643df090b5de9cd1a29bff39a0b53ef64cd</code></dd><dt><span data-l="en">Tests</span><span data-l="pt">Testes</span></dt><dd><span data-l="en">252 tests</span><span data-l="pt">252 testes</span></dd></dl>
   <div class="commands"><div class="code"><div class="code-bar"><span class="code-label"><span data-l="en">Reproduce</span><span data-l="pt">Reproduzir</span></span><button class="copy" type="button" data-copy><span data-l="en">Copy</span><span data-l="pt">Copiar</span></button></div><pre><code>git clone https://github.com/sidneibarbieri/topVenues
@@ -839,7 +839,7 @@ bash reproduce.sh --profile security-20</code></pre></div></div>
           <div role="tabpanel" id="pane-unix" aria-labelledby="tab-unix">
             <p class="req" data-l="en">Python 3.11–3.14, Git and Bash. No API key, GPU or institutional access.</p>
             <p class="req" data-l="pt">Python 3.11–3.14, Git e Bash. Sem chave de API, GPU ou acesso institucional.</p>
-            <div class="code"><div class="code-bar"><span class="code-label"></span><button class="copy" type="button" data-copy><span data-l="en">Copy</span><span data-l="pt">Copiar</span></button></div><pre><code>git clone --depth 1 --branch v1.15.0 https://github.com/sidneibarbieri/topVenues.git
+            <div class="code"><div class="code-bar"><span class="code-label"></span><button class="copy" type="button" data-copy><span data-l="en">Copy</span><span data-l="pt">Copiar</span></button></div><pre><code>git clone --depth 1 --branch v1.15.1 https://github.com/sidneibarbieri/topVenues.git
 cd topVenues
 bash reproduce.sh --profile security-20-v5</code></pre></div>
             <h3><span data-l="en">Then open the interface</span><span data-l="pt">Depois, abra a interface</span></h3>
@@ -849,7 +849,7 @@ python -m streamlit run web/app.py</code></pre></div>
           <div role="tabpanel" id="pane-win" aria-labelledby="tab-win" hidden>
             <p class="req" data-l="en">Python 3.11–3.14 with the <code>py</code> launcher, Git and PowerShell.</p>
             <p class="req" data-l="pt">Python 3.11–3.14 com o launcher <code>py</code>, Git e PowerShell.</p>
-            <div class="code"><div class="code-bar"><span class="code-label"></span><button class="copy" type="button" data-copy><span data-l="en">Copy</span><span data-l="pt">Copiar</span></button></div><pre><code>git clone --depth 1 --branch v1.15.0 https://github.com/sidneibarbieri/topVenues.git
+            <div class="code"><div class="code-bar"><span class="code-label"></span><button class="copy" type="button" data-copy><span data-l="en">Copy</span><span data-l="pt">Copiar</span></button></div><pre><code>git clone --depth 1 --branch v1.15.1 https://github.com/sidneibarbieri/topVenues.git
 cd topVenues
 powershell -ExecutionPolicy Bypass -File .\reproduce.ps1 -Profile security-20-v5</code></pre></div>
             <h3><span data-l="en">Then open the interface</span><span data-l="pt">Depois, abra a interface</span></h3>
@@ -899,8 +899,8 @@ security = corpus.filter(lambda paper: paper[&quot;area&quot;] == &quot;security
     <p class="sec-label"><span class="no">07</span><span data-l="en">Cite</span><span data-l="pt">Citar</span></p>
     <div>
       <h2 id="cite-h"><span data-l="en">Cite the tool paper, and name the release you used.</span><span data-l="pt">Cite o artigo da ferramenta e informe a versão que você usou.</span></h2>
-      <p class="sec-intro" data-l="en">Used TopVenues to search, build a review corpus, export references or rank authors? Cite Paper B, the tools-track paper, and name the release and profile, such as <code>v1.15.0 · security-20-v5</code>, so a reader can reopen the same snapshot. Using or building on the corpus method or its measurements? Cite Paper A. When both apply, cite both.</p>
-      <p class="sec-intro" data-l="pt">Usou o TopVenues para buscar, montar o corpus de uma revisão, exportar referências ou ranquear autores? Cite o Artigo B, da trilha de ferramentas, e informe a versão e o perfil, como <code>v1.15.0 · security-20-v5</code>, para que o leitor reabra o mesmo snapshot. Usa ou estende o método do corpus ou suas medições? Cite o Artigo A. Quando os dois se aplicam, cite os dois.</p>
+      <p class="sec-intro" data-l="en">Used TopVenues to search, build a review corpus, export references or rank authors? Cite Paper B, the tools-track paper, and name the release and profile, such as <code>v1.15.1 · security-20-v5</code>, so a reader can reopen the same snapshot. Using or building on the corpus method or its measurements? Cite Paper A. When both apply, cite both.</p>
+      <p class="sec-intro" data-l="pt">Usou o TopVenues para buscar, montar o corpus de uma revisão, exportar referências ou ranquear autores? Cite o Artigo B, da trilha de ferramentas, e informe a versão e o perfil, como <code>v1.15.1 · security-20-v5</code>, para que o leitor reabra o mesmo snapshot. Usa ou estende o método do corpus ou suas medições? Cite o Artigo A. Quando os dois se aplicam, cite os dois.</p>
       <div class="cite">
         <div class="code"><div class="code-bar"><span class="code-label"><span data-l="en">Paper B · using the tool</span><span data-l="pt">Artigo B · uso da ferramenta</span></span><button class="copy" type="button" data-copy><span data-l="en">Copy</span><span data-l="pt">Copiar</span></button></div><pre><code>@inproceedings{barbieri2026topvenuestool,
   author    = {Sidnei Barbieri and {\&#x27;A}gney Lopes Roth Ferraz and Louren{\c{c}}o Alves {Pereira J{\&#x27;u}nior}},
@@ -922,7 +922,9 @@ security = corpus.filter(lambda paper: paper[&quot;area&quot;] == &quot;security
   publisher = {Sociedade Brasileira de Computa{\c{c}}{\~a}o},
   address   = {Porto Alegre, RS, Brasil},
   doi       = {10.5753/sbseg.2026.29056},
-  url       = {https://sol.sbc.org.br/index.php/sbseg/article/view/44350}
+  url       = {https://sol.sbc.org.br/index.php/sbseg/article/view/44350},
+  eprint    = {2606.18320},
+  archivePrefix = {arXiv}
 }</code></pre></div>
       </div>
       <div class="star-panel">
@@ -961,7 +963,7 @@ security = corpus.filter(lambda paper: paper[&quot;area&quot;] == &quot;security
       <p data-l="en">Code MIT · Inter typeface, SIL Open Font License.</p>
       <p data-l="pt">Código MIT · fonte Inter, SIL Open Font License.</p>
     </div>
-    <p class="stamp"><span data-l="en">Built from</span><span data-l="pt">Gerado a partir de</span> security-20-v5 · v1.15.0 · 4ed3afe · 2026-09-28</p>
+    <p class="stamp"><span data-l="en">Built from</span><span data-l="pt">Gerado a partir de</span> security-20-v5 · v1.15.1 · a9e5035 · 2026-09-28</p>
   </div>
 </footer>
 
