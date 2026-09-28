@@ -66,4 +66,8 @@ references:
     year: 2026
     doi: "10.5753/sbseg.2026.29056"
     url: "https://sol.sbc.org.br/index.php/sbseg/article/view/44350"
+    identifiers:
+      - type: url
+        value: "https://arxiv.org/abs/2606.18320"
+        description: "arXiv preprint 2606.18320"
     repository-code: "https://github.com/sidneibarbieri/topVenues"

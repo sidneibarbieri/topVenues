@@ -357,7 +357,9 @@ each one to its SHA-256. GitHub's "Cite this repository" reads
   year      = {2026},
   publisher = {Sociedade Brasileira de Computa{\c{c}}{\~a}o},
   doi       = {10.5753/sbseg.2026.29056},
-  url       = {https://sol.sbc.org.br/index.php/sbseg/article/view/44350}
+  url       = {https://sol.sbc.org.br/index.php/sbseg/article/view/44350},
+  eprint    = {2606.18320},
+  archivePrefix = {arXiv}
 }
 
 @inproceedings{barbieri2026topvenuestool,

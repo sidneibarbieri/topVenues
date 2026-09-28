@@ -23,6 +23,7 @@ from src.annotations import (
     PaperAnnotation,
     dump_annotation_bundle,
     load_annotation_bundle,
+    merge_bundle,
     normalize_tags,
 )
 from src.areas import area_for
@@ -141,6 +142,7 @@ RADAR_POSITIONS = {
     marked("First author"): "first",
     marked("Last author"): "last",
 }
+ANNOTATION_IMPORT_KEY = "annotation_import_applied"
 READING_STATUSES = (
     marked("unread"),
     marked("reading"),
@@ -525,43 +527,70 @@ def _annotations() -> dict[str, PaperAnnotation]:
     }
 
 
+def _editor_key(field: str, paper_id: str) -> str:
+    return f"annotation_{field}_{paper_id}"
+
+
+def _seed_editor(annotation: PaperAnnotation, *, overwrite: bool) -> None:
+    """Put a note into the editor widgets through session state.
+
+    A keyed Streamlit widget ignores its ``value`` argument after the first
+    render, so session state is the only way an imported note reaches the screen.
+    """
+    values = {
+        "status": annotation.status,
+        "tags": ", ".join(annotation.tags),
+        "notes": annotation.notes,
+    }
+    for field, value in values.items():
+        key = _editor_key(field, annotation.paper_id)
+        if overwrite or key not in st.session_state:
+            st.session_state[key] = value
+
+
+def _apply_annotation_import(uploaded) -> None:
+    """Merge an uploaded bundle once.
+
+    The uploader keeps its file across reruns, so without the file id guard the
+    same import would run again on every interaction and overwrite notes saved
+    after it.
+    """
+    if uploaded is None or uploaded.file_id == st.session_state.get(ANNOTATION_IMPORT_KEY):
+        return
+    bundle = load_annotation_bundle(uploaded.getvalue())
+    st.session_state["paper_annotations"] = merge_bundle(_annotations(), bundle)
+    st.session_state[ANNOTATION_IMPORT_KEY] = uploaded.file_id
+    for annotation in bundle.annotations:
+        _seed_editor(annotation, overwrite=True)
+
+
 def _render_annotation_editor(paper_id: str) -> None:
     """Edit a user-owned note without writing to the bibliographic database."""
-    annotations = _annotations()
-    current = annotations.get(paper_id, PaperAnnotation(paper_id=paper_id))
     st.markdown(f"**{t('Your notes')}**")
     st.caption(t("Notes stay separate from the read-only corpus."))
-
-    import_file = st.file_uploader(
-        t("Import notes"),
-        type="json",
-        key=f"annotation_import_{paper_id}",
-        help=t("Load a TopVenues annotation JSON file."),
+    _apply_annotation_import(
+        st.file_uploader(
+            t("Import notes"),
+            type="json",
+            key="annotation_import",
+            help=t("Load a TopVenues annotation JSON file."),
+        )
     )
-    if import_file is not None:
-        imported = load_annotation_bundle(import_file.getvalue()).by_paper_id()
-        st.session_state["paper_annotations"] = imported
-        annotations = imported
-        current = imported.get(paper_id, current)
+    annotations = _annotations()
+    _seed_editor(annotations.get(paper_id, PaperAnnotation(paper_id=paper_id)), overwrite=False)
 
     status = st.selectbox(
         t("Reading status"),
         READING_STATUSES,
-        index=READING_STATUSES.index(current.status),
         format_func=t,
-        key=f"annotation_status_{paper_id}",
+        key=_editor_key("status", paper_id),
     )
     tags = st.text_input(
         t("Tags"),
-        value=", ".join(current.tags),
         help=t("Separate tags with commas."),
-        key=f"annotation_tags_{paper_id}",
+        key=_editor_key("tags", paper_id),
     )
-    notes = st.text_area(
-        t("Notes"),
-        value=current.notes,
-        key=f"annotation_notes_{paper_id}",
-    )
+    notes = st.text_area(t("Notes"), key=_editor_key("notes", paper_id))
     if st.button(t("Save note"), key=f"annotation_save_{paper_id}"):
         annotations[paper_id] = PaperAnnotation(
             paper_id=paper_id,

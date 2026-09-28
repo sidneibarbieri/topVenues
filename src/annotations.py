@@ -50,6 +50,18 @@ def load_annotation_bundle(payload: str | bytes) -> AnnotationBundle:
     return AnnotationBundle.model_validate_json(payload)
 
 
+def merge_bundle(
+    current: dict[str, PaperAnnotation], bundle: AnnotationBundle
+) -> dict[str, PaperAnnotation]:
+    """Apply an imported bundle on top of the current notes.
+
+    Imported notes win for the papers they cover; notes on every other paper are
+    kept. Replacing the whole set would silently drop what was written since the
+    file was exported.
+    """
+    return {**current, **bundle.by_paper_id()}
+
+
 def dump_annotation_bundle(annotations: dict[str, PaperAnnotation]) -> str:
     """Serialize annotations in stable paper-id order."""
     bundle = AnnotationBundle(

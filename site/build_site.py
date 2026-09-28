@@ -62,6 +62,7 @@ class Paper(Frozen):
     booktitle: str
     pages: str
     sol_url: str
+    arxiv_id: str | None = None
     doi: str
     repository: str
     repository_note_en: str = ""
@@ -86,6 +87,7 @@ PAPER_A = Paper(
     booktitle="Anais do XXVI Simpósio Brasileiro de Cibersegurança (SBSeg 2026)",
     pages="1150–1165",
     sol_url="https://sol.sbc.org.br/index.php/sbseg/article/view/44350",
+    arxiv_id="2606.18320",
     doi="10.5753/sbseg.2026.29056",
     repository="topVenues",
     release="sbseg2026-camera-ready",
@@ -489,11 +491,17 @@ def paper_card(paper: Paper) -> str:
   <p class="kicker">{bilingual(paper.kind_en, paper.kind_pt)}</p>
   <h3>{escape(paper.title)}</h3>
   <p class="venue">{escape(paper.booktitle)}, {bilingual("pp.", "p.")} {paper.pages}</p>
-  <p class="links"><a class="arrow" href="{paper.sol_url}">{bilingual("Read on SOL", "Ler no SOL")}</a>
+  <p class="links"><a class="arrow" href="{paper.sol_url}">{bilingual("Read on SOL", "Ler no SOL")}</a>{arxiv_link(paper)}
      <span class="doi">DOI <code>{paper.doi}</code></span></p>
   <dl class="facts">{paper_facts(paper)}</dl>
   <div class="commands">{commands}</div>
 </article>"""
+
+
+def arxiv_link(paper: Paper) -> str:
+    if paper.arxiv_id is None:
+        return ""
+    return f' <a class="arrow" href="https://arxiv.org/abs/{paper.arxiv_id}">arXiv:{paper.arxiv_id}</a>'
 
 
 def bibtex_entry(key: str, paper: Paper) -> str:
@@ -511,9 +519,16 @@ def bibtex_entry(key: str, paper: Paper) -> str:
         "  publisher = {Sociedade Brasileira de Computa{\\c{c}}{\\~a}o},\n"
         "  address   = {Porto Alegre, RS, Brasil},\n"
         f"  doi       = {{{paper.doi}}},\n"
-        f"  url       = {{{paper.sol_url}}}\n"
+        f"  url       = {{{paper.sol_url}}}"
+        f"{arxiv_fields(paper)}\n"
         "}"
     )
+
+
+def arxiv_fields(paper: Paper) -> str:
+    if paper.arxiv_id is None:
+        return ""
+    return f",\n  eprint    = {{{paper.arxiv_id}}},\n  archivePrefix = {{arXiv}}"
 
 
 def structured_data(release: Release) -> str:
