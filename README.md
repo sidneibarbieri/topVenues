@@ -49,7 +49,7 @@
 Requires Python 3.11–3.14, Git, and Bash.
 
 ```bash
-git clone --depth 1 --branch v1.15.0 https://github.com/sidneibarbieri/topVenues.git
+git clone --depth 1 --branch v1.15.1 https://github.com/sidneibarbieri/topVenues.git
 cd topVenues
 bash reproduce.sh --profile security-20-v5
 ```
@@ -67,7 +67,7 @@ Use the native PowerShell workflow rather than editing the Unix script or mixing
 Git Bash and PowerShell environments:
 
 ```powershell
-git clone --depth 1 --branch v1.15.0 https://github.com/sidneibarbieri/topVenues.git
+git clone --depth 1 --branch v1.15.1 https://github.com/sidneibarbieri/topVenues.git
 cd topVenues
 powershell -ExecutionPolicy Bypass -File .\reproduce.ps1 -Profile security-20-v5
 ```
@@ -101,7 +101,7 @@ System, Light and Dark.
 
 | Property | Value |
 | --- | --- |
-| Tool release | `v1.15.0` |
+| Tool release | `v1.15.1` |
 | Profile | `security-20-v5` |
 | DBLP release | [10.4230/dblp.xml.2026-09-01](https://doi.org/10.4230/dblp.xml.2026-09-01) |
 | Scope | 20 declared security and security-relevant venues |
@@ -186,7 +186,7 @@ python -m src.cli --profile security-20-v5 export --format bibtex --tech "fuzzin
   --tier-scope "Security top-4" -o fuzzing-tier1.bib
 
 # Build the Hugging Face Parquet export from the immutable profile
-python -m src.cli --profile security-20-v5 export-hf --release-tag v1.15.0
+python -m src.cli --profile security-20-v5 export-hf --release-tag v1.15.1
 
 # Create and later evaluate a portable research watch
 python scripts/evaluate_watchlist.py topvenues-watchlist.json --profile security-20-v5
@@ -341,7 +341,7 @@ other researchers can find it. Which paper to cite depends on what you used:
 
 | You… | Cite |
 | --- | --- |
-| used TopVenues to search, build a review corpus, export references or rank authors | the tools-track paper (`barbieri2026topvenuestool`), and name the release and profile, such as `TopVenues v1.15.0, profile security-20-v5` |
+| used TopVenues to search, build a review corpus, export references or rank authors | the tools-track paper (`barbieri2026topvenuestool`), and name the release and profile, such as `TopVenues v1.15.1, profile security-20-v5` |
 | use or build on the corpus method or its measurements | the main-track paper (`barbieri2026topvenues`) |
 | did both | both |
 

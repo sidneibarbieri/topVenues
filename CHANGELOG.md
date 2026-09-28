@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 1.15.1 — 2026-09-28
 
 - **Fixed: the radar could cover less than the window it stated.** The first
   weekly run read exactly 1,200 preprints — the page cap — while the 45-day
