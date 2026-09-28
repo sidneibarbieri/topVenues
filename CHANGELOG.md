@@ -2,6 +2,25 @@
 
 ## Unreleased
 
+- **Fixed: importing notes did nothing for the paper on screen.** The editor
+  widgets are keyed, and a keyed Streamlit widget ignores its `value` after the
+  first render, so an imported note never reached the screen and the next *Save*
+  wrote the stale values over it. The uploader also kept its file across reruns
+  and re-applied it on every interaction, which could erase notes saved after
+  the import. Notes now reach the editor through session state, a file is
+  applied once per upload, and an import merges into the current notes instead
+  of replacing them. Reproduced against `main` in a browser before the fix and
+  verified after it.
+- The main-track paper is linked to its arXiv record, 2606.18320, in
+  `docs/PAPERS.md`, `CITATION.cff`, both BibTeX entries, the project page, and the
+  Hugging Face card — which is what links the dataset to the paper page, the
+  half of issue #1 that was still open. The DOIs are not yet resolvable, so the
+  arXiv link is the stable one.
+- The Hugging Face card described the old 7:49 demonstration; it now describes
+  the current one.
+
+## Unreleased
+
 ## 1.15.0 — 2026-09-28
 
 - **Search rows now control paper details.** Selecting a result updates the

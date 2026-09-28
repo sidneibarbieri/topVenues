@@ -12,7 +12,8 @@ so a change that breaks a published result cannot pass.
 
 > **About the DOIs.** SBC assigned both DOIs in the proceedings metadata, but as
 > of September 2026 they are not yet registered with Crossref, so `doi.org` does
-> not resolve them. The SOL links below are the working ones.
+> not resolve them. The SOL links below are the working ones, and the main-track
+> paper is also on arXiv as 2606.18320.
 
 ## At a glance
 
@@ -33,6 +34,7 @@ Literature Reviews.** Sidnei Barbieri, Ágney Lopes Roth Ferraz, Lourenço Alves
 Pereira Júnior. *Anais do XXVI Simpósio Brasileiro de Cibersegurança (SBSeg
 2026)*, pp. 1150–1165.
 [Read on SOL](https://sol.sbc.org.br/index.php/sbseg/article/view/44350) ·
+[arXiv:2606.18320](https://arxiv.org/abs/2606.18320) ·
 DOI `10.5753/sbseg.2026.29056`
 
 | | |

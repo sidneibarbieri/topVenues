@@ -80,12 +80,15 @@ every record.
   the tools-track paper cites.
 - **Project page:** <https://sidneibarbieri.github.io/topVenues/>, with both
   published papers, the repository that reproduces each one, and how to cite them.
-- **Demonstration:** [MP4](assets/demo/{demonstration}.mp4) — 7:49, 1920x1080,
+- **Paper:** [arXiv:2606.18320](https://arxiv.org/abs/2606.18320), *TopVenues: A
+  Reproducible Corpus and Tooling Substrate for Cybersecurity Literature
+  Reviews* (SBSeg 2026, main track).
+- **Demonstration:** [MP4](assets/demo/{demonstration}.mp4) — 2:31, 1920x1080,
   with [Brazilian Portuguese](assets/demo/{demonstration}.pt-BR.vtt)
-  and [English](assets/demo/{demonstration}.en.vtt) captions. It covers
-  installation and offline verification, search and export, the four passes of
-  the Insights page, and the audit evidence. It was recorded on
-  `security-20-v4`, so the counts it shows are that profile's.
+  and [English](assets/demo/{demonstration}.en.vtt) captions; versions with the
+  captions burned in are beside it. It covers the problem, one command on a
+  fresh clone, search and export, where the corpus is silent, and what a fixed
+  list makes measurable, on `security-20-v5`.
 - **Pinned source of truth:** the gzipped SQLite snapshot shipped with the
   tool; this dataset is a faithful Parquet export of the same named snapshot.
 
@@ -190,7 +193,9 @@ same rule and entries.
   year      = {{2026}},
   publisher = {{Sociedade Brasileira de Computa{{\\c{{c}}}}{{\\~a}}o}},
   doi       = {{10.5753/sbseg.2026.29056}},
-  url       = {{https://sol.sbc.org.br/index.php/sbseg/article/view/44350}}
+  url       = {{https://sol.sbc.org.br/index.php/sbseg/article/view/44350}},
+  eprint    = {{2606.18320}},
+  archivePrefix = {{arXiv}}
 }}
 ```
 """

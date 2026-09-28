@@ -6,9 +6,11 @@ import pytest
 from pydantic import ValidationError
 
 from src.annotations import (
+    AnnotationBundle,
     PaperAnnotation,
     dump_annotation_bundle,
     load_annotation_bundle,
+    merge_bundle,
     normalize_tags,
 )
 
@@ -44,3 +46,20 @@ def test_annotation_bundle_rejects_unknown_fields() -> None:
 
     with pytest.raises(ValidationError):
         load_annotation_bundle(payload)
+
+
+def test_an_import_keeps_notes_on_papers_it_does_not_cover() -> None:
+    """Importing a backup must not erase what was written after it was exported."""
+    current = {
+        "paper-a": PaperAnnotation(paper_id="paper-a", notes="written today"),
+        "paper-b": PaperAnnotation(paper_id="paper-b", notes="old"),
+    }
+    bundle = AnnotationBundle(
+        annotations=[PaperAnnotation(paper_id="paper-b", status="read", notes="from backup")]
+    )
+
+    merged = merge_bundle(current, bundle)
+
+    assert merged["paper-a"].notes == "written today"
+    assert merged["paper-b"].notes == "from backup"
+    assert merged["paper-b"].status == "read"

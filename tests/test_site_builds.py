@@ -47,7 +47,8 @@ def test_every_local_page_asset_is_published(tmp_path):
 def test_the_frozen_paper_values_match_the_registry():
     registry = (ROOT / "docs" / "PAPERS.md").read_text(encoding="utf-8")
     for paper in _builder().PAPERS:
-        for value in (paper.sha256, paper.release, paper.doi, paper.sol_url, paper.pages):
+        declared = (paper.sha256, paper.release, paper.doi, paper.sol_url, paper.pages)
+        for value in (*declared, *filter(None, [paper.arxiv_id])):
             assert value in registry, f"{value} of {paper.release} is not in PAPERS.md"
         assert f"{paper.records:,}" in registry
         for block in paper.commands:
