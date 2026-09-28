@@ -33,7 +33,13 @@ HUGGING_FACE = "https://huggingface.co/datasets/sidneibarbieri"
 DEMO_VIDEO = f"{HUGGING_FACE}/topvenues/resolve/main/assets/demo/topvenues-demo-v1.14.0"
 AUTHORS = ("Sidnei Barbieri", "Ágney Lopes Roth Ferraz", "Lourenço Alves Pereira Júnior")
 BIBTEX_AUTHORS = "Sidnei Barbieri and {\\'A}gney Lopes Roth Ferraz and Louren{\\c{c}}o Alves {Pereira J{\\'u}nior}"
-BRAND_FILES = ("topvenues-app-icon.svg", "topvenues-social.png", "mark-32.png", "mark-180.png")
+BRAND_FILES = (
+    "topvenues-app-icon.svg",
+    "topvenues-mark.svg",
+    "topvenues-social.png",
+    "mark-32.png",
+    "mark-180.png",
+)
 
 
 class Frozen(BaseModel):
