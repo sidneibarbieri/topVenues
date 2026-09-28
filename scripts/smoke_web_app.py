@@ -53,14 +53,31 @@ PAGE_CONTRACTS = (
     PageContract("Overview", "Start from a research question"),
     PageContract("Search", "Paper details"),
     PageContract("Insights", "Papers by venue"),
+    # The anchor is the boundary sentence, not a heading: a radar that renders
+    # its list without saying that preprints are not corpus records is broken in
+    # the way that matters.
+    PageContract("Early signal", "These are preprints, not corpus records"),
     PageContract("Evidence", "Manual abstract audit"),
     PageContract("Dataset lifecycle", "Run the data collection pipeline"),
 )
 
 
 def _rendered_text(session: AppTest) -> str:
-    """Every text element a reader would see on the current page."""
-    elements = [*session.title, *session.header, *session.subheader, *session.markdown]
+    """Every text element a reader would see on the current page.
+
+    Alerts count: a page whose only statement of its own boundary is an
+    ``st.info`` would otherwise pass this check while saying nothing.
+    """
+    elements = [
+        *session.title,
+        *session.header,
+        *session.subheader,
+        *session.markdown,
+        *session.caption,
+        *session.info,
+        *session.warning,
+        *session.success,
+    ]
     return "\n".join(str(element.value) for element in elements)
 
 

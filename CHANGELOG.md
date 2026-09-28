@@ -2,6 +2,27 @@
 
 ## Unreleased
 
+- **Search rows now control paper details.** Selecting a result updates the
+  detail card directly. The corpus remains read-only; personal reading status,
+  tags, and notes live in a validated sidecar that can be imported or exported
+  as JSON instead of overwriting bibliographic metadata.
+- **Paper-award coverage now includes IEEE S&P 2019--2024.** A dedicated
+  collector reads only the official, year-specific IEEE Security award pages
+  and stores each source URL with the label. This adds 35 source-backed records
+  and raises awards resolved against `security-20-v5` from 104 to 139. Missing
+  labels remain missing rather than being inferred from secondary lists.
+- **New: Early signal.** The triage rule the main-track paper measured
+  retrospectively now runs forward. `scripts/collect_preprint_radar.py` sweeps a
+  recent window of arXiv `cs.CR`, keeps the preprints whose authors already
+  published in the declared top-4 in the previous four years, and writes
+  `data/radar/preprint-radar.json`; the **Early signal** page and `src.cli radar`
+  read it. The point is to read that work months before a venue publishes it,
+  which is what a 16.5× separation is for.
+  The boundary is explicit everywhere it is shown: a flagged preprint is **not**
+  a corpus record and is never counted as one, author matching is a name match
+  rather than a verified identity, and the measured calibration is stated — 16 of
+  every 100 flagged preprints reached a top-4 venue within three years, so most
+  of the list will not.
 - **Fixed: awards were invisible in the interface and in the author ranking.**
   The award tables live in `data/awards/`, but every caller except one derived
   that path by walking up from the profile database. Once a profile's database
@@ -11,7 +32,8 @@
   nothing, and no error was raised anywhere. `src.awards.awards_directory()` is
   now the single resolver, and `tests/test_awards_reach_the_corpus.py` checks
   the real directory against the active profile and fails if a caller goes back
-  to deriving the path. The current release resolves 104 award labels.
+  to deriving the path. That repair restored 104 award labels; the historical
+  IEEE S&P expansion above raises the resolved total to 139.
 - The README states what the corpus does not hold: preprints. arXiv is not a
   venue, and the early-signal study that measures the arXiv lead stays with the
   frozen `sbseg2026-camera-ready` release that ships its snapshot.

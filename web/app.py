@@ -19,12 +19,19 @@ sys.path.insert(0, str(ARTIFACT_ROOT))
 
 from src.abstract_fetcher import AbstractFetcher
 from src.analytics import CONCENTRATION_MINIMUM_PAPERS, authors_at_position
+from src.annotations import (
+    PaperAnnotation,
+    dump_annotation_bundle,
+    load_annotation_bundle,
+    normalize_tags,
+)
 from src.areas import area_for
 from src.awards import awards_directory, build_corpus_award_map
 from src.chart_interactions import selected_chart_value
 from src.collector import Collector
 from src.database import require_corpus
 from src.models import PaperClass, SearchFilters
+from src.radar import load_radar, radar_path
 from src.release_identity import ReleaseIdentity, identity_from_manifest
 from src.reproduction_commands import SUPPORTED, command_for_profile
 from src.tiers import ALL_TIERS_SCOPE, tier_for, tier_scope_options, tiers_in_scope
@@ -134,6 +141,12 @@ RADAR_POSITIONS = {
     marked("First author"): "first",
     marked("Last author"): "last",
 }
+READING_STATUSES = (
+    marked("unread"),
+    marked("reading"),
+    marked("read"),
+    marked("excluded"),
+)
 RANKING_METRICS = {
     marked("Paper count"): "paper_count",
     marked("Tier-weighted visibility"): "tier_weighted",
@@ -492,6 +505,81 @@ def _reset_search_state() -> None:
         st.session_state[key] = value
     st.session_state.pop("search_signature", None)
     st.session_state["page_no"] = 1
+
+
+def _selected_result_index(selected_rows: list[int], result_count: int) -> int:
+    """Resolve a single table selection, defaulting to the first visible result."""
+    if selected_rows and 0 <= selected_rows[0] < result_count:
+        return selected_rows[0]
+    return 0
+
+
+def _annotations() -> dict[str, PaperAnnotation]:
+    """Return the current session's validated, corpus-independent annotations."""
+    stored = st.session_state.setdefault("paper_annotations", {})
+    return {
+        paper_id: annotation
+        if isinstance(annotation, PaperAnnotation)
+        else PaperAnnotation.model_validate(annotation)
+        for paper_id, annotation in stored.items()
+    }
+
+
+def _render_annotation_editor(paper_id: str) -> None:
+    """Edit a user-owned note without writing to the bibliographic database."""
+    annotations = _annotations()
+    current = annotations.get(paper_id, PaperAnnotation(paper_id=paper_id))
+    st.markdown(f"**{t('Your notes')}**")
+    st.caption(t("Notes stay separate from the read-only corpus."))
+
+    import_file = st.file_uploader(
+        t("Import notes"),
+        type="json",
+        key=f"annotation_import_{paper_id}",
+        help=t("Load a TopVenues annotation JSON file."),
+    )
+    if import_file is not None:
+        imported = load_annotation_bundle(import_file.getvalue()).by_paper_id()
+        st.session_state["paper_annotations"] = imported
+        annotations = imported
+        current = imported.get(paper_id, current)
+
+    status = st.selectbox(
+        t("Reading status"),
+        READING_STATUSES,
+        index=READING_STATUSES.index(current.status),
+        format_func=t,
+        key=f"annotation_status_{paper_id}",
+    )
+    tags = st.text_input(
+        t("Tags"),
+        value=", ".join(current.tags),
+        help=t("Separate tags with commas."),
+        key=f"annotation_tags_{paper_id}",
+    )
+    notes = st.text_area(
+        t("Notes"),
+        value=current.notes,
+        key=f"annotation_notes_{paper_id}",
+    )
+    if st.button(t("Save note"), key=f"annotation_save_{paper_id}"):
+        annotations[paper_id] = PaperAnnotation(
+            paper_id=paper_id,
+            status=status,
+            tags=normalize_tags(tags),
+            notes=notes.strip(),
+        )
+        st.session_state["paper_annotations"] = annotations
+        st.success(t("Note saved in this browser session."))
+
+    st.download_button(
+        t("Export notes"),
+        dump_annotation_bundle(annotations),
+        "topvenues-annotations.json",
+        "application/json",
+        help=t("Download the parallel annotation dataset for reuse or backup."),
+        key=f"annotation_export_{paper_id}",
+    )
 
 
 def _open_search_from_insight(
@@ -1097,7 +1185,7 @@ def page_search() -> None:
     ]
     df = pd.DataFrame(table_rows)
 
-    st.dataframe(
+    table_event = st.dataframe(
         df,
         width="stretch",
         hide_index=True,
@@ -1115,6 +1203,9 @@ def page_search() -> None:
             "Cite": st.column_config.TextColumn("\\cite{…}", width="small"),
             "Link": st.column_config.LinkColumn("DOI / URL", width="small", display_text=t("open")),
         },
+        key="search_results_table",
+        on_select="rerun",
+        selection_mode="single-row",
     )
 
     full_rows = [
@@ -1170,13 +1261,10 @@ def page_search() -> None:
 
     st.divider()
     st.subheader(t("Paper details"))
-    title_options = [f"[{paper.year}] {paper.title}" for paper in page_slice]
-    selected_label = st.selectbox(
-        t("Select a paper from this page"), title_options, label_visibility="collapsed"
-    )
-    if selected_label:
-        idx = title_options.index(selected_label)
-        paper = page_slice[idx]
+    st.caption(t("Select a row above to inspect that paper."))
+    selected_index = _selected_result_index(table_event.selection.rows, len(page_slice))
+    if page_slice:
+        paper = page_slice[selected_index]
         link = paper.ee or paper.url
         link_html = (
             f'<a href="{_safe_html(link)}" target="_blank">{_safe_html(link)}</a>' if link else "—"
@@ -1218,6 +1306,7 @@ def page_search() -> None:
                 st.code(paper.cite_command or "", language="latex")
         else:
             st.caption(t("BibTeX not yet fetched. Run `python -m src.cli bibtex` to populate."))
+        _render_annotation_editor(paper.paper_id)
 
 
 def page_insights() -> None:
@@ -2352,6 +2441,134 @@ def page_pipeline() -> None:
 # ── Main ───────────────────────────────────────────────────────────────────
 
 
+RADAR_SORTS = (marked("Newest first"), marked("Strongest track record"))
+
+
+@st.cache_data(show_spinner=False)
+def _radar() -> dict | None:
+    """The published preprint radar, or None when none has been collected."""
+    snapshot = load_radar(radar_path(ARTIFACT_ROOT))
+    return snapshot.model_dump() if snapshot else None
+
+
+def _radar_rows(flagged: list[dict]) -> list[dict]:
+    rows = []
+    for item in flagged:
+        strongest = max(item["prior_authors"], key=lambda record: record["papers"])
+        rows.append(
+            {
+                "Submitted": item["submitted"][:10],
+                "Title": item["title"],
+                "Author with a record": strongest["author"],
+                "Prior top-4 papers": strongest["papers"],
+                "Venues": ", ".join(strongest["venues"]),
+                "Authors flagged": len(item["prior_authors"]),
+                "Abstract": item["abstract"][:220],
+                "Link": item["url"],
+            }
+        )
+    return rows
+
+
+def page_radar() -> None:
+    """Preprints the measured rule points at, so the reading happens early."""
+    _render_header(
+        t("Early signal"),
+        t("Preprints whose authors already publish at the venues you track."),
+    )
+    st.info(
+        t(
+            "These are preprints, not corpus records. A paper joins the corpus only when a "
+            "declared venue publishes it. Authors are matched by name, which is a candidate "
+            "identity, not a verified one."
+        )
+    )
+    radar = _radar()
+    if radar is None:
+        st.warning(
+            t(
+                "No radar has been collected yet. Run `python scripts/collect_preprint_radar.py` "
+                "to query arXiv and apply the rule to the current corpus."
+            )
+        )
+        return
+
+    flagged = radar["flagged"]
+    share = len(flagged) / radar["considered"] if radar["considered"] else 0.0
+    _render_card_row(
+        (
+            HeadlineCard(
+                t("Preprints read"),
+                number(radar["considered"]),
+                t(
+                    "arXiv {category} since {since}",
+                    category=radar["category"],
+                    since=radar["submitted_since"],
+                ),
+            ),
+            HeadlineCard(
+                t("Flagged by the rule"),
+                number(len(flagged)),
+                t("{share} of what was read", share=percent(share)),
+            ),
+            HeadlineCard(
+                t("Tracked venues"),
+                t("Security top-4"),
+                t("a record in the previous {years} years", years=radar["prior_window_years"]),
+            ),
+            HeadlineCard(
+                t("Collected"),
+                radar["retrieved_at"][:10],
+                t("against corpus `{fingerprint}`", fingerprint=radar["corpus_fingerprint"][:12]),
+            ),
+        )
+    )
+
+    st.caption(
+        t(
+            "Measured on the 2023 cohort: 16 of every 100 flagged preprints reached a top-4 "
+            "venue within three years, against 1 of every 100 unflagged. Most of this list will "
+            "not be published there. The rule orders reading; it does not predict acceptance."
+        )
+    )
+
+    controls, _ = st.columns([3, 2])
+    with controls:
+        order = st.radio(
+            t("Order by"), RADAR_SORTS, format_func=t, horizontal=True, key="radar_sort"
+        )
+        minimum = st.slider(t("Minimum prior top-4 papers"), 1, 10, 1, key="radar_minimum")
+
+    rows = _radar_rows(flagged)
+    rows = [row for row in rows if row["Prior top-4 papers"] >= minimum]
+    if order == RADAR_SORTS[1]:
+        rows.sort(key=lambda row: (row["Prior top-4 papers"], row["Submitted"]), reverse=True)
+    st.caption(t("{count} preprints shown", count=number(len(rows))))
+    st.dataframe(
+        pd.DataFrame(rows),
+        width="stretch",
+        hide_index=True,
+        height=min(700, 70 + len(rows) * 56),
+        column_config={
+            "Submitted": st.column_config.TextColumn(t("Submitted"), width="medium"),
+            "Title": st.column_config.TextColumn(t("Title"), width="large"),
+            "Author with a record": st.column_config.TextColumn(
+                t("Author with a record"), width="medium"
+            ),
+            "Prior top-4 papers": st.column_config.NumberColumn(
+                t("Prior top-4 papers"), format="%d", width="small"
+            ),
+            "Venues": st.column_config.TextColumn(t("Venues"), width="small"),
+            "Authors flagged": st.column_config.NumberColumn(
+                t("Authors flagged"), format="%d", width="small"
+            ),
+            "Abstract": st.column_config.TextColumn(t("Abstract preview"), width="large"),
+            "Link": st.column_config.LinkColumn("arXiv", width="small", display_text=t("open")),
+        },
+    )
+    st.caption(t("Thank you to arXiv for use of its open access interoperability."))
+
+
 def main() -> None:
     with st.sidebar:
         choose_language()
@@ -2364,6 +2581,7 @@ def main() -> None:
         marked("Overview"): page_artifact,
         SEARCH_PAGE: page_search,
         marked("Insights"): page_insights,
+        marked("Early signal"): page_radar,
         marked("Evidence"): page_evidence,
         marked("Dataset lifecycle"): page_pipeline,
     }

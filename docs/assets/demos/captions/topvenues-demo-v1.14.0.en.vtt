@@ -36,46 +36,46 @@ It restores the corpus, checks the fingerprint,
 runs the tests, and searches.
 
 8
-00:01:05.875 --> 00:01:13.625
-407 tests, eight environments, every change.
+00:01:05.875 --> 00:01:13.000
+The whole suite, eight environments, every change.
 The same bytes every time.
 
 9
-00:01:14.075 --> 00:01:25.200
+00:01:13.450 --> 00:01:24.575
 Now the questions: 15,286 papers,
 20 declared venues, 2019 to 2026.
 
 10
-00:01:25.650 --> 00:01:35.350
+00:01:25.025 --> 00:01:34.725
 Search happens inside the file: an index finds,
 a relevance formula ranks. No internet, no model.
 
 11
-00:01:35.800 --> 00:01:42.975
+00:01:35.175 --> 00:01:42.350
 The scope is stated above the results:
 what was searched, not just what was found.
 
 12
-00:01:43.425 --> 00:01:51.275
+00:01:42.800 --> 00:01:50.650
 The same query on the command line,
 with BibTeX you can paste into the paper.
 
 13
-00:01:51.725 --> 00:02:01.650
+00:01:51.100 --> 00:02:01.025
 It also says where it is silent: 892 records
 carry no abstract, declared source by source.
 
 14
-00:02:02.100 --> 00:02:12.600
+00:02:01.475 --> 00:02:11.975
 With the list fixed, things become measurable:
 3 in 10 top-4 papers were already on arXiv.
 
 15
-00:02:13.050 --> 00:02:24.200
+00:02:12.425 --> 00:02:23.575
 One question separates preprints by 16.5×,
 replicated on a second cohort.
 
 16
-00:02:24.650 --> 00:02:31.300
+00:02:24.025 --> 00:02:30.675
 Declare the list. Freeze it. Cite it.
 Code, corpus and papers are open.

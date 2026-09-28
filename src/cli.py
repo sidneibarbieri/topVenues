@@ -24,7 +24,8 @@ from .awards import awards_directory, build_corpus_award_map
 from .collector import Collector
 from .config import load_configuration, set_configuration_path
 from .models import DownloadStatus, SearchFilters
-from .profiles import PROFILE_IDS, profile_config_path
+from .profiles import PROFILE_IDS, PROJECT_ROOT, profile_config_path
+from .radar import ARXIV_ACKNOWLEDGMENT, load_radar, radar_path
 from .tiers import (
     ALL_TIERS_SCOPE,
     tier_for,
@@ -847,6 +848,57 @@ def export_hf(ctx: click.Context, output: Path, repo_id: str, release_tag: str |
     console.print(
         f"  Upload with: [bold]hf upload-large-folder {repo_id} --repo-type dataset {output}[/bold]"
     )
+
+
+@cli.command()
+@click.option("--limit", default=20, show_default=True, help="how many preprints to print")
+@click.option(
+    "--min-papers",
+    default=1,
+    show_default=True,
+    help="minimum prior top-4 papers of the strongest author",
+)
+def radar(limit: int, min_papers: int) -> None:
+    """List the flagged arXiv preprints from the published radar.
+
+    These are not corpus records: a paper joins the corpus only when a declared
+    venue publishes it. Collect or refresh the list with
+    ``python scripts/collect_preprint_radar.py``.
+    """
+    published = load_radar(radar_path(PROJECT_ROOT))
+    if published is None:
+        console.print(
+            "[yellow]No radar collected yet.[/yellow] Run scripts/collect_preprint_radar.py"
+        )
+        return
+
+    console.print(
+        f"[bold]arXiv {published.category}[/bold] since {published.submitted_since} · "
+        f"{published.considered} read · {len(published.flagged)} flagged "
+        f"({published.flagged_share:.1%}) · collected {published.retrieved_at[:10]}"
+    )
+    console.print(
+        "[dim]Measured on 2023: 16 of every 100 flagged preprints reached a top-4 venue "
+        "within three years, against 1 of every 100 unflagged.[/dim]"
+    )
+
+    table = Table(title=f"Preprints flagged by the {published.tracked_tier} rule")
+    table.add_column("Submitted", style="dim")
+    table.add_column("Title", style="cyan")
+    table.add_column("Author with a record")
+    table.add_column("Papers", justify="right", style="green")
+    table.add_column("arXiv", style="dim")
+    shown = [item for item in published.flagged if item.strongest.papers >= min_papers]
+    for item in shown[:limit]:
+        table.add_row(
+            item.submitted[:10],
+            item.title[:64],
+            item.strongest.author,
+            str(item.strongest.papers),
+            item.arxiv_id,
+        )
+    console.print(table)
+    console.print(f"[dim]{len(shown)} match the filter. {ARXIV_ACKNOWLEDGMENT}[/dim]")
 
 
 @cli.command()

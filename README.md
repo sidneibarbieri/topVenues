@@ -155,6 +155,12 @@ publication-rate change, portable watchlists, and an explicitly unverified arXiv
 name-search handoff. See [docs/RESEARCH_WORKFLOWS.md](docs/RESEARCH_WORKFLOWS.md)
 before using a tier restriction or a monitoring signal.
 
+Selecting a row in **Search** updates **Paper details** immediately. Personal
+reading status, tags, and notes are stored separately from the read-only corpus.
+Use **Export notes** to keep a portable JSON sidecar and **Import notes** to load
+it in another session. TopVenues never writes these notes into a released
+SQLite snapshot.
+
 ### Command-line workflows
 
 ```bash
@@ -258,16 +264,33 @@ The released profile disables live refresh controls in the web interface. The
 **Dataset lifecycle** page describes the boundary; the controlled
 successor-profile procedure is in [docs/PROFILE_REFRESH.md](docs/PROFILE_REFRESH.md).
 
-### Preprints are not in the corpus
+### Preprints are not in the corpus, and the radar is how you read them early
 
 A record is here because a declared venue published it, so arXiv is not a venue
 and no preprint is indexed. The arXiv linkage the main-track paper measures —
 29.2% of the 2024–2025 top-4 papers had a matching `cs.CR` preprint, a median of
 154 days earlier — is reproduced from the frozen `sbseg2026-camera-ready`
 release, which ships the 27,749-record arXiv snapshot and the study that reads
-it. To watch for new preprints by author instead, `scripts/monitor_preprints.py`
-queries arXiv live and labels its output as name-match candidates, never as
-verified identity.
+it.
+
+That measurement is only useful if a reader can act on it, so the same rule runs
+forward. **Early signal** lists the recent `cs.CR` preprints whose authors
+already published in the declared top-4 in the previous four years — the rule
+the paper measured at 16.5× — so the work can be read months before a venue
+publishes it:
+
+```bash
+python scripts/collect_preprint_radar.py --days 45   # query arXiv, apply the rule
+python -m src.cli radar --min-papers 3               # read the result
+```
+
+The result is `data/radar/preprint-radar.json`, and it is a separate artifact on
+purpose: a flagged preprint is **not** a corpus record and is never counted as
+one. It joins the corpus only when a declared venue publishes it. Author
+matching is by name, which is a candidate identity, not a verified one, and the
+measured rate is the calibration: 16 of every 100 flagged preprints reached a
+top-4 venue within three years, so most of the list will not. The rule orders
+reading; it does not predict acceptance.
 
 The main-track paper's 200-record audit and live baseline comparison are
 documented in [docs/COMPANION_FULL_PAPER_EVALUATION.md](docs/COMPANION_FULL_PAPER_EVALUATION.md)
