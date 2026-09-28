@@ -612,6 +612,7 @@ relevante para quem reproduz ou audita o corpus.
 
 | Versão | Mudanças relevantes para reprodução |
 | --- | --- |
+| `v1.15.0` | A seleção de uma linha da busca passa a controlar os detalhes do artigo; status de leitura, etiquetas e notas ficam em um arquivo lateral validado, sem modificar o corpus. A cobertura de prêmios passa a incluir 35 registros do IEEE S&P de 2019 a 2024, coletados das páginas oficiais, elevando para 139 os prêmios associados ao `security-20-v5`. A lista antecipada do arXiv permanece separada do corpus e é apresentada como prioridade de leitura, não como previsão de aceitação. Nenhuma mudança no snapshot do corpus. |
 | `v1.14.0` | O corpus atual passa a ser o `security-20-v5`: 15.286 registros, 14.394 com resumo (94,2%) e 100% com BibTeX. Ele mantém os 14.859 registros do v4 idênticos em todos os campos e acrescenta 427 publicados pelo DBLP depois do congelamento do v4, entre eles o IEEE S&P 2026 (252) e o IEEE EuroS&P 2026 (82). As adições têm auditoria humana própria: 59 de 60 utilizáveis (98,3%; intervalo de Wilson de 95% 91,1%–99,7%). O `security-20-v4` continua empacotado e reproduzível. |
 | `v1.13.1` | Um clone novo que segue o README volta a passar na reprodução: um teste da CLI deixava um perfil temporário na configuração do processo, e os testes da interface abriam o workspace vazio dele. A integração contínua agora roda primeiro o comando do README, no checkout intocado. Nenhuma mudança de dados. |
 | `v1.13.0` | Interface completa em português do Brasil e em inglês, com números no formato de cada idioma e um teste que impede texto sem tradução. O tema escolhido no menu passa a valer na hora. Construtor aditivo de sucessores a partir de um dump mais novo do DBLP (`scripts/build_extended_profile.py`). Nenhuma mudança nos perfis publicados. |
@@ -648,7 +649,7 @@ Cite o artigo que corresponde ao que você usou:
 
 | Você… | Cite |
 | --- | --- |
-| usou o TopVenues para buscar, montar o corpus de uma revisão, exportar referências ou ranquear autores | o artigo da trilha de ferramentas (`barbieri2026topvenuestool`), informando a versão e o perfil, por exemplo `TopVenues v1.14.0, perfil security-20-v5` |
+| usou o TopVenues para buscar, montar o corpus de uma revisão, exportar referências ou ranquear autores | o artigo da trilha de ferramentas (`barbieri2026topvenuestool`), informando a versão e o perfil, por exemplo `TopVenues v1.15.0, perfil security-20-v5` |
 | usa ou estende o método do corpus ou suas medições | o artigo da trilha principal (`barbieri2026topvenues`) |
 | fez as duas coisas | os dois |
 
