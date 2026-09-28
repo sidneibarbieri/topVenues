@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- **The preprint radar refreshes itself.** A weekly workflow reproduces the
+  current profile, collects the last six weeks of arXiv `cs.CR`, applies the
+  rule, and commits `data/radar/preprint-radar.json` only after the radar tests
+  and the interface smoke test pass on the new file. Pushes made with the
+  workflow token do not trigger the test workflow, so the validation runs in the
+  same job. No reproduction depends on the radar, which lives outside every
+  profile.
 - **Fixed: importing notes did nothing for the paper on screen.** The editor
   widgets are keyed, and a keyed Streamlit widget ignores its `value` after the
   first render, so an imported note never reached the screen and the next *Save*
@@ -18,8 +25,6 @@
   arXiv link is the stable one.
 - The Hugging Face card described the old 7:49 demonstration; it now describes
   the current one.
-
-## Unreleased
 
 ## 1.15.0 — 2026-09-28
 

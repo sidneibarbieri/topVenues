@@ -284,8 +284,10 @@ python scripts/collect_preprint_radar.py --days 45   # query arXiv, apply the ru
 python -m src.cli radar --min-papers 3               # read the result
 ```
 
-The result is `data/radar/preprint-radar.json`, and it is a separate artifact on
-purpose: a flagged preprint is **not** a corpus record and is never counted as
+The result is `data/radar/preprint-radar.json`, refreshed every Monday by the
+`preprint radar` workflow, which reproduces the current profile, collects,
+and commits the file only after the radar tests and the interface smoke test
+pass on it. It is a separate artifact on purpose: a flagged preprint is **not** a corpus record and is never counted as
 one. It joins the corpus only when a declared venue publishes it. Author
 matching is by name, which is a candidate identity, not a verified one, and the
 measured rate is the calibration: 16 of every 100 flagged preprints reached a

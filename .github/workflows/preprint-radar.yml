@@ -1,0 +1,58 @@
+name: preprint radar
+
+# The Early signal page is only as useful as its last collection, so the radar
+# is refreshed weekly instead of whenever someone remembers. The refreshed file
+# is validated in the same job before it is committed: pushes made with the
+# workflow token do not trigger the test workflow, so nothing else would check
+# it. The radar is data outside every profile, so no reproduction depends on it.
+
+on:
+  schedule:
+    - cron: "17 6 * * 1"  # Mondays, 06:17 UTC; off the hour, as arXiv asks of scheduled callers
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: preprint-radar
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+
+      # The README's command builds the pinned environment and the workspace the
+      # interface reads, and proves the checkout is sound before anything changes.
+      - name: Reproduce the current profile
+        env:
+          PYTHON: python
+        run: bash reproduce.sh
+
+      - name: Collect the last six weeks of arXiv cs.CR and apply the rule
+        run: .venv/bin/python scripts/collect_preprint_radar.py --days 45
+
+      - name: Validate the refreshed radar before committing it
+        run: |
+          .venv/bin/python -m pytest tests/test_radar.py -q
+          .venv/bin/python scripts/smoke_web_app.py
+
+      - name: Commit the refreshed radar
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/radar/preprint-radar.json
+          if git diff --cached --quiet; then
+            echo "The radar did not change."
+            exit 0
+          fi
+          collected=$(.venv/bin/python -c "import json; print(json.load(open('data/radar/preprint-radar.json'))['retrieved_at'][:10])")
+          git commit -m "Refresh the preprint radar (collected ${collected})"
+          git push
