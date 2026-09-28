@@ -21,6 +21,7 @@ import sys
 import time
 import urllib.error
 import urllib.request
+from collections.abc import Callable
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
 
@@ -64,27 +65,42 @@ def _fetch_page(url: str) -> str:
     return ""
 
 
-def fetch_recent(category: str, since: datetime, *, page_limit: int) -> list:
-    """Page newest-first until the submissions predate the cutoff."""
+class RadarTruncatedError(RuntimeError):
+    """The page cap ran out before the window did, so the radar would be partial."""
+
+
+def fetch_recent(
+    category: str,
+    since: datetime,
+    *,
+    page_limit: int,
+    fetch_page: Callable[[str], str] = _fetch_page,
+) -> list:
+    """Every submission in the window, newest first.
+
+    The window is part of the query, so a page shorter than PAGE_SIZE is the end
+    of it. Running out of pages first means the window holds more than the cap
+    allows, and that is an error: a radar that silently covers less than the
+    dates it states would mislead the reader.
+    """
     collected = []
-    cutoff = since.isoformat()
+    until = datetime.now(UTC).date()
     for page in range(page_limit):
         url = arxiv_window_url(
-            category,
-            since=since.date(),
-            until=datetime.now(UTC).date(),
-            start=page * PAGE_SIZE,
-            max_results=PAGE_SIZE,
+            category, since=since.date(), until=until, start=page * PAGE_SIZE, max_results=PAGE_SIZE
         )
-        batch = parse_arxiv_atom(_fetch_page(url), queried_author=f"cat:{category}")
-        if not batch:
-            break
+        batch = parse_arxiv_atom(fetch_page(url), queried_author=f"cat:{category}")
         collected.extend(batch)
-        oldest = min(item.published for item in batch)
-        print(f"  page {page + 1}: {len(batch)} preprints, oldest {oldest[:10]}")
-        if oldest < cutoff:
-            break
-    return [item for item in collected if item.published >= cutoff]
+        if batch:
+            print(
+                f"  page {page + 1}: {len(batch)} preprints, oldest {min(i.published for i in batch)[:10]}"
+            )
+        if len(batch) < PAGE_SIZE:
+            return collected
+    raise RadarTruncatedError(
+        f"{page_limit} pages of {PAGE_SIZE} did not exhaust {category} since {since.date()}; "
+        "raise --pages or shorten --days"
+    )
 
 
 def main() -> int:
@@ -92,7 +108,7 @@ def main() -> int:
     parser.add_argument("--days", type=int, default=45, help="how far back to look")
     parser.add_argument("--category", default="cs.CR")
     parser.add_argument("--profile", default=select_profile_id())
-    parser.add_argument("--pages", type=int, default=12, help="safety cap on API pages")
+    parser.add_argument("--pages", type=int, default=40, help="safety cap on API pages")
     arguments = parser.parse_args()
 
     since = datetime.now(UTC) - timedelta(days=arguments.days)

@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- **Fixed: the radar could cover less than the window it stated.** The first
+  weekly run read exactly 1,200 preprints — the page cap — while the 45-day
+  window held 1,452, so the oldest days were dropped without a word and the page
+  still claimed to start on the first day. A short page now ends the window,
+  running out of pages first raises `RadarTruncatedError`, and the cap rises to
+  40 pages. The refreshed radar reads the full window: 1,452 preprints, 532
+  flagged (36.6%, against the 36.1% the study measured).
 - **The preprint radar refreshes itself.** A weekly workflow reproduces the
   current profile, collects the last six weeks of arXiv `cs.CR`, applies the
   rule, and commits `data/radar/preprint-radar.json` only after the radar tests
