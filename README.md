@@ -155,6 +155,12 @@ publication-rate change, portable watchlists, and an explicitly unverified arXiv
 name-search handoff. See [docs/RESEARCH_WORKFLOWS.md](docs/RESEARCH_WORKFLOWS.md)
 before using a tier restriction or a monitoring signal.
 
+Selecting a row in **Search** updates **Paper details** immediately. Personal
+reading status, tags, and notes are stored separately from the read-only corpus.
+Use **Export notes** to keep a portable JSON sidecar and **Import notes** to load
+it in another session. TopVenues never writes these notes into a released
+SQLite snapshot.
+
 ### Command-line workflows
 
 ```bash

@@ -98,6 +98,11 @@ no artigo continua funcionando nele sem alteração.
 | ![Análises do corpus](docs/assets/screenshots/pt-BR/insights-llm-top4.png) | ![Recorrência de autores](docs/assets/screenshots/pt-BR/researcher-radar-llm-top4.png) |
 | **Análises** — distribuição por veículo, ano e classe; volume de um tópico e sua participação normalizada. | **Autores** — recorrência por volume, peso por nível ou concentração no top-4, com trajetória e coautoria. |
 
+Ao selecionar uma linha na **Busca**, os **Detalhes do artigo** são atualizados
+imediatamente. Status de leitura, etiquetas e notas pessoais ficam em um arquivo
+JSON paralelo, importável e exportável; eles nunca alteram o snapshot SQLite
+publicado.
+
 [![Demonstração de 2min32s](docs/assets/demos/posters/topvenues-demo-v1.14.0.jpg)](https://huggingface.co/datasets/sidneibarbieri/topvenues/resolve/main/assets/demo/topvenues-demo-v1.14.0.pt-BR.mp4)
 
 **Demonstração em vídeo** (2min32s, 1920x1080, narração em inglês): a lista que
@@ -159,7 +164,7 @@ topVenues/
 ├── src/                       biblioteca e interface de linha de comando
 ├── web/                       aplicação Streamlit
 ├── scripts/                   automação de verificação e de experimentos
-├── tests/                     416 testes automatizados
+├── tests/                     421 testes automatizados
 └── docs/                      guia do revisor, protocolo de auditoria, demonstração
 ```
 
@@ -557,7 +562,7 @@ python -m pytest -q
 ```
 
 - **Tempo esperado:** ~10 s
-- **Resultado esperado:** `416 passed`, sem acesso à rede.
+- **Resultado esperado:** `421 passed`, sem acesso à rede.
 - **Contagem de testes:** o número cresce a cada versão; o
   [histórico de versões](#histórico-de-versões) registra a evolução. O valor
   corrente é verificado automaticamente contra este README.

@@ -19,6 +19,12 @@ sys.path.insert(0, str(ARTIFACT_ROOT))
 
 from src.abstract_fetcher import AbstractFetcher
 from src.analytics import CONCENTRATION_MINIMUM_PAPERS, authors_at_position
+from src.annotations import (
+    PaperAnnotation,
+    dump_annotation_bundle,
+    load_annotation_bundle,
+    normalize_tags,
+)
 from src.areas import area_for
 from src.awards import awards_directory, build_corpus_award_map
 from src.chart_interactions import selected_chart_value
@@ -135,6 +141,12 @@ RADAR_POSITIONS = {
     marked("First author"): "first",
     marked("Last author"): "last",
 }
+READING_STATUSES = (
+    marked("unread"),
+    marked("reading"),
+    marked("read"),
+    marked("excluded"),
+)
 RANKING_METRICS = {
     marked("Paper count"): "paper_count",
     marked("Tier-weighted visibility"): "tier_weighted",
@@ -493,6 +505,81 @@ def _reset_search_state() -> None:
         st.session_state[key] = value
     st.session_state.pop("search_signature", None)
     st.session_state["page_no"] = 1
+
+
+def _selected_result_index(selected_rows: list[int], result_count: int) -> int:
+    """Resolve a single table selection, defaulting to the first visible result."""
+    if selected_rows and 0 <= selected_rows[0] < result_count:
+        return selected_rows[0]
+    return 0
+
+
+def _annotations() -> dict[str, PaperAnnotation]:
+    """Return the current session's validated, corpus-independent annotations."""
+    stored = st.session_state.setdefault("paper_annotations", {})
+    return {
+        paper_id: annotation
+        if isinstance(annotation, PaperAnnotation)
+        else PaperAnnotation.model_validate(annotation)
+        for paper_id, annotation in stored.items()
+    }
+
+
+def _render_annotation_editor(paper_id: str) -> None:
+    """Edit a user-owned note without writing to the bibliographic database."""
+    annotations = _annotations()
+    current = annotations.get(paper_id, PaperAnnotation(paper_id=paper_id))
+    st.markdown(f"**{t('Your notes')}**")
+    st.caption(t("Notes stay separate from the read-only corpus."))
+
+    import_file = st.file_uploader(
+        t("Import notes"),
+        type="json",
+        key=f"annotation_import_{paper_id}",
+        help=t("Load a TopVenues annotation JSON file."),
+    )
+    if import_file is not None:
+        imported = load_annotation_bundle(import_file.getvalue()).by_paper_id()
+        st.session_state["paper_annotations"] = imported
+        annotations = imported
+        current = imported.get(paper_id, current)
+
+    status = st.selectbox(
+        t("Reading status"),
+        READING_STATUSES,
+        index=READING_STATUSES.index(current.status),
+        format_func=t,
+        key=f"annotation_status_{paper_id}",
+    )
+    tags = st.text_input(
+        t("Tags"),
+        value=", ".join(current.tags),
+        help=t("Separate tags with commas."),
+        key=f"annotation_tags_{paper_id}",
+    )
+    notes = st.text_area(
+        t("Notes"),
+        value=current.notes,
+        key=f"annotation_notes_{paper_id}",
+    )
+    if st.button(t("Save note"), key=f"annotation_save_{paper_id}"):
+        annotations[paper_id] = PaperAnnotation(
+            paper_id=paper_id,
+            status=status,
+            tags=normalize_tags(tags),
+            notes=notes.strip(),
+        )
+        st.session_state["paper_annotations"] = annotations
+        st.success(t("Note saved in this browser session."))
+
+    st.download_button(
+        t("Export notes"),
+        dump_annotation_bundle(annotations),
+        "topvenues-annotations.json",
+        "application/json",
+        help=t("Download the parallel annotation dataset for reuse or backup."),
+        key=f"annotation_export_{paper_id}",
+    )
 
 
 def _open_search_from_insight(
@@ -1098,7 +1185,7 @@ def page_search() -> None:
     ]
     df = pd.DataFrame(table_rows)
 
-    st.dataframe(
+    table_event = st.dataframe(
         df,
         width="stretch",
         hide_index=True,
@@ -1116,6 +1203,9 @@ def page_search() -> None:
             "Cite": st.column_config.TextColumn("\\cite{…}", width="small"),
             "Link": st.column_config.LinkColumn("DOI / URL", width="small", display_text=t("open")),
         },
+        key="search_results_table",
+        on_select="rerun",
+        selection_mode="single-row",
     )
 
     full_rows = [
@@ -1171,13 +1261,10 @@ def page_search() -> None:
 
     st.divider()
     st.subheader(t("Paper details"))
-    title_options = [f"[{paper.year}] {paper.title}" for paper in page_slice]
-    selected_label = st.selectbox(
-        t("Select a paper from this page"), title_options, label_visibility="collapsed"
-    )
-    if selected_label:
-        idx = title_options.index(selected_label)
-        paper = page_slice[idx]
+    st.caption(t("Select a row above to inspect that paper."))
+    selected_index = _selected_result_index(table_event.selection.rows, len(page_slice))
+    if page_slice:
+        paper = page_slice[selected_index]
         link = paper.ee or paper.url
         link_html = (
             f'<a href="{_safe_html(link)}" target="_blank">{_safe_html(link)}</a>' if link else "—"
@@ -1219,6 +1306,7 @@ def page_search() -> None:
                 st.code(paper.cite_command or "", language="latex")
         else:
             st.caption(t("BibTeX not yet fetched. Run `python -m src.cli bibtex` to populate."))
+        _render_annotation_editor(paper.paper_id)
 
 
 def page_insights() -> None:

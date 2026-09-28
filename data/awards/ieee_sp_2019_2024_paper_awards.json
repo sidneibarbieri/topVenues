@@ -1,0 +1,282 @@
+[
+  {
+    "venue": "IEEE S&P",
+    "year": 2019,
+    "award": "Distinguished Paper Award",
+    "title": "Spectre Attacks: Exploiting Speculative Execution",
+    "url": "https://www.ieee-security.org/TC/SP2019/awards.html",
+    "source_url": "https://www.ieee-security.org/TC/SP2019/awards.html"
+  },
+  {
+    "venue": "IEEE S&P",
+    "year": 2019,
+    "award": "Distinguished Practical Paper Award",
+    "title": "Exploiting Correcting Codes: On the Effectiveness of ECC Memory Against Rowhammer Attacks",
+    "url": "https://www.ieee-security.org/TC/SP2019/awards.html",
+    "source_url": "https://www.ieee-security.org/TC/SP2019/awards.html"
+  },
+  {
+    "venue": "IEEE S&P",
+    "year": 2020,
+    "award": "Best Paper Award",
+    "title": "TRRespass: Exploiting the Many Sides of Target Row Refresh",
+    "url": "https://www.ieee-security.org/TC/SP2020/awards.html",
+    "source_url": "https://www.ieee-security.org/TC/SP2020/awards.html"
+  },
+  {
+    "venue": "IEEE S&P",
+    "year": 2020,
+    "award": "Best Practical Paper Award",
+    "title": "An Analysis of Pre-installed Android Software",
+    "url": "https://www.ieee-security.org/TC/SP2020/awards.html",
+    "source_url": "https://www.ieee-security.org/TC/SP2020/awards.html"
+  },
+  {
+    "venue": "IEEE S&P",
+    "year": 2020,
+    "award": "Best Student Paper Award",
+    "title": "Can Voters Detect Malicious Manipulation of Ballot Marking Devices?",
+    "url": "https://www.ieee-security.org/TC/SP2020/awards.html",
+    "source_url": "https://www.ieee-security.org/TC/SP2020/awards.html"
+  },
+  {
+    "venue": "IEEE S&P",
+    "year": 2021,
+    "award": "Best Paper Award",
+    "title": "Compositional Security for Reentrant Applications",
+    "url": "https://www.ieee-security.org/TC/SP2021/awards.html",
+    "source_url": "https://www.ieee-security.org/TC/SP2021/awards.html"
+  },
+  {
+    "venue": "IEEE S&P",
+    "year": 2021,
+    "award": "Best Paper Award",
+    "title": "Hardware-Software Contracts for Secure Speculation",
+    "url": "https://www.ieee-security.org/TC/SP2021/awards.html",
+    "source_url": "https://www.ieee-security.org/TC/SP2021/awards.html"
+  },
+  {
+    "venue": "IEEE S&P",
+    "year": 2021,
+    "award": "Best Practical Paper Award",
+    "title": "The EMV Standard: Break, Fix, Verify",
+    "url": "https://www.ieee-security.org/TC/SP2021/awards.html",
+    "source_url": "https://www.ieee-security.org/TC/SP2021/awards.html"
+  },
+  {
+    "venue": "IEEE S&P",
+    "year": 2021,
+    "award": "Best Student Paper Award",
+    "title": "CrawlPhish: Large-scale Analysis of Client-side Cloaking Techniques in Phishing",
+    "url": "https://www.ieee-security.org/TC/SP2021/awards.html",
+    "source_url": "https://www.ieee-security.org/TC/SP2021/awards.html"
+  },
+  {
+    "venue": "IEEE S&P",
+    "year": 2021,
+    "award": "Best Student Paper Award",
+    "title": "They Would do Better if They Worked Together: The Case of Interaction Problems Between Password Managers and Websites",
+    "url": "https://www.ieee-security.org/TC/SP2021/awards.html",
+    "source_url": "https://www.ieee-security.org/TC/SP2021/awards.html"
+  },
+  {
+    "venue": "IEEE S&P",
+    "year": 2022,
+    "award": "Distinguished Paper Award",
+    "title": "Asleep at the Keyboard? Assessing the Security of GitHub Copilot’s Code Contributions",
+    "url": "https://www.ieee-security.org/TC/SP2022/awards.html",
+    "source_url": "https://www.ieee-security.org/TC/SP2022/awards.html"
+  },
+  {
+    "venue": "IEEE S&P",
+    "year": 2022,
+    "award": "Distinguished Paper Award",
+    "title": "Committed to Trust: A Qualitative Study on Security & Trust in Open Source Software Projects",
+    "url": "https://www.ieee-security.org/TC/SP2022/awards.html",
+    "source_url": "https://www.ieee-security.org/TC/SP2022/awards.html"
+  },
+  {
+    "venue": "IEEE S&P",
+    "year": 2022,
+    "award": "Distinguished Paper Award",
+    "title": "Four Attacks and a Proof for Telegram",
+    "url": "https://www.ieee-security.org/TC/SP2022/awards.html",
+    "source_url": "https://www.ieee-security.org/TC/SP2022/awards.html"
+  },
+  {
+    "venue": "IEEE S&P",
+    "year": 2022,
+    "award": "Distinguished Paper Award",
+    "title": "Invisible Finger: Practical Electromagnetic Interference Attack on Touchscreen-based Electronic Devices",
+    "url": "https://www.ieee-security.org/TC/SP2022/awards.html",
+    "source_url": "https://www.ieee-security.org/TC/SP2022/awards.html"
+  },
+  {
+    "venue": "IEEE S&P",
+    "year": 2023,
+    "award": "Distinguished Paper Award",
+    "title": "Characterizing Everyday Misuse of Smart Home Devices",
+    "url": "https://www.ieee-security.org/TC/SP2023/program-awards.html",
+    "source_url": "https://www.ieee-security.org/TC/SP2023/program-awards.html"
+  },
+  {
+    "venue": "IEEE S&P",
+    "year": 2023,
+    "award": "Distinguished Paper Award",
+    "title": "It's (DOM) Clobbering Time: Attack Techniques, Prevalence, and Defenses",
+    "url": "https://www.ieee-security.org/TC/SP2023/program-awards.html",
+    "source_url": "https://www.ieee-security.org/TC/SP2023/program-awards.html"
+  },
+  {
+    "venue": "IEEE S&P",
+    "year": 2023,
+    "award": "Distinguished Paper Award",
+    "title": "MEGA: Malleable Encryption Goes Awry",
+    "url": "https://www.ieee-security.org/TC/SP2023/program-awards.html",
+    "source_url": "https://www.ieee-security.org/TC/SP2023/program-awards.html"
+  },
+  {
+    "venue": "IEEE S&P",
+    "year": 2023,
+    "award": "Distinguished Paper Award",
+    "title": "Not Yet Another Digital ID: Privacy-preserving Humanitarian Aid Distribution",
+    "url": "https://www.ieee-security.org/TC/SP2023/program-awards.html",
+    "source_url": "https://www.ieee-security.org/TC/SP2023/program-awards.html"
+  },
+  {
+    "venue": "IEEE S&P",
+    "year": 2023,
+    "award": "Distinguished Paper Award",
+    "title": "Practically-exploitable Cryptographic Vulnerabilities in Matrix",
+    "url": "https://www.ieee-security.org/TC/SP2023/program-awards.html",
+    "source_url": "https://www.ieee-security.org/TC/SP2023/program-awards.html"
+  },
+  {
+    "venue": "IEEE S&P",
+    "year": 2023,
+    "award": "Distinguished Paper Award",
+    "title": "Red Team vs. Blue Team: A Real-World Hardware Trojan Detection Case Study Across Four Modern CMOS Technology Generations",
+    "url": "https://www.ieee-security.org/TC/SP2023/program-awards.html",
+    "source_url": "https://www.ieee-security.org/TC/SP2023/program-awards.html"
+  },
+  {
+    "venue": "IEEE S&P",
+    "year": 2023,
+    "award": "Distinguished Paper Award",
+    "title": "Space Odyssey: An Experimental Software Security Analysis of Satellites",
+    "url": "https://www.ieee-security.org/TC/SP2023/program-awards.html",
+    "source_url": "https://www.ieee-security.org/TC/SP2023/program-awards.html"
+  },
+  {
+    "venue": "IEEE S&P",
+    "year": 2023,
+    "award": "Distinguished Paper Award",
+    "title": "The Leaky Web: Automated Discovery of Cross-Site Information Leaks in Browsers and the Web",
+    "url": "https://www.ieee-security.org/TC/SP2023/program-awards.html",
+    "source_url": "https://www.ieee-security.org/TC/SP2023/program-awards.html"
+  },
+  {
+    "venue": "IEEE S&P",
+    "year": 2023,
+    "award": "Distinguished Paper Award",
+    "title": "Typing High-Speed Cryptography against Spectre v1",
+    "url": "https://www.ieee-security.org/TC/SP2023/program-awards.html",
+    "source_url": "https://www.ieee-security.org/TC/SP2023/program-awards.html"
+  },
+  {
+    "venue": "IEEE S&P",
+    "year": 2023,
+    "award": "Distinguished Paper Award",
+    "title": "WaVe: a verifiably secure WebAssembly sandboxing runtime",
+    "url": "https://www.ieee-security.org/TC/SP2023/program-awards.html",
+    "source_url": "https://www.ieee-security.org/TC/SP2023/program-awards.html"
+  },
+  {
+    "venue": "IEEE S&P",
+    "year": 2023,
+    "award": "Distinguished Paper Award",
+    "title": "Weak Fiat-Shamir Attacks on Modern Proof Systems",
+    "url": "https://www.ieee-security.org/TC/SP2023/program-awards.html",
+    "source_url": "https://www.ieee-security.org/TC/SP2023/program-awards.html"
+  },
+  {
+    "venue": "IEEE S&P",
+    "year": 2023,
+    "award": "Distinguished Paper Award",
+    "title": "“In Eighty Percent of the Cases, I Select the Password for Them”: Security and Privacy Challenges, Advice, and Opportunities at Cybercafes in Kenya",
+    "url": "https://www.ieee-security.org/TC/SP2023/program-awards.html",
+    "source_url": "https://www.ieee-security.org/TC/SP2023/program-awards.html"
+  },
+  {
+    "venue": "IEEE S&P",
+    "year": 2024,
+    "award": "Distinguished Paper Award",
+    "title": "\"False negative - that one is going to kill you.\" - Understanding Industry Perspectives of Static Analysis based Security Testing",
+    "url": "https://www.ieee-security.org/TC/SP2024/awards.html",
+    "source_url": "https://www.ieee-security.org/TC/SP2024/awards.html"
+  },
+  {
+    "venue": "IEEE S&P",
+    "year": 2024,
+    "award": "Distinguished Paper Award",
+    "title": "BENZENE: A Practical Root Cause Analysis System with an Under-Constrained State Mutation",
+    "url": "https://www.ieee-security.org/TC/SP2024/awards.html",
+    "source_url": "https://www.ieee-security.org/TC/SP2024/awards.html"
+  },
+  {
+    "venue": "IEEE S&P",
+    "year": 2024,
+    "award": "Distinguished Paper Award",
+    "title": "From Chatbots to Phishbots?: Phishing Scam Generation in Commercial Large Language Models",
+    "url": "https://www.ieee-security.org/TC/SP2024/awards.html",
+    "source_url": "https://www.ieee-security.org/TC/SP2024/awards.html"
+  },
+  {
+    "venue": "IEEE S&P",
+    "year": 2024,
+    "award": "Distinguished Paper Award",
+    "title": "From Virtual Touch to Tesla Command: Unlocking Unauthenticated Control Chains From Smart Glasses for Vehicle Takeover",
+    "url": "https://www.ieee-security.org/TC/SP2024/awards.html",
+    "source_url": "https://www.ieee-security.org/TC/SP2024/awards.html"
+  },
+  {
+    "venue": "IEEE S&P",
+    "year": 2024,
+    "award": "Distinguished Paper Award",
+    "title": "Shedding Light on CVSS Scoring Inconsistencies: A User-Centric Study on Evaluating Widespread Security Vulnerabilities",
+    "url": "https://www.ieee-security.org/TC/SP2024/awards.html",
+    "source_url": "https://www.ieee-security.org/TC/SP2024/awards.html"
+  },
+  {
+    "venue": "IEEE S&P",
+    "year": 2024,
+    "award": "Distinguished Paper Award",
+    "title": "SoK: Prudent Evaluation Practices for Fuzzing",
+    "url": "https://www.ieee-security.org/TC/SP2024/awards.html",
+    "source_url": "https://www.ieee-security.org/TC/SP2024/awards.html"
+  },
+  {
+    "venue": "IEEE S&P",
+    "year": 2024,
+    "award": "Distinguished Paper Award",
+    "title": "SoK: Unintended Interactions among Machine Learning Defenses and Risks",
+    "url": "https://www.ieee-security.org/TC/SP2024/awards.html",
+    "source_url": "https://www.ieee-security.org/TC/SP2024/awards.html"
+  },
+  {
+    "venue": "IEEE S&P",
+    "year": 2024,
+    "award": "Distinguished Paper Award",
+    "title": "The Great Request Robbery: An Empirical Study of Client-side Request Hijacking Vulnerabilities on the Web",
+    "url": "https://www.ieee-security.org/TC/SP2024/awards.html",
+    "source_url": "https://www.ieee-security.org/TC/SP2024/awards.html"
+  },
+  {
+    "venue": "IEEE S&P",
+    "year": 2024,
+    "award": "Distinguished Paper Award",
+    "title": "WESEE: Using Malicious #VC Interrupts to Break AMD SEV-SNP",
+    "url": "https://www.ieee-security.org/TC/SP2024/awards.html",
+    "source_url": "https://www.ieee-security.org/TC/SP2024/awards.html"
+  }
+]

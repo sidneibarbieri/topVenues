@@ -2,6 +2,15 @@
 
 ## Unreleased
 
+- **Search rows now control paper details.** Selecting a result updates the
+  detail card directly. The corpus remains read-only; personal reading status,
+  tags, and notes live in a validated sidecar that can be imported or exported
+  as JSON instead of overwriting bibliographic metadata.
+- **Paper-award coverage now includes IEEE S&P 2019--2024.** A dedicated
+  collector reads only the official, year-specific IEEE Security award pages
+  and stores each source URL with the label. This adds 35 source-backed records
+  and raises awards resolved against `security-20-v5` from 104 to 139. Missing
+  labels remain missing rather than being inferred from secondary lists.
 - **New: Early signal.** The triage rule the main-track paper measured
   retrospectively now runs forward. `scripts/collect_preprint_radar.py` sweeps a
   recent window of arXiv `cs.CR`, keeps the preprints whose authors already
@@ -23,7 +32,8 @@
   nothing, and no error was raised anywhere. `src.awards.awards_directory()` is
   now the single resolver, and `tests/test_awards_reach_the_corpus.py` checks
   the real directory against the active profile and fails if a caller goes back
-  to deriving the path. The current release resolves 104 award labels.
+  to deriving the path. That repair restored 104 award labels; the historical
+  IEEE S&P expansion above raises the resolved total to 139.
 - The README states what the corpus does not hold: preprints. arXiv is not a
   venue, and the early-signal study that measures the arXiv lead stays with the
   frozen `sbseg2026-camera-ready` release that ships its snapshot.
