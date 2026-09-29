@@ -1,0 +1,651 @@
+{
+  "source": "ACM CCS official award pages (sigsac.org)",
+  "captured_on": "2026-09-29",
+  "scripted_verification": true,
+  "method": "Titles copied from each year's award page on sigsac.org where one exists (2020, 2021, 2022, 2024), and from SIGSAC's consolidated best-paper page for 2019 and 2023, whose conference sites have no award page. Paper recognitions only: best and distinguished paper awards, runners-up and honorable mentions; test-of-time, artifact and reviewer awards are left out. Where the year page and the consolidated page name the award differently (2020), the year page is used. One 2024 title carries the page's disambiguator \"(Paper 1093)\", which is not part of the title and is dropped. Where the page's wording differs from the proceedings title (a typo, lost markup, or a title changed for the proceedings), the record also carries the proceedings title as `published_title`; the verify step checks the page wording and the corpus join uses the proceedings title.",
+  "records": [
+    {
+      "venue": "ACM CCS",
+      "year": 2019,
+      "award": "Best Paper Award",
+      "title": "Where Does It Go? Refining Indirect-Call Targets with Multi-layer Type Analysis",
+      "url": "https://www.sigsac.org/ccs/CCS_awards/ccs-bestpaper.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS_awards/ccs-bestpaper.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2020,
+      "award": "Distinguished Paper Award",
+      "title": "DNS Cache Poisoning Attack Reloaded: Revolutions With Side Channels",
+      "url": "https://www.sigsac.org/ccs/CCS2020/awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2020/awards.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2021,
+      "award": "Best Paper Award",
+      "title": "On the (In)Security of ElGamal in OpenPGP",
+      "url": "https://www.sigsac.org/ccs/CCS2021/ccs-awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2021/ccs-awards.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2021,
+      "award": "Best Paper Award",
+      "title": "On the Renyi Differential Privacy of the Shuffle Model",
+      "url": "https://www.sigsac.org/ccs/CCS2021/ccs-awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2021/ccs-awards.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2021,
+      "award": "Best Paper Award",
+      "title": "One Glitch to Rule Them All: Fault Injection Attacks Against AMD’s Secure Encrypted Virtualization",
+      "url": "https://www.sigsac.org/ccs/CCS2021/ccs-awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2021/ccs-awards.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2021,
+      "award": "Best Paper Award",
+      "title": "V-Shuttle: Scalable and Semantics-Aware Hypervisor Virtual Device Fuzzing",
+      "url": "https://www.sigsac.org/ccs/CCS2021/ccs-awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2021/ccs-awards.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2021,
+      "award": "Best Paper Award",
+      "title": "XSinator.com: From a Formal Model to the Automatic Evaluation of Cross-Site Leaks in Web Browsers",
+      "url": "https://www.sigsac.org/ccs/CCS2021/ccs-awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2021/ccs-awards.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2021,
+      "award": "Best Paper Award Runner-Up",
+      "title": "Asynchronous Data Dissemination and its Applications",
+      "url": "https://www.sigsac.org/ccs/CCS2021/ccs-awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2021/ccs-awards.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2021,
+      "award": "Best Paper Award Runner-Up",
+      "title": "BFT Protocol Forensics",
+      "url": "https://www.sigsac.org/ccs/CCS2021/ccs-awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2021/ccs-awards.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2021,
+      "award": "Best Paper Award Runner-Up",
+      "title": "CROSSLINE: Breaking ``Security-by-Crash'' based Memory Isolation in AMD SEV",
+      "url": "https://www.sigsac.org/ccs/CCS2021/ccs-awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2021/ccs-awards.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2021,
+      "award": "Best Paper Award Runner-Up",
+      "title": "DPGen: Automated Program Synthesis for Differential Privacy",
+      "url": "https://www.sigsac.org/ccs/CCS2021/ccs-awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2021/ccs-awards.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2021,
+      "award": "Best Paper Award Runner-Up",
+      "title": "Hidden Backdoors in Human-Centric Language Models",
+      "url": "https://www.sigsac.org/ccs/CCS2021/ccs-awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2021/ccs-awards.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2021,
+      "award": "Best Paper Award Runner-Up",
+      "title": "Learning Security Classifiers with Verified Global Robustness Properties",
+      "url": "https://www.sigsac.org/ccs/CCS2021/ccs-awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2021/ccs-awards.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2021,
+      "award": "Best Paper Award Runner-Up",
+      "title": "On Reengineering the X.509 PKI with Executable Specification for Better Implementation Guarantees",
+      "url": "https://www.sigsac.org/ccs/CCS2021/ccs-awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2021/ccs-awards.html",
+      "published_title": "On Re-engineering the X.509 PKI with Executable Specification for Better Implementation Guarantees"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2021,
+      "award": "Best Paper Award Runner-Up",
+      "title": "QuickSilver: Efficient and Affordable Zero-Knowledge Proofs for Circuits and Polynomials over Any Field",
+      "url": "https://www.sigsac.org/ccs/CCS2021/ccs-awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2021/ccs-awards.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2021,
+      "award": "Best Paper Award Runner-Up",
+      "title": "“I need a better description\": An Investigation Into User Expectations For Differential Privacy",
+      "url": "https://www.sigsac.org/ccs/CCS2021/ccs-awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2021/ccs-awards.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2022,
+      "award": "Best Paper Honorable Mention",
+      "title": "AI/ML for Network Security: The Emperor has no Clothes",
+      "url": "https://www.sigsac.org/ccs/CCS2022/program/awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2022/program/awards.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2022,
+      "award": "Best Paper Honorable Mention",
+      "title": "Blacktooth: Breaking through the Defense of Bluetooth in Silence",
+      "url": "https://www.sigsac.org/ccs/CCS2022/program/awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2022/program/awards.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2022,
+      "award": "Best Paper Honorable Mention",
+      "title": "CANflict: Exploiting Peripheral Conflicts for Data-Link Layer Attacks on Automotive Networks",
+      "url": "https://www.sigsac.org/ccs/CCS2022/program/awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2022/program/awards.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2022,
+      "award": "Best Paper Honorable Mention",
+      "title": "CETIS: Retrofitting Intel CET for Generic and Efficient Intra-process Memory Isolation",
+      "url": "https://www.sigsac.org/ccs/CCS2022/program/awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2022/program/awards.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2022,
+      "award": "Best Paper Honorable Mention",
+      "title": "Detecting Missing-Permission-Check Vulnerabilities in Distributed Cloud Systems",
+      "url": "https://www.sigsac.org/ccs/CCS2022/program/awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2022/program/awards.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2022,
+      "award": "Best Paper Honorable Mention",
+      "title": "Hammurabi: A Framework for Pluggable, Logic-based X.509 Certificate Validation Policies",
+      "url": "https://www.sigsac.org/ccs/CCS2022/program/awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2022/program/awards.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2022,
+      "award": "Best Paper Honorable Mention",
+      "title": "MC2 : Rigorous and Efficient Directed Greybox Fuzzing",
+      "url": "https://www.sigsac.org/ccs/CCS2022/program/awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2022/program/awards.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2022,
+      "award": "Best Paper Honorable Mention",
+      "title": "NeVerMore: Exploiting RDMA Mistakes in NVMe-oF Storage Applications",
+      "url": "https://www.sigsac.org/ccs/CCS2022/program/awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2022/program/awards.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2022,
+      "award": "Best Paper Honorable Mention",
+      "title": "Order-Disorder: Imitation Adversarial Attacks for Black-box Neural Ranking Models",
+      "url": "https://www.sigsac.org/ccs/CCS2022/program/awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2022/program/awards.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2022,
+      "award": "Best Paper Honorable Mention",
+      "title": "SpecPatch: Human-in-the-Loop Adversarial Audio Spectrogram Patch Attack on Speech Recognition",
+      "url": "https://www.sigsac.org/ccs/CCS2022/program/awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2022/program/awards.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2022,
+      "award": "Best Paper Honorable Mention",
+      "title": "T CHECKER : Precise Static Inter-Procedural Analysis for Detecting Taint-Style Vulnerabilities in PHP Applications",
+      "url": "https://www.sigsac.org/ccs/CCS2022/program/awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2022/program/awards.html",
+      "published_title": "TChecker: Precise Static Inter-Procedural Analysis for Detecting Taint-Style Vulnerabilities in PHP Applications"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2022,
+      "award": "Best Paper Honorable Mention",
+      "title": "Towards Automated Safety Vetting of Smart Contracts in Decentralized Applications",
+      "url": "https://www.sigsac.org/ccs/CCS2022/program/awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2022/program/awards.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2022,
+      "award": "Best Paper Honorable Mention",
+      "title": "When Frodo Flips: End-to-End Key Recovery on FrodoKEM via Rowhammer",
+      "url": "https://www.sigsac.org/ccs/CCS2022/program/awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2022/program/awards.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2022,
+      "award": "Best Paper Honorable Mention",
+      "title": "When Good Becomes Evil: Tracking Bluetooth Low Energy Devices via Allowlist-based Side Channel and Its Countermeasure",
+      "url": "https://www.sigsac.org/ccs/CCS2022/program/awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2022/program/awards.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2022,
+      "award": "Best Paper Honorable Mention",
+      "title": "Why So Toxic? Measuring and Triggering Toxic Behavior in Open-Domain Chatbots",
+      "url": "https://www.sigsac.org/ccs/CCS2022/program/awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2022/program/awards.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2022,
+      "award": "Distinguished Paper Award",
+      "title": "Automatic Detection of Speculative Execution Combinations",
+      "url": "https://www.sigsac.org/ccs/CCS2022/program/awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2022/program/awards.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2022,
+      "award": "Distinguished Paper Award",
+      "title": "Proving UNSAT in Zero Knowledge",
+      "url": "https://www.sigsac.org/ccs/CCS2022/program/awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2022/program/awards.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2022,
+      "award": "Distinguished Paper Award",
+      "title": "STAR: Secret Sharing for Private Threshold Aggregation Reporting",
+      "url": "https://www.sigsac.org/ccs/CCS2022/program/awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2022/program/awards.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2022,
+      "award": "Distinguished Paper Award",
+      "title": "Victory by KO: Attacking OpenPGP Using Key Overwriting",
+      "url": "https://www.sigsac.org/ccs/CCS2022/program/awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2022/program/awards.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2022,
+      "award": "Distinguished Paper Award",
+      "title": "Zapper: Smart Contracts with Data and Identity Privacy",
+      "url": "https://www.sigsac.org/ccs/CCS2022/program/awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2022/program/awards.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2023,
+      "award": "Distinguished Paper Award",
+      "title": "Alert Alchemy: SOC Workflows and Decisions in the Management of NIDS Rules",
+      "url": "https://www.sigsac.org/ccs/CCS_awards/ccs-bestpaper.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS_awards/ccs-bestpaper.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2023,
+      "award": "Distinguished Paper Award",
+      "title": "Amplification by Shuffling without Shuffling",
+      "url": "https://www.sigsac.org/ccs/CCS_awards/ccs-bestpaper.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS_awards/ccs-bestpaper.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2023,
+      "award": "Distinguished Paper Award",
+      "title": "Batchman and Robin: Batched and Non-batched Branching for Interactive ZK",
+      "url": "https://www.sigsac.org/ccs/CCS_awards/ccs-bestpaper.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS_awards/ccs-bestpaper.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2023,
+      "award": "Distinguished Paper Award",
+      "title": "Capacity: Cryptographically-Enforced In-process Capabilities for Modern ARM Architectures",
+      "url": "https://www.sigsac.org/ccs/CCS_awards/ccs-bestpaper.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS_awards/ccs-bestpaper.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2023,
+      "award": "Distinguished Paper Award",
+      "title": "CoCo: Efficient Browser Extension Vulnerability Detection via Coverage-guided, Concurrent Abstract Interpretation",
+      "url": "https://www.sigsac.org/ccs/CCS_awards/ccs-bestpaper.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS_awards/ccs-bestpaper.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2023,
+      "award": "Distinguished Paper Award",
+      "title": "Concurrent Composition for Interactive Differential Privacy with Adaptive Privacy-Loss Parameters",
+      "url": "https://www.sigsac.org/ccs/CCS_awards/ccs-bestpaper.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS_awards/ccs-bestpaper.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2023,
+      "award": "Distinguished Paper Award",
+      "title": "FutORAMa: A Concretely Efficient Hierarchical Oblivious RAM",
+      "url": "https://www.sigsac.org/ccs/CCS_awards/ccs-bestpaper.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS_awards/ccs-bestpaper.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2023,
+      "award": "Distinguished Paper Award",
+      "title": "HE3DB: An Efficient and Elastic Encrypted Database Via Arithmetic-And-Logic Fully Homomorphic Encryption",
+      "url": "https://www.sigsac.org/ccs/CCS_awards/ccs-bestpaper.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS_awards/ccs-bestpaper.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2023,
+      "award": "Distinguished Paper Award",
+      "title": "How Hard is Takeover in DPoS Blockchains? Understanding the Security of Coin-based Voting Governance",
+      "url": "https://www.sigsac.org/ccs/CCS_awards/ccs-bestpaper.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS_awards/ccs-bestpaper.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2023,
+      "award": "Distinguished Paper Award",
+      "title": "Large Language Models for Code: Security Hardening and Adversarial Testing",
+      "url": "https://www.sigsac.org/ccs/CCS_awards/ccs-bestpaper.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS_awards/ccs-bestpaper.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2023,
+      "award": "Distinguished Paper Award",
+      "title": "PANIC: PAN-assisted Intra-process Memory Isolation on ARM",
+      "url": "https://www.sigsac.org/ccs/CCS_awards/ccs-bestpaper.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS_awards/ccs-bestpaper.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2023,
+      "award": "Distinguished Paper Award",
+      "title": "Security Verification of Low-Trust Architectures",
+      "url": "https://www.sigsac.org/ccs/CCS_awards/ccs-bestpaper.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS_awards/ccs-bestpaper.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2023,
+      "award": "Distinguished Paper Award",
+      "title": "Silence is not Golden: Disrupting the Load Balancing of Authoritative DNS Servers",
+      "url": "https://www.sigsac.org/ccs/CCS_awards/ccs-bestpaper.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS_awards/ccs-bestpaper.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2023,
+      "award": "Distinguished Paper Award",
+      "title": "SpecVerilog: Adapting Information Flow Control for Secure Speculation",
+      "url": "https://www.sigsac.org/ccs/CCS_awards/ccs-bestpaper.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS_awards/ccs-bestpaper.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2023,
+      "award": "Distinguished Paper Award",
+      "title": "Specification and Verification of Side-channel Security for Open-source Processors via Leakage Contracts",
+      "url": "https://www.sigsac.org/ccs/CCS_awards/ccs-bestpaper.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS_awards/ccs-bestpaper.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2023,
+      "award": "Distinguished Paper Award",
+      "title": "Stealing the Decoding Algorithms of Language Models",
+      "url": "https://www.sigsac.org/ccs/CCS_awards/ccs-bestpaper.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS_awards/ccs-bestpaper.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2023,
+      "award": "Distinguished Paper Award",
+      "title": "Uncle Maker: (Time)Stamping Out The Competition in Ethereum",
+      "url": "https://www.sigsac.org/ccs/CCS_awards/ccs-bestpaper.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS_awards/ccs-bestpaper.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2024,
+      "award": "Distinguished Paper Award",
+      "title": "Atomic and Fair Data Exchange via Blockchain",
+      "url": "https://www.sigsac.org/ccs/CCS2024/program/awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2024/program/awards.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2024,
+      "award": "Distinguished Paper Award",
+      "title": "Content, Nudges and Incentives: A Study on the Effectiveness and Perception of Embedded Phishing Training",
+      "url": "https://www.sigsac.org/ccs/CCS2024/program/awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2024/program/awards.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2024,
+      "award": "Distinguished Paper Award",
+      "title": "Cross-silo Federated Learning with Record-level Personalized Differential Privacy",
+      "url": "https://www.sigsac.org/ccs/CCS2024/program/awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2024/program/awards.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2024,
+      "award": "Distinguished Paper Award",
+      "title": "Distributed Backdoor Attacks on Federated Graph Learning and Certified Defenses",
+      "url": "https://www.sigsac.org/ccs/CCS2024/program/awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2024/program/awards.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2024,
+      "award": "Distinguished Paper Award",
+      "title": "DoubleUp Roll: Double-spending in Arbitrum by Rolling It Back",
+      "url": "https://www.sigsac.org/ccs/CCS2024/program/awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2024/program/awards.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2024,
+      "award": "Distinguished Paper Award",
+      "title": "ERACAN: Defending Against an Emerging CAN Threat Model",
+      "url": "https://www.sigsac.org/ccs/CCS2024/program/awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2024/program/awards.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2024,
+      "award": "Distinguished Paper Award",
+      "title": "Fast Two-party Threshold ECDSA with Proactive Security",
+      "url": "https://www.sigsac.org/ccs/CCS2024/program/awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2024/program/awards.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2024,
+      "award": "Distinguished Paper Award",
+      "title": "FuzzCache: Optimizing Web Application Fuzzing Through Software-Based Data Cache",
+      "url": "https://www.sigsac.org/ccs/CCS2024/program/awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2024/program/awards.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2024,
+      "award": "Distinguished Paper Award",
+      "title": "Isolate and Detect the Untrusted Driver with a Virtual Box",
+      "url": "https://www.sigsac.org/ccs/CCS2024/program/awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2024/program/awards.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2024,
+      "award": "Distinguished Paper Award",
+      "title": "Jäger: Automated Telephone Call Traceback",
+      "url": "https://www.sigsac.org/ccs/CCS2024/program/awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2024/program/awards.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2024,
+      "award": "Distinguished Paper Award",
+      "title": "Libra: Architectural Support for Principled, Secure, and Efficient Balanced Execution on High-End Processors",
+      "url": "https://www.sigsac.org/ccs/CCS2024/program/awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2024/program/awards.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2024,
+      "award": "Distinguished Paper Award",
+      "title": "Lutris: A Blockchain Combining Broadcast and Consensus",
+      "url": "https://www.sigsac.org/ccs/CCS2024/program/awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2024/program/awards.html",
+      "published_title": "Sui Lutris: A Blockchain Combining Broadcast and Consensus"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2024,
+      "award": "Distinguished Paper Award",
+      "title": "Manipulative Interference Attacks",
+      "url": "https://www.sigsac.org/ccs/CCS2024/program/awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2024/program/awards.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2024,
+      "award": "Distinguished Paper Award",
+      "title": "Moderator: Moderating Text-to-Image Diffusion Models through Fine-grained Context-based Policies",
+      "url": "https://www.sigsac.org/ccs/CCS2024/program/awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2024/program/awards.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2024,
+      "award": "Distinguished Paper Award",
+      "title": "Organic or Diffused: Can We Distinguish Human Art from AI-generated Images?",
+      "url": "https://www.sigsac.org/ccs/CCS2024/program/awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2024/program/awards.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2024,
+      "award": "Distinguished Paper Award",
+      "title": "Practical Key Extraction Attacks in Leading MPC Wallets",
+      "url": "https://www.sigsac.org/ccs/CCS2024/program/awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2024/program/awards.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2024,
+      "award": "Distinguished Paper Award",
+      "title": "Principled Microarchitectural Isolation on Cloud CPUs",
+      "url": "https://www.sigsac.org/ccs/CCS2024/program/awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2024/program/awards.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2024,
+      "award": "Distinguished Paper Award",
+      "title": "QueryCheetah: Fast Automated Discovery of Attribute Inference Attacks Against Query-Based Systems",
+      "url": "https://www.sigsac.org/ccs/CCS2024/program/awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2024/program/awards.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2024,
+      "award": "Distinguished Paper Award",
+      "title": "ReSym: Harnessing LLMs to Recover Variable and Data Structure Symbols from Stripped Binaries",
+      "url": "https://www.sigsac.org/ccs/CCS2024/program/awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2024/program/awards.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2024,
+      "award": "Distinguished Paper Award",
+      "title": "RefleXnoop: Passwords Snooping on NLoS Laptops Leveraging Screen-Induced Sound Reflection",
+      "url": "https://www.sigsac.org/ccs/CCS2024/program/awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2024/program/awards.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2024,
+      "award": "Distinguished Paper Award",
+      "title": "Spec-o-Scope: Cache Probing at Cache Speed",
+      "url": "https://www.sigsac.org/ccs/CCS2024/program/awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2024/program/awards.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2024,
+      "award": "Distinguished Paper Award",
+      "title": "Stealing Trust: Unraveling Blind Message Attacks in Web3 Authentication",
+      "url": "https://www.sigsac.org/ccs/CCS2024/program/awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2024/program/awards.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2024,
+      "award": "Distinguished Paper Award",
+      "title": "Testing Side-channel Security of Cryptographic Implementations Against Future Microarchitectures",
+      "url": "https://www.sigsac.org/ccs/CCS2024/program/awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2024/program/awards.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2024,
+      "award": "Distinguished Paper Award",
+      "title": "The Harder You Try, The Harder You Fail: The KeyTrap Denial-of-Service Algorithmic Complexity Attacks on DNSSEC",
+      "url": "https://www.sigsac.org/ccs/CCS2024/program/awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2024/program/awards.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2024,
+      "award": "Distinguished Paper Award",
+      "title": "Unmasking the Security and Usability of Password Masking",
+      "url": "https://www.sigsac.org/ccs/CCS2024/program/awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2024/program/awards.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2024,
+      "award": "Distinguished Paper Award",
+      "title": "uMMU: Securing Data Confidentiality with Unobservable Memory Subsystem",
+      "url": "https://www.sigsac.org/ccs/CCS2024/program/awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2024/program/awards.html"
+    },
+    {
+      "venue": "ACM CCS",
+      "year": 2024,
+      "award": "Distinguished Paper Award",
+      "title": "“Better Be Computer or I’m Dumb”: A Large-Scale Evaluation of Humans as Audio Deepfake Detectors",
+      "url": "https://www.sigsac.org/ccs/CCS2024/program/awards.html",
+      "source_url": "https://www.sigsac.org/ccs/CCS2024/program/awards.html"
+    }
+  ]
+}

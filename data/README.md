@@ -4,6 +4,6 @@
 
 The local web and CLI default to `security-20-v6`; manifested profile snapshots are authoritative for reproduction. `data/adjudication/` records evidence-backed identity and title-repair decisions rather than hiding them in implementation code.
 
-`data/awards/` contains source-backed optional award annotations. They enrich exploration output and do not change corpus inclusion, coverage, or ranking claims.
+`data/awards/` contains source-backed optional award annotations. They enrich exploration output and do not change corpus inclusion, coverage, or ranking claims. Every record names the official page it came from. Tables for pages a script can parse are collected directly (`scripts/collect_ieee_sp_awards.py`); pages whose layout changes every year, or that sit behind a browser challenge, are kept as dated captures in `data/awards/captures/` and turned into tables by `scripts/import_award_captures.py import`. `scripts/import_award_captures.py verify` re-fetches every page a script can reach and fails if a recorded title is not on it. When a page words a title differently from the proceedings, the record also carries `published_title`, which is what joins it to the corpus. On `security-20-v6`, `scripts/award_coverage.py` resolves 317 of 371 awards; the rest are ACSAC awards from before 2019, outside the declared window, and 2026 papers DBLP has not indexed yet.
 
 Generated databases, caches, downloaded DBLP dumps, and live-enrichment workspaces are intentionally excluded from the release.

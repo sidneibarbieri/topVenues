@@ -72,22 +72,28 @@ def normalize_title(title: str) -> str:
     return re.sub(r"[^a-z0-9]+", " ", without_accents.lower()).strip()
 
 
+def award_tables(awards_dir: Path) -> list[Path]:
+    """Every ``*_paper_awards.json`` award table directly under ``awards_dir``."""
+    return sorted(awards_dir.glob("*_paper_awards.json"))
+
+
+def load_award_table(path: Path) -> list[AwardRecord]:
+    return [
+        AwardRecord(
+            venue=row["venue"],
+            year=int(row["year"]),
+            award=row["award"],
+            title=row["title"],
+            url=row.get("url"),
+            source_url=row["source_url"],
+        )
+        for row in json.loads(path.read_text(encoding="utf-8"))
+    ]
+
+
 def load_award_records(awards_dir: Path) -> list[AwardRecord]:
-    """Load every ``*_paper_awards.json`` award table directly under ``awards_dir``."""
-    records: list[AwardRecord] = []
-    for path in sorted(awards_dir.glob("*_paper_awards.json")):
-        for row in json.loads(path.read_text(encoding="utf-8")):
-            records.append(
-                AwardRecord(
-                    venue=row["venue"],
-                    year=int(row["year"]),
-                    award=row["award"],
-                    title=row["title"],
-                    url=row.get("url"),
-                    source_url=row["source_url"],
-                )
-            )
-    return records
+    """Load every award table directly under ``awards_dir``."""
+    return [record for path in award_tables(awards_dir) for record in load_award_table(path)]
 
 
 def match_awards_to_corpus(

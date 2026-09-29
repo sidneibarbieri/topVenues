@@ -1097,7 +1097,8 @@
     "downloaded": false,
     "output_path": "",
     "failure": "",
-    "resolved_url": ""
+    "resolved_url": "",
+    "published_title": "SlicedPIR: Offloading Heavyweight Work with NTT"
   },
   {
     "conference": "ACM CCS",
@@ -1162,7 +1163,8 @@
     "downloaded": false,
     "output_path": "",
     "failure": "",
-    "resolved_url": ""
+    "resolved_url": "",
+    "published_title": "CITesting: Systematic Testing of Context Integrity Violations in LTE Core Networks"
   },
   {
     "conference": "ACM CCS",

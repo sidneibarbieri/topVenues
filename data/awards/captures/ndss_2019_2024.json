@@ -1,0 +1,170 @@
+{
+  "source": "NDSS Symposium year pages (ndss-symposium.org/ndss<year>/)",
+  "captured_on": "2026-09-29",
+  "scripted_verification": true,
+  "method": "Titles copied from the awards section of each year's NDSS Symposium page. Paper recognitions only: distinguished paper awards and the 2019 honorable mentions; poster and artifact-evaluation awards are left out. Where the page's wording differs from the proceedings title (a typo, lost markup, or a title changed for the proceedings), the record also carries the proceedings title as `published_title`; the verify step checks the page wording and the corpus join uses the proceedings title.",
+  "records": [
+    {
+      "venue": "NDSS",
+      "year": 2019,
+      "award": "Distinguished Paper Award",
+      "title": "MBeacon: Privacy-Preserving Beacons for DNA Methylation Data",
+      "url": "https://www.ndss-symposium.org/ndss2019/",
+      "source_url": "https://www.ndss-symposium.org/ndss2019/"
+    },
+    {
+      "venue": "NDSS",
+      "year": 2019,
+      "award": "Distinguished Paper Award",
+      "title": "Establishing Software Root of Trust Unconditionally",
+      "url": "https://www.ndss-symposium.org/ndss2019/",
+      "source_url": "https://www.ndss-symposium.org/ndss2019/"
+    },
+    {
+      "venue": "NDSS",
+      "year": 2019,
+      "award": "Distinguished Paper Award",
+      "title": "Cracking the Wall of Confinement: Understanding and Analyzing Malicious Domain Take-downs",
+      "url": "https://www.ndss-symposium.org/ndss2019/",
+      "source_url": "https://www.ndss-symposium.org/ndss2019/"
+    },
+    {
+      "venue": "NDSS",
+      "year": 2019,
+      "award": "Distinguished Paper Award",
+      "title": "Cleaning Up the Internet of Evil Things: Real-World Evidence on ISP and Consumer Efforts to Remove Mirai",
+      "url": "https://www.ndss-symposium.org/ndss2019/",
+      "source_url": "https://www.ndss-symposium.org/ndss2019/"
+    },
+    {
+      "venue": "NDSS",
+      "year": 2020,
+      "award": "Distinguished Paper Award",
+      "title": "Melting Pot of Origins: Compromising the Intermediary Web Services that Rehost Websites",
+      "url": "https://www.ndss-symposium.org/ndss2020/",
+      "source_url": "https://www.ndss-symposium.org/ndss2020/"
+    },
+    {
+      "venue": "NDSS",
+      "year": 2021,
+      "award": "Distinguished Paper Award",
+      "title": "Awakening the Web’s Sleeping Agents: Misusing Service Workers for Privacy Leakage",
+      "url": "https://www.ndss-symposium.org/ndss2021/",
+      "source_url": "https://www.ndss-symposium.org/ndss2021/",
+      "published_title": "Awakening the Web's Sleeper Agents: Misusing Service Workers for Privacy Leakage"
+    },
+    {
+      "venue": "NDSS",
+      "year": 2022,
+      "award": "Distinguished Paper Award",
+      "title": "Preventing Kernel Hacks with HAKCs",
+      "url": "https://www.ndss-symposium.org/ndss2022/",
+      "source_url": "https://www.ndss-symposium.org/ndss2022/"
+    },
+    {
+      "venue": "NDSS",
+      "year": 2023,
+      "award": "Distinguished Paper Award",
+      "title": "Your Router Is My Prober: Measuring IPv6Networks via ICMP Rate Limiting Side Channels",
+      "url": "https://www.ndss-symposium.org/ndss2023/",
+      "source_url": "https://www.ndss-symposium.org/ndss2023/",
+      "published_title": "Your Router is My Prober: Measuring IPv6 Networks via ICMP Rate Limiting Side Channels"
+    },
+    {
+      "venue": "NDSS",
+      "year": 2023,
+      "award": "Distinguished Paper Award",
+      "title": "DARWIN: Survival of the Fittest Fuzzing Mutators",
+      "url": "https://www.ndss-symposium.org/ndss2023/",
+      "source_url": "https://www.ndss-symposium.org/ndss2023/"
+    },
+    {
+      "venue": "NDSS",
+      "year": 2024,
+      "award": "Distinguished Paper Award",
+      "title": "Like, Comment, Get Scammed: Characterizing Comment Scams on Media Platforms",
+      "url": "https://www.ndss-symposium.org/ndss2024/",
+      "source_url": "https://www.ndss-symposium.org/ndss2024/"
+    },
+    {
+      "venue": "NDSS",
+      "year": 2024,
+      "award": "Distinguished Paper Award",
+      "title": "UntrustIDE: Exploiting Weaknesses in VS Code Extensions",
+      "url": "https://www.ndss-symposium.org/ndss2024/",
+      "source_url": "https://www.ndss-symposium.org/ndss2024/"
+    },
+    {
+      "venue": "NDSS",
+      "year": 2024,
+      "award": "Distinguished Paper Award",
+      "title": "Eavesdropping on Controller Acoustic Emanation for Keystroke Inference Attack in Virtual Reality",
+      "url": "https://www.ndss-symposium.org/ndss2024/",
+      "source_url": "https://www.ndss-symposium.org/ndss2024/"
+    },
+    {
+      "venue": "NDSS",
+      "year": 2024,
+      "award": "Distinguished Paper Award",
+      "title": "LMSanitator: Defending Prompt-Tuning Against Task-Agnostic Backdoors",
+      "url": "https://www.ndss-symposium.org/ndss2024/",
+      "source_url": "https://www.ndss-symposium.org/ndss2024/"
+    },
+    {
+      "venue": "NDSS",
+      "year": 2019,
+      "award": "Distinguished Paper Award Honorable Mention",
+      "title": "Data Oblivious ISA Extensions for Side Channel-Resistant and High Performance Computing",
+      "url": "https://www.ndss-symposium.org/ndss2019/",
+      "source_url": "https://www.ndss-symposium.org/ndss2019/"
+    },
+    {
+      "venue": "NDSS",
+      "year": 2019,
+      "award": "Distinguished Paper Award Honorable Mention",
+      "title": "Graph-based Security and Privacy Analytics via Collective Classification with Joint Weight Learning and Propagation",
+      "url": "https://www.ndss-symposium.org/ndss2019/",
+      "source_url": "https://www.ndss-symposium.org/ndss2019/"
+    },
+    {
+      "venue": "NDSS",
+      "year": 2019,
+      "award": "Distinguished Paper Award Honorable Mention",
+      "title": "ICSREF: A Framework for Automated Reverse Engineering of Industrial Control Systems Binaries",
+      "url": "https://www.ndss-symposium.org/ndss2019/",
+      "source_url": "https://www.ndss-symposium.org/ndss2019/"
+    },
+    {
+      "venue": "NDSS",
+      "year": 2019,
+      "award": "Distinguished Paper Award Honorable Mention",
+      "title": "Ginseng: Keeping Secrets in Registers When You Distrust the Operating System",
+      "url": "https://www.ndss-symposium.org/ndss2019/",
+      "source_url": "https://www.ndss-symposium.org/ndss2019/"
+    },
+    {
+      "venue": "NDSS",
+      "year": 2019,
+      "award": "Distinguished Paper Award Honorable Mention",
+      "title": "One Engine To Serve ’em All: Inferring Taint Rules Without Architectural Semantics",
+      "url": "https://www.ndss-symposium.org/ndss2019/",
+      "source_url": "https://www.ndss-symposium.org/ndss2019/"
+    },
+    {
+      "venue": "NDSS",
+      "year": 2019,
+      "award": "Distinguished Paper Award Honorable Mention",
+      "title": "On the Challenges of Geographical Avoidance for Tor",
+      "url": "https://www.ndss-symposium.org/ndss2019/",
+      "source_url": "https://www.ndss-symposium.org/ndss2019/"
+    },
+    {
+      "venue": "NDSS",
+      "year": 2019,
+      "award": "Distinguished Paper Award Honorable Mention",
+      "title": "Privacy Attacks to the 4G and 5G Cellular Paging Protocols Using Side Channel Information",
+      "url": "https://www.ndss-symposium.org/ndss2019/",
+      "source_url": "https://www.ndss-symposium.org/ndss2019/"
+    }
+  ]
+}

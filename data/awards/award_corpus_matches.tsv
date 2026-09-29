@@ -1,4 +1,84 @@
 venue	year	award	title	paper_id	source_url
+ACM CCS	2019	Best Paper Award	Where Does It Go? Refining Indirect-Call Targets with Multi-layer Type Analysis	conf/ccs/LuH19	https://www.sigsac.org/ccs/CCS_awards/ccs-bestpaper.html
+ACM CCS	2020	Distinguished Paper Award	DNS Cache Poisoning Attack Reloaded: Revolutions With Side Channels	conf/ccs/ManQ0ZHD20	https://www.sigsac.org/ccs/CCS2020/awards.html
+ACM CCS	2021	Best Paper Award	On the (In)Security of ElGamal in OpenPGP	conf/ccs/FeoPS21	https://www.sigsac.org/ccs/CCS2021/ccs-awards.html
+ACM CCS	2021	Best Paper Award	On the Renyi Differential Privacy of the Shuffle Model	conf/ccs/GirgisDDSK21	https://www.sigsac.org/ccs/CCS2021/ccs-awards.html
+ACM CCS	2021	Best Paper Award	One Glitch to Rule Them All: Fault Injection Attacks Against AMD’s Secure Encrypted Virtualization	conf/ccs/BuhrenJKS21	https://www.sigsac.org/ccs/CCS2021/ccs-awards.html
+ACM CCS	2021	Best Paper Award	V-Shuttle: Scalable and Semantics-Aware Hypervisor Virtual Device Fuzzing	conf/ccs/PanL0JJWYWW21	https://www.sigsac.org/ccs/CCS2021/ccs-awards.html
+ACM CCS	2021	Best Paper Award	XSinator.com: From a Formal Model to the Automatic Evaluation of Cross-Site Leaks in Web Browsers	conf/ccs/KnittelMNNS21	https://www.sigsac.org/ccs/CCS2021/ccs-awards.html
+ACM CCS	2021	Best Paper Award Runner-Up	Asynchronous Data Dissemination and its Applications	conf/ccs/DasX021	https://www.sigsac.org/ccs/CCS2021/ccs-awards.html
+ACM CCS	2021	Best Paper Award Runner-Up	BFT Protocol Forensics	conf/ccs/ShengWNKV21	https://www.sigsac.org/ccs/CCS2021/ccs-awards.html
+ACM CCS	2021	Best Paper Award Runner-Up	CROSSLINE: Breaking ``Security-by-Crash'' based Memory Isolation in AMD SEV	conf/ccs/LiZL21	https://www.sigsac.org/ccs/CCS2021/ccs-awards.html
+ACM CCS	2021	Best Paper Award Runner-Up	DPGen: Automated Program Synthesis for Differential Privacy	conf/ccs/WangDXKZ21	https://www.sigsac.org/ccs/CCS2021/ccs-awards.html
+ACM CCS	2021	Best Paper Award Runner-Up	Hidden Backdoors in Human-Centric Language Models	conf/ccs/LiLDZXZL21	https://www.sigsac.org/ccs/CCS2021/ccs-awards.html
+ACM CCS	2021	Best Paper Award Runner-Up	Learning Security Classifiers with Verified Global Robustness Properties	conf/ccs/Chen0QLJW21	https://www.sigsac.org/ccs/CCS2021/ccs-awards.html
+ACM CCS	2021	Best Paper Award Runner-Up	On Re-engineering the X.509 PKI with Executable Specification for Better Implementation Guarantees	conf/ccs/DebnathCC21	https://www.sigsac.org/ccs/CCS2021/ccs-awards.html
+ACM CCS	2021	Best Paper Award Runner-Up	QuickSilver: Efficient and Affordable Zero-Knowledge Proofs for Circuits and Polynomials over Any Field	conf/ccs/YangSWW21	https://www.sigsac.org/ccs/CCS2021/ccs-awards.html
+ACM CCS	2021	Best Paper Award Runner-Up	"“I need a better description"": An Investigation Into User Expectations For Differential Privacy"	conf/ccs/CummingsKR21	https://www.sigsac.org/ccs/CCS2021/ccs-awards.html
+ACM CCS	2022	Best Paper Honorable Mention	AI/ML for Network Security: The Emperor has no Clothes	conf/ccs/JacobsBWFGG22	https://www.sigsac.org/ccs/CCS2022/program/awards.html
+ACM CCS	2022	Best Paper Honorable Mention	Blacktooth: Breaking through the Defense of Bluetooth in Silence	conf/ccs/AiXLCYS022	https://www.sigsac.org/ccs/CCS2022/program/awards.html
+ACM CCS	2022	Best Paper Honorable Mention	CANflict: Exploiting Peripheral Conflicts for Data-Link Layer Attacks on Automotive Networks	conf/ccs/TronLCPZ22	https://www.sigsac.org/ccs/CCS2022/program/awards.html
+ACM CCS	2022	Best Paper Honorable Mention	CETIS: Retrofitting Intel CET for Generic and Efficient Intra-process Memory Isolation	conf/ccs/Xie0ZXLKW022	https://www.sigsac.org/ccs/CCS2022/program/awards.html
+ACM CCS	2022	Best Paper Honorable Mention	Detecting Missing-Permission-Check Vulnerabilities in Distributed Cloud Systems	conf/ccs/LuLL0C22	https://www.sigsac.org/ccs/CCS2022/program/awards.html
+ACM CCS	2022	Best Paper Honorable Mention	Hammurabi: A Framework for Pluggable, Logic-based X.509 Certificate Validation Policies	conf/ccs/LarischALGKTWCL22	https://www.sigsac.org/ccs/CCS2022/program/awards.html
+ACM CCS	2022	Best Paper Honorable Mention	MC2 : Rigorous and Efficient Directed Greybox Fuzzing	conf/ccs/ShahSSSCJ22	https://www.sigsac.org/ccs/CCS2022/program/awards.html
+ACM CCS	2022	Best Paper Honorable Mention	NeVerMore: Exploiting RDMA Mistakes in NVMe-oF Storage Applications	conf/ccs/TaranovRSPH22	https://www.sigsac.org/ccs/CCS2022/program/awards.html
+ACM CCS	2022	Best Paper Honorable Mention	Order-Disorder: Imitation Adversarial Attacks for Black-box Neural Ranking Models	conf/ccs/LiuKTSSWLL22	https://www.sigsac.org/ccs/CCS2022/program/awards.html
+ACM CCS	2022	Best Paper Honorable Mention	SpecPatch: Human-in-the-Loop Adversarial Audio Spectrogram Patch Attack on Speech Recognition	conf/ccs/GuoWI0Y22	https://www.sigsac.org/ccs/CCS2022/program/awards.html
+ACM CCS	2022	Best Paper Honorable Mention	TChecker: Precise Static Inter-Procedural Analysis for Detecting Taint-Style Vulnerabilities in PHP Applications	conf/ccs/Luo0022	https://www.sigsac.org/ccs/CCS2022/program/awards.html
+ACM CCS	2022	Best Paper Honorable Mention	Towards Automated Safety Vetting of Smart Contracts in Decentralized Applications	conf/ccs/DuanZPLLX022	https://www.sigsac.org/ccs/CCS2022/program/awards.html
+ACM CCS	2022	Best Paper Honorable Mention	When Frodo Flips: End-to-End Key Recovery on FrodoKEM via Rowhammer	conf/ccs/FahrKKDLDGNPYA22	https://www.sigsac.org/ccs/CCS2022/program/awards.html
+ACM CCS	2022	Best Paper Honorable Mention	When Good Becomes Evil: Tracking Bluetooth Low Energy Devices via Allowlist-based Side Channel and Its Countermeasure	conf/ccs/0025L22	https://www.sigsac.org/ccs/CCS2022/program/awards.html
+ACM CCS	2022	Best Paper Honorable Mention	Why So Toxic? Measuring and Triggering Toxic Behavior in Open-Domain Chatbots	conf/ccs/Si0BCSZ022	https://www.sigsac.org/ccs/CCS2022/program/awards.html
+ACM CCS	2022	Distinguished Paper Award	Automatic Detection of Speculative Execution Combinations	conf/ccs/FabianGP22	https://www.sigsac.org/ccs/CCS2022/program/awards.html
+ACM CCS	2022	Distinguished Paper Award	Proving UNSAT in Zero Knowledge	conf/ccs/LuoAHPTW22	https://www.sigsac.org/ccs/CCS2022/program/awards.html
+ACM CCS	2022	Distinguished Paper Award	STAR: Secret Sharing for Private Threshold Aggregation Reporting	conf/ccs/DavidsonSQGLH22	https://www.sigsac.org/ccs/CCS2022/program/awards.html
+ACM CCS	2022	Distinguished Paper Award	Victory by KO: Attacking OpenPGP Using Key Overwriting	conf/ccs/BruseghiniHP22	https://www.sigsac.org/ccs/CCS2022/program/awards.html
+ACM CCS	2022	Distinguished Paper Award	Zapper: Smart Contracts with Data and Identity Privacy	conf/ccs/SteffenBV22	https://www.sigsac.org/ccs/CCS2022/program/awards.html
+ACM CCS	2023	Distinguished Paper Award	Alert Alchemy: SOC Workflows and Decisions in the Management of NIDS Rules	conf/ccs/VermeerKEGP23	https://www.sigsac.org/ccs/CCS_awards/ccs-bestpaper.html
+ACM CCS	2023	Distinguished Paper Award	Amplification by Shuffling without Shuffling	conf/ccs/Balle0G23	https://www.sigsac.org/ccs/CCS_awards/ccs-bestpaper.html
+ACM CCS	2023	Distinguished Paper Award	Batchman and Robin: Batched and Non-batched Branching for Interactive ZK	conf/ccs/YangHHKV23	https://www.sigsac.org/ccs/CCS_awards/ccs-bestpaper.html
+ACM CCS	2023	Distinguished Paper Award	Capacity: Cryptographically-Enforced In-process Capabilities for Modern ARM Architectures	conf/ccs/DuyCN023	https://www.sigsac.org/ccs/CCS_awards/ccs-bestpaper.html
+ACM CCS	2023	Distinguished Paper Award	CoCo: Efficient Browser Extension Vulnerability Detection via Coverage-guided, Concurrent Abstract Interpretation	conf/ccs/Yu0ZC23	https://www.sigsac.org/ccs/CCS_awards/ccs-bestpaper.html
+ACM CCS	2023	Distinguished Paper Award	Concurrent Composition for Interactive Differential Privacy with Adaptive Privacy-Loss Parameters	conf/ccs/HaneySTVVX023	https://www.sigsac.org/ccs/CCS_awards/ccs-bestpaper.html
+ACM CCS	2023	Distinguished Paper Award	FutORAMa: A Concretely Efficient Hierarchical Oblivious RAM	conf/ccs/AsharovKM23	https://www.sigsac.org/ccs/CCS_awards/ccs-bestpaper.html
+ACM CCS	2023	Distinguished Paper Award	HE3DB: An Efficient and Elastic Encrypted Database Via Arithmetic-And-Logic Fully Homomorphic Encryption	conf/ccs/00010PMZJG23	https://www.sigsac.org/ccs/CCS_awards/ccs-bestpaper.html
+ACM CCS	2023	Distinguished Paper Award	How Hard is Takeover in DPoS Blockchains? Understanding the Security of Coin-based Voting Governance	conf/ccs/LiPXDL023	https://www.sigsac.org/ccs/CCS_awards/ccs-bestpaper.html
+ACM CCS	2023	Distinguished Paper Award	Large Language Models for Code: Security Hardening and Adversarial Testing	conf/ccs/HeV23	https://www.sigsac.org/ccs/CCS_awards/ccs-bestpaper.html
+ACM CCS	2023	Distinguished Paper Award	PANIC: PAN-assisted Intra-process Memory Isolation on ARM	conf/ccs/XuX0ZLHLKWW023	https://www.sigsac.org/ccs/CCS_awards/ccs-bestpaper.html
+ACM CCS	2023	Distinguished Paper Award	Security Verification of Low-Trust Architectures	conf/ccs/TanFCBJMA23	https://www.sigsac.org/ccs/CCS_awards/ccs-bestpaper.html
+ACM CCS	2023	Distinguished Paper Award	Silence is not Golden: Disrupting the Load Balancing of Authoritative DNS Servers	conf/ccs/ZhangLACLSMLDY23	https://www.sigsac.org/ccs/CCS_awards/ccs-bestpaper.html
+ACM CCS	2023	Distinguished Paper Award	SpecVerilog: Adapting Information Flow Control for Secure Speculation	conf/ccs/ZagieboyloSMS23	https://www.sigsac.org/ccs/CCS_awards/ccs-bestpaper.html
+ACM CCS	2023	Distinguished Paper Award	Specification and Verification of Side-channel Security for Open-source Processors via Leakage Contracts	conf/ccs/WangMG0G23	https://www.sigsac.org/ccs/CCS_awards/ccs-bestpaper.html
+ACM CCS	2023	Distinguished Paper Award	Stealing the Decoding Algorithms of Language Models	conf/ccs/NasehKIH23	https://www.sigsac.org/ccs/CCS_awards/ccs-bestpaper.html
+ACM CCS	2023	Distinguished Paper Award	Uncle Maker: (Time)Stamping Out The Competition in Ethereum	conf/ccs/YaishSZ23	https://www.sigsac.org/ccs/CCS_awards/ccs-bestpaper.html
+ACM CCS	2024	Distinguished Paper Award	Atomic and Fair Data Exchange via Blockchain	conf/ccs/TasSZMKBN24	https://www.sigsac.org/ccs/CCS2024/program/awards.html
+ACM CCS	2024	Distinguished Paper Award	Content, Nudges and Incentives: A Study on the Effectiveness and Perception of Embedded Phishing Training	conf/ccs/LainJMKC24	https://www.sigsac.org/ccs/CCS2024/program/awards.html
+ACM CCS	2024	Distinguished Paper Award	Cross-silo Federated Learning with Record-level Personalized Differential Privacy	conf/ccs/Liu00L024	https://www.sigsac.org/ccs/CCS2024/program/awards.html
+ACM CCS	2024	Distinguished Paper Award	Distributed Backdoor Attacks on Federated Graph Learning and Certified Defenses	conf/ccs/YangLJHW24	https://www.sigsac.org/ccs/CCS2024/program/awards.html
+ACM CCS	2024	Distinguished Paper Award	DoubleUp Roll: Double-spending in Arbitrum by Rolling It Back	conf/ccs/Sun0PLJ0Z24	https://www.sigsac.org/ccs/CCS2024/program/awards.html
+ACM CCS	2024	Distinguished Paper Award	ERACAN: Defending Against an Emerging CAN Threat Model	conf/ccs/TangSZCXB24	https://www.sigsac.org/ccs/CCS2024/program/awards.html
+ACM CCS	2024	Distinguished Paper Award	Fast Two-party Threshold ECDSA with Proactive Security	conf/ccs/KozielGG24	https://www.sigsac.org/ccs/CCS2024/program/awards.html
+ACM CCS	2024	Distinguished Paper Award	FuzzCache: Optimizing Web Application Fuzzing Through Software-Based Data Cache	conf/ccs/0001024	https://www.sigsac.org/ccs/CCS2024/program/awards.html
+ACM CCS	2024	Distinguished Paper Award	Isolate and Detect the Untrusted Driver with a Virtual Box	conf/ccs/LiJBCZC24	https://www.sigsac.org/ccs/CCS2024/program/awards.html
+ACM CCS	2024	Distinguished Paper Award	Jäger: Automated Telephone Call Traceback	conf/ccs/AdeiMPRS24	https://www.sigsac.org/ccs/CCS2024/program/awards.html
+ACM CCS	2024	Distinguished Paper Award	Libra: Architectural Support for Principled, Secure, and Efficient Balanced Execution on High-End Processors	conf/ccs/WinderixBDP24	https://www.sigsac.org/ccs/CCS2024/program/awards.html
+ACM CCS	2024	Distinguished Paper Award	Sui Lutris: A Blockchain Combining Broadcast and Consensus	conf/ccs/BlackshearCDKKL24	https://www.sigsac.org/ccs/CCS2024/program/awards.html
+ACM CCS	2024	Distinguished Paper Award	Manipulative Interference Attacks	conf/ccs/MergendahlFNS24	https://www.sigsac.org/ccs/CCS2024/program/awards.html
+ACM CCS	2024	Distinguished Paper Award	Moderator: Moderating Text-to-Image Diffusion Models through Fine-grained Context-based Policies	conf/ccs/WangLYW0J24	https://www.sigsac.org/ccs/CCS2024/program/awards.html
+ACM CCS	2024	Distinguished Paper Award	Organic or Diffused: Can We Distinguish Human Art from AI-generated Images?	conf/ccs/HaPBSSZZ24	https://www.sigsac.org/ccs/CCS2024/program/awards.html
+ACM CCS	2024	Distinguished Paper Award	Practical Key Extraction Attacks in Leading MPC Wallets	conf/ccs/MakriyannisYG24	https://www.sigsac.org/ccs/CCS2024/program/awards.html
+ACM CCS	2024	Distinguished Paper Award	Principled Microarchitectural Isolation on Cloud CPUs	conf/ccs/VolosFHKO24	https://www.sigsac.org/ccs/CCS2024/program/awards.html
+ACM CCS	2024	Distinguished Paper Award	QueryCheetah: Fast Automated Discovery of Attribute Inference Attacks Against Query-Based Systems	conf/ccs/Stevanoski0M24	https://www.sigsac.org/ccs/CCS2024/program/awards.html
+ACM CCS	2024	Distinguished Paper Award	ReSym: Harnessing LLMs to Recover Variable and Data Structure Symbols from Stripped Binaries	conf/ccs/Xie00X0024	https://www.sigsac.org/ccs/CCS2024/program/awards.html
+ACM CCS	2024	Distinguished Paper Award	RefleXnoop: Passwords Snooping on NLoS Laptops Leveraging Screen-Induced Sound Reflection	conf/ccs/WangHL024	https://www.sigsac.org/ccs/CCS2024/program/awards.html
+ACM CCS	2024	Distinguished Paper Award	Spec-o-Scope: Cache Probing at Cache Speed	conf/ccs/HorowitzRY24	https://www.sigsac.org/ccs/CCS2024/program/awards.html
+ACM CCS	2024	Distinguished Paper Award	Stealing Trust: Unraveling Blind Message Attacks in Web3 Authentication	conf/ccs/YanZD24	https://www.sigsac.org/ccs/CCS2024/program/awards.html
+ACM CCS	2024	Distinguished Paper Award	Testing Side-channel Security of Cryptographic Implementations Against Future Microarchitectures	conf/ccs/BartheBCCGGRSWY24	https://www.sigsac.org/ccs/CCS2024/program/awards.html
+ACM CCS	2024	Distinguished Paper Award	The Harder You Try, The Harder You Fail: The KeyTrap Denial-of-Service Algorithmic Complexity Attacks on DNSSEC	conf/ccs/HeftrigSVW24	https://www.sigsac.org/ccs/CCS2024/program/awards.html
+ACM CCS	2024	Distinguished Paper Award	Unmasking the Security and Usability of Password Masking	conf/ccs/HuAS024	https://www.sigsac.org/ccs/CCS2024/program/awards.html
+ACM CCS	2024	Distinguished Paper Award	uMMU: Securing Data Confidentiality with Unobservable Memory Subsystem	535627	https://www.sigsac.org/ccs/CCS2024/program/awards.html
+ACM CCS	2024	Distinguished Paper Award	“Better Be Computer or I’m Dumb”: A Large-Scale Evaluation of Humans as Audio Deepfake Detectors	conf/ccs/WarrenTCOLFPLBG24	https://www.sigsac.org/ccs/CCS2024/program/awards.html
 ACSAC	2025	Distinguished Paper	InteractionShield: Harnessing Event Relations for Interaction Threat Detection and Resolution in Smart Homes	526285	https://www.acsac.org/archive/
 ACSAC	2025	Distinguished Paper	MoEvil: Poisoning Experts to Compromise the Safety of Mixture-of-Experts LLMs	526220	https://www.acsac.org/archive/
 ACSAC	2024	Distinguished Paper	Single Sign-On Privacy: We Still Know What You Did Last Summer	1049970	https://www.acsac.org/archive/
@@ -54,6 +134,26 @@ IEEE S&P	2024	Distinguished Paper Award	SoK: Prudent Evaluation Practices for Fu
 IEEE S&P	2024	Distinguished Paper Award	SoK: Unintended Interactions among Machine Learning Defenses and Risks	696429	https://www.ieee-security.org/TC/SP2024/awards.html
 IEEE S&P	2024	Distinguished Paper Award	The Great Request Robbery: An Empirical Study of Client-side Request Hijacking Vulnerabilities on the Web	696487	https://www.ieee-security.org/TC/SP2024/awards.html
 IEEE S&P	2024	Distinguished Paper Award	WESEE: Using Malicious #VC Interrupts to Break AMD SEV-SNP	696582	https://www.ieee-security.org/TC/SP2024/awards.html
+NDSS	2019	Distinguished Paper Award	MBeacon: Privacy-Preserving Beacons for DNA Methylation Data	3085310	https://www.ndss-symposium.org/ndss2019/
+NDSS	2019	Distinguished Paper Award	Establishing Software Root of Trust Unconditionally	3085309	https://www.ndss-symposium.org/ndss2019/
+NDSS	2019	Distinguished Paper Award	Cracking the Wall of Confinement: Understanding and Analyzing Malicious Domain Take-downs	3085284	https://www.ndss-symposium.org/ndss2019/
+NDSS	2019	Distinguished Paper Award	Cleaning Up the Internet of Evil Things: Real-World Evidence on ISP and Consumer Efforts to Remove Mirai	3085294	https://www.ndss-symposium.org/ndss2019/
+NDSS	2020	Distinguished Paper Award	Melting Pot of Origins: Compromising the Intermediary Web Services that Rehost Websites	2651799	https://www.ndss-symposium.org/ndss2020/
+NDSS	2021	Distinguished Paper Award	Awakening the Web's Sleeper Agents: Misusing Service Workers for Privacy Leakage	2205565	https://www.ndss-symposium.org/ndss2021/
+NDSS	2022	Distinguished Paper Award	Preventing Kernel Hacks with HAKCs	1731283	https://www.ndss-symposium.org/ndss2022/
+NDSS	2023	Distinguished Paper Award	Your Router is My Prober: Measuring IPv6 Networks via ICMP Rate Limiting Side Channels	1223312	https://www.ndss-symposium.org/ndss2023/
+NDSS	2023	Distinguished Paper Award	DARWIN: Survival of the Fittest Fuzzing Mutators	1223283	https://www.ndss-symposium.org/ndss2023/
+NDSS	2024	Distinguished Paper Award	Like, Comment, Get Scammed: Characterizing Comment Scams on Media Platforms	669923	https://www.ndss-symposium.org/ndss2024/
+NDSS	2024	Distinguished Paper Award	UntrustIDE: Exploiting Weaknesses in VS Code Extensions	669928	https://www.ndss-symposium.org/ndss2024/
+NDSS	2024	Distinguished Paper Award	Eavesdropping on Controller Acoustic Emanation for Keystroke Inference Attack in Virtual Reality	669936	https://www.ndss-symposium.org/ndss2024/
+NDSS	2024	Distinguished Paper Award	LMSanitator: Defending Prompt-Tuning Against Task-Agnostic Backdoors	669979	https://www.ndss-symposium.org/ndss2024/
+NDSS	2019	Distinguished Paper Award Honorable Mention	Data Oblivious ISA Extensions for Side Channel-Resistant and High Performance Computing	3085360	https://www.ndss-symposium.org/ndss2019/
+NDSS	2019	Distinguished Paper Award Honorable Mention	Graph-based Security and Privacy Analytics via Collective Classification with Joint Weight Learning and Propagation	3085354	https://www.ndss-symposium.org/ndss2019/
+NDSS	2019	Distinguished Paper Award Honorable Mention	ICSREF: A Framework for Automated Reverse Engineering of Industrial Control Systems Binaries	3085317	https://www.ndss-symposium.org/ndss2019/
+NDSS	2019	Distinguished Paper Award Honorable Mention	Ginseng: Keeping Secrets in Registers When You Distrust the Operating System	3085361	https://www.ndss-symposium.org/ndss2019/
+NDSS	2019	Distinguished Paper Award Honorable Mention	One Engine To Serve ’em All: Inferring Taint Rules Without Architectural Semantics	3085298	https://www.ndss-symposium.org/ndss2019/
+NDSS	2019	Distinguished Paper Award Honorable Mention	On the Challenges of Geographical Avoidance for Tor	3085319	https://www.ndss-symposium.org/ndss2019/
+NDSS	2019	Distinguished Paper Award Honorable Mention	Privacy Attacks to the 4G and 5G Cellular Paging Protocols Using Side Channel Information	3085315	https://www.ndss-symposium.org/ndss2019/
 IEEE S&P	2025	Distinguished Paper Award	COBBL: Dynamic Constraint Generation for SNARKs	190877	https://sp2025.ieee-security.org/awards.html
 IEEE S&P	2025	Distinguished Paper Award	Transport Layer Obscurity: Circumventing SNI Censorship on the TLS Layer	190942	https://sp2025.ieee-security.org/awards.html
 IEEE S&P	2025	Distinguished Paper Award	Follow My Flow: Unveiling Client-Side Prototype Pollution Gadgets from One Million Real-World Websites	190881	https://sp2025.ieee-security.org/awards.html
@@ -132,10 +232,12 @@ ACM CCS	2025	Distinguished Paper Award	A Decade-long Landscape of Advanced Persi
 ACM CCS	2025	Distinguished Paper Award	BadAML: Exploiting Legacy Firmware Interfaces to Compromise Confidential Virtual Machines	conf/ccs/TakekoshiMFS25	https://www.sigsac.org/ccs/CCS2025/awards/
 ACM CCS	2025	Distinguished Paper Award	Looping for Good: Cyclic Proofs for Security Protocols	conf/ccs/Linker0CB25	https://www.sigsac.org/ccs/CCS2025/awards/
 ACM CCS	2025	Distinguished Paper Award	Exact Robustness Certification of k-Nearest Neighbors	conf/ccs/RanzatoSZ25	https://www.sigsac.org/ccs/CCS2025/awards/
+ACM CCS	2025	Distinguished Paper Award	SlicedPIR: Offloading Heavyweight Work with NTT	conf/ccs/WeissG25	https://www.sigsac.org/ccs/CCS2025/awards/
 ACM CCS	2025	Distinguished Paper Award	Automatically Detecting Online Deceptive Patterns	conf/ccs/NayakW0KF25	https://www.sigsac.org/ccs/CCS2025/awards/
 ACM CCS	2025	Distinguished Paper Award	Don’t Look Up: There Are Sensitive Internal Links in the Clear on GEO Satellites	conf/ccs/ZhangDRLHS25	https://www.sigsac.org/ccs/CCS2025/awards/
 ACM CCS	2025	Distinguished Paper Award	WireTap: Breaking Server SGX via DRAM Bus Interposition	conf/ccs/SetoDACSGG25	https://www.sigsac.org/ccs/CCS2025/awards/
 ACM CCS	2025	Distinguished Paper Award	Optimistic, Signature-Free Reliable Broadcast and Its Applications	conf/ccs/Shrestha0KLNW25	https://www.sigsac.org/ccs/CCS2025/awards/
+ACM CCS	2025	Distinguished Paper Award	CITesting: Systematic Testing of Context Integrity Violations in LTE Core Networks	conf/ccs/SonKOPK25	https://www.sigsac.org/ccs/CCS2025/awards/
 ACM CCS	2025	Distinguished Paper Award	From OT to OLE with Subquadratic Communication	conf/ccs/DoernerHIM25	https://www.sigsac.org/ccs/CCS2025/awards/
 ACM CCS	2025	Distinguished Paper Award	The OCH Authenticated Encryption Scheme	conf/ccs/MendaBHLR25	https://www.sigsac.org/ccs/CCS2025/awards/
 USENIX Security	2019	Distinguished Paper Award	ERIM: Secure, Efficient In-process Isolation with Protection Keys (MPK)	3115538	https://www.usenix.org/conferences/best-papers?taxonomy_vocabulary_1_tid=2019&title_1=
