@@ -28,11 +28,12 @@ FIELDS = ("venue", "year", "award", "title", "url", "source_url")
 
 
 def _to_record(row: dict) -> AwardRecord:
+    """A row's ``published_title``, when present, is the proceedings title the corpus holds."""
     return AwardRecord(
         venue=row["conference"],
         year=int(row["year"]),
         award=row["award"],
-        title=row["title"].strip(),
+        title=(row.get("published_title") or row["title"]).strip(),
         url=(row.get("resolved_url") or row.get("official_url") or None),
         source_url=row["official_url"],
     )

@@ -1,5 +1,31 @@
 # Changelog
 
+## Unreleased
+
+- **Paper-award coverage now includes ACM CCS and NDSS 2019–2024.** CCS comes
+  from each year's award page on sigsac.org (2020, 2021, 2022, 2024) and from
+  SIGSAC's consolidated best-paper page for 2019 and 2023, whose conference
+  sites have no award page; NDSS from the awards section of each year's
+  symposium page. Paper recognitions only — best and distinguished papers,
+  runners-up and honorable mentions; test-of-time, artifact, poster and
+  reviewer awards are left out.
+- **One importer for every award capture, and a check against the sources.**
+  `scripts/import_award_captures.py` replaces the USENIX-only importer: every
+  dated capture in `data/awards/captures/` becomes its own table, and awards
+  another table already holds are not added twice. `verify` re-fetches each
+  source page a script can reach and fails if a recorded title is missing: all
+  80 CCS and 20 NDSS titles are on their pages. USENIX sits behind a browser
+  challenge, so its capture says it cannot be checked this way.
+- **Awards now join under the proceedings title.** Five of the new awards and
+  two CCS 2025 awards were listed under a different wording than the
+  proceedings — a typo ("Sleeping Agents" for "Sleeper Agents"), lost markup
+  ("T CHECKER", "IPv6Networks"), or a title changed for publication ("Lutris",
+  "Sliced PIR", "Cellular" for "LTE"). The record keeps the page's wording, which
+  the check verifies, and adds `published_title`, which the join uses. On
+  `security-20-v6`, 317 of 371 awards resolve to corpus papers, up from 215;
+  every award in the declared window resolves except 2026 papers DBLP has not
+  indexed yet.
+
 ## 1.16.0 — 2026-09-29
 
 - **Fixed: 49 USENIX WOOT papers were counted as USENIX Security.** DBLP writes
