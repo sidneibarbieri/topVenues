@@ -1,5 +1,39 @@
 # Changelog
 
+## 1.16.0 — 2026-09-29
+
+- **Fixed: 49 USENIX WOOT papers were counted as USENIX Security.** DBLP writes
+  a co-located workshop's venue as `WOOT @ USENIX Security Symposium`, and the
+  event normalizer tried the host's pattern first. The normalizer now reads the
+  event before the `@`, and `tests/test_event_normalizer.py` pins both DBLP
+  spellings. Re-deriving every record's event with the fixed normalizer changes
+  exactly these 49 records (2019: 16, 2020: 15, 2024: 18) and nothing else, in
+  every security-20 profile; the main-track paper's snapshot has none of them.
+- **The current profile is `security-20-v6`.** It is `security-20-v5` with the
+  49 event labels corrected and every other field of every record unchanged,
+  which `tests/test_event_repair_profile.py` checks field by field.
+  `scripts/build_event_repaired_profile.py` derives the log
+  (`data/adjudication/security-20-v6-events.json`) and freezes the successor
+  byte-stably; SHA-256 `bce4d316…b95d5`. USENIX Security now reads 2,054
+  records and USENIX WOOT 93.
+- **Known issue in the tools-track paper, recorded, not rewritten.** Its
+  `security-20` snapshot carries the same 49 records under USENIX Security, so
+  Table 2 reads 2,542 and 19 where the corrected split is 2,493 and 68. The
+  snapshot stays as published so the paper's command still reproduces it;
+  `docs/PAPERS.md` states the correction.
+- **Paper-award coverage now includes USENIX Security and USENIX WOOT,
+  2019–2026.** USENIX serves its best-papers listing behind a browser
+  challenge, so the capture is kept in
+  `data/awards/captures/usenix_best_papers_2019_2026.json` with its date and
+  method, and `scripts/import_usenix_awards.py` turns it into the award table.
+  Each award name comes from the paper's own presentation page, which is how
+  one WOOT paper is recorded as Best Student Paper and five USENIX Security 2026
+  papers as Distinguished Artifact Award rather than as the listing's generic
+  "best paper". Awards another table already holds are not added twice. On
+  `security-20-v6`, 215 awards resolve to corpus papers, up from 139: every
+  USENIX Security 2019–2025 award and all six WOOT awards; the USENIX Security
+  2026 papers are not in DBLP yet.
+
 ## 1.15.1 — 2026-09-28
 
 - **Fixed: the radar could cover less than the window it stated.** The first

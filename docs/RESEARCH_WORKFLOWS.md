@@ -33,7 +33,7 @@ a later immutable profile:
 
 ```bash
 python scripts/evaluate_watchlist.py topvenues-watchlist.json \
-  --profile security-20-v5
+  --profile security-20-v6
 ```
 
 The corpus itself holds no preprints: a record is in it because a declared

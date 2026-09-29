@@ -35,7 +35,7 @@
 
 | I want to… | Do this |
 | --- | --- |
-| Use TopVenues today | [Quick start](#quick-start), profile `security-20-v5` |
+| Use TopVenues today | [Quick start](#quick-start), profile `security-20-v6` |
 | Get only the data | `load_dataset("sidneibarbieri/topvenues")` from [Hugging Face](https://huggingface.co/datasets/sidneibarbieri/topvenues) |
 | Reproduce the SBSeg 2026 main-track paper | `git checkout sbseg2026-camera-ready && bash reproduce.sh` ([details](docs/PAPERS.md#paper-a--main-track-sbseg-2026)) |
 | Reproduce the SBSeg 2026 tools-track paper | `bash reproduce.sh --profile security-20` ([details](docs/PAPERS.md#paper-b--tools-track-sbseg-2026)) |
@@ -49,9 +49,9 @@
 Requires Python 3.11–3.14, Git, and Bash.
 
 ```bash
-git clone --depth 1 --branch v1.15.1 https://github.com/sidneibarbieri/topVenues.git
+git clone --depth 1 --branch v1.16.0 https://github.com/sidneibarbieri/topVenues.git
 cd topVenues
-bash reproduce.sh --profile security-20-v5
+bash reproduce.sh --profile security-20-v6
 ```
 
 The command installs the CLI and web dependencies, verifies the snapshot
@@ -67,9 +67,9 @@ Use the native PowerShell workflow rather than editing the Unix script or mixing
 Git Bash and PowerShell environments:
 
 ```powershell
-git clone --depth 1 --branch v1.15.1 https://github.com/sidneibarbieri/topVenues.git
+git clone --depth 1 --branch v1.16.0 https://github.com/sidneibarbieri/topVenues.git
 cd topVenues
-powershell -ExecutionPolicy Bypass -File .\reproduce.ps1 -Profile security-20-v5
+powershell -ExecutionPolicy Bypass -File .\reproduce.ps1 -Profile security-20-v6
 ```
 
 The script creates `.venv` and installs the hash-locked cross-platform
@@ -101,15 +101,24 @@ System, Light and Dark.
 
 | Property | Value |
 | --- | --- |
-| Tool release | `v1.15.1` |
-| Profile | `security-20-v5` |
+| Tool release | `v1.16.0` |
+| Profile | `security-20-v6` |
 | DBLP release | [10.4230/dblp.xml.2026-09-01](https://doi.org/10.4230/dblp.xml.2026-09-01) |
 | Scope | 20 declared security and security-relevant venues |
 | Declared window | 2019–2026 |
 | Records | 15,286 corpus records |
 | Abstract-enriched records | 14,394 (94.2%) |
 | BibTeX entries | 15,286 |
-| Snapshot SHA-256 | `2487ea98bfae38982d9752e56391bbdb83820f134c01b8555dfc7d26d8a9fe58` |
+| Snapshot SHA-256 | `bce4d3166c1bbe5ff67a940f6a3f3d9c20adfd9418ca3a1e3dd0746bb83b95d5` |
+
+`security-20-v6` is `security-20-v5` with one field corrected: DBLP writes a
+co-located workshop as `WOOT @ USENIX Security Symposium`, and the event
+normalizer matched the host first, so 49 WOOT papers (2019, 2020, 2024) were
+counted as USENIX Security. v6 files them under USENIX WOOT; nothing else
+changes, and each record is listed in
+`data/adjudication/security-20-v6-events.json`. The same 49 records sit under
+USENIX Security in every earlier profile, including the tools-track paper's
+`security-20` (49 of 20,305, 0.24%); the main-track paper's snapshot has none.
 
 `security-20-v5` keeps every `security-20-v4` record unchanged, field by field,
 and adds the 427 records DBLP published after v4 froze: IEEE S&P 2026 (252),
@@ -125,8 +134,8 @@ decision records are in `data/adjudication/`. Records without abstracts remain
 available for metadata and citation workflows; abstract-dependent retrieval must
 treat them as missing data, not negative evidence. The declared scope,
 per-venue coverage, identity policy, and exact snapshot identity are in
-`profiles/security-20-v5/config.yaml` and
-`data/profiles/security-20-v5/manifest.json`.
+`profiles/security-20-v6/config.yaml` and
+`data/profiles/security-20-v6/manifest.json`.
 
 ## What you can do
 
@@ -165,34 +174,34 @@ SQLite snapshot.
 
 ```bash
 # Inspect corpus state and coverage
-python -m src.cli --profile security-20-v5 stats
+python -m src.cli --profile security-20-v6 stats
 
 # Search records that mention a term
-python -m src.cli --profile security-20-v5 search --abstract "intrusion detection"
+python -m src.cli --profile security-20-v6 search --abstract "intrusion detection"
 
 # Restrict a review query to the Security top-4
-python -m src.cli --profile security-20-v5 search --rank "LLM security" \
+python -m src.cli --profile security-20-v6 search --rank "LLM security" \
   --tier-scope "Security top-4" --limit 20
 
 # Build a topic-specific author shortlist from Tier 1 evidence
-python -m src.cli --profile security-20-v5 authors --topic "fuzzing" \
+python -m src.cli --profile security-20-v6 authors --topic "fuzzing" \
   --tier-scope "Security top-4"
 
 # Rank records by multi-token FTS5/BM25 relevance
-python -m src.cli --profile security-20-v5 search --rank "memory corruption mitigations" --limit 20
+python -m src.cli --profile security-20-v6 search --rank "memory corruption mitigations" --limit 20
 
 # Export a review-ready subset
-python -m src.cli --profile security-20-v5 export --format bibtex --tech "fuzzing" \
+python -m src.cli --profile security-20-v6 export --format bibtex --tech "fuzzing" \
   --tier-scope "Security top-4" -o fuzzing-tier1.bib
 
 # Build the Hugging Face Parquet export from the immutable profile
-python -m src.cli --profile security-20-v5 export-hf --release-tag v1.15.1
+python -m src.cli --profile security-20-v6 export-hf --release-tag v1.16.0
 
 # Create and later evaluate a portable research watch
-python scripts/evaluate_watchlist.py topvenues-watchlist.json --profile security-20-v5
+python scripts/evaluate_watchlist.py topvenues-watchlist.json --profile security-20-v6
 
 # Repeat or extend the deterministic manual-audit protocol
-python scripts/manual_abstract_audit.py --profile security-20-v5 --sample-size 200
+python scripts/manual_abstract_audit.py --profile security-20-v6 --sample-size 200
 ```
 
 Substring and ranked search answer different questions: substring search finds
@@ -310,7 +319,7 @@ records. See
 ## Distribution boundary
 
 The package bundles the snapshots for `security-20`, `security-20-v3`,
-`security-20-v4` and `security-20-v5`. `security-20` is among them because the published
+`security-20-v4`, `security-20-v5` and `security-20-v6`. `security-20` is among them because the published
 tools-track paper prints `bash reproduce.sh --profile security-20` as its
 reviewer's command, and that command runs against a clone with no fetch step.
 
@@ -324,7 +333,7 @@ against it.
 
 The public dataset is
 [sidneibarbieri/topvenues](https://huggingface.co/datasets/sidneibarbieri/topvenues):
-a Parquet export of `security-20-v5` whose card records the profile, the source
+a Parquet export of `security-20-v6` whose card records the profile, the source
 tag, and the snapshot SHA-256.
 
 ```python
@@ -341,7 +350,7 @@ other researchers can find it. Which paper to cite depends on what you used:
 
 | You… | Cite |
 | --- | --- |
-| used TopVenues to search, build a review corpus, export references or rank authors | the tools-track paper (`barbieri2026topvenuestool`), and name the release and profile, such as `TopVenues v1.15.1, profile security-20-v5` |
+| used TopVenues to search, build a review corpus, export references or rank authors | the tools-track paper (`barbieri2026topvenuestool`), and name the release and profile, such as `TopVenues v1.16.0, profile security-20-v5` |
 | use or build on the corpus method or its measurements | the main-track paper (`barbieri2026topvenues`) |
 | did both | both |
 

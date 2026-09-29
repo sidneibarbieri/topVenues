@@ -26,6 +26,7 @@ CONFERENCE_TO_CORPUS_VENUES: dict[str, tuple[str, ...]] = {
     "ACM CCS": ("CCS",),
     "NDSS": ("NDSS",),
     "USENIX Security": ("USENIX Security Symposium",),
+    "USENIX WOOT": ("WOOT", "WOOT @ USENIX Security Symposium"),
     "ACSAC": ("ACSAC",),
 }
 

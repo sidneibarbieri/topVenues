@@ -1,6 +1,6 @@
 <# Reproduce the immutable TopVenues profile on native Windows PowerShell. #>
 param(
-    [string]$Profile = "security-20-v5",
+    [string]$Profile = "security-20-v6",
     [string]$PythonCommand = "",
     [switch]$SkipInstall
 )
@@ -10,8 +10,8 @@ Set-Location $PSScriptRoot
 $env:PYTHONUTF8 = "1"
 $env:PYTHONIOENCODING = "utf-8"
 [Console]::OutputEncoding = [System.Text.UTF8Encoding]::new($false)
-if ($Profile -notin @("security-20", "security-20-v2", "security-20-v3", "security-20-v4", "security-20-v5")) {
-    throw "Unknown profile. Choose security-20, security-20-v2, security-20-v3, security-20-v4, or security-20-v5."
+if ($Profile -notin @("security-20", "security-20-v2", "security-20-v3", "security-20-v4", "security-20-v5", "security-20-v6")) {
+    throw "Unknown profile. Choose security-20, security-20-v2, security-20-v3, security-20-v4, security-20-v5, or security-20-v6."
 }
 
 # Prefer the Windows launcher pinned to the supported minor version.  On many
