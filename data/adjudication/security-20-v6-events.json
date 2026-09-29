@@ -1,0 +1,350 @@
+{
+ "source_profile": "security-20-v5",
+ "target_profile": "security-20-v6",
+ "rule": "A venue written \"EVENT @ HOST\" belongs to EVENT, not to HOST.",
+ "repairs": [
+  {
+   "paper_id": "conf/woot/0007IMMSS20",
+   "key": "conf/woot/0007IMMSS20",
+   "venue": "WOOT @ USENIX Security Symposium",
+   "stored_event": "USENIX Security",
+   "corrected_event": "USENIX WOOT"
+  },
+  {
+   "paper_id": "conf/woot/BarralGJN19",
+   "key": "conf/woot/BarralGJN19",
+   "venue": "WOOT @ USENIX Security Symposium",
+   "stored_event": "USENIX Security",
+   "corrected_event": "USENIX WOOT"
+  },
+  {
+   "paper_id": "conf/woot/BeckerHC24",
+   "key": "conf/woot/BeckerHC24",
+   "venue": "WOOT @ USENIX Security Symposium",
+   "stored_event": "USENIX Security",
+   "corrected_event": "USENIX WOOT"
+  },
+  {
+   "paper_id": "conf/woot/Beery24",
+   "key": "conf/woot/Beery24",
+   "venue": "WOOT @ USENIX Security Symposium",
+   "stored_event": "USENIX Security",
+   "corrected_event": "USENIX WOOT"
+  },
+  {
+   "paper_id": "conf/woot/BitsikasSPR24",
+   "key": "conf/woot/BitsikasSPR24",
+   "venue": "WOOT @ USENIX Security Symposium",
+   "stored_event": "USENIX Security",
+   "corrected_event": "USENIX WOOT"
+  },
+  {
+   "paper_id": "conf/woot/Brossard24",
+   "key": "conf/woot/Brossard24",
+   "venue": "WOOT @ USENIX Security Symposium",
+   "stored_event": "USENIX Security",
+   "corrected_event": "USENIX WOOT"
+  },
+  {
+   "paper_id": "conf/woot/BuschWM20",
+   "key": "conf/woot/BuschWM20",
+   "venue": "WOOT @ USENIX Security Symposium",
+   "stored_event": "USENIX Security",
+   "corrected_event": "USENIX WOOT"
+  },
+  {
+   "paper_id": "conf/woot/ChoPKB0SDA20",
+   "key": "conf/woot/ChoPKB0SDA20",
+   "venue": "WOOT @ USENIX Security Symposium",
+   "stored_event": "USENIX Security",
+   "corrected_event": "USENIX WOOT"
+  },
+  {
+   "paper_id": "conf/woot/DelvauxMRT24",
+   "key": "conf/woot/DelvauxMRT24",
+   "venue": "WOOT @ USENIX Security Symposium",
+   "stored_event": "USENIX Security",
+   "corrected_event": "USENIX WOOT"
+  },
+  {
+   "paper_id": "conf/woot/Fifield19",
+   "key": "conf/woot/Fifield19",
+   "venue": "WOOT @ USENIX Security Symposium",
+   "stored_event": "USENIX Security",
+   "corrected_event": "USENIX WOOT"
+  },
+  {
+   "paper_id": "conf/woot/GoemanRCLN24",
+   "key": "conf/woot/GoemanRCLN24",
+   "venue": "WOOT @ USENIX Security Symposium",
+   "stored_event": "USENIX Security",
+   "corrected_event": "USENIX WOOT"
+  },
+  {
+   "paper_id": "conf/woot/GruzaHJSVW24",
+   "key": "conf/woot/GruzaHJSVW24",
+   "venue": "WOOT @ USENIX Security Symposium",
+   "stored_event": "USENIX Security",
+   "corrected_event": "USENIX WOOT"
+  },
+  {
+   "paper_id": "conf/woot/HeinzeCH20",
+   "key": "conf/woot/HeinzeCH20",
+   "venue": "WOOT @ USENIX Security Symposium",
+   "stored_event": "USENIX Security",
+   "corrected_event": "USENIX WOOT"
+  },
+  {
+   "paper_id": "conf/woot/Ionescu20",
+   "key": "conf/woot/Ionescu20",
+   "venue": "WOOT @ USENIX Security Symposium",
+   "stored_event": "USENIX Security",
+   "corrected_event": "USENIX WOOT"
+  },
+  {
+   "paper_id": "conf/woot/JacobsV24",
+   "key": "conf/woot/JacobsV24",
+   "venue": "WOOT @ USENIX Security Symposium",
+   "stored_event": "USENIX Security",
+   "corrected_event": "USENIX WOOT"
+  },
+  {
+   "paper_id": "conf/woot/JanzenBWH24",
+   "key": "conf/woot/JanzenBWH24",
+   "venue": "WOOT @ USENIX Security Symposium",
+   "stored_event": "USENIX Security",
+   "corrected_event": "USENIX WOOT"
+  },
+  {
+   "paper_id": "conf/woot/KatariaHPC19",
+   "key": "conf/woot/KatariaHPC19",
+   "venue": "WOOT @ USENIX Security Symposium",
+   "stored_event": "USENIX Security",
+   "corrected_event": "USENIX WOOT"
+  },
+  {
+   "paper_id": "conf/woot/KleeRMH20",
+   "key": "conf/woot/KleeRMH20",
+   "venue": "WOOT @ USENIX Security Symposium",
+   "stored_event": "USENIX Security",
+   "corrected_event": "USENIX WOOT"
+  },
+  {
+   "paper_id": "conf/woot/KumarYPG19",
+   "key": "conf/woot/KumarYPG19",
+   "venue": "WOOT @ USENIX Security Symposium",
+   "stored_event": "USENIX Security",
+   "corrected_event": "USENIX WOOT"
+  },
+  {
+   "paper_id": "conf/woot/LeeKKSK19",
+   "key": "conf/woot/LeeKKSK19",
+   "venue": "WOOT @ USENIX Security Symposium",
+   "stored_event": "USENIX Security",
+   "corrected_event": "USENIX WOOT"
+  },
+  {
+   "paper_id": "conf/woot/LiguoriMNOP24",
+   "key": "conf/woot/LiguoriMNOP24",
+   "venue": "WOOT @ USENIX Security Symposium",
+   "stored_event": "USENIX Security",
+   "corrected_event": "USENIX WOOT"
+  },
+  {
+   "paper_id": "conf/woot/LoughryR24",
+   "key": "conf/woot/LoughryR24",
+   "venue": "WOOT @ USENIX Security Symposium",
+   "stored_event": "USENIX Security",
+   "corrected_event": "USENIX WOOT"
+  },
+  {
+   "paper_id": "conf/woot/MaierEFH20",
+   "key": "conf/woot/MaierEFH20",
+   "venue": "WOOT @ USENIX Security Symposium",
+   "stored_event": "USENIX Security",
+   "corrected_event": "USENIX WOOT"
+  },
+  {
+   "paper_id": "conf/woot/MaierRH19",
+   "key": "conf/woot/MaierRH19",
+   "venue": "WOOT @ USENIX Security Symposium",
+   "stored_event": "USENIX Security",
+   "corrected_event": "USENIX WOOT"
+  },
+  {
+   "paper_id": "conf/woot/MambrettiSNSK19",
+   "key": "conf/woot/MambrettiSNSK19",
+   "venue": "WOOT @ USENIX Security Symposium",
+   "stored_event": "USENIX Security",
+   "corrected_event": "USENIX WOOT"
+  },
+  {
+   "paper_id": "conf/woot/MaoBBP24",
+   "key": "conf/woot/MaoBBP24",
+   "venue": "WOOT @ USENIX Security Symposium",
+   "stored_event": "USENIX Security",
+   "corrected_event": "USENIX WOOT"
+  },
+  {
+   "paper_id": "conf/woot/Matrosov20",
+   "key": "conf/woot/Matrosov20",
+   "venue": "WOOT @ USENIX Security Symposium",
+   "stored_event": "USENIX Security",
+   "corrected_event": "USENIX WOOT"
+  },
+  {
+   "paper_id": "conf/woot/MotallebighomiF24",
+   "key": "conf/woot/MotallebighomiF24",
+   "venue": "WOOT @ USENIX Security Symposium",
+   "stored_event": "USENIX Security",
+   "corrected_event": "USENIX WOOT"
+  },
+  {
+   "paper_id": "conf/woot/OFlynn19",
+   "key": "conf/woot/OFlynn19",
+   "venue": "WOOT @ USENIX Security Symposium",
+   "stored_event": "USENIX Security",
+   "corrected_event": "USENIX WOOT"
+  },
+  {
+   "paper_id": "conf/woot/ObermaierSM20",
+   "key": "conf/woot/ObermaierSM20",
+   "venue": "WOOT @ USENIX Security Symposium",
+   "stored_event": "USENIX Security",
+   "corrected_event": "USENIX WOOT"
+  },
+  {
+   "paper_id": "conf/woot/OvadiaOMGO19",
+   "key": "conf/woot/OvadiaOMGO19",
+   "venue": "WOOT @ USENIX Security Symposium",
+   "stored_event": "USENIX Security",
+   "corrected_event": "USENIX WOOT"
+  },
+  {
+   "paper_id": "conf/woot/PatelBM20",
+   "key": "conf/woot/PatelBM20",
+   "venue": "WOOT @ USENIX Security Symposium",
+   "stored_event": "USENIX Security",
+   "corrected_event": "USENIX WOOT"
+  },
+  {
+   "paper_id": "conf/woot/PavithranPR19",
+   "key": "conf/woot/PavithranPR19",
+   "venue": "WOOT @ USENIX Security Symposium",
+   "stored_event": "USENIX Security",
+   "corrected_event": "USENIX WOOT"
+  },
+  {
+   "paper_id": "conf/woot/PervanKP19",
+   "key": "conf/woot/PervanKP19",
+   "venue": "WOOT @ USENIX Security Symposium",
+   "stored_event": "USENIX Security",
+   "corrected_event": "USENIX WOOT"
+  },
+  {
+   "paper_id": "conf/woot/PohlN19",
+   "key": "conf/woot/PohlN19",
+   "venue": "WOOT @ USENIX Security Symposium",
+   "stored_event": "USENIX Security",
+   "corrected_event": "USENIX WOOT"
+  },
+  {
+   "paper_id": "conf/woot/RaisA024",
+   "key": "conf/woot/RaisA024",
+   "venue": "WOOT @ USENIX Security Symposium",
+   "stored_event": "USENIX Security",
+   "corrected_event": "USENIX WOOT"
+  },
+  {
+   "paper_id": "conf/woot/RaviJB24",
+   "key": "conf/woot/RaviJB24",
+   "venue": "WOOT @ USENIX Security Symposium",
+   "stored_event": "USENIX Security",
+   "corrected_event": "USENIX WOOT"
+  },
+  {
+   "paper_id": "conf/woot/RoyBTMS20",
+   "key": "conf/woot/RoyBTMS20",
+   "venue": "WOOT @ USENIX Security Symposium",
+   "stored_event": "USENIX Security",
+   "corrected_event": "USENIX WOOT"
+  },
+  {
+   "paper_id": "conf/woot/SahH24",
+   "key": "conf/woot/SahH24",
+   "venue": "WOOT @ USENIX Security Symposium",
+   "stored_event": "USENIX Security",
+   "corrected_event": "USENIX WOOT"
+  },
+  {
+   "paper_id": "conf/woot/SchinkO19",
+   "key": "conf/woot/SchinkO19",
+   "venue": "WOOT @ USENIX Security Symposium",
+   "stored_event": "USENIX Security",
+   "corrected_event": "USENIX WOOT"
+  },
+  {
+   "paper_id": "conf/woot/ScottA24",
+   "key": "conf/woot/ScottA24",
+   "venue": "WOOT @ USENIX Security Symposium",
+   "stored_event": "USENIX Security",
+   "corrected_event": "USENIX WOOT"
+  },
+  {
+   "paper_id": "conf/woot/TanM0G00LH024",
+   "key": "conf/woot/TanM0G00LH024",
+   "venue": "WOOT @ USENIX Security Symposium",
+   "stored_event": "USENIX Security",
+   "corrected_event": "USENIX WOOT"
+  },
+  {
+   "paper_id": "conf/woot/Teague20",
+   "key": "conf/woot/Teague20",
+   "venue": "WOOT @ USENIX Security Symposium",
+   "stored_event": "USENIX Security",
+   "corrected_event": "USENIX WOOT"
+  },
+  {
+   "paper_id": "conf/woot/TillmannsCRH20",
+   "key": "conf/woot/TillmannsCRH20",
+   "venue": "WOOT @ USENIX Security Symposium",
+   "stored_event": "USENIX Security",
+   "corrected_event": "USENIX WOOT"
+  },
+  {
+   "paper_id": "conf/woot/TiwariT19",
+   "key": "conf/woot/TiwariT19",
+   "venue": "WOOT @ USENIX Security Symposium",
+   "stored_event": "USENIX Security",
+   "corrected_event": "USENIX WOOT"
+  },
+  {
+   "paper_id": "conf/woot/UllrichCEH19",
+   "key": "conf/woot/UllrichCEH19",
+   "venue": "WOOT @ USENIX Security Symposium",
+   "stored_event": "USENIX Security",
+   "corrected_event": "USENIX WOOT"
+  },
+  {
+   "paper_id": "conf/woot/Ustiugov0KG20",
+   "key": "conf/woot/Ustiugov0KG20",
+   "venue": "WOOT @ USENIX Security Symposium",
+   "stored_event": "USENIX Security",
+   "corrected_event": "USENIX WOOT"
+  },
+  {
+   "paper_id": "conf/woot/WuNKTBPX20",
+   "key": "conf/woot/WuNKTBPX20",
+   "venue": "WOOT @ USENIX Security Symposium",
+   "stored_event": "USENIX Security",
+   "corrected_event": "USENIX WOOT"
+  },
+  {
+   "paper_id": "conf/woot/ZhaoZYK19",
+   "key": "conf/woot/ZhaoZYK19",
+   "venue": "WOOT @ USENIX Security Symposium",
+   "stored_event": "USENIX Security",
+   "corrected_event": "USENIX WOOT"
+  }
+ ]
+}

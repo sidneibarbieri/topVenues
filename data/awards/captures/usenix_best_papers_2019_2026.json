@@ -1,0 +1,694 @@
+{
+  "source": "https://www.usenix.org/conferences/best-papers",
+  "query": "taxonomy_vocabulary_1_tid=<year>&title_1=",
+  "captured_on": "2026-09-29",
+  "method": "USENIX serves these pages behind a browser challenge, so they were read in a browser session. For each year, the rows under the \"USENIX Security '<yy>\" and \"WOOT '<yy>\" headings of the listing were copied as [event, year, title, presentation URL, award]; the award is the badge on that paper's presentation page. Every page answered 200. Badges that also name an Internet Defense Prize keep only the conference award, and the one page naming both a Distinguished Paper and a Distinguished Artifact Award is recorded with the paper award.",
+  "records": [
+    [
+      "USENIX Security",
+      2019,
+      "ERIM: Secure, Efficient In-process Isolation with Protection Keys (MPK)",
+      "https://www.usenix.org/conference/usenixsecurity19/presentation/vahldiek-oberwagner",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2019,
+      "50 Ways to Leak Your Data: An Exploration of Apps' Circumvention of the Android Permissions System",
+      "https://www.usenix.org/conference/usenixsecurity19/presentation/reardon",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2019,
+      "Protecting accounts from credential stuffing with password breach alerting",
+      "https://www.usenix.org/conference/usenixsecurity19/presentation/thomas",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2019,
+      "Computer Security and Privacy in the Interactions Between Victim Service Providers and Human Trafficking Survivors",
+      "https://www.usenix.org/conference/usenixsecurity19/presentation/chen",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2019,
+      "Users Really Do Answer Telephone Scams",
+      "https://www.usenix.org/conference/usenixsecurity19/presentation/tu",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2019,
+      "Detecting and Characterizing Lateral Phishing at Scale",
+      "https://www.usenix.org/conference/usenixsecurity19/presentation/ho",
+      "Distinguished Paper Award"
+    ],
+    [
+      "WOOT",
+      2019,
+      "A better zip bomb",
+      "https://www.usenix.org/conference/woot19/presentation/fifield",
+      "Best Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2020,
+      "Symbolic execution with SymCC: Don't interpret, compile!",
+      "https://www.usenix.org/conference/usenixsecurity20/presentation/poeplau",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2020,
+      "The Unpatchable Silicon: A Full Break of the Bitstream Encryption of Xilinx 7-Series FPGAs",
+      "https://www.usenix.org/conference/usenixsecurity20/presentation/ender",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2020,
+      "Who's Calling? Characterizing Robocalls through Audio and Metadata Analysis",
+      "https://www.usenix.org/conference/usenixsecurity20/presentation/prasad",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2020,
+      "Understanding security mistakes developers make: Qualitative analysis from Build It, Break It, Fix It",
+      "https://www.usenix.org/conference/usenixsecurity20/presentation/votipka-understanding",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2020,
+      "Datalog Disassembly",
+      "https://www.usenix.org/conference/usenixsecurity20/presentation/flores-montoya",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2020,
+      "A Comprehensive Quality Evaluation of Security and Privacy Advice on the Web",
+      "https://www.usenix.org/conference/usenixsecurity20/presentation/redmiles",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2020,
+      "Sunrise to Sunset: Analyzing the End-to-end Life Cycle and Effectiveness of Phishing Attacks at Scale",
+      "https://www.usenix.org/conference/usenixsecurity20/presentation/oest-sunrise",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2020,
+      "Retrofitting Fine Grain Isolation in the Firefox Renderer",
+      "https://www.usenix.org/conference/usenixsecurity20/presentation/narayan",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2020,
+      "Pancake: Frequency Smoothing for Encrypted Data Stores",
+      "https://www.usenix.org/conference/usenixsecurity20/presentation/grubbs",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2020,
+      "Composition Kills: A Case Study of Email Sender Authentication",
+      "https://www.usenix.org/conference/usenixsecurity20/presentation/chen-jianjun",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2020,
+      "The Tools and Tactics Used in Intimate Partner Surveillance: An Analysis of Online Infidelity Forums",
+      "https://www.usenix.org/conference/usenixsecurity20/presentation/tseng",
+      "Distinguished Paper Award"
+    ],
+    [
+      "WOOT",
+      2020,
+      "Unearthing the TrustedCore: A Critical Review on Huawei’s Trusted Execution Environment",
+      "https://www.usenix.org/conference/woot20/presentation/busch",
+      "Best Student Paper Award"
+    ],
+    [
+      "WOOT",
+      2020,
+      "BLESA: Spoofing Attacks against Reconnections in Bluetooth Low Energy",
+      "https://www.usenix.org/conference/woot20/presentation/wu",
+      "Best Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2021,
+      "An Analysis of Speculative Type Confusion Vulnerabilities in the Wild",
+      "https://www.usenix.org/conference/usenixsecurity21/presentation/kirzner",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2021,
+      "Weaponizing Middleboxes for TCP Reflected Amplification",
+      "https://www.usenix.org/conference/usenixsecurity21/presentation/bock",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2021,
+      "Rage Against the Machine Clear: A Systematic Analysis of Machine Clears and Their Implications for Transient Execution Attacks",
+      "https://www.usenix.org/conference/usenixsecurity21/presentation/ragab",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2021,
+      "\"It's stressful having all these phones\": Investigating Sex Workers' Safety Goals, Risks, and Practices Online",
+      "https://www.usenix.org/conference/usenixsecurity21/presentation/mcdonald",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2021,
+      "Poisoning the Unlabeled Dataset of Semi-Supervised Learning",
+      "https://www.usenix.org/conference/usenixsecurity21/presentation/carlini-poisoning",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2021,
+      "You Autocomplete Me: Poisoning Vulnerabilities in Neural Code Completion",
+      "https://www.usenix.org/conference/usenixsecurity21/presentation/schuster",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2021,
+      "\"Why wouldn't someone think of democracy as a target?\": Security practices & challenges of people involved with U.S. political campaigns",
+      "https://www.usenix.org/conference/usenixsecurity21/presentation/consolvo",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2022,
+      "Provably-Safe Multilingual Software Sandboxing using WebAssembly",
+      "https://www.usenix.org/conference/usenixsecurity22/presentation/bosamiya",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2022,
+      "An Audit of Facebook's Political Ad Policy Enforcement",
+      "https://www.usenix.org/conference/usenixsecurity22/presentation/lepochat",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2022,
+      "Private Signaling",
+      "https://www.usenix.org/conference/usenixsecurity22/presentation/madathil",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2022,
+      "Faster Yet Safer: Logging System Via Fixed-Key Blockcipher",
+      "https://www.usenix.org/conference/usenixsecurity22/presentation/hoang",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2022,
+      "Online Website Fingerprinting: Evaluating Website Fingerprinting Attacks on Tor in the Real World",
+      "https://www.usenix.org/conference/usenixsecurity22/presentation/cherubin",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2022,
+      "Dos and Don'ts of Machine Learning in Computer Security",
+      "https://www.usenix.org/conference/usenixsecurity22/presentation/arp",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2022,
+      "OpenVPN is Open to VPN Fingerprinting",
+      "https://www.usenix.org/conference/usenixsecurity22/presentation/xue-diwen",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2022,
+      "FIXREVERTER: A Realistic Bug Injection Methodology for Benchmarking Fuzz Testing",
+      "https://www.usenix.org/conference/usenixsecurity22/presentation/zhang-zenong",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2022,
+      "Attacks on Deidentification's Defenses",
+      "https://www.usenix.org/conference/usenixsecurity22/presentation/cohen",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2022,
+      "Augmenting Decompiler Output with Learned Variable Names and Types",
+      "https://www.usenix.org/conference/usenixsecurity22/presentation/chen-qibin",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2022,
+      "The Antrim County 2020 Election Incident: An Independent Forensic Investigation",
+      "https://www.usenix.org/conference/usenixsecurity22/presentation/halderman",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2022,
+      "Identity Confusion in WebView-based Mobile App-in-app Ecosystems",
+      "https://www.usenix.org/conference/usenixsecurity22/presentation/zhang-lei",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2023,
+      "Remote Direct Memory Introspection",
+      "https://www.usenix.org/conference/usenixsecurity23/presentation/liu-hongyi",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2023,
+      "A Bug's Life: Analyzing the Lifecycle and Mitigation Process of Content Security Policy Bugs",
+      "https://www.usenix.org/conference/usenixsecurity23/presentation/franken",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2023,
+      "BotScreen: Trust Everybody, but Cut the Aimbots Yourself",
+      "https://www.usenix.org/conference/usenixsecurity23/presentation/choi",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2023,
+      "Ethical Frameworks and Computer Security Trolley Problems: Foundations for Conversations",
+      "https://www.usenix.org/conference/usenixsecurity23/presentation/kohno",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2023,
+      "Glaze: Protecting Artists from Style Mimicry by Text-to-Image Models",
+      "https://www.usenix.org/conference/usenixsecurity23/presentation/shan",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2023,
+      "An Efficient Design of Intelligent Network Data Plane",
+      "https://www.usenix.org/conference/usenixsecurity23/presentation/zhou-guangmeng",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2023,
+      "Don’t be Dense: Efficient Keyword PIR for Sparse Databases",
+      "https://www.usenix.org/conference/usenixsecurity23/presentation/patel",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2023,
+      "TreeSync: Authenticated Group Management for Messaging Layer Security",
+      "https://www.usenix.org/conference/usenixsecurity23/presentation/wallez",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2023,
+      "Hash Gone Bad: Automated discovery of protocol attacks that exploit hash function weaknesses",
+      "https://www.usenix.org/conference/usenixsecurity23/presentation/cheval",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2023,
+      "Bug Hunters’ Perspectives on the Challenges and Benefits of the Bug Bounty Ecosystem",
+      "https://www.usenix.org/conference/usenixsecurity23/presentation/akgul",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2023,
+      "Examining Power Dynamics and User Privacy in Smart Technology Use Among Jordanian Households",
+      "https://www.usenix.org/conference/usenixsecurity23/presentation/albayaydh",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2023,
+      "Tight Auditing of Differentially Private Machine Learning",
+      "https://www.usenix.org/conference/usenixsecurity23/presentation/nasr",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2023,
+      "Automated Analysis of Protocols that use Authenticated Encryption: How Subtle AEAD Differences can impact Protocol Security",
+      "https://www.usenix.org/conference/usenixsecurity23/presentation/cremers-protocols",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2023,
+      "Account Security Interfaces: Important, Unintuitive, and Untrustworthy",
+      "https://www.usenix.org/conference/usenixsecurity23/presentation/daffalla",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2023,
+      "A Two-Decade Retrospective Analysis of a University's Vulnerability to Attacks Exploiting Reused Passwords",
+      "https://www.usenix.org/conference/usenixsecurity23/presentation/nisenoff-retrospective",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2023,
+      "Fuzztruction: Using Fault Injection-based Fuzzing to Leverage Implicit Domain Knowledge",
+      "https://www.usenix.org/conference/usenixsecurity23/presentation/bars",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2024,
+      "WhisperFuzz: White-Box Fuzzing for Detecting and Locating Timing Vulnerabilities in Processors",
+      "https://www.usenix.org/conference/usenixsecurity24/presentation/borkar",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2024,
+      "Logic Gone Astray: A Security Analysis Framework for the Control Plane Protocols of 5G Basebands",
+      "https://www.usenix.org/conference/usenixsecurity24/presentation/tu",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2024,
+      "Terrapin Attack: Breaking SSH Channel Integrity By Sequence Number Manipulation",
+      "https://www.usenix.org/conference/usenixsecurity24/presentation/b%C3%A4umer",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2024,
+      "Don't Listen To Me: Understanding and Exploring Jailbreak Prompts of Large Language Models",
+      "https://www.usenix.org/conference/usenixsecurity24/presentation/yu-zhiyuan",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2024,
+      "Indirector: High-Precision Branch Target Injection Attacks Exploiting the Indirect Branch Predictor",
+      "https://www.usenix.org/conference/usenixsecurity24/presentation/li-luyi",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2024,
+      "ENG25519: Faster TLS 1.3 handshake using optimized X25519 and Ed25519",
+      "https://www.usenix.org/conference/usenixsecurity24/presentation/zhang-jipeng",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2024,
+      "Digital Discrimination of Users in Sanctioned States: The Case of the Cuba Embargo",
+      "https://www.usenix.org/conference/usenixsecurity24/presentation/ablove",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2024,
+      "InSpectre Gadget: Inspecting the Residual Attack Surface of Cross-privilege Spectre v2",
+      "https://www.usenix.org/conference/usenixsecurity24/presentation/wiebing",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2024,
+      "\"I Don't Know If We're Doing Good. I Don't Know If We're Doing Bad\": Investigating How Practitioners Scope, Motivate, and Conduct Privacy Work When Developing AI Products",
+      "https://www.usenix.org/conference/usenixsecurity24/presentation/lee",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2024,
+      "Data Coverage for Guided Fuzzing",
+      "https://www.usenix.org/conference/usenixsecurity24/presentation/wang-mingzhe",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2024,
+      "DVSorder: Ballot Randomization Flaws Threaten Voter Privacy",
+      "https://www.usenix.org/conference/usenixsecurity24/presentation/crimmins",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2024,
+      "PURE: Payments with UWB RElay-protection",
+      "https://www.usenix.org/conference/usenixsecurity24/presentation/coppola",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2024,
+      "HYPERPILL: Fuzzing for Hypervisor-bugs by Leveraging the Hardware Virtualization Interface",
+      "https://www.usenix.org/conference/usenixsecurity24/presentation/bulekov",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2024,
+      "Learning with Semantics: Towards a Semantics-Aware Routing Anomaly Detection System",
+      "https://www.usenix.org/conference/usenixsecurity24/presentation/chen-yihao",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2024,
+      "Adversarial Illusions in Multi-Modal Embeddings",
+      "https://www.usenix.org/conference/usenixsecurity24/presentation/zhang-tingwei",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2024,
+      "Dancer in the Dark: Synthesizing and Evaluating Polyglots for Blind Cross-Site Scripting",
+      "https://www.usenix.org/conference/usenixsecurity24/presentation/kirchner",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2024,
+      "Smudged Fingerprints: Characterizing and Improving the Performance of Web Application Fingerprinting",
+      "https://www.usenix.org/conference/usenixsecurity24/presentation/kondracki",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2024,
+      "Yes, One-Bit-Flip Matters! Universal DNN Model Inference Depletion with Runtime Code Fault Injection",
+      "https://www.usenix.org/conference/usenixsecurity24/presentation/li-shaofeng",
+      "Distinguished Paper Award"
+    ],
+    [
+      "WOOT",
+      2024,
+      "Exploiting Android’s Hardened Memory Allocator",
+      "https://www.usenix.org/conference/woot24/presentation/mao",
+      "Best Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2025,
+      "How Transparent is Usable Privacy and Security Research? A Meta-Study on Current Research Transparency Practices",
+      "https://www.usenix.org/conference/usenixsecurity25/presentation/klemmer",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2025,
+      "Branch Privilege Injection: Compromising Spectre v2 Hardware Mitigations by Exploiting Branch Predictor Race Conditions",
+      "https://www.usenix.org/conference/usenixsecurity25/presentation/ruegge",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2025,
+      "Fuzzing the PHP Interpreter via Dataflow Fusion",
+      "https://www.usenix.org/conference/usenixsecurity25/presentation/jiang-yuancheng",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2025,
+      "Confusing Value with Enumeration: Studying the Use of CVEs in Academia",
+      "https://www.usenix.org/conference/usenixsecurity25/presentation/schloegel",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2025,
+      "My ZIP isn't your ZIP: Identifying and Exploiting Semantic Gaps Between ZIP Parsers",
+      "https://www.usenix.org/conference/usenixsecurity25/presentation/you",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2025,
+      "We Have a Package for You! A Comprehensive Analysis of Package Hallucinations by Code Generating LLMs",
+      "https://www.usenix.org/conference/usenixsecurity25/presentation/spracklen",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2025,
+      "Characterizing and Detecting Propaganda-Spreading Accounts on Telegram",
+      "https://www.usenix.org/conference/usenixsecurity25/presentation/kireev",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2025,
+      "Catch-22: Uncovering Compromised Hosts using SSH Public Keys",
+      "https://www.usenix.org/conference/usenixsecurity25/presentation/munteanu",
+      "Distinguished Paper Award"
+    ],
+    [
+      "WOOT",
+      2025,
+      "Extract: A PHP Foot-Gun Case Study",
+      "https://www.usenix.org/conference/woot25/presentation/hartung",
+      "Best Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2026,
+      "The State of Passkeys: Studying the Adoption and Security of Passkeys on the Web",
+      "https://www.usenix.org/conference/usenixsecurity26/presentation/jannett",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2026,
+      "CompLeak: Deep Learning Model Compression Exacerbates Privacy Leakage",
+      "https://www.usenix.org/conference/usenixsecurity26/presentation/li-na",
+      "Distinguished Artifact Award"
+    ],
+    [
+      "USENIX Security",
+      2026,
+      "LPG: Raise Your Location Privacy Game in Direct-to-Cell LEO Satellite Networks",
+      "https://www.usenix.org/conference/usenixsecurity26/presentation/shi-quan",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2026,
+      "Leveraging Cryptographic Simulator Synthesis for Formally Verifying the FOO E-Voting Protocol",
+      "https://www.usenix.org/conference/usenixsecurity26/presentation/baelde",
+      "Distinguished Artifact Award"
+    ],
+    [
+      "USENIX Security",
+      2026,
+      "Sliding into the Flight Deck's DMs: Practical Message Attacks on CPDLC",
+      "https://www.usenix.org/conference/usenixsecurity26/presentation/ziazi",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2026,
+      "Opossum Attack: Application Layer Desynchronization using Opportunistic TLS",
+      "https://www.usenix.org/conference/usenixsecurity26/presentation/merget",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2026,
+      "Download More RAM: Dismantling Windows Operating System Defences with Mischievous Memory",
+      "https://www.usenix.org/conference/usenixsecurity26/presentation/collins",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2026,
+      "Do You Need a Receipt? Anonymous Credential Revocation at Continental Scale via Private Record Certification",
+      "https://www.usenix.org/conference/usenixsecurity26/presentation/edalatnejad",
+      "Distinguished Artifact Award"
+    ],
+    [
+      "USENIX Security",
+      2026,
+      "Security and Privacy Considerations for Confirming Payments in Rwandan Mobile Money Systems",
+      "https://www.usenix.org/conference/usenixsecurity26/presentation/adewusi",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2026,
+      "An Integer Overflow Endgame: Compiler and Architecture Support for Default-On Integer Overflow Mitigation",
+      "https://www.usenix.org/conference/usenixsecurity26/presentation/zhang-zheng",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2026,
+      "Information Security in Small-Scale Protests: Surveillance of Ugandan Anti-EACOP Protesters",
+      "https://www.usenix.org/conference/usenixsecurity26/presentation/mbabazi",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2026,
+      "Meerkat: Pushing the Practical Limits of Dynamic Bisection with PoC Mutation",
+      "https://www.usenix.org/conference/usenixsecurity26/presentation/bursey",
+      "Distinguished Artifact Award"
+    ],
+    [
+      "USENIX Security",
+      2026,
+      "Bridges to Self: Silent Web-to-App Tracking on Mobile via Localhost",
+      "https://www.usenix.org/conference/usenixsecurity26/presentation/vlummens",
+      "Distinguished Paper Award"
+    ],
+    [
+      "USENIX Security",
+      2026,
+      "Principled Design of Indexing Functions for Memory Coloring",
+      "https://www.usenix.org/conference/usenixsecurity26/presentation/duebler",
+      "Distinguished Artifact Award"
+    ],
+    [
+      "WOOT",
+      2026,
+      "Squeezing Juicy Variant Bugs Out of Modern Browsers",
+      "https://www.usenix.org/conference/woot26/presentation/zheng",
+      "Best Paper Award"
+    ]
+  ]
+}

@@ -1,6 +1,6 @@
 # Where the corpus has no abstract, and what can be done about it
 
-`security-20-v5` carries an abstract for 14,394 of its 15,286 records
+`security-20-v6` carries an abstract for 14,394 of its 15,286 records
 (94.2%). This records what the remaining 892 are, so the gap is a known
 quantity rather than a surprise during a review.
 

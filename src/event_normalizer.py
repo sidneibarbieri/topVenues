@@ -46,6 +46,11 @@ class PatternMatchRule(NormalizationRule):
         return self.normalized_name
 
 
+def hosted_event(venue: str) -> str:
+    """DBLP writes a co-located event as "EVENT @ HOST"; the paper belongs to EVENT."""
+    return venue.split("@", 1)[0].strip()
+
+
 class EventNormalizer:
     """Normalizes venue names to standardized event names."""
 
@@ -125,7 +130,7 @@ class EventNormalizer:
         if not venue:
             return venue
 
-        normalized_venue = venue.lower().strip().replace("&amp;", "&")
+        normalized_venue = hosted_event(venue.lower().strip().replace("&amp;", "&"))
 
         for rule in self.rules:
             if rule.matches(normalized_venue):

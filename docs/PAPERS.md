@@ -19,7 +19,7 @@ so a change that breaks a published result cannot pass.
 
 | I want to… | Go to |
 | --- | --- |
-| Use TopVenues today | [README](../README.md#quick-start), profile `security-20-v5` |
+| Use TopVenues today | [README](../README.md#quick-start), profile `security-20-v6` |
 | Download the current corpus | [Hugging Face `sidneibarbieri/topvenues`](https://huggingface.co/datasets/sidneibarbieri/topvenues) |
 | Reproduce the main-track paper | [Paper A](#paper-a--main-track-sbseg-2026) below |
 | Reproduce the tools-track paper | [Paper B](#paper-b--tools-track-sbseg-2026) below |
@@ -97,6 +97,16 @@ bash reproduce.sh --profile security-20
 Reproduces: 20,305 records and 17,491 abstracts (86.1%), every record with a
 BibTeX entry, the six numeric claims of the paper, and its Table 2 row by row.
 
+**Known issue.** In `security-20`, 49 USENIX WOOT papers from 2019, 2020 and
+2024 are counted under USENIX Security: DBLP writes their venue as
+`WOOT @ USENIX Security Symposium`, and the event normalizer matched the host
+first. Table 2 therefore reads 2,542 USENIX Security and 19 USENIX WOOT records
+where the corrected split is 2,493 and 68. Totals, abstract coverage and every
+other row are unaffected. The frozen snapshot is left as published, so the
+command above still reproduces the paper; the normalizer is fixed from v1.16.0,
+and `security-20-v6` carries the correction, record by record, in
+`data/adjudication/security-20-v6-events.json`.
+
 ---
 
 ## The current release
@@ -106,11 +116,11 @@ Not a paper. The corpus TopVenues ships today, maintained and extended.
 | | |
 | --- | --- |
 | Repository | [`sidneibarbieri/topVenues`](https://github.com/sidneibarbieri/topVenues) |
-| Profile | `security-20-v5` · 15,286 records · 20 venues · 2019–2026 |
-| SHA-256 (`papers.db.gz`) | `2487ea98bfae38982d9752e56391bbdb83820f134c01b8555dfc7d26d8a9fe58` |
+| Profile | `security-20-v6` · 15,286 records · 20 venues · 2019–2026 |
+| SHA-256 (`papers.db.gz`) | `bce4d3166c1bbe5ff67a940f6a3f3d9c20adfd9418ca3a1e3dd0746bb83b95d5` |
 | Parquet export | [Hugging Face `sidneibarbieri/topvenues`](https://huggingface.co/datasets/sidneibarbieri/topvenues) |
 
-`security-20-v5` is a successor of `security-20`, not a correction of Paper B:
+`security-20-v6` is a successor of `security-20`, not a correction of Paper B:
 exact-resource deduplication and a declared 2019–2026 window make it a
 different population, with its own identity.
 

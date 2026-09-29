@@ -49,7 +49,8 @@ usable (98.3%; 95% Wilson interval 91.1%–99.7%). The one failure had no
 abstract because its collection had failed; the reviewer's transcription from
 the publisher record now fills it, logged in
 `data/adjudication/security-20-v5-abstract-repairs.json`. The labels, summary
-and decision log are in `evaluation/security-20-v5/`.
+and decision log are in `evaluation/security-20-v5/`. `security-20-v6` changes only
+the event label of 49 records, so every audit label carries over unchanged.
 
 ## Repeat or extend the protocol
 
@@ -57,7 +58,7 @@ Generate the fixed sample:
 
 ```bash
 python scripts/manual_abstract_audit.py \
-  --profile security-20-v5 \
+  --profile security-20-v6 \
   --sample-size 200 \
   --output security-20-v5-manual-audit.csv
 ```
