@@ -108,8 +108,11 @@ publicado.
 **Demonstração em vídeo** (2min32s, 1920x1080, narração em inglês): a lista que
 muda sozinha, a ideia, um comando num clone novo, a busca com as exportações,
 onde o corpus se cala, e o que uma lista fixa torna mensurável. Mostra a
-v1.14.0 sobre o perfil `security-20-v5`, então as contagens que aparecem são as
-da versão atual.
+v1.14.0 sobre o perfil `security-20-v5`; as contagens e os veículos mostrados
+descrevem esse perfil gravado. O atual `security-20-v6` corrige 49 rótulos de
+veículo do WOOT sem alterar o total de registros. Aos 2:12, 16,5× compara
+preprints sinalizados com não sinalizados (risco relativo); contra todos os
+preprints, o lift convencional é 2,5×.
 
 As legendas vêm queimadas em dois arquivos, um
 [em português](https://huggingface.co/datasets/sidneibarbieri/topvenues/resolve/main/assets/demo/topvenues-demo-v1.14.0.pt-BR.mp4) e outro

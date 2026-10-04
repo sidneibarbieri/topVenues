@@ -349,6 +349,9 @@ code.hash { font-size: .78rem; word-break: break-all; color: var(--fg); }
 /* ------------------------------------------------------------- demo */
 .video { margin-top: 40px; border-radius: 12px; overflow: hidden; border: 1px solid var(--rule-strong); background: #0B1627; max-width: 980px; }
 .video video { width: 100%; height: auto; aspect-ratio: 16 / 9; }
+.demo-chapters { display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 24px; }
+.demo-chapters button { border: 0; background: transparent; color: var(--fg); font: inherit; font-size: .9rem; padding: 8px 0; cursor: pointer; text-decoration: underline; text-underline-offset: 4px; }
+.demo-chapters button:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
 
 /* ------------------------------------------------------------- cite */
 .cite { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; margin-top: 40px; max-width: 900px; }

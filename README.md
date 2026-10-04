@@ -249,7 +249,10 @@ Two minutes and thirty-two seconds in 1920x1080, streamed from Hugging Face.
 It follows one path end to end: the list that moves on its own, the idea, one
 command on a fresh clone, a search with its exports, where the corpus is
 silent, and what a fixed list makes measurable. It shows v1.14.0 on
-`security-20-v5`, so the counts on screen are the current release's.
+`security-20-v5`; its counts and venue labels describe that recorded profile.
+The current `security-20-v6` corrects 49 WOOT venue labels without changing
+the total record count. At 2:12, 16.5× compares flagged with unflagged
+preprints (relative risk); against all preprints, conventional lift is 2.5×.
 
 Narration is English. Captions are burned into two files, one
 [in English](https://huggingface.co/datasets/sidneibarbieri/topvenues/resolve/main/assets/demo/topvenues-demo-v1.14.0.en.mp4) and one

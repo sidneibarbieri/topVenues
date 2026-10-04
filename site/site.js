@@ -38,6 +38,25 @@
     });
   });
 
+  var demoVideo = document.getElementById("demo-video");
+  if (demoVideo) {
+    var chapterTime = null;
+    function seekChapter() {
+      if (chapterTime === null) return;
+      demoVideo.currentTime = chapterTime;
+      demoVideo.focus({ preventScroll: true });
+    }
+    demoVideo.addEventListener("loadedmetadata", seekChapter);
+    document.querySelectorAll("[data-demo-time]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        chapterTime = Number(button.getAttribute("data-demo-time"));
+        demoVideo.pause();
+        if (demoVideo.readyState >= 1) seekChapter(); else demoVideo.load();
+        demoVideo.scrollIntoView({ block: "center" });
+      });
+    });
+  }
+
   document.querySelectorAll("[data-set-lang]").forEach(function (button) {
     button.addEventListener("click", function () {
       var language = button.getAttribute("data-set-lang");
