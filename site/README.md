@@ -18,7 +18,10 @@ and screenshots from `docs/assets/screenshots/`.
 
 The page is bilingual (English and Brazilian Portuguese; `?lang=pt` selects
 Portuguese), follows the system light or dark setting, sets no cookies, and
-loads nothing from third parties until the demo video is played. Inter is
+loads nothing from third parties until the demo video is played or a chapter
+is selected. Chapters seek to the chosen workflow and leave playback paused.
+The video records v1.14.0 / security-20-v5, and the page states both that
+identity and the baseline behind its 16.5x measurement. Inter is
 self-hosted as a Latin subset under the SIL Open Font License
 (`assets/fonts/Inter-LICENSE.txt`).
 
