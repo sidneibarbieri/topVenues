@@ -9,10 +9,17 @@ on:
 permissions:
   contents: read
 
+# A newer push to the same branch makes an older run's answer obsolete, and
+# superseded runs queued behind it held up pull requests for half an hour.
+concurrency:
+  group: tests-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   test:
     name: ${{ matrix.os }} / Python ${{ matrix.python-version }}
     runs-on: ${{ matrix.os }}
+    timeout-minutes: 20  # a passing job takes under 4 minutes
     strategy:
       fail-fast: false
       matrix:
@@ -69,6 +76,7 @@ jobs:
   main-track-paper:
     name: main-track paper / sbseg2026-camera-ready
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v7
         with:

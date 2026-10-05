@@ -2,6 +2,10 @@
 
 ## 1.16.1 — 2026-10-05
 
+- **CI no longer queues behind itself.** A newer push to a branch now cancels
+  the older test run, and every job has a 20-minute limit (a passing job takes
+  under 4). Superseded runs of `main` had held a pull request in the queue for
+  half an hour while GitHub Actions was degraded.
 - **The project page says who TopVenues is for.** A new first section, *Why*,
   states the cost it removes (rebuilding the list of papers a review covers)
   and what authors, reviewers and research groups each get from it, with proof
