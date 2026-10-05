@@ -635,7 +635,7 @@
     "venue": "ACM CCS",
     "year": 2025,
     "award": "Distinguished Paper Award",
-    "title": "Sliced PIR: Offloading Heavyweight Work with NTT",
+    "title": "SlicedPIR: Offloading Heavyweight Work with NTT",
     "url": "https://www.sigsac.org/ccs/CCS2025/awards/",
     "source_url": "https://www.sigsac.org/ccs/CCS2025/awards/"
   },
@@ -675,7 +675,7 @@
     "venue": "ACM CCS",
     "year": 2025,
     "award": "Distinguished Paper Award",
-    "title": "CITesting: Systematic Testing of Context Integrity Violations in Cellular Core Networks",
+    "title": "CITesting: Systematic Testing of Context Integrity Violations in LTE Core Networks",
     "url": "https://www.sigsac.org/ccs/CCS2025/awards/",
     "source_url": "https://www.sigsac.org/ccs/CCS2025/awards/"
   },
