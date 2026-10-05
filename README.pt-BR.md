@@ -615,6 +615,7 @@ relevante para quem reproduz ou audita o corpus.
 
 | Versão | Mudanças relevantes para reprodução |
 | --- | --- |
+| `v1.16.1` | Os prêmios de artigo passam a incluir ACM CCS e NDSS de 2019 a 2024, cada título conferido na página oficial; 317 dos 371 prêmios ligam-se a artigos do corpus (antes 215). Quando a página escreve o título diferente dos anais, o registro guarda também o título publicado. A página do projeto ganha a seção *Por quê* (para quem é o TopVenues e o que cada público ganha) e capítulos no vídeo. O snapshot `security-20-v6` não muda. |
 | `v1.16.0` | O corpus atual passa a ser o `security-20-v6`: o `security-20-v5` com 49 artigos do USENIX WOOT (2019, 2020 e 2024) devolvidos ao WOOT. O DBLP grava o local como `WOOT @ USENIX Security Symposium` e o normalizador casava primeiro o evento anfitrião; agora vale o evento antes do `@`. Nenhum outro campo muda, e cada registro está em `data/adjudication/security-20-v6-events.json`. O perfil `security-20` do artigo da trilha de ferramentas continua como publicado; `docs/PAPERS.md` registra a correção da Tabela 2 (USENIX Security 2.493 e WOOT 68, em vez de 2.542 e 19). Os prêmios da USENIX Security 2019–2026 e do WOOT entram na cobertura: 215 prêmios resolvidos no corpus, antes 139. |
 | `v1.15.1` | Importar notas volta a funcionar: a nota importada aparece no editor, um arquivo é aplicado uma única vez e a importação se soma às notas atuais em vez de substituí-las. O artigo da trilha principal passa a apontar para o arXiv 2606.18320 no README, no `CITATION.cff`, na página do projeto e no card do Hugging Face. A lista antecipada do arXiv é atualizada toda semana por um workflow que valida o arquivo antes de publicá-lo e que falha, em vez de encurtar a janela em silêncio, se não conseguir lê-la inteira. Nenhuma mudança no snapshot do corpus. |
 | `v1.15.0` | A seleção de uma linha da busca passa a controlar os detalhes do artigo; status de leitura, etiquetas e notas ficam em um arquivo lateral validado, sem modificar o corpus. A cobertura de prêmios passa a incluir 35 registros do IEEE S&P de 2019 a 2024, coletados das páginas oficiais, elevando para 139 os prêmios associados ao `security-20-v5`. A lista antecipada do arXiv permanece separada do corpus e é apresentada como prioridade de leitura, não como previsão de aceitação. Nenhuma mudança no snapshot do corpus. |
@@ -654,7 +655,7 @@ Cite o artigo que corresponde ao que você usou:
 
 | Você… | Cite |
 | --- | --- |
-| usou o TopVenues para buscar, montar o corpus de uma revisão, exportar referências ou ranquear autores | o artigo da trilha de ferramentas (`barbieri2026topvenuestool`), informando a versão e o perfil, por exemplo `TopVenues v1.16.0, perfil security-20-v6` |
+| usou o TopVenues para buscar, montar o corpus de uma revisão, exportar referências ou ranquear autores | o artigo da trilha de ferramentas (`barbieri2026topvenuestool`), informando a versão e o perfil, por exemplo `TopVenues v1.16.1, perfil security-20-v6` |
 | usa ou estende o método do corpus ou suas medições | o artigo da trilha principal (`barbieri2026topvenues`) |
 | fez as duas coisas | os dois |
 

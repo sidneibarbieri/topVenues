@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 1.16.1 — 2026-10-05
 
 - **The project page says who TopVenues is for.** A new first section, *Why*,
   states the cost it removes (rebuilding the list of papers a review covers)
