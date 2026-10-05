@@ -246,6 +246,11 @@ h3 { margin: 0; font-size: 1.14rem; font-weight: 610; letter-spacing: -.012em; l
 .pillars .k { font-family: var(--mono); font-size: .8rem; color: var(--muted); }
 .pillars h3 { margin: 6px 0 10px; font-size: 1.3rem; }
 .pillars p { margin: 0; }
+.proof { list-style: none; padding: 0; margin: 40px 0 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 32px; font-size: .92rem; color: var(--muted); }
+.proof li { padding-left: 18px; position: relative; }
+.proof li::before { content: "✓"; position: absolute; left: 0; color: var(--accent); }
+.proof a { color: inherit; }
+@media (max-width: 720px) { .proof { grid-template-columns: minmax(0, 1fr); } }
 @media (max-width: 860px) { .pillars { grid-template-columns: minmax(0, 1fr); gap: 28px; } }
 
 .notes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; margin-top: 56px; }

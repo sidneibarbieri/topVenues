@@ -2,6 +2,15 @@
 
 ## Unreleased
 
+- **The project page says who TopVenues is for.** A new first section, *Why*,
+  states the cost it removes (rebuilding the list of papers a review covers)
+  and what authors, reviewers and research groups each get from it, with proof
+  a visitor can check: two peer-reviewed SBSeg 2026 papers, the open dataset on
+  Hugging Face, the CI matrix, and the license. Counts are read from the
+  current manifest, so the section does not age with the next release.
+- The demo section names the release it was recorded on, explains the 16.5×
+  baseline next to the video, and offers chapters that seek without autoplay
+  (contributed in #24).
 - **Paper-award coverage now includes ACM CCS and NDSS 2019–2024.** CCS comes
   from each year's award page on sigsac.org (2020, 2021, 2022, 2024) and from
   SIGSAC's consolidated best-paper page for 2019 and 2023, whose conference

@@ -40,6 +40,7 @@
   <div class="wrap">
     <a class="brand" href="#" aria-label="TopVenues">{{WORDMARK_LIGHT}}{{WORDMARK_DARK}}</a>
     <nav class="nav" aria-label="Sections">
+      <a href="#why"><span data-l="en">Why</span><span data-l="pt">Por quê</span></a>
       <a href="#method"><span data-l="en">Method</span><span data-l="pt">Método</span></a>
       <a href="#tool"><span data-l="en">Tool</span><span data-l="pt">Ferramenta</span></a>
       <a href="#findings"><span data-l="en">Findings</span><span data-l="pt">Resultados</span></a>
@@ -107,9 +108,50 @@
   </div>
 </section>
 
+<section class="sec" id="why" aria-labelledby="why-h">
+  <div class="wrap">
+    <p class="sec-label"><span class="no">01</span><span data-l="en">Why</span><span data-l="pt">Por quê</span></p>
+    <div>
+      <h2 id="why-h"><span data-l="en">Spend the review on reading, not on rebuilding the list.</span><span data-l="pt">Gaste a revisão lendo, não remontando a lista.</span></h2>
+      <p class="sec-intro" data-l="en">Assembling the papers a review covers usually means weeks of exports, deduplication and venue checks, and the result is a list nobody else can rebuild. TopVenues ships that list ready to search, export and cite.</p>
+      <p class="sec-intro" data-l="pt">Montar os artigos que uma revisão cobre costuma custar semanas de exportações, deduplicação e conferência de veículos, e o resultado é uma lista que ninguém mais consegue refazer. O TopVenues entrega essa lista pronta para buscar, exportar e citar.</p>
+      <div class="pillars">
+        <article>
+          <span class="k" data-l="en">for authors</span><span class="k" data-l="pt">para autores</span>
+          <h3><span data-l="en">Start screening today</span><span data-l="pt">Comece a triagem hoje</span></h3>
+          <p data-l="en">Search {{RECORDS_EN}} records from {{VENUES}} venues, export BibTeX, and cite one SHA-256 for the population you screened.</p>
+          <p data-l="pt">Busque em {{RECORDS_PT}} registros de {{VENUES}} veículos, exporte BibTeX e cite um único SHA-256 para a população que você triou.</p>
+        </article>
+        <article>
+          <span class="k" data-l="en">for reviewers</span><span class="k" data-l="pt">para avaliadores</span>
+          <h3><span data-l="en">Check a count instead of trusting it</span><span data-l="pt">Confira a contagem em vez de confiar nela</span></h3>
+          <p data-l="en">A paper built on a TopVenues release names its snapshot. Cloning that release and running one command returns the same numbers, offline, with no API key.</p>
+          <p data-l="pt">Um artigo feito sobre uma versão do TopVenues nomeia seu snapshot. Clonar essa versão e rodar um comando devolve os mesmos números, offline e sem chave de API.</p>
+        </article>
+        <article>
+          <span class="k" data-l="en">for advisors and groups</span><span class="k" data-l="pt">para orientadores e grupos</span>
+          <h3><span data-l="en">One shared starting point</span><span data-l="pt">Um ponto de partida comum</span></h3>
+          <p data-l="en">Everyone in a group works from the same declared list, sees where abstracts are missing, and can spot award-winning papers from the official award pages.</p>
+          <p data-l="pt">Todo o grupo trabalha sobre a mesma lista declarada, vê onde faltam resumos e identifica os artigos premiados a partir das páginas oficiais de prêmios.</p>
+        </article>
+      </div>
+      <ul class="proof">
+        <li><a href="#papers"><span data-l="en">Peer-reviewed: two papers at SBSeg 2026, main track and tools track</span><span data-l="pt">Revisado por pares: dois artigos no SBSeg 2026, trilha principal e salão de ferramentas</span></a></li>
+        <li><a href="{{HF}}/topvenues"><span data-l="en">Open data on Hugging Face, linked to the paper page</span><span data-l="pt">Dados abertos no Hugging Face, ligados à página do artigo</span></a></li>
+        <li><span data-l="en">Tested on Linux and Windows, Python 3.11–3.14, on every change</span><span data-l="pt">Testado em Linux e Windows, Python 3.11–3.14, a cada mudança</span></li>
+        <li><span data-l="en">MIT licensed; no account, no API key</span><span data-l="pt">Licença MIT; sem conta, sem chave de API</span></li>
+      </ul>
+      <div class="cta">
+        <a class="btn primary" href="#start"><span data-l="en">Use the current release</span><span data-l="pt">Usar a versão atual</span> <span class="ar" aria-hidden="true">→</span></a>
+        <a class="btn ghost" href="#demo"><span data-l="en">Watch the 2½-minute demo</span><span data-l="pt">Ver a demo de 2½ minutos</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="sec" id="method" aria-labelledby="method-h">
   <div class="wrap">
-    <p class="sec-label"><span class="no">01</span><span data-l="en">Method</span><span data-l="pt">Método</span></p>
+    <p class="sec-label"><span class="no">02</span><span data-l="en">Method</span><span data-l="pt">Método</span></p>
     <div>
       <h2 id="method-h"><span data-l="en">Declared. Frozen. Executable.</span><span data-l="pt">Declarado. Congelado. Executável.</span></h2>
       <div class="pillars">
@@ -156,7 +198,7 @@
 
 <section class="sec" id="tool" aria-labelledby="tool-h">
   <div class="wrap">
-    <p class="sec-label"><span class="no">02</span><span data-l="en">Tool</span><span data-l="pt">Ferramenta</span></p>
+    <p class="sec-label"><span class="no">03</span><span data-l="en">Tool</span><span data-l="pt">Ferramenta</span></p>
     <div>
       <h2 id="tool-h"><span data-l="en">A literature workbench on a fixed population.</span><span data-l="pt">Uma bancada de literatura sobre uma população fixa.</span></h2>
       <p class="sec-intro" data-l="en">A local web interface, in English or Portuguese, and a command-line tool over the same snapshot. Every aggregate links back to the records behind it.</p>
@@ -193,7 +235,7 @@
 
 <section class="sec" id="findings" aria-labelledby="findings-h">
   <div class="wrap">
-    <p class="sec-label"><span class="no">03</span><span data-l="en">Findings</span><span data-l="pt">Resultados</span></p>
+    <p class="sec-label"><span class="no">04</span><span data-l="en">Findings</span><span data-l="pt">Resultados</span></p>
     <div>
       <h2 id="findings-h"><span data-l="en">What a fixed denominator makes measurable.</span><span data-l="pt">O que um denominador fixo torna mensurável.</span></h2>
       <p class="sec-intro" data-l="en">Two measurements from Paper A, taken on its May 2026 snapshot of 9,925 records. They are reproduced by that paper's release, not recomputed on the current corpus.</p>
@@ -233,7 +275,7 @@
 
 <section class="sec" id="papers" aria-labelledby="papers-h">
   <div class="wrap">
-    <p class="sec-label"><span class="no">04</span><span data-l="en">Papers</span><span data-l="pt">Artigos</span></p>
+    <p class="sec-label"><span class="no">05</span><span data-l="en">Papers</span><span data-l="pt">Artigos</span></p>
     <div>
       <h2 id="papers-h"><span data-l="en">Published evidence does not move.</span><span data-l="pt">Evidência publicada não se move.</span></h2>
       <p class="sec-intro" data-l="en">The software evolves. Each paper stays bound to one repository, one release, one snapshot and one SHA-256, and its numbers are reproduced from that snapshot, never from whatever the current release ships.</p>
@@ -284,7 +326,7 @@
 
 <section class="sec" id="start" aria-labelledby="start-h">
   <div class="wrap">
-    <p class="sec-label"><span class="no">05</span><span data-l="en">Start</span><span data-l="pt">Começar</span></p>
+    <p class="sec-label"><span class="no">06</span><span data-l="en">Start</span><span data-l="pt">Começar</span></p>
     <div>
       <h2 id="start-h"><span data-l="en">One command, then a local interface.</span><span data-l="pt">Um comando, depois uma interface local.</span></h2>
       <div class="start">
@@ -326,7 +368,7 @@
 
 <section class="sec" id="demo" aria-labelledby="demo-h">
   <div class="wrap">
-    <p class="sec-label"><span class="no">06</span><span data-l="en">Demo</span><span data-l="pt">Demo</span></p>
+    <p class="sec-label"><span class="no">07</span><span data-l="en">Demo</span><span data-l="pt">Demo</span></p>
     <div>
       <h2 id="demo-h"><span data-l="en">The tool end to end, in two and a half minutes.</span><span data-l="pt">A ferramenta de ponta a ponta, em dois minutos e meio.</span></h2>
       <p class="sec-intro" data-l="en">Follow one workflow: restore the snapshot, search within its scope, inspect the matches and export references. Narration in English, captions in English and Brazilian Portuguese. Recorded on v1.14.0 / <code>security-20-v5</code>; the current v6 corrects 49 WOOT venue labels, with the total record count unchanged.</p>
@@ -353,7 +395,7 @@
 
 <section class="sec" id="cite" aria-labelledby="cite-h">
   <div class="wrap">
-    <p class="sec-label"><span class="no">07</span><span data-l="en">Cite</span><span data-l="pt">Citar</span></p>
+    <p class="sec-label"><span class="no">08</span><span data-l="en">Cite</span><span data-l="pt">Citar</span></p>
     <div>
       <h2 id="cite-h"><span data-l="en">Cite the tool paper, and name the release you used.</span><span data-l="pt">Cite o artigo da ferramenta e informe a versão que você usou.</span></h2>
       <p class="sec-intro" data-l="en">Used TopVenues to search, build a review corpus, export references or rank authors? Cite Paper B, the tools-track paper, and name the release and profile, such as <code>v{{VERSION}} · {{PROFILE}}</code>, so a reader can reopen the same snapshot. Using or building on the corpus method or its measurements? Cite Paper A. When both apply, cite both.</p>
