@@ -9,14 +9,23 @@ on:
 permissions:
   contents: read
 
+# A newer push to the same branch makes an older run's answer obsolete, and
+# superseded runs queued behind it held up pull requests for half an hour.
+concurrency:
+  group: tests-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   test:
     name: ${{ matrix.os }} / Python ${{ matrix.python-version }}
     runs-on: ${{ matrix.os }}
+    timeout-minutes: 20  # a passing job takes under 4 minutes
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        # Pinned images: `ubuntu-latest` moves to Ubuntu 26 in October 2026, and a
+        # label that changes under the suite is a failure nobody introduced.
+        os: [ubuntu-24.04, windows-2025]
         python-version: ["3.11", "3.12", "3.13", "3.14"]
 
     steps:
@@ -58,7 +67,7 @@ jobs:
 
       - name: Publish the execution evidence
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: evidence-${{ matrix.os }}-py${{ matrix.python-version }}
           path: evidence-*.txt
@@ -68,7 +77,8 @@ jobs:
   # the frozen release below, with its own code, snapshot and 252-test suite.
   main-track-paper:
     name: main-track paper / sbseg2026-camera-ready
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v7
         with:

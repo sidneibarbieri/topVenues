@@ -1,7 +1,25 @@
 # Changelog
 
-## Unreleased
+## 1.16.1 — 2026-10-05
 
+- **CI no longer queues behind itself.** A newer push to a branch now cancels
+  the older test run, and every job has a 20-minute limit (a passing job takes
+  under 4). Superseded runs of `main` had held a pull request in the queue for
+  half an hour while GitHub Actions was degraded.
+- **CI runs on pinned images and current actions.** Jobs run on `ubuntu-24.04`
+  and `windows-2025` instead of the moving `-latest` labels (`ubuntu-latest`
+  becomes Ubuntu 26 in October 2026), and evidence upload moves to
+  `actions/upload-artifact@v7`, which runs on Node.js 24; every job had carried
+  a Node.js 20 deprecation warning.
+- **The project page says who TopVenues is for.** A new first section, *Why*,
+  states the cost it removes (rebuilding the list of papers a review covers)
+  and what authors, reviewers and research groups each get from it, with proof
+  a visitor can check: two peer-reviewed SBSeg 2026 papers, the open dataset on
+  Hugging Face, the CI matrix, and the license. Counts are read from the
+  current manifest, so the section does not age with the next release.
+- The demo section names the release it was recorded on, explains the 16.5×
+  baseline next to the video, and offers chapters that seek without autoplay
+  (contributed in #24).
 - **Paper-award coverage now includes ACM CCS and NDSS 2019–2024.** CCS comes
   from each year's award page on sigsac.org (2020, 2021, 2022, 2024) and from
   SIGSAC's consolidated best-paper page for 2019 and 2023, whose conference
