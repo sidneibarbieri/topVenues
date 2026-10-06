@@ -296,6 +296,11 @@ h3 { margin: 0; font-size: 1.14rem; font-weight: 610; letter-spacing: -.012em; l
 .pillars .k { font-family: var(--mono); font-size: .8rem; color: var(--muted); }
 .pillars h3 { margin: 6px 0 10px; font-size: 1.3rem; }
 .pillars p { margin: 0; }
+.proof { list-style: none; padding: 0; margin: 40px 0 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 32px; font-size: .92rem; color: var(--muted); }
+.proof li { padding-left: 18px; position: relative; }
+.proof li::before { content: "✓"; position: absolute; left: 0; color: var(--accent); }
+.proof a { color: inherit; }
+@media (max-width: 720px) { .proof { grid-template-columns: minmax(0, 1fr); } }
 @media (max-width: 860px) { .pillars { grid-template-columns: minmax(0, 1fr); gap: 28px; } }
 
 .notes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; margin-top: 56px; }
@@ -399,6 +404,9 @@ code.hash { font-size: .78rem; word-break: break-all; color: var(--fg); }
 /* ------------------------------------------------------------- demo */
 .video { margin-top: 40px; border-radius: 12px; overflow: hidden; border: 1px solid var(--rule-strong); background: #0B1627; max-width: 980px; }
 .video video { width: 100%; height: auto; aspect-ratio: 16 / 9; }
+.demo-chapters { display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 24px; }
+.demo-chapters button { border: 0; background: transparent; color: var(--fg); font: inherit; font-size: .9rem; padding: 8px 0; cursor: pointer; text-decoration: underline; text-underline-offset: 4px; }
+.demo-chapters button:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
 
 /* ------------------------------------------------------------- cite */
 .cite { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; margin-top: 40px; max-width: 900px; }
@@ -457,7 +465,7 @@ footer h2 { font-size: .74rem; letter-spacing: .09em; text-transform: uppercase;
    "codeRepository": "https://github.com/sidneibarbieri/topVenues",
    "programmingLanguage": "Python",
    "license": "https://opensource.org/licenses/MIT",
-   "softwareVersion": "1.16.0"
+   "softwareVersion": "1.16.1"
   },
   {
    "@type": "ScholarlyArticle",
@@ -516,6 +524,7 @@ footer h2 { font-size: .74rem; letter-spacing: .09em; text-transform: uppercase;
   <path d="M558.6482612600432 79.73046875Q547.5154487600432 79.73046875 540.3865425100432 75.091796875Q533.2576362600432 70.453125 531.8416206350432 62.396484375L550.0056831350432 59.759765625Q550.9822456350432 62.982421875 553.1795112600432 64.7158203125Q555.3767768850432 66.44921875 559.5271675100432 66.44921875Q565.6306831350432 66.44921875 565.6306831350432 63.03125Q565.6306831350432 60.150390625 559.3806831350432 59.02734375L549.7127143850432 57.26953125Q533.1111518850432 54.291015625 533.1111518850432 41.25390625Q533.1111518850432 32.708984375 539.8494331350432 28.0947265625Q546.5877143850432 23.48046875 558.3064643850432 23.48046875Q569.1463081350432 23.48046875 575.8357612600432 27.6552734375Q582.5252143850432 31.830078125 583.7947456350432 39.251953125L566.5095893850432 41.7421875Q565.8748237600432 39.056640625 563.7263862600432 37.8115234375Q561.5779487600432 36.56640625 558.6970893850432 36.56640625Q556.1580268850432 36.56640625 554.4002143850432 37.4697265625Q552.6424018850432 38.373046875 552.6424018850432 40.08203125Q552.6424018850432 41.302734375 553.6922065725432 42.376953125Q554.7420112600432 43.451171875 557.8181831350432 43.98828125L568.9509956350432 45.94140625Q585.5525581350432 48.87109375 585.5525581350432 60.6875Q585.5525581350432 66.546875 582.0613471975432 70.8193359375Q578.5701362600432 75.091796875 572.5154487600432 77.4111328125Q566.4607612600432 79.73046875 558.6482612600432 79.73046875Z" fill="#4DA3FF"/>
 </svg></a>
     <nav class="nav" aria-label="Sections">
+      <a href="#why"><span data-l="en">Why</span><span data-l="pt">Por quê</span></a>
       <a href="#method"><span data-l="en">Method</span><span data-l="pt">Método</span></a>
       <a href="#tool"><span data-l="en">Tool</span><span data-l="pt">Ferramenta</span></a>
       <a href="#findings"><span data-l="en">Findings</span><span data-l="pt">Resultados</span></a>
@@ -610,7 +619,7 @@ footer h2 { font-size: .74rem; letter-spacing: .09em; text-transform: uppercase;
     <div class="release-head">
       <strong id="release-h"><span data-l="en">Current release</span><span data-l="pt">Versão atual</span></strong>
       <code>security-20-v6</code>
-      <span class="note"><span data-l="en">TopVenues v1.16.0 · snapshot built 2026-09-29 · a maintained corpus, not the denominator of a paper (<a href="#papers">those are frozen</a>).</span><span data-l="pt">TopVenues v1.16.0 · snapshot gerado em 2026-09-29 · um corpus mantido, não o denominador de um artigo (<a href="#papers">esses estão congelados</a>).</span></span>
+      <span class="note"><span data-l="en">TopVenues v1.16.1 · snapshot built 2026-09-29 · a maintained corpus, not the denominator of a paper (<a href="#papers">those are frozen</a>).</span><span data-l="pt">TopVenues v1.16.1 · snapshot gerado em 2026-09-29 · um corpus mantido, não o denominador de um artigo (<a href="#papers">esses estão congelados</a>).</span></span>
     </div>
     <dl class="stats">
       <div><dt><span data-l="en">records</span><span data-l="pt">registros</span></dt><dd><span data-l="en">15,286</span><span data-l="pt">15.286</span></dd></div>
@@ -622,9 +631,50 @@ footer h2 { font-size: .74rem; letter-spacing: .09em; text-transform: uppercase;
   </div>
 </section>
 
+<section class="sec" id="why" aria-labelledby="why-h">
+  <div class="wrap">
+    <p class="sec-label"><span class="no">01</span><span data-l="en">Why</span><span data-l="pt">Por quê</span></p>
+    <div>
+      <h2 id="why-h"><span data-l="en">Spend the review on reading, not on rebuilding the list.</span><span data-l="pt">Gaste a revisão lendo, não remontando a lista.</span></h2>
+      <p class="sec-intro" data-l="en">Assembling the papers a review covers usually means weeks of exports, deduplication and venue checks, and the result is a list nobody else can rebuild. TopVenues ships that list ready to search, export and cite.</p>
+      <p class="sec-intro" data-l="pt">Montar os artigos que uma revisão cobre costuma custar semanas de exportações, deduplicação e conferência de veículos, e o resultado é uma lista que ninguém mais consegue refazer. O TopVenues entrega essa lista pronta para buscar, exportar e citar.</p>
+      <div class="pillars">
+        <article>
+          <span class="k" data-l="en">for authors</span><span class="k" data-l="pt">para autores</span>
+          <h3><span data-l="en">Start screening today</span><span data-l="pt">Comece a triagem hoje</span></h3>
+          <p data-l="en">Search 15,286 records from 20 venues, export BibTeX, and cite one SHA-256 for the population you screened.</p>
+          <p data-l="pt">Busque em 15.286 registros de 20 veículos, exporte BibTeX e cite um único SHA-256 para a população que você triou.</p>
+        </article>
+        <article>
+          <span class="k" data-l="en">for reviewers</span><span class="k" data-l="pt">para avaliadores</span>
+          <h3><span data-l="en">Check a count instead of trusting it</span><span data-l="pt">Confira a contagem em vez de confiar nela</span></h3>
+          <p data-l="en">A paper built on a TopVenues release names its snapshot. Cloning that release and running one command returns the same numbers, offline, with no API key.</p>
+          <p data-l="pt">Um artigo feito sobre uma versão do TopVenues nomeia seu snapshot. Clonar essa versão e rodar um comando devolve os mesmos números, offline e sem chave de API.</p>
+        </article>
+        <article>
+          <span class="k" data-l="en">for advisors and groups</span><span class="k" data-l="pt">para orientadores e grupos</span>
+          <h3><span data-l="en">One shared starting point</span><span data-l="pt">Um ponto de partida comum</span></h3>
+          <p data-l="en">Everyone in a group works from the same declared list, sees where abstracts are missing, and can spot award-winning papers from the official award pages.</p>
+          <p data-l="pt">Todo o grupo trabalha sobre a mesma lista declarada, vê onde faltam resumos e identifica os artigos premiados a partir das páginas oficiais de prêmios.</p>
+        </article>
+      </div>
+      <ul class="proof">
+        <li><a href="#papers"><span data-l="en">Peer-reviewed: two papers at SBSeg 2026, main track and tools track</span><span data-l="pt">Revisado por pares: dois artigos no SBSeg 2026, trilha principal e salão de ferramentas</span></a></li>
+        <li><a href="https://huggingface.co/datasets/sidneibarbieri/topvenues"><span data-l="en">Open data on Hugging Face, linked to the paper page</span><span data-l="pt">Dados abertos no Hugging Face, ligados à página do artigo</span></a></li>
+        <li><span data-l="en">Tested on Linux and Windows, Python 3.11–3.14, on every change</span><span data-l="pt">Testado em Linux e Windows, Python 3.11–3.14, a cada mudança</span></li>
+        <li><span data-l="en">MIT licensed; no account, no API key</span><span data-l="pt">Licença MIT; sem conta, sem chave de API</span></li>
+      </ul>
+      <div class="cta">
+        <a class="btn primary" href="#start"><span data-l="en">Use the current release</span><span data-l="pt">Usar a versão atual</span> <span class="ar" aria-hidden="true">→</span></a>
+        <a class="btn ghost" href="#demo"><span data-l="en">Watch the 2½-minute demo</span><span data-l="pt">Ver a demo de 2½ minutos</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="sec" id="method" aria-labelledby="method-h">
   <div class="wrap">
-    <p class="sec-label"><span class="no">01</span><span data-l="en">Method</span><span data-l="pt">Método</span></p>
+    <p class="sec-label"><span class="no">02</span><span data-l="en">Method</span><span data-l="pt">Método</span></p>
     <div>
       <h2 id="method-h"><span data-l="en">Declared. Frozen. Executable.</span><span data-l="pt">Declarado. Congelado. Executável.</span></h2>
       <div class="pillars">
@@ -671,7 +721,7 @@ footer h2 { font-size: .74rem; letter-spacing: .09em; text-transform: uppercase;
 
 <section class="sec" id="tool" aria-labelledby="tool-h">
   <div class="wrap">
-    <p class="sec-label"><span class="no">02</span><span data-l="en">Tool</span><span data-l="pt">Ferramenta</span></p>
+    <p class="sec-label"><span class="no">03</span><span data-l="en">Tool</span><span data-l="pt">Ferramenta</span></p>
     <div>
       <h2 id="tool-h"><span data-l="en">A literature workbench on a fixed population.</span><span data-l="pt">Uma bancada de literatura sobre uma população fixa.</span></h2>
       <p class="sec-intro" data-l="en">A local web interface, in English or Portuguese, and a command-line tool over the same snapshot. Every aggregate links back to the records behind it.</p>
@@ -711,7 +761,7 @@ python -m src.cli --profile security-20-v6 export --format bibtex --tech &quot;f
 
 <section class="sec" id="findings" aria-labelledby="findings-h">
   <div class="wrap">
-    <p class="sec-label"><span class="no">03</span><span data-l="en">Findings</span><span data-l="pt">Resultados</span></p>
+    <p class="sec-label"><span class="no">04</span><span data-l="en">Findings</span><span data-l="pt">Resultados</span></p>
     <div>
       <h2 id="findings-h"><span data-l="en">What a fixed denominator makes measurable.</span><span data-l="pt">O que um denominador fixo torna mensurável.</span></h2>
       <p class="sec-intro" data-l="en">Two measurements from Paper A, taken on its May 2026 snapshot of 9,925 records. They are reproduced by that paper's release, not recomputed on the current corpus.</p>
@@ -751,7 +801,7 @@ python -m src.cli --profile security-20-v6 export --format bibtex --tech &quot;f
 
 <section class="sec" id="papers" aria-labelledby="papers-h">
   <div class="wrap">
-    <p class="sec-label"><span class="no">04</span><span data-l="en">Papers</span><span data-l="pt">Artigos</span></p>
+    <p class="sec-label"><span class="no">05</span><span data-l="en">Papers</span><span data-l="pt">Artigos</span></p>
     <div>
       <h2 id="papers-h"><span data-l="en">Published evidence does not move.</span><span data-l="pt">Evidência publicada não se move.</span></h2>
       <p class="sec-intro" data-l="en">The software evolves. Each paper stays bound to one repository, one release, one snapshot and one SHA-256, and its numbers are reproduced from that snapshot, never from whatever the current release ships.</p>
@@ -827,7 +877,7 @@ bash reproduce.sh --profile security-20</code></pre></div></div>
 
 <section class="sec" id="start" aria-labelledby="start-h">
   <div class="wrap">
-    <p class="sec-label"><span class="no">05</span><span data-l="en">Start</span><span data-l="pt">Começar</span></p>
+    <p class="sec-label"><span class="no">06</span><span data-l="en">Start</span><span data-l="pt">Começar</span></p>
     <div>
       <h2 id="start-h"><span data-l="en">One command, then a local interface.</span><span data-l="pt">Um comando, depois uma interface local.</span></h2>
       <div class="start">
@@ -839,7 +889,7 @@ bash reproduce.sh --profile security-20</code></pre></div></div>
           <div role="tabpanel" id="pane-unix" aria-labelledby="tab-unix">
             <p class="req" data-l="en">Python 3.11–3.14, Git and Bash. No API key, GPU or institutional access.</p>
             <p class="req" data-l="pt">Python 3.11–3.14, Git e Bash. Sem chave de API, GPU ou acesso institucional.</p>
-            <div class="code"><div class="code-bar"><span class="code-label"></span><button class="copy" type="button" data-copy><span data-l="en">Copy</span><span data-l="pt">Copiar</span></button></div><pre><code>git clone --depth 1 --branch v1.16.0 https://github.com/sidneibarbieri/topVenues.git
+            <div class="code"><div class="code-bar"><span class="code-label"></span><button class="copy" type="button" data-copy><span data-l="en">Copy</span><span data-l="pt">Copiar</span></button></div><pre><code>git clone --depth 1 --branch v1.16.1 https://github.com/sidneibarbieri/topVenues.git
 cd topVenues
 bash reproduce.sh --profile security-20-v6</code></pre></div>
             <h3><span data-l="en">Then open the interface</span><span data-l="pt">Depois, abra a interface</span></h3>
@@ -849,7 +899,7 @@ python -m streamlit run web/app.py</code></pre></div>
           <div role="tabpanel" id="pane-win" aria-labelledby="tab-win" hidden>
             <p class="req" data-l="en">Python 3.11–3.14 with the <code>py</code> launcher, Git and PowerShell.</p>
             <p class="req" data-l="pt">Python 3.11–3.14 com o launcher <code>py</code>, Git e PowerShell.</p>
-            <div class="code"><div class="code-bar"><span class="code-label"></span><button class="copy" type="button" data-copy><span data-l="en">Copy</span><span data-l="pt">Copiar</span></button></div><pre><code>git clone --depth 1 --branch v1.16.0 https://github.com/sidneibarbieri/topVenues.git
+            <div class="code"><div class="code-bar"><span class="code-label"></span><button class="copy" type="button" data-copy><span data-l="en">Copy</span><span data-l="pt">Copiar</span></button></div><pre><code>git clone --depth 1 --branch v1.16.1 https://github.com/sidneibarbieri/topVenues.git
 cd topVenues
 powershell -ExecutionPolicy Bypass -File .\reproduce.ps1 -Profile security-20-v6</code></pre></div>
             <h3><span data-l="en">Then open the interface</span><span data-l="pt">Depois, abra a interface</span></h3>
@@ -878,29 +928,38 @@ security = corpus.filter(lambda paper: paper[&quot;area&quot;] == &quot;security
 
 <section class="sec" id="demo" aria-labelledby="demo-h">
   <div class="wrap">
-    <p class="sec-label"><span class="no">06</span><span data-l="en">Demo</span><span data-l="pt">Demo</span></p>
+    <p class="sec-label"><span class="no">07</span><span data-l="en">Demo</span><span data-l="pt">Demo</span></p>
     <div>
       <h2 id="demo-h"><span data-l="en">The tool end to end, in two and a half minutes.</span><span data-l="pt">A ferramenta de ponta a ponta, em dois minutos e meio.</span></h2>
-      <p class="sec-intro" data-l="en">The list that moves on its own, the idea, one command on a fresh clone, search and export, where the corpus is silent, and what a fixed list makes measurable. Narration in English, captions in English and Brazilian Portuguese. It shows v1.14.0 on <code>security-20-v5</code>.</p>
-      <p class="sec-intro" data-l="pt">A lista que muda sozinha, a ideia, um comando num clone novo, busca e exportação, onde o corpus se cala, e o que uma lista fixa torna mensurável. Narração em inglês, legendas em inglês e português do Brasil. Mostra a v1.14.0 sobre o <code>security-20-v5</code>.</p>
+      <p class="sec-intro" data-l="en">Follow one workflow: restore the snapshot, search within its scope, inspect the matches and export references. Narration in English, captions in English and Brazilian Portuguese. Recorded on v1.14.0 / <code>security-20-v5</code>; the current v6 corrects 49 WOOT venue labels, with the total record count unchanged.</p>
+      <p class="sec-intro" data-l="pt">Acompanhe um fluxo: restaurar o snapshot, buscar dentro do escopo, inspecionar os resultados e exportar referências. Narração em inglês, legendas em inglês e português do Brasil. Gravado na v1.14.0 / <code>security-20-v5</code>; o atual v6 corrige 49 rótulos de veículo do WOOT, sem alterar o total de registros.</p>
+      <nav class="demo-chapters" aria-label="Video chapters" data-label-en="Video chapters" data-label-pt="Capítulos do vídeo">
+        <button type="button" data-demo-time="50.875"><span data-l="en">0:51 · Restore and verify</span><span data-l="pt">0:51 · Restaurar e verificar</span></button>
+        <button type="button" data-demo-time="85.025"><span data-l="en">1:25 · Search and scope</span><span data-l="pt">1:25 · Busca e escopo</span></button>
+        <button type="button" data-demo-time="102.8"><span data-l="en">1:43 · CLI and BibTeX</span><span data-l="pt">1:43 · CLI e BibTeX</span></button>
+        <button type="button" data-demo-time="111.1"><span data-l="en">1:51 · Coverage gaps</span><span data-l="pt">1:51 · Lacunas de cobertura</span></button>
+        <button type="button" data-demo-time="121.475"><span data-l="en">2:01 · Measurements</span><span data-l="pt">2:01 · Medições</span></button>
+      </nav>
       <div class="video">
-        <video controls preload="none" playsinline crossorigin="anonymous" poster="assets/demo-poster.jpg" width="1280" height="720">
+        <video id="demo-video" controls preload="none" playsinline crossorigin="anonymous" poster="assets/demo-poster.jpg" width="1280" height="720" tabindex="0">
           <source src="https://huggingface.co/datasets/sidneibarbieri/topvenues/resolve/main/assets/demo/topvenues-demo-v1.14.0.mp4" type="video/mp4">
           <track kind="captions" src="https://huggingface.co/datasets/sidneibarbieri/topvenues/resolve/main/assets/demo/topvenues-demo-v1.14.0.en.vtt" srclang="en" label="English" data-track="en">
           <track kind="captions" src="https://huggingface.co/datasets/sidneibarbieri/topvenues/resolve/main/assets/demo/topvenues-demo-v1.14.0.pt-BR.vtt" srclang="pt-BR" label="Português (Brasil)" data-track="pt">
         </video>
       </div>
+      <p class="provenance" data-l="en">At 2:12, 16.5× is relative risk: flagged versus unflagged preprints. Conventional lift against all preprints is 2.5×. These are correlational measurements from Paper A's frozen cohort, not a prediction of research quality. <a href="#findings">See both baselines.</a></p>
+      <p class="provenance" data-l="pt">Aos 2:12, 16,5× é risco relativo: preprints sinalizados contra não sinalizados. O lift convencional contra todos os preprints é 2,5×. São medições correlacionais da coorte congelada do Artigo A, não uma previsão de qualidade da pesquisa. <a href="#findings">Veja as duas linhas de base.</a></p>
     </div>
   </div>
 </section>
 
 <section class="sec" id="cite" aria-labelledby="cite-h">
   <div class="wrap">
-    <p class="sec-label"><span class="no">07</span><span data-l="en">Cite</span><span data-l="pt">Citar</span></p>
+    <p class="sec-label"><span class="no">08</span><span data-l="en">Cite</span><span data-l="pt">Citar</span></p>
     <div>
       <h2 id="cite-h"><span data-l="en">Cite the tool paper, and name the release you used.</span><span data-l="pt">Cite o artigo da ferramenta e informe a versão que você usou.</span></h2>
-      <p class="sec-intro" data-l="en">Used TopVenues to search, build a review corpus, export references or rank authors? Cite Paper B, the tools-track paper, and name the release and profile, such as <code>v1.16.0 · security-20-v6</code>, so a reader can reopen the same snapshot. Using or building on the corpus method or its measurements? Cite Paper A. When both apply, cite both.</p>
-      <p class="sec-intro" data-l="pt">Usou o TopVenues para buscar, montar o corpus de uma revisão, exportar referências ou ranquear autores? Cite o Artigo B, da trilha de ferramentas, e informe a versão e o perfil, como <code>v1.16.0 · security-20-v6</code>, para que o leitor reabra o mesmo snapshot. Usa ou estende o método do corpus ou suas medições? Cite o Artigo A. Quando os dois se aplicam, cite os dois.</p>
+      <p class="sec-intro" data-l="en">Used TopVenues to search, build a review corpus, export references or rank authors? Cite Paper B, the tools-track paper, and name the release and profile, such as <code>v1.16.1 · security-20-v6</code>, so a reader can reopen the same snapshot. Using or building on the corpus method or its measurements? Cite Paper A. When both apply, cite both.</p>
+      <p class="sec-intro" data-l="pt">Usou o TopVenues para buscar, montar o corpus de uma revisão, exportar referências ou ranquear autores? Cite o Artigo B, da trilha de ferramentas, e informe a versão e o perfil, como <code>v1.16.1 · security-20-v6</code>, para que o leitor reabra o mesmo snapshot. Usa ou estende o método do corpus ou suas medições? Cite o Artigo A. Quando os dois se aplicam, cite os dois.</p>
       <div class="cite">
         <div class="code"><div class="code-bar"><span class="code-label"><span data-l="en">Paper B · using the tool</span><span data-l="pt">Artigo B · uso da ferramenta</span></span><button class="copy" type="button" data-copy><span data-l="en">Copy</span><span data-l="pt">Copiar</span></button></div><pre><code>@inproceedings{barbieri2026topvenuestool,
   author    = {Sidnei Barbieri and {\&#x27;A}gney Lopes Roth Ferraz and Louren{\c{c}}o Alves {Pereira J{\&#x27;u}nior}},
@@ -958,12 +1017,12 @@ security = corpus.filter(lambda paper: paper[&quot;area&quot;] == &quot;security
     </div>
     <div>
       <h2><span data-l="en">This page</span><span data-l="pt">Esta página</span></h2>
-      <p data-l="en">Sets no cookies and loads nothing from third parties until you play the video, which streams from Hugging Face.</p>
-      <p data-l="pt">Não usa cookies e não carrega nada de terceiros até você iniciar o vídeo, que vem do Hugging Face.</p>
+      <p data-l="en">Sets no cookies. Video streams from Hugging Face only after you play it or choose a chapter.</p>
+      <p data-l="pt">Não usa cookies. O vídeo vem do Hugging Face somente após você iniciá-lo ou escolher um capítulo.</p>
       <p data-l="en">Code MIT · Inter typeface, SIL Open Font License.</p>
       <p data-l="pt">Código MIT · fonte Inter, SIL Open Font License.</p>
     </div>
-    <p class="stamp"><span data-l="en">Built from</span><span data-l="pt">Gerado a partir de</span> security-20-v6 · v1.16.0 · 797c6e7 · 2026-09-29</p>
+    <p class="stamp"><span data-l="en">Built from</span><span data-l="pt">Gerado a partir de</span> security-20-v6 · v1.16.1 · 5687964 · 2026-10-05</p>
   </div>
 </footer>
 
@@ -1007,6 +1066,25 @@ security = corpus.filter(lambda paper: paper[&quot;area&quot;] == &quot;security
       syncCaptions(video);
     });
   });
+
+  var demoVideo = document.getElementById("demo-video");
+  if (demoVideo) {
+    var chapterTime = null;
+    function seekChapter() {
+      if (chapterTime === null) return;
+      demoVideo.currentTime = chapterTime;
+      demoVideo.focus({ preventScroll: true });
+    }
+    demoVideo.addEventListener("loadedmetadata", seekChapter);
+    document.querySelectorAll("[data-demo-time]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        chapterTime = Number(button.getAttribute("data-demo-time"));
+        demoVideo.pause();
+        if (demoVideo.readyState >= 1) seekChapter(); else demoVideo.load();
+        demoVideo.scrollIntoView({ block: "center" });
+      });
+    });
+  }
 
   document.querySelectorAll("[data-set-lang]").forEach(function (button) {
     button.addEventListener("click", function () {
